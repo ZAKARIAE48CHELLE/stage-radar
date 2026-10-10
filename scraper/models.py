@@ -23,7 +23,6 @@ class Offer:
     bonus: int = 0
     score: int = 0
     is_pfe: bool = False
-    is_paid: bool = False
 
     def to_dict(self) -> dict:
         return asdict(self)

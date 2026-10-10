@@ -45,19 +45,6 @@ def analyse(offer: Offer, cfg: dict) -> Offer:
 
     full = title_n + " " + body_n
     offer.is_pfe = contains_any(full, ["pfe", "fin d'etudes", "fin d etudes", "projet de fin"])
-    offer.is_paid = contains_any(full, [
-        "remunere", "remuneree", "remuneres", "remunerees",
-        "remuneration", "remunerations", "gratification", "gratifications",
-        "gratifie", "gratifiee", "gratifiees", "indemnite", "indemnites",
-        "indemnise", "indemnisee", "indemnisees", "stipend", "allowance",
-        "prime de stage", "bourse de stage", "stage paye", "pre-embauche remunere",
-        "pre embauche remunere"
-    ]) and not contains_any(full, [
-        "non remunere", "non remuneree", "non remuneres", "non remunerees",
-        "sans remuneration", "pas de remuneration", "non gratifie", "non gratifiee",
-        "sans gratification", "non indemnite", "non indemnise", "non indemnisee",
-        "sans indemnite", "unpaid"
-    ])
     prefs = [norm(c) for c in cfg["candidate"].get("preferred_cities", [])]
     bonus = cfg["scoring"]["pfe_bonus"] if offer.is_pfe else 0
     if norm(offer.city) in prefs or (offer.modality == "Télétravail" and "teletravail" in prefs):

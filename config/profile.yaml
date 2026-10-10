@@ -44,8 +44,7 @@ axes:
 filters:
   # Offer must mention at least one of these somewhere (title/description)
   field_any: [data, "intelligence artificielle", ia, ai, "machine learning", "deep learning",
-              llm, "big data", nlp, "computer vision", mlops, genai, "data science",
-              cybersecurite, cybersecurity]
+              llm, "big data", nlp, "computer vision", mlops, genai, "data science"]
   # Offer must look like an internship (JSON-LD employmentType INTERN also counts)
   require_internship: true
   internship_any: [stage, stagiaire, pfe, internship, intern, "fin d'etudes", "pre-embauche", "pre embauche"]
@@ -65,6 +64,24 @@ scoring:
 notify:
   min_score: 70             # only push new offers at or above this score
   max_items: 10
+
+# ─────────────────────────────────────────────────────────────
+#  Multi-user app (Supabase). Each user has their own skills and scores in the app,
+#  so this filter is deliberately broad: what is worth showing to *anyone* in the group.
+# ─────────────────────────────────────────────────────────────
+platform:
+  max_age_days: 60
+  require_internship: true
+  internship_any: [stage, stagiaire, pfe, internship, intern, "fin d'etudes", "pre-embauche", "pre embauche", alternance]
+  # Keep offers mentioning at least one of these fields. Empty list [] = keep every internship.
+  field_any: [informatique, developpeur, developpeuse, developpement, logiciel, software, web, mobile,
+              data, donnees, ia, ai, "intelligence artificielle", "machine learning", cloud, devops,
+              reseau, reseaux, systemes, cybersecurite, securite, telecom, telecoms, electronique,
+              embarque, embedded, automatisme, robotique, genie, ingenieur, ingenieure, engineer,
+              engineering, it, erp, sap, odoo, bi, "business intelligence", industriel, mecanique,
+              electrique, energie, qualite, "supply chain", logistique, methodes, production, aeronautique,
+              automobile, finance, audit, controle de gestion, marketing digital]
+  title_exclude_any: []
 
 # Short pitch hints shown in the dashboard, keyed by dominant axis.
 pitch:

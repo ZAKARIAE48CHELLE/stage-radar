@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-10T11:45:22+00:00",
+ "generated_at": "2026-10-10T22:07:57+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -30,19 +30,19 @@
  "stats": {
   "stored": 641,
   "by_source": {
-   "stagiaires.ma": 30,
+   "stagiaires.ma": 28,
    "dreamjob.ma": 1
   },
-  "kept": 31,
-  "new_this_run": 381,
+  "kept": 29,
+  "new_this_run": 0,
   "filter_reasons": {
    "title excluded": 14,
-   "ok": 36,
-   "not data/AI": 523,
-   "not an internship": 23,
-   "too few skill keywords": 33,
+   "not data/AI": 529,
+   "not an internship": 21,
+   "ok": 33,
+   "too few skill keywords": 32,
    "expired": 12,
-   "duplicate": 5
+   "duplicate": 4
   }
  },
  "offers": [
@@ -83,8 +83,6 @@
    "bonus": 8,
    "score": 100,
    "is_pfe": true,
-   "is_paid": true,
-   "is_remunere": true,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 1
@@ -126,8 +124,6 @@
    "bonus": 8,
    "score": 100,
    "is_pfe": true,
-   "is_paid": true,
-   "is_remunere": true,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 2
@@ -171,8 +167,6 @@
    "bonus": 8,
    "score": 97,
    "is_pfe": true,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 3
@@ -210,8 +204,6 @@
    "bonus": 3,
    "score": 90,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 4
@@ -254,8 +246,6 @@
    "bonus": 0,
    "score": 88,
    "is_pfe": false,
-   "is_paid": true,
-   "is_remunere": true,
    "first_seen": "2026-10-09",
    "new_today": false,
    "also_on": [
@@ -304,8 +294,6 @@
    "bonus": 3,
    "score": 86,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 6
@@ -348,8 +336,6 @@
    "bonus": 3,
    "score": 86,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 7
@@ -392,8 +378,6 @@
    "bonus": 3,
    "score": 86,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 8
@@ -436,8 +420,6 @@
    "bonus": 0,
    "score": 85,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 9
@@ -472,8 +454,6 @@
    "bonus": 0,
    "score": 82,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 10
@@ -505,8 +485,6 @@
    "bonus": 8,
    "score": 81,
    "is_pfe": true,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 11
@@ -544,8 +522,6 @@
    "bonus": 0,
    "score": 80,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 12
@@ -583,8 +559,6 @@
    "bonus": 0,
    "score": 80,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 13
@@ -620,8 +594,6 @@
    "bonus": 0,
    "score": 76,
    "is_pfe": false,
-   "is_paid": true,
-   "is_remunere": true,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 14
@@ -653,8 +625,6 @@
    "bonus": 8,
    "score": 68,
    "is_pfe": true,
-   "is_paid": true,
-   "is_remunere": true,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 15
@@ -686,8 +656,6 @@
    "bonus": 8,
    "score": 68,
    "is_pfe": true,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 16
@@ -721,8 +689,6 @@
    "bonus": 3,
    "score": 66,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "also_on": [
@@ -761,8 +727,6 @@
    "bonus": 0,
    "score": 66,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 18
@@ -794,8 +758,6 @@
    "bonus": 0,
    "score": 64,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "also_on": [
@@ -835,8 +797,6 @@
    "bonus": 0,
    "score": 63,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 20
@@ -870,8 +830,6 @@
    "bonus": 0,
    "score": 63,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 21
@@ -903,8 +861,6 @@
    "bonus": 0,
    "score": 60,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 22
@@ -937,8 +893,6 @@
    "bonus": 0,
    "score": 60,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 23
@@ -970,8 +924,6 @@
    "bonus": 0,
    "score": 59,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 24
@@ -1004,8 +956,6 @@
    "bonus": 0,
    "score": 56,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 25
@@ -1036,8 +986,6 @@
    "bonus": 3,
    "score": 53,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-10",
    "new_today": true,
    "id": 26
@@ -1070,8 +1018,6 @@
    "bonus": 0,
    "score": 53,
    "is_pfe": false,
-   "is_paid": true,
-   "is_remunere": true,
    "first_seen": "2026-10-09",
    "new_today": false,
    "id": 27
@@ -1102,8 +1048,6 @@
    "bonus": 3,
    "score": 50,
    "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
    "first_seen": "2026-10-09",
    "new_today": false,
    "also_on": [
@@ -1113,38 +1057,6 @@
     }
    ],
    "id": 28
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6550-offre-de-stage-cybersecurite-soc",
-   "source": "stagiaires.ma",
-   "title": "Offre de stage - Cybersécurité / SOC",
-   "company": "INOVADEX CONSULTING",
-   "city": "Rabat",
-   "modality": "",
-   "date_posted": "2026-09-18",
-   "valid_through": "2026-10-18",
-   "employment_type": "INTERN",
-   "description": "Rejoignez notre équipe pour un stage en Cybersécurité / SOC à Rabat. Vous participerez à la supervision, détection et amélioration des dispositifs de sécurité. Vos missions incluront l'analyse de logs, la qualification d'alertes, l'amélioration des règles de détection et tests de sécurité. Profil recherché: étudiant(e) en Cybersécurité, Informatique ou domaine similaire, avec de bonnes bases en Linux, réseaux et sécurité. Stage non rémunéré.\nMissions\nDans le cadre du renforcement de nos activités de cybersécurité et de l’amélioration continue de notre\nSecurity Operations Center (SOC)\n, nous recherchons un(e)\nStagiaire Cybersécurité / SOC\nsouhaitant évoluer dans un environnement opérationnel et contribuer concrètement à la supervision, à la détection et à l’amélioration de nos dispositifs de sécurité.\nSous la supervision de l’équipe, le/la stagiaire participera notamment à :\nLa supervision et l’analyse des\nlogs et événements de sécurité\n;\nLa qualification des alertes SOC : analyse, identification des faux positifs et escalade des événements nécessitant une investigation approfondie ;\nL’amélioration des\nrègles de détection, de corrélation et d’alerte\n;\nLa participation aux tests de scénarios de sécurité : brute force, tentatives d’exploitation web, activités anormales, services exposés et événements réseau suspects ;\nL’exploitation et l’amélioration des composants du SOC, notamment\nWazuh, Suricata, OpenSearch et Logstash\n;\nLa réalisation, sous supervision, de contrôles et tests de vulnérabilité sur\napplications web, API, serveurs et configurations\n;\nLa documentation des vulnérabilités identifiées, avec éléments de preuve, impact et recommandations ;\nLe suivi des actions correctives et la participation aux retests ;\nL’amélioration des\nprocédures, playbooks, checklists et p",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/07/21100034/Inovadex.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 0,
-    "fullstack": 1,
-    "cvsec": 2
-   },
-   "keywords": [
-    "automatisation",
-    "cybersecurite"
-   ],
-   "domain": "Computer Vision & Security",
-   "bonus": 3,
-   "score": 44,
-   "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -1172,48 +1084,9 @@
    "bonus": 0,
    "score": 41,
    "is_pfe": false,
-   "is_paid": true,
-   "is_remunere": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 30
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7041-stage-consultant-en-cybersecurite",
-   "source": "stagiaires.ma",
-   "title": "Stage - Consultant en Cybersécurité",
-   "company": "PwC Maroc",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-09",
-   "valid_through": "2026-11-08",
-   "employment_type": "INTERN",
-   "description": "Rejoignez PwC Maroc en tant que stagiaire consultant en cybersécurité. Vous intégrerez une équipe dynamique pour intervenir sur des missions variées : pentest, gestion des identités et des accès (IAM), audit de sécurité et stratégie de protection des données. Vous êtes en dernière année d'école d'ingénieurs ou master spécialisé, doté(e) d'un excellent niveau en français et en anglais, et souhaitez développer une expertise concrète dans un environnement international stimulant. Une opportunité idéale pour construire une carrière solide en cybersécurité au sein d'un cabinet de renom.\nPrésentation du poste\nLa cybersécurité chez PwC est une aventure humaine et technologique. Depuis plus de dix ans, notre équipe se distingue par son expertise, sa pertinence et sa force de frappe à l'international. Rejoindre PwC, c'est intégrer un collectif engagé et bienveillant, favorisant le développement de compétences pointues et l'émergence d'initiatives innovantes.\nDans le cadre du renforcement de nos activités, nous recherchons des stagiaires motivés souhaitant acquérir une expérience pratique en\nPentest\n(tests d'intrusion), gestion des identités et des accès (\nIAM\n) et opérations de sécurité (\nSOC\n).\nMissions principales\nEn tant que stagiaire, vous interviendrez sur des projets variés couvrant :\nLa stratégie de sécurité et la gestion des risques.\nLa protection de l'information et des données.\nL'audit de sécurité et les tests d'intrusion des systèmes d'information.\nL'amélioration de la gestion des identités et des accès (IAM).\nProfil recherché\nÉtudiant(e) en dernière année d'école d'ingénieurs, université ou master spécialisé en informatique, cybersécurité ou systèmes d'information.\nCapacité à travailler de manière autonome tout en ayant un fort esprit d'équipe.\nMaîtrise parfaite du f",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/08/10084907/PWC.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 0,
-    "fullstack": 0,
-    "cvsec": 2
-   },
-   "keywords": [
-    "cybersecurite"
-   ],
-   "domain": "Computer Vision & Security",
-   "bonus": 3,
-   "score": 35,
-   "is_pfe": false,
-   "is_paid": false,
-   "is_remunere": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "also_on": [
-    {
-     "source": "stagiaires.ma",
-     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7053-stage-consultant-en-cybersecurite"
-    }
-   ],
-   "id": 31
+   "id": 29
   }
  ]
 }

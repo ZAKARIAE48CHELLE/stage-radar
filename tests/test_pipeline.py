@@ -46,20 +46,6 @@ def test_expired_and_offtopic_are_dropped():
     assert not is_relevant(hr, CFG)[0]
 
 
-def test_remunere_detection():
-    paid = analyse(Offer(url="u1", source="s", title="Stage Data Engineer Rémunéré",
-                         description="Stage avec gratification mensuelle"), CFG)
-    assert paid.is_paid is True
-
-    unpaid = analyse(Offer(url="u2", source="s", title="Stage IA non rémunéré",
-                           description="Stage non remunere sans remuneration"), CFG)
-    assert unpaid.is_paid is False
-
-    standard = analyse(Offer(url="u3", source="s", title="Stage PFE Machine Learning",
-                             description="Conception de pipelines ML"), CFG)
-    assert standard.is_paid is False
-
-
 def test_compute_score_bounds():
     w = CFG["weights"]
     assert compute_score({}, w) == 0

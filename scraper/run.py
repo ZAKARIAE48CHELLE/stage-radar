@@ -15,10 +15,9 @@ import os
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-import re
 import yaml
 
-from . import notify
+from . import notify, supabase_sync
 from .http import PoliteSession
 from .scoring import analyse, is_relevant
 from .sources import stagiaires_ma, dreamjob_ma, email_alerts
@@ -27,22 +26,6 @@ from .storage import Store
 
 ROOT = Path(__file__).resolve().parent.parent
 log = logging.getLogger("stage-radar")
-
-
-def _url_priority(url: str, cfg: dict) -> int:
-    slug = url.rstrip("/").split("/")[-1].lower()
-    for exc in cfg.get("filters", {}).get("title_exclude_any", []):
-        exc_slug = re.escape(exc.lower().replace(" ", "-"))
-        if re.search(r"(^|[-_])" + exc_slug + r"([-_]|$)", slug):
-            return 2
-    tech_keywords = list(cfg.get("filters", {}).get("field_any", []))
-    for ax in cfg.get("axes", {}).values():
-        tech_keywords.extend(ax.get("keywords", []))
-    for kw in tech_keywords:
-        kw_slug = re.escape(kw.lower().replace(" ", "-"))
-        if re.search(r"(^|[-_])" + kw_slug + r"([-_]|$)", slug):
-            return 0
-    return 1
 
 
 def load_cfg(path: Path) -> dict:
@@ -75,7 +58,6 @@ def fetch(cfg: dict, store: Store, max_new: int | None) -> set[str]:
             store.touch([u for u, _ in listed])
             known = store.known()
             todo = [u for u, _ in listed if u not in known]
-            todo.sort(key=lambda u: _url_priority(u, cfg))
             cap = max_new if max_new is not None else sm.get("max_new_per_run", 250)
             todo = todo[:cap]
             log.info("stagiaires.ma: %d new offer pages to fetch (cap %d)", len(todo), cap)
@@ -128,7 +110,6 @@ def export(cfg: dict, store: Store, out_dir: Path, new_urls: set[str]) -> list[d
         if not ok:
             continue
         d = offer.to_dict()
-        d["is_remunere"] = offer.is_paid
         d["description"] = d["description"][:1800]
         d["first_seen"] = first_seen[:10]
         d["new_today"] = offer.url in new_urls or first_seen[:10] == today.isoformat()
@@ -169,7 +150,7 @@ def export(cfg: dict, store: Store, out_dir: Path, new_urls: set[str]) -> list[d
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "offers.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
 
-    cols = ["score", "title", "company", "city", "modality", "domain", "source", "is_pfe", "is_paid", "date_posted",
+    cols = ["score", "title", "company", "city", "modality", "domain", "source", "date_posted",
             "valid_through", "first_seen", "url"]
     with open(out_dir / "offers.csv", "w", newline="", encoding="utf-8-sig") as f:  # BOM → Excel-friendly
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
@@ -193,6 +174,7 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--out", default=ROOT / "docs" / "data", type=Path)
     ap.add_argument("--no-fetch", action="store_true", help="skip scraping, only re-score and export")
     ap.add_argument("--max", type=int, default=None, help="cap on new pages fetched this run")
+    ap.add_argument("--no-sync", action="store_true", help="do not push offers to Supabase")
     ap.add_argument("--notify", action="store_true", help="send Telegram alert for new offers")
     ap.add_argument("-v", "--verbose", action="store_true")
     a = ap.parse_args(argv)
@@ -203,6 +185,11 @@ def main(argv: list[str] | None = None) -> None:
     store = Store(a.db)
     new_urls = set() if a.no_fetch else fetch(cfg, store, a.max)
     kept = export(cfg, store, a.out, new_urls)
+    if not a.no_sync:
+        try:
+            supabase_sync.push(cfg, store, stats_extra={"new_this_run": len(new_urls)})
+        except Exception as e:  # the personal dashboard export above is already done
+            log.exception("Supabase sync failed: %s", e)
     if a.notify:
         new_picks = [o for o in kept if o["url"] in new_urls]
         notify.telegram(new_picks, cfg, os.getenv("DASHBOARD_URL", ""))
