@@ -60,7 +60,7 @@ const FIELDS = {
 // ───────────────────────── state & helpers ─────────────────────────
 const S = {
   sb: null, user: null, profile: null, matches: [], loadedAt: 0, apps: null,
-  view: 'offres', page: 1, pageSize: 15, charts: {}, recovering: false,
+  view: 'offres', page: 1, pageSize: 10, charts: {}, recovering: false,
   f: { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' },
 };
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -165,7 +165,7 @@ async function onAuth(event, session) {
   if (S.recovering && event !== 'SIGNED_OUT') return;
   S.user = session?.user || null;
   if (!S.user) {
-    Object.assign(S, { profile: null, matches: [], apps: null, loadedAt: 0, page: 1, pageSize: 15 });
+    Object.assign(S, { profile: null, matches: [], apps: null, loadedAt: 0, page: 1, pageSize: 10 });
     S.f = { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' };
     $('#topbar').classList.add('hidden');
     return renderAuth();
@@ -461,7 +461,7 @@ function renderOfferRows() {
     <div class="text-3xl font-extrabold mt-1.5 ${c}">${v}</div><div class="text-xs text-slate-500 mt-1">${s}</div></div>`).join('');
 
   const total = list.length;
-  const pageSize = Number(S.pageSize) || 15;
+  const pageSize = Number(S.pageSize) || 10;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   if (S.page > totalPages) S.page = totalPages;
   if (S.page < 1) S.page = 1;

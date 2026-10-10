@@ -103,8 +103,8 @@ if (window.tailwind) tailwind.config = { theme: { extend: {
       <div class="flex items-center gap-2 text-slate-600">
         <span>Offres par page :</span>
         <select id="pPageSize" class="px-2.5 py-1.5 rounded-xl border border-slate-300 bg-white font-bold text-slate-700 cursor-pointer">
-          <option value="10">10</option>
-          <option value="15" selected>15</option>
+          <option value="10" selected>10</option>
+          <option value="15">15</option>
           <option value="20">20</option>
           <option value="30">30</option>
         </select>
@@ -186,7 +186,7 @@ if (window.tailwind) tailwind.config = { theme: { extend: {
 
 <script>
 // ───────────────────────── state ─────────────────────────
-let DATA = null, OFFERS = [], VIEW = [], WEIGHTS = {}, AXES = {}, LABEL2AXIS = {}, P_PAGE = 1, P_PAGE_SIZE = 15;
+let DATA = null, OFFERS = [], VIEW = [], WEIGHTS = {}, AXES = {}, LABEL2AXIS = {}, P_PAGE = 1, P_PAGE_SIZE = 10;
 const charts = {};
 const AXIS_COLORS = { genai:'#2563eb', bigdata:'#0d9488', fullstack:'#059669', cvsec:'#d97706' };
 const $ = id => document.getElementById(id);
