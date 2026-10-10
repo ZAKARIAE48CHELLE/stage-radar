@@ -108,7 +108,22 @@ async function call(promise) {             // supabase-js returns {data, error}
   return data;
 }
 
+function attachPasswordToggle(btnSel, inputSel, eyeSel, eyeOffSel) {
+  const b = $(btnSel), inp = $(inputSel), eye = $(eyeSel), eyeOff = $(eyeOffSel);
+  if (!b || !inp) return;
+  b.addEventListener('click', () => {
+    const isPass = inp.type === 'password';
+    inp.type = isPass ? 'text' : 'password';
+    if (eye && eyeOff) {
+      eye.classList.toggle('hidden', isPass);
+      eyeOff.classList.toggle('hidden', !isPass);
+    }
+    b.setAttribute('aria-label', isPass ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
+  });
+}
+
 // ───────────────────────── boot & auth ─────────────────────────
+
 function boot() {
   $('#appName').textContent = CFG.appName;
   document.title = CFG.appName;
@@ -173,7 +188,20 @@ function renderAuth(mode = 'login', notice = '') {
       <form id="authForm" class="space-y-3">
         ${signup ? `<label class="block text-xs font-semibold text-slate-600">Nom complet<input name="name" required maxlength="80" class="${input} mt-1" autocomplete="name"></label>` : ''}
         <label class="block text-xs font-semibold text-slate-600">E-mail<input name="email" type="email" required class="${input} mt-1" autocomplete="email"></label>
-        ${forgot ? '' : `<label class="block text-xs font-semibold text-slate-600">Mot de passe<input name="password" type="password" required minlength="8" class="${input} mt-1" autocomplete="${signup ? 'new-password' : 'current-password'}"></label>`}
+        ${forgot ? '' : `<label class="block text-xs font-semibold text-slate-600">Mot de passe
+          <div class="relative mt-1">
+            <input id="pwdInput" name="password" type="password" required minlength="8" class="${input} pr-10" autocomplete="${signup ? 'new-password' : 'current-password'}">
+            <button type="button" id="togglePwdBtn" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer focus:outline-none" title="Afficher/masquer le mot de passe" aria-label="Afficher le mot de passe">
+              <svg id="eyeIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              <svg id="eyeOffIcon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+              </svg>
+            </button>
+          </div>
+        </label>`}
         <p id="authErr" class="hidden text-sm text-rose-600"></p>
         <button class="${btnPrimary} w-full">${forgot ? 'Envoyer le lien de réinitialisation' : signup ? 'Créer mon compte' : 'Se connecter'}</button>
       </form>
@@ -185,6 +213,7 @@ function renderAuth(mode = 'login', notice = '') {
     </div>
   </div>`;
   $$('[data-mode]').forEach(b => b.addEventListener('click', () => renderAuth(b.dataset.mode)));
+  attachPasswordToggle('#togglePwdBtn', '#pwdInput', '#eyeIcon', '#eyeOffIcon');
   $('#authForm').addEventListener('submit', async ev => {
     ev.preventDefault();
     const fd = new FormData(ev.target), b = ev.target.querySelector('button');
@@ -213,10 +242,23 @@ function renderResetPassword() {
   $('#view').innerHTML = `<div class="${card} max-w-md mx-auto mt-14 space-y-4">
     <h1 class="text-xl font-extrabold">Nouveau mot de passe</h1>
     <form id="resetForm" class="space-y-3">
-      <input name="password" type="password" minlength="8" required placeholder="8 caractères minimum" class="${input}" autocomplete="new-password">
+      <div class="relative">
+        <input id="resetPwdInput" name="password" type="password" minlength="8" required placeholder="8 caractères minimum" class="${input} pr-10" autocomplete="new-password">
+        <button type="button" id="toggleResetPwdBtn" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer focus:outline-none" title="Afficher/masquer le mot de passe" aria-label="Afficher le mot de passe">
+          <svg id="resetEyeIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+          <svg id="resetEyeOffIcon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+          </svg>
+        </button>
+      </div>
       <p id="resetErr" class="hidden text-sm text-rose-600"></p>
       <button class="${btnPrimary} w-full">Enregistrer</button></form></div>`;
+  attachPasswordToggle('#toggleResetPwdBtn', '#resetPwdInput', '#resetEyeIcon', '#resetEyeOffIcon');
   $('#resetForm').addEventListener('submit', async ev => {
+
     ev.preventDefault();
     try {
       await call(S.sb.auth.updateUser({ password: new FormData(ev.target).get('password') }));
