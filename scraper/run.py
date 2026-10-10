@@ -167,7 +167,19 @@ def _count(rows: list[dict], key: str) -> dict:
     return out
 
 
+def load_env(path: Path = ROOT / ".env") -> None:
+    if not path.is_file():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, v = line.split("=", 1)
+        os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+
 def main(argv: list[str] | None = None) -> None:
+    load_env()
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--config", default=ROOT / "config" / "profile.yaml", type=Path)
     ap.add_argument("--db", default=ROOT / "data" / "offers.db", type=Path)
