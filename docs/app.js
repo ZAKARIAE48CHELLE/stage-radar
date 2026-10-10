@@ -60,7 +60,7 @@ const FIELDS = {
 // ───────────────────────── state & helpers ─────────────────────────
 const S = {
   sb: null, user: null, profile: null, matches: [], loadedAt: 0, apps: null,
-  view: 'offres', shown: 100, charts: {}, recovering: false,
+  view: 'offres', page: 1, pageSize: 15, charts: {}, recovering: false,
   f: { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' },
 };
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -165,8 +165,8 @@ async function onAuth(event, session) {
   if (S.recovering && event !== 'SIGNED_OUT') return;
   S.user = session?.user || null;
   if (!S.user) {
-    Object.assign(S, { profile: null, matches: [], apps: null, loadedAt: 0, shown: 100 });
-    S.f = { q: '', city: '', modality: '', source: '', status: '', fresh: false, pfe: false, min: 0, sort: 'score' };
+    Object.assign(S, { profile: null, matches: [], apps: null, loadedAt: 0, page: 1, pageSize: 15 });
+    S.f = { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' };
     $('#topbar').classList.add('hidden');
     return renderAuth();
   }
@@ -396,19 +396,31 @@ async function viewOffers() {
           <tbody id="tbody" class="divide-y divide-slate-200"></tbody>
         </table>
       </div>
-      <div class="text-center"><button id="more" class="${btnGhost} hidden">Afficher plus</button></div>
+      <div id="paginationBar" class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-3 border-t border-slate-100 text-xs">
+        <div class="flex items-center gap-2 text-slate-600">
+          <span>Offres par page :</span>
+          <select id="pageSize" class="px-2.5 py-1.5 rounded-xl border border-slate-300 bg-white font-bold text-slate-700 cursor-pointer">
+            <option value="10" ${S.pageSize === 10 ? 'selected' : ''}>10</option>
+            <option value="15" ${S.pageSize === 15 ? 'selected' : ''}>15</option>
+            <option value="20" ${S.pageSize === 20 ? 'selected' : ''}>20</option>
+            <option value="30" ${S.pageSize === 30 ? 'selected' : ''}>30</option>
+          </select>
+          <span id="pageInfo" class="text-slate-500 font-medium"></span>
+        </div>
+        <div id="pager" class="flex items-center gap-1.5 flex-wrap justify-center"></div>
+      </div>
     </section>
   </div>`;
   const bind = (id, key, ev = 'change', conv = x => x) => $(id).addEventListener(ev, e => {
-    f[key] = conv(e.target.type === 'checkbox' ? e.target.checked : e.target.value); S.shown = 100; renderOfferRows();
+    f[key] = conv(e.target.type === 'checkbox' ? e.target.checked : e.target.value); S.page = 1; renderOfferRows();
   });
   bind('#fq', 'q', 'input'); bind('#fcity', 'city'); bind('#fmod', 'modality'); bind('#fsrc', 'source');
   bind('#fdom', 'domain'); bind('#fpaid', 'paid');
   bind('#fstat', 'status'); bind('#ffresh', 'fresh'); bind('#fpfe', 'pfe'); bind('#fsort', 'sort');
   bind('#fmin', 'min', 'input', Number);
-  $('#reset').onclick = () => { Object.assign(S.f, { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' }); viewOffers(); };
+  $('#pageSize').addEventListener('change', e => { S.pageSize = Number(e.target.value); S.page = 1; renderOfferRows(); });
+  $('#reset').onclick = () => { Object.assign(S.f, { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' }); S.page = 1; viewOffers(); };
   $('#refresh').onclick = async () => { S.loadedAt = 0; await viewOffers(); toast('Offres actualisées'); };
-  $('#more').onclick = () => { S.shown += 100; renderOfferRows(); };
   S.sb.from('scrape_runs').select('run_at').order('run_at', { ascending: false }).limit(1).then(({ data }) => {
     if (data && data[0] && $('#lastRun')) $('#lastRun').textContent = `Dernière collecte : ${new Date(data[0].run_at).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short' })}`;
   });
@@ -447,7 +459,22 @@ function renderOfferRows() {
     ['Très bon match', top, 'score ≥ 75 %', 'text-blue-700'],
   ].map(([l, v, s, c]) => `<div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200"><div class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">${l}</div>
     <div class="text-3xl font-extrabold mt-1.5 ${c}">${v}</div><div class="text-xs text-slate-500 mt-1">${s}</div></div>`).join('');
-  const rows = list.slice(0, S.shown);
+
+  const total = list.length;
+  const pageSize = Number(S.pageSize) || 15;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  if (S.page > totalPages) S.page = totalPages;
+  if (S.page < 1) S.page = 1;
+  const startIdx = (S.page - 1) * pageSize;
+  const endIdx = Math.min(startIdx + pageSize, total);
+  const rows = list.slice(startIdx, endIdx);
+
+  if ($('#pageInfo')) {
+    $('#pageInfo').textContent = total > 0
+      ? `(${startIdx + 1}–${endIdx} sur ${total})`
+      : '(0 offre)';
+  }
+
   $('#tbody').innerHTML = rows.length ? rows.map(o => `
     <tr class="hover:bg-slate-50 cursor-pointer" data-id="${o.id}">
       <td class="py-3 px-4 font-bold text-slate-900 min-w-[200px]">
@@ -467,7 +494,56 @@ function renderOfferRows() {
     </tr>`).join('')
     : `<tr><td colspan="7" class="py-10 text-center text-slate-400">${S.matches.length ? 'Aucune offre ne correspond à ces filtres.' : 'Aucune offre ne correspond encore à vos compétences. <a href="#/profil" class="underline text-blue-700">Ajoutez des mots-clés</a> ou attendez la prochaine collecte.'}</td></tr>`;
   $$('#tbody tr[data-id]').forEach(tr => tr.addEventListener('click', () => openOffer(Number(tr.dataset.id))));
-  $('#more').classList.toggle('hidden', list.length <= S.shown);
+  renderPager(totalPages);
+}
+
+function renderPager(totalPages) {
+  const pager = $('#pager');
+  if (!pager) return;
+  if (totalPages <= 1) {
+    pager.innerHTML = '';
+    return;
+  }
+  let html = '';
+  const prevDisabled = S.page <= 1;
+  html += `<button type="button" class="px-3 py-1.5 rounded-xl border border-slate-200 bg-white font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition" data-page="${S.page - 1}" ${prevDisabled ? 'disabled' : ''}>← Précédent</button>`;
+
+  const pages = [];
+  if (totalPages <= 7) {
+    for (let i = 1; i <= totalPages; i++) pages.push(i);
+  } else {
+    pages.push(1);
+    if (S.page > 3) pages.push('...');
+    const start = Math.max(2, S.page - 1);
+    const end = Math.min(totalPages - 1, S.page + 1);
+    for (let i = start; i <= end; i++) pages.push(i);
+    if (S.page < totalPages - 2) pages.push('...');
+    pages.push(totalPages);
+  }
+
+  pages.forEach(p => {
+    if (p === '...') {
+      html += `<span class="px-2 py-1 text-slate-400 font-semibold select-none">…</span>`;
+    } else {
+      const active = p === S.page;
+      const cls = active
+        ? 'bg-blue-700 text-white font-bold shadow-sm'
+        : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 font-semibold';
+      html += `<button type="button" class="px-3 py-1.5 rounded-xl text-xs transition ${cls}" data-page="${p}">${p}</button>`;
+    }
+  });
+
+  const nextDisabled = S.page >= totalPages;
+  html += `<button type="button" class="px-3 py-1.5 rounded-xl border border-slate-200 bg-white font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition" data-page="${S.page + 1}" ${nextDisabled ? 'disabled' : ''}>Suivant →</button>`;
+
+  pager.innerHTML = html;
+  pager.querySelectorAll('button[data-page]:not([disabled])').forEach(btn => {
+    btn.addEventListener('click', () => {
+      S.page = Number(btn.dataset.page);
+      renderOfferRows();
+      $('#tbody')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
 }
 
 // ───────────────────────── offer modal ─────────────────────────
