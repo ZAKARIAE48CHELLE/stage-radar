@@ -97,6 +97,22 @@ class RadarRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.end_headers()
 
+    def _trigger_run(self, no_fetch: bool, max_pages: int):
+        with LOCK:
+            if STATUS["running"]:
+                self._send_json(409, {"status": "error", "message": "Scrape déjà en cours", **STATUS})
+                return
+
+        t = threading.Thread(target=_run_worker, args=(no_fetch, max_pages), daemon=True)
+        t.start()
+
+        self._send_json(202, {
+            "status": "started",
+            "message": "Scraping lancé en arrière-plan",
+            "no_fetch": no_fetch,
+            "max": max_pages
+        })
+
     def do_GET(self):
         parsed = urlparse(self.path)
         if parsed.path == "/api/status":
@@ -104,16 +120,17 @@ class RadarRequestHandler(http.server.SimpleHTTPRequestHandler):
                 data = dict(STATUS)
             self._send_json(200, data)
             return
+        if parsed.path == "/api/run":
+            q = parse_qs(parsed.query)
+            no_fetch = q.get("no_fetch", ["false"])[0].lower() in ("1", "true", "yes")
+            max_pages = int(q.get("max", [30])[0]) if q.get("max", [""])[0].isdigit() else 30
+            self._trigger_run(no_fetch, max_pages)
+            return
         super().do_GET()
 
     def do_POST(self):
         parsed = urlparse(self.path)
         if parsed.path == "/api/run":
-            with LOCK:
-                if STATUS["running"]:
-                    self._send_json(409, {"status": "error", "message": "Scrape déjà en cours", **STATUS})
-                    return
-
             length = int(self.headers.get("Content-Length", 0))
             payload = {}
             if length > 0:
@@ -124,16 +141,7 @@ class RadarRequestHandler(http.server.SimpleHTTPRequestHandler):
 
             no_fetch = bool(payload.get("no_fetch", False))
             max_pages = payload.get("max", 30)
-
-            t = threading.Thread(target=_run_worker, args=(no_fetch, max_pages), daemon=True)
-            t.start()
-
-            self._send_json(202, {
-                "status": "started",
-                "message": "Scraping lancé en arrière-plan",
-                "no_fetch": no_fetch,
-                "max": max_pages
-            })
+            self._trigger_run(no_fetch, max_pages)
             return
 
         self._send_json(404, {"error": "Not found"})

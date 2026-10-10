@@ -459,6 +459,7 @@ function exportCSV() {
 let scrapePolling = null;
 
 async function triggerScrape(noFetch = false) {
+  const isGithubPages = window.location.hostname.endsWith('github.io');
   const btn = $('btnRun'), icon = $('btnRunIcon'), text = $('btnRunText'), badge = $('scrapeStatusBadge');
   if (btn && btn.disabled) return;
   if (btn) btn.disabled = true;
@@ -469,15 +470,33 @@ async function triggerScrape(noFetch = false) {
     badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span> Scraper en cours d’exécution…';
   }
 
+  if (isGithubPages) {
+    showBanner(`<strong>🚀 Hébergement statique GitHub Pages :</strong><br>
+Le dashboard est servi en mode statique par GitHub Pages (qui n'exécute pas de script Python à la demande).<br>
+• <strong>En ligne :</strong> Déclenchez le scraping automatisé via GitHub Actions : 
+<a href="https://github.com/ZAKARIAE48CHELLE/stage-radar/actions/workflows/daily-scrape.yml" target="_blank" class="underline font-bold text-amber-800 hover:text-amber-950">Accéder à GitHub Actions &gt; Run workflow</a>.<br>
+• <strong>En local :</strong> Démarrez le serveur avec <code class="bg-black/10 px-1.5 py-0.5 rounded font-mono font-bold">python server.py</code> ou lancez <code class="bg-black/10 px-1.5 py-0.5 rounded font-mono font-bold">python -m scraper.run --max 30 -v</code> dans votre terminal.`, 'amber');
+    resetRunButton();
+    return;
+  }
+
   try {
-    const res = await fetch('/api/run', {
+    let res = await fetch('/api/run', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ no_fetch: noFetch, max: 30 })
     });
+    if (res.status === 405) {
+      // Fallback try GET /api/run in case a local server or proxy only permits GET
+      res = await fetch(`/api/run?max=30${noFetch ? '&no_fetch=1' : ''}`);
+    }
     if (!res.ok) {
-      if (res.status === 404 || res.status === 501) {
-        showBanner(`<strong>Mode serveur statique :</strong> Pour relancer le scraper depuis ce bouton, lancez le serveur local avec :<br><code class="bg-black/10 px-2 py-0.5 rounded font-mono font-bold">python server.py</code> (ou dans le terminal : <code class="bg-black/10 px-2 py-0.5 rounded font-mono font-bold">python -m scraper.run --max 30 -v</code>).`, 'amber');
+      if (res.status === 404 || res.status === 405 || res.status === 501) {
+        showBanner(`<strong>Serveur statique détecté (Erreur ${res.status}) :</strong><br>
+Pour activer l'exécution en un clic depuis ce bouton, lancez le serveur dédié du projet avec :<br>
+<code class="bg-black/10 px-2 py-0.5 rounded font-mono font-bold">python server.py</code><br>
+Ou exécutez directement le scraper en ligne de commande :<br>
+<code class="bg-black/10 px-2 py-0.5 rounded font-mono font-bold">python -m scraper.run --max 30 -v</code>.`, 'amber');
         resetRunButton();
         return;
       }
@@ -485,10 +504,11 @@ async function triggerScrape(noFetch = false) {
     }
     pollScrapeStatus();
   } catch (err) {
-    showBanner(`Impossible de lancer le scraper depuis le navigateur : ${esc(err.message)}.<br>Lancez le serveur avec <code>python server.py</code> ou exécutez <code>python -m scraper.run --max 30 -v</code>.`, 'amber');
+    showBanner(`Impossible de lancer le scraper depuis le navigateur : ${esc(err.message)}.<br>Démarrez le serveur avec <code>python server.py</code> ou lancez <code>python -m scraper.run --max 30 -v</code>.`, 'amber');
     resetRunButton();
   }
 }
+
 
 function resetRunButton() {
   const btn = $('btnRun'), icon = $('btnRunIcon'), text = $('btnRunText'), badge = $('scrapeStatusBadge');
