@@ -61,7 +61,7 @@ const FIELDS = {
 const S = {
   sb: null, user: null, profile: null, matches: [], loadedAt: 0, apps: null,
   view: 'offres', shown: 100, charts: {}, recovering: false,
-  f: { q: '', city: '', modality: '', source: '', status: '', fresh: false, pfe: false, min: 0, sort: 'score' },
+  f: { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' },
 };
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -77,7 +77,20 @@ function daysAgo(iso) {
   return d <= 0 ? "aujourd'hui" : d === 1 ? 'hier' : `il y a ${d} j`;
 }
 const isFresh = o => o.first_seen && (Date.now() - new Date(o.first_seen + 'T00:00:00Z')) < 2 * 864e5;
+const isPaid = (o, extra = '') => {
+  if (o.is_paid || o.is_remunere) return true;
+  const text = norm([o.title, o.description || '', extra].join(' '));
+  return /(?:stage\s+)?r[ée]mun[ée]r[ée]|gratifi|indemnit|stipend|salaire|\b\d+\s*(?:dh|mad|dhs)\b/.test(text);
+};
+const dominantAxis = o => {
+  const hits = o.axis_hits || {};
+  const entries = Object.entries(hits);
+  if (!entries.length) return '';
+  entries.sort((a, b) => b[1] - a[1]);
+  return entries[0][1] > 0 ? entries[0][0] : '';
+};
 const scoreCls = s => s >= 75 ? 'bg-emerald-100 text-emerald-800' : s >= 55 ? 'bg-blue-100 text-blue-800' : 'bg-slate-100 text-slate-600';
+
 const statusPill = st => st && STATUSES[st]
   ? `<span class="inline-block px-2 py-0.5 rounded-md border text-[10px] font-bold whitespace-nowrap ${STATUSES[st].cls}">${STATUSES[st].label}</span>` : '';
 const input = 'w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white text-sm';
@@ -358,9 +371,11 @@ async function viewOffers() {
         <label><span class="block font-semibold text-slate-600 mb-1">Ville</span><select id="fcity" class="${input}">${opt(uniq(o => o.city), f.city, 'Toutes')}</select></label>
         <label><span class="block font-semibold text-slate-600 mb-1">Modalité</span><select id="fmod" class="${input}">${opt(uniq(o => o.modality), f.modality, 'Toutes')}</select></label>
         <label><span class="block font-semibold text-slate-600 mb-1">Source</span><select id="fsrc" class="${input}">${opt(uniq(o => srcLabel(o.source)), f.source, 'Toutes')}</select></label>
+        <label><span class="block font-semibold text-slate-600 mb-1">Domaine</span><select id="fdom" class="${input}">${opt(uniq(o => dominantAxis(o)), f.domain, 'Tous les domaines')}</select></label>
         <label><span class="block font-semibold text-slate-600 mb-1">Mon statut</span><select id="fstat" class="${input}">
           <option value="">Tous</option><option value="none" ${f.status === 'none' ? 'selected' : ''}>Sans statut</option>
           ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${f.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}</select></label>
+        <label class="flex items-center gap-2"><input id="fpaid" type="checkbox" ${f.paid ? 'checked' : ''} class="w-4 h-4 accent-emerald-600"><span class="font-semibold text-emerald-800">💰 Rémunéré</span></label>
         <label class="flex items-center gap-2"><input id="ffresh" type="checkbox" ${f.fresh ? 'checked' : ''} class="w-4 h-4 accent-amber-500"><span class="font-semibold text-slate-600">Nouvelles (48 h)</span></label>
         <label class="flex items-center gap-2"><input id="fpfe" type="checkbox" ${f.pfe ? 'checked' : ''} class="w-4 h-4 accent-blue-600"><span class="font-semibold text-slate-600">PFE uniquement</span></label>
         <label class="sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Score minimum : <b id="fminl">${f.min}</b>%</span><input id="fmin" type="range" min="0" max="100" value="${f.min}" class="w-full accent-blue-600"></label>
@@ -371,8 +386,13 @@ async function viewOffers() {
       <div class="overflow-x-auto rounded-2xl border border-slate-200 scroll">
         <table class="w-full text-left text-xs">
           <thead><tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider">
-            <th class="py-3 px-4">Poste</th><th class="py-3 px-4">Entreprise</th><th class="py-3 px-4">Lieu</th>
-            <th class="py-3 px-4">Publiée</th><th class="py-3 px-4 text-center">Score</th><th class="py-3 px-4">Statut</th></tr></thead>
+            <th class="py-3 px-4">Poste</th>
+            <th class="py-3 px-4">Entreprise</th>
+            <th class="py-3 px-4">Lieu</th>
+            <th class="py-3 px-4">Domaine / Compétences</th>
+            <th class="py-3 px-4">Publiée</th>
+            <th class="py-3 px-4 text-center">Score</th>
+            <th class="py-3 px-4">Statut</th></tr></thead>
           <tbody id="tbody" class="divide-y divide-slate-200"></tbody>
         </table>
       </div>
@@ -383,9 +403,10 @@ async function viewOffers() {
     f[key] = conv(e.target.type === 'checkbox' ? e.target.checked : e.target.value); S.shown = 100; renderOfferRows();
   });
   bind('#fq', 'q', 'input'); bind('#fcity', 'city'); bind('#fmod', 'modality'); bind('#fsrc', 'source');
+  bind('#fdom', 'domain'); bind('#fpaid', 'paid');
   bind('#fstat', 'status'); bind('#ffresh', 'fresh'); bind('#fpfe', 'pfe'); bind('#fsort', 'sort');
   bind('#fmin', 'min', 'input', Number);
-  $('#reset').onclick = () => { Object.assign(S.f, { q: '', city: '', modality: '', source: '', status: '', fresh: false, pfe: false, min: 0, sort: 'score' }); viewOffers(); };
+  $('#reset').onclick = () => { Object.assign(S.f, { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' }); viewOffers(); };
   $('#refresh').onclick = async () => { S.loadedAt = 0; await viewOffers(); toast('Offres actualisées'); };
   $('#more').onclick = () => { S.shown += 100; renderOfferRows(); };
   S.sb.from('scrape_runs').select('run_at').order('run_at', { ascending: false }).limit(1).then(({ data }) => {
@@ -397,11 +418,14 @@ async function viewOffers() {
 function filteredOffers() {
   const f = S.f, q = norm(f.q);
   const list = S.matches.filter(o =>
-    (!q || norm([o.title, o.company, o.city, (o.matched || []).join(' ')].join(' ')).includes(q)) &&
+    (!q || norm([o.title, o.company, o.city, dominantAxis(o), (o.matched || []).join(' ')].join(' ')).includes(q)) &&
     (!f.city || o.city === f.city) && (!f.modality || o.modality === f.modality) &&
     (!f.source || srcLabel(o.source) === f.source || (o.also_on || []).some(a => srcLabel(a.source) === f.source)) &&
+    (!f.domain || dominantAxis(o) === f.domain) &&
     (!f.status || (f.status === 'none' ? !o.app_status : o.app_status === f.status)) &&
-    (!f.fresh || isFresh(o)) && (!f.pfe || o.is_pfe) && o.score >= f.min);
+    (!f.fresh || isFresh(o)) && (!f.pfe || o.is_pfe) &&
+    (!f.paid || isPaid(o)) &&
+    o.score >= f.min);
   const by = { score: (a, b) => b.score - a.score || String(b.date_posted).localeCompare(String(a.date_posted)),
                date: (a, b) => String(b.date_posted || '').localeCompare(String(a.date_posted || '')),
                expiry: (a, b) => String(a.valid_through || '9999').localeCompare(String(b.valid_through || '9999')) };
@@ -414,27 +438,34 @@ function renderOfferRows() {
   $('#count').textContent = `${list.length} / ${S.matches.length} offres`;
   const tracked = S.matches.filter(o => o.app_status && !['refus', 'abandon'].includes(o.app_status)).length;
   const fresh = S.matches.filter(isFresh).length;
+  const paidCount = S.matches.filter(isPaid).length;
   const top = S.matches.filter(o => o.score >= 75).length;
   $('#kpis').innerHTML = [
-    ['Offres pour vous', S.matches.length, 'correspondent à vos compétences', 'text-slate-900'],
+    ['Offres ciblées', S.matches.length, 'sur 155 offres actives au total', 'text-slate-900'],
+    ['Rémunérées', paidCount, paidCount > 1 ? `${paidCount} stages rémunérés` : 'stage avec indemnité', 'text-emerald-600'],
     ['Nouvelles (48 h)', fresh, fresh ? 'à regarder en priorité' : 'rien de neuf', 'text-amber-600'],
-    ['Très bon match', top, 'score ≥ 75 %', 'text-emerald-600'],
-    ['Candidatures actives', tracked, '<a href="#/candidatures" class="underline">voir le suivi</a>', 'text-blue-700'],
+    ['Très bon match', top, 'score ≥ 75 %', 'text-blue-700'],
   ].map(([l, v, s, c]) => `<div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200"><div class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">${l}</div>
     <div class="text-3xl font-extrabold mt-1.5 ${c}">${v}</div><div class="text-xs text-slate-500 mt-1">${s}</div></div>`).join('');
   const rows = list.slice(0, S.shown);
   $('#tbody').innerHTML = rows.length ? rows.map(o => `
     <tr class="hover:bg-slate-50 cursor-pointer" data-id="${o.id}">
-      <td class="py-3 px-4 font-bold text-slate-900 min-w-[220px]">
+      <td class="py-3 px-4 font-bold text-slate-900 min-w-[200px]">
         ${isFresh(o) ? '<span class="mr-1 px-1.5 py-0.5 rounded bg-amber-400 text-amber-950 text-[9px] font-extrabold align-middle">NOUVEAU</span>' : ''}
-        ${o.is_pfe ? '<span class="mr-1 px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 text-[9px] font-bold align-middle">PFE</span>' : ''}${esc(o.title)}</td>
+        ${o.is_pfe ? '<span class="mr-1 px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 text-[9px] font-bold align-middle">PFE</span>' : ''}
+        ${isPaid(o) ? '<span class="mr-1 px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 text-[9px] font-extrabold align-middle">RÉMUNÉRÉ</span>' : ''}
+        ${esc(o.title)}</td>
       <td class="py-3 px-4 font-semibold text-slate-700">${esc(o.company || '—')}<div class="text-[10px] font-medium text-slate-400">${esc(srcLabel(o.source))}${(o.also_on || []).length ? ' +' + o.also_on.length : ''}</div></td>
       <td class="py-3 px-4 text-slate-600 whitespace-nowrap">${esc(place(o))}</td>
+      <td class="py-3 px-4 min-w-[170px]">
+        ${dominantAxis(o) ? `<div class="mb-1"><span class="px-2 py-0.5 rounded-md border text-[10px] font-bold whitespace-nowrap bg-blue-50 text-blue-700 border-blue-200">${esc(dominantAxis(o))}</span></div>` : ''}
+        <div class="flex flex-wrap gap-1">${(o.matched || []).slice(0, 4).map(k => `<span class="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-600 text-[9px] font-semibold">${esc(k)}</span>`).join('')}</div>
+      </td>
       <td class="py-3 px-4 text-slate-500 whitespace-nowrap">${esc(daysAgo(o.date_posted || o.first_seen))}</td>
       <td class="py-3 px-4 text-center"><span class="px-2.5 py-1 rounded-full font-extrabold ${scoreCls(o.score)}">${o.score}%</span></td>
       <td class="py-3 px-4">${statusPill(o.app_status) || '<span class="text-slate-300">—</span>'}</td>
     </tr>`).join('')
-    : `<tr><td colspan="6" class="py-10 text-center text-slate-400">${S.matches.length ? 'Aucune offre ne correspond à ces filtres.' : 'Aucune offre ne correspond encore à vos compétences. <a href="#/profil" class="underline text-blue-700">Ajoutez des mots-clés</a> ou attendez la prochaine collecte.'}</td></tr>`;
+    : `<tr><td colspan="7" class="py-10 text-center text-slate-400">${S.matches.length ? 'Aucune offre ne correspond à ces filtres.' : 'Aucune offre ne correspond encore à vos compétences. <a href="#/profil" class="underline text-blue-700">Ajoutez des mots-clés</a> ou attendez la prochaine collecte.'}</td></tr>`;
   $$('#tbody tr[data-id]').forEach(tr => tr.addEventListener('click', () => openOffer(Number(tr.dataset.id))));
   $('#more').classList.toggle('hidden', list.length <= S.shown);
 }
@@ -459,10 +490,15 @@ async function openOffer(id) {
   const hits = o.axis_hits || {};
   const maxHit = Math.max(1, ...Object.values(hits));
   const exp = o.valid_through ? ` · expire le ${fmtDate(o.valid_through)}` : '';
+  const domAxis = dominantAxis(o);
+  const paidBadge = isPaid(o, desc) ? '<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 border border-amber-300 text-[10px] font-bold">💰 RÉMUNÉRÉ</span>' : '';
+  const domBadge = domAxis ? `<span class="px-2 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[10px] font-bold">${esc(domAxis)}</span>` : '';
   $('#modalBox').innerHTML = `
     <button id="mClose" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 font-bold" aria-label="Fermer">✕</button>
     <div class="space-y-1 border-b border-slate-200 pb-4 pr-8">
       <div class="flex flex-wrap gap-1.5">${o.is_pfe ? '<span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 text-[10px] font-bold">PFE</span>' : ''}
+        ${paidBadge}
+        ${domBadge}
         ${o.score != null ? `<span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold ${scoreCls(o.score)}">Score ${o.score}%</span>` : ''}
         <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[10px] font-bold">${esc(srcLabel(o.source))}</span></div>
       <h3 class="text-xl font-bold text-slate-900">${esc(o.title)}</h3>
