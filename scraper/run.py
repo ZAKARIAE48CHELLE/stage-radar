@@ -204,7 +204,9 @@ def main(argv: list[str] | None = None) -> None:
     new_urls = set() if a.no_fetch else fetch(cfg, store, a.max)
     kept = export(cfg, store, a.out, new_urls)
     if a.notify:
-        notify.telegram([o for o in kept if o["url"] in new_urls], cfg, os.getenv("DASHBOARD_URL", ""))
+        new_picks = [o for o in kept if o["url"] in new_urls]
+        notify.telegram(new_picks, cfg, os.getenv("DASHBOARD_URL", ""))
+        notify.email(new_picks, cfg, os.getenv("DASHBOARD_URL", ""))
 
 
 if __name__ == "__main__":
