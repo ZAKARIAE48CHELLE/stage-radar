@@ -1,0 +1,102 @@
+# ─────────────────────────────────────────────────────────────
+#  Stage Radar — candidate profile & matching configuration
+#  Edit this file to tune what gets kept and how it is scored.
+# ─────────────────────────────────────────────────────────────
+
+candidate:
+  name: "Zakariae Chelle"
+  headline: "Élève Ingénieur IA & Data | EMSI Tanger"
+  email: "zakariaechelle2001@gmail.com"
+  preferred_cities: ["Tanger", "Casablanca", "Rabat", "Télétravail"]
+
+# Default preference weights (0-100). The dashboard sliders start here.
+weights:
+  genai: 35
+  bigdata: 25
+  fullstack: 25
+  cvsec: 15
+
+# Skill axes. Keywords are matched case- and accent-insensitively on whole words.
+axes:
+  genai:
+    label: "IA Agentique & GenAI"
+    keywords: [llm, llms, rag, langchain, langgraph, "ia generative", "generative ai", genai,
+               "prompt engineering", "agents ia", "agent ia", "ai agent", "ai agents", agentique,
+               openai, anthropic, ollama, qlora, lora, "fine-tuning", "fine tuning", nlp,
+               chatbot, copilote, copilot, transformers, "hugging face", "intelligence artificielle"]
+  bigdata:
+    label: "Big Data & MLOps"
+    keywords: [spark, pyspark, hadoop, kafka, "big data", etl, "data engineer", "data engineering",
+               "ingenieur des donnees", pipeline, pipelines, airflow, mlops, docker, kubernetes,
+               sql, nosql, postgresql, mongodb, databricks, gcp, aws, azure, "data warehouse",
+               "power bi", "data science", "data scientist", "machine learning", scikit-learn]
+  fullstack:
+    label: "Full-Stack & Automatisations"
+    keywords: [fastapi, "spring boot", angular, react, typescript, "api rest", apis, "full stack",
+               "full-stack", fullstack, n8n, make, zapier, automatisation, automation, django,
+               flask, "node.js", nodejs, streamlit, devops, "ci/cd", "next.js"]
+  cvsec:
+    label: "Computer Vision & Security"
+    keywords: ["computer vision", "vision par ordinateur", cnn, opencv, yolo, "deep learning",
+               pytorch, tensorflow, "traitement d'images", "traitement d images", "red teaming",
+               "securite ia", "ai security", jailbreak, cybersecurite, "image processing"]
+
+filters:
+  # Offer must mention at least one of these somewhere (title/description)
+  field_any: [data, "intelligence artificielle", ia, ai, "machine learning", "deep learning",
+              llm, "big data", nlp, "computer vision", mlops, genai, "data science",
+              cybersecurite, cybersecurity]
+  # Offer must look like an internship (JSON-LD employmentType INTERN also counts)
+  require_internship: true
+  internship_any: [stage, stagiaire, pfe, internship, intern, "fin d'etudes", "pre-embauche", "pre embauche"]
+  # Titles containing these are dropped (non-tech roles that mention "IA")
+  title_exclude_any: [commercial, commerciale, "content creator", comptable, comptabilite,
+                      juridique, juriste, "community manager", rh, "ressources humaines",
+                      videaste, monteur, graphiste, marketing, enseignant]
+  min_keyword_hits: 2       # minimum total skill-keyword hits to keep an offer
+  min_keyword_hits_short: 1 # same, for short offers (e-mail alerts give only title + a few words)
+  max_age_days: 45          # ignore offers posted earlier than this
+  drop_expired: true        # hide offers whose validThrough is in the past
+
+scoring:
+  pfe_bonus: 5              # title/description mentions PFE / fin d'études
+  city_bonus: 3             # offer is in a preferred city or remote
+
+notify:
+  min_score: 70             # only push new offers at or above this score
+  max_items: 10
+
+# Short pitch hints shown in the dashboard, keyed by dominant axis.
+pitch:
+  genai: "Mettez en avant LocalOps AI (SLM affiné QLoRA + RAG sur runbooks, FastAPI) et AuraMarket (multi-agents LangGraph)."
+  bigdata: "Valorisez la certification Big Data UC San Diego (Spark/Hadoop/Kafka) et vos pipelines Docker/Prometheus."
+  fullstack: "Présentez le double profil Spring Boot/Angular + intégration LLM (Ollama, FastAPI, Streamlit)."
+  cvsec: "Appuyez-vous sur le projet CNN de détection de maladies de peau (PyTorch/TensorFlow) et le fine-tuning QLoRA pour l'audit LLM."
+
+sources:
+  stagiaires_ma:
+    enabled: true
+    sitemaps:
+      - "https://www.stagiaires.ma/offre-sitemap.xml"
+      - "https://www.stagiaires.ma/offre-sitemap2.xml"
+    crawl_delay_seconds: 1.5   # robots.txt asks for >= 1s
+    max_new_per_run: 250       # safety cap on detail pages fetched per run
+
+  dreamjob_ma:                 # WordPress REST API, robots.txt allows it
+    enabled: true
+    lookback_days: 30          # first run only; later runs stop at already-stored posts
+    max_pages: 60              # 50 posts per page
+    crawl_delay_seconds: 1.5
+    max_new_per_run: 1500
+
+  email_alerts:                # your own job-alert e-mails (see scraper/sources/email_alerts.py)
+    enabled: true              # does nothing until IMAP_USER / IMAP_PASSWORD are set
+    imap_host: "imap.gmail.com"
+    folder: "INBOX"
+    lookback_days: 3           # daily run → 3 days gives slack if a run is missed
+    senders:                   # IMAP FROM search is a substring match on the address
+      - "linkedin.com"
+      - "indeed.com"
+      - "rekrute.com"
+      - "emploi.ma"
+      - "glassdoor.com"

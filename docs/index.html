@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage Radar — Offres IA & Data au Maroc</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+if (window.tailwind) tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+  colors: { brand: { 50:'#f0f7ff',100:'#e0effe',200:'#bfdbfe',300:'#93c5fd',500:'#2563eb',600:'#1d4ed8',700:'#1e40af',900:'#0f172a' },
+            warm: { 50:'#fafaf9' } } } } };
+</script>
+<style>
+  .chart-box{position:relative;width:100%;height:300px}
+  .scroll::-webkit-scrollbar{width:6px;height:6px}.scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}
+  .desc{white-space:pre-line}
+</style>
+</head>
+<body class="bg-warm-50 text-slate-800 antialiased font-sans min-h-screen flex flex-col">
+
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+    <div class="flex items-center gap-3 min-w-0">
+      <span id="initials" class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 text-white flex items-center justify-center font-extrabold">SR</span>
+      <div class="min-w-0">
+        <h1 id="candName" class="text-base font-bold text-slate-900 leading-tight truncate">Stage Radar</h1>
+        <p id="candHeadline" class="text-xs text-slate-500 truncate">Veille quotidienne des stages IA & Data</p>
+      </div>
+    </div>
+    <nav class="hidden md:flex gap-1 text-sm font-semibold text-slate-600">
+      <a href="#offres" class="px-3 py-2 rounded-lg hover:bg-slate-100">Offres</a>
+      <a href="#simulateur" class="px-3 py-2 rounded-lg hover:bg-slate-100">Pondérations</a>
+      <a href="#analytics" class="px-3 py-2 rounded-lg hover:bg-slate-100">Marché</a>
+      <a href="#pitch" class="px-3 py-2 rounded-lg hover:bg-slate-100">Pitch</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button id="btnRun" onclick="triggerScrape(false)" title="Relancer le scraper pour collecter de nouvelles offres" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 flex items-center gap-1.5 transition shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
+        <span id="btnRunIcon" class="inline-block transition-transform">🔄</span>
+        <span id="btnRunText">Relancer</span>
+      </button>
+      <button onclick="exportCSV()" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700 transition cursor-pointer">📥 Export CSV</button>
+    </div>
+  </div>
+</header>
+
+<main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
+
+  <section class="bg-gradient-to-r from-slate-900 via-brand-900 to-slate-900 rounded-3xl p-6 sm:p-10 text-white">
+    <div class="max-w-3xl space-y-3">
+      <div class="flex items-center gap-2 flex-wrap">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-200 border border-brand-300/30 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="updatedBadge">Chargement des données…</span>
+        </div>
+        <span id="scrapeStatusBadge" class="hidden text-xs px-2.5 py-1 rounded-full font-medium"></span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-snug">Radar quotidien des stages IA & Data au Maroc</h2>
+      <p class="text-sm sm:text-base text-slate-300">Offres collectées chaque matin, filtrées et classées selon votre profil. Les nouveautés du jour sont marquées <span class="px-1.5 py-0.5 rounded bg-amber-400 text-amber-950 text-[10px] font-extrabold">NOUVEAU</span>.</p>
+    </div>
+  </section>
+
+  <section id="banner" class="hidden"></section>
+
+  <section class="grid grid-cols-2 md:grid-cols-4 gap-4" id="metrics"></section>
+
+  <section id="offres" class="bg-white rounded-3xl border border-slate-200 p-5 sm:p-8 space-y-5">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div>
+        <h3 class="text-xl font-bold text-slate-900">Offres actives</h3>
+        <p class="text-xs sm:text-sm text-slate-500">Classées par score d'adéquation. Cliquez sur une offre pour le détail et le pitch.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="countBadge" class="bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1.5 rounded-full border border-brand-200">0 offre</span>
+        <button onclick="resetFilters()" class="text-xs text-slate-500 hover:text-slate-800 underline">Réinitialiser</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
+      <label class="sm:col-span-2 lg:col-span-1"><span class="block font-semibold text-slate-600 mb-1">Recherche</span>
+        <input id="fSearch" type="search" placeholder="Titre, entreprise, techno (LLM, Spark…)" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"></label>
+      <label><span class="block font-semibold text-slate-600 mb-1">Domaine</span><select id="fDomain" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white"></select></label>
+      <label><span class="block font-semibold text-slate-600 mb-1">Modalité</span><select id="fModality" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white"></select></label>
+      <label><span class="block font-semibold text-slate-600 mb-1">Ville</span><select id="fCity" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white"></select></label>
+      <label><span class="block font-semibold text-slate-600 mb-1">Source</span><select id="fSource" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white"></select></label>
+      <label><span class="block font-semibold text-slate-600 mb-1">Trier par</span>
+        <select id="fSort" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white">
+          <option value="score">Score</option><option value="date">Date de publication</option><option value="expiry">Expire bientôt</option></select></label>
+      <label class="flex items-center gap-2 sm:col-span-1 cursor-pointer"><input id="fNew" type="checkbox" class="accent-amber-500 w-4 h-4"><span class="font-semibold text-slate-600">Nouvelles</span></label>
+      <label class="flex items-center gap-2 sm:col-span-1 cursor-pointer"><input id="fPfe" type="checkbox" class="accent-brand-500 w-4 h-4"><span class="font-semibold text-slate-600">PFE</span></label>
+      <label class="flex items-center gap-2 sm:col-span-1 cursor-pointer"><input id="fPaid" type="checkbox" class="accent-emerald-600 w-4 h-4"><span class="font-semibold text-slate-600">Rémunéré</span></label>
+      <label class="lg:col-span-3 sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Score minimum : <b id="fMinLabel">0</b>%</span>
+        <input id="fMin" type="range" min="0" max="100" value="0" class="w-full accent-brand-500"></label>
+    </div>
+
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 scroll">
+      <table class="w-full text-left text-xs">
+        <thead><tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider">
+          <th class="py-3 px-4">Poste</th>
+          <th class="py-3 px-4">Entreprise</th>
+          <th class="py-3 px-4">Source</th>
+          <th class="py-3 px-4">Lieu</th>
+          <th class="py-3 px-4">Domaine</th>
+          <th class="py-3 px-4">Publiée</th>
+          <th class="py-3 px-4 text-center">Score</th>
+          <th class="py-3 px-4 text-right">Actions</th>
+        </tr></thead>
+        <tbody id="tbody" class="divide-y divide-slate-200"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="simulateur" class="bg-gradient-to-br from-slate-900 to-brand-900 text-white rounded-3xl p-6 sm:p-8 space-y-5">
+    <div class="max-w-3xl space-y-1">
+      <h3 class="text-xl sm:text-2xl font-bold">Simulateur de pondérations</h3>
+      <p class="text-xs sm:text-sm text-slate-300">Déplacez les curseurs selon ce que vous voulez privilégier : tous les scores sont recalculés avec la même formule que le scraper. Pour rendre un réglage permanent, reportez-le dans <code class="text-brand-200">config/profile.yaml</code>.</p>
+    </div>
+    <div id="sliders" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-white/5 p-5 rounded-2xl border border-white/10"></div>
+    <button onclick="resetWeights()" class="text-xs underline text-slate-300 hover:text-white">Revenir aux poids du profil</button>
+  </section>
+
+  <section id="analytics" class="space-y-5">
+    <div><h3 class="text-xl font-bold text-slate-900">Analyse du marché</h3>
+      <p class="text-xs sm:text-sm text-slate-500">Calculée sur les offres actives actuellement affichées.</p></div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div class="bg-white p-5 rounded-3xl border border-slate-200"><h4 class="text-sm font-bold mb-2">Répartition par domaine</h4><div class="chart-box"><canvas id="cDomain"></canvas></div></div>
+      <div class="bg-white p-5 rounded-3xl border border-slate-200"><h4 class="text-sm font-bold mb-2">Répartition par ville / modalité</h4><div class="chart-box"><canvas id="cCity"></canvas></div></div>
+      <div class="bg-white p-5 rounded-3xl border border-slate-200 lg:col-span-2">
+        <h4 class="text-sm font-bold">Vos priorités vs la demande du marché</h4>
+        <p class="text-xs text-slate-500 mb-2">Part de chaque axe dans vos pondérations, comparée à sa part dans les compétences demandées par les offres.</p>
+        <div class="chart-box"><canvas id="cRadar"></canvas></div></div>
+    </div>
+  </section>
+
+  <section id="pitch" class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 space-y-5">
+    <div><h3 class="text-xl font-bold text-slate-900">Projets à mettre en avant</h3>
+      <p class="text-xs sm:text-sm text-slate-500">Selon le domaine dominant de l'offre.</p></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+      <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-2">
+        <span class="px-2.5 py-1 rounded-md bg-brand-100 text-brand-700 text-[10px] font-bold uppercase">LLM / RAG / Red Teaming</span>
+        <h4 class="font-bold text-slate-900 text-sm">LocalOps AI</h4>
+        <p class="text-slate-600 leading-relaxed">Analyse des causes profondes et triage d'incidents via un SLM affiné par QLoRA, RAG sur runbooks, FastAPI et Prometheus.</p></div>
+      <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-2">
+        <span class="px-2.5 py-1 rounded-md bg-indigo-100 text-indigo-700 text-[10px] font-bold uppercase">Agentique & Full-Stack</span>
+        <h4 class="font-bold text-slate-900 text-sm">AuraMarket & Digital Twins</h4>
+        <p class="text-slate-600 leading-relaxed">Système multi-agents LangGraph (négociation, détection de fraude). Scoring RFM-ES pondéré AHP et CLV chez Smart Automation.</p></div>
+      <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-2">
+        <span class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase">Big Data & Vision</span>
+        <h4 class="font-bold text-slate-900 text-sm">CNN & Spark/Hadoop</h4>
+        <p class="text-slate-600 leading-relaxed">Détection de maladies de peau par CNN et certification Big Data UC San Diego (Spark, Hadoop, Kafka).</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-slate-900 text-slate-400 py-6 mt-10 text-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between gap-2">
+    <div><strong class="text-white" id="footName">Stage Radar</strong> — offres de stagiaires.ma, dreamjob.ma et de vos alertes e-mail (LinkedIn, Indeed, ReKrute…), mises à jour quotidiennement.</div>
+    <div id="footContact"></div>
+  </div>
+</footer>
+
+<div id="modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target===this)closeModal()">
+  <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto scroll">
+    <button onclick="closeModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 font-bold" aria-label="Fermer">✕</button>
+    <div class="space-y-1 border-b border-slate-200 pb-4 pr-8">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span id="mDomain" class="inline-block px-2.5 py-1 rounded-md text-[10px] font-bold uppercase bg-brand-100 text-brand-700"></span>
+        <span id="mBadges" class="flex items-center gap-1.5 flex-wrap"></span>
+        <span id="mSourceBadge" class="inline-flex items-center"></span>
+      </div>
+      <h3 id="mTitle" class="text-xl font-bold text-slate-900"></h3>
+      <p id="mMeta" class="text-xs font-semibold text-slate-500"></p>
+      <p id="mSources" class="text-[11px] text-slate-500"></p>
+    </div>
+    <div class="text-xs space-y-4">
+      <div><h4 class="font-bold text-slate-900 mb-1">Compétences détectées</h4><div id="mKw" class="flex flex-wrap gap-1.5"></div></div>
+      <div><h4 class="font-bold text-slate-900 mb-1">Conseil d'approche</h4><p id="mAdvice" class="bg-emerald-50 border border-emerald-200 text-emerald-900 p-3 rounded-xl font-medium"></p></div>
+      <div><h4 class="font-bold text-slate-900 mb-1">Description</h4><p id="mDesc" class="desc bg-slate-50 p-3 rounded-xl border border-slate-200 text-slate-600 leading-relaxed"></p></div>
+    </div>
+    <div class="flex items-center justify-between pt-4 border-t border-slate-200">
+      <span class="text-xs text-slate-500">Score : <b id="mScore" class="text-sm text-brand-600"></b></span>
+      <a id="mLink" target="_blank" rel="noopener" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold text-xs">Voir l'offre originale ↗</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ───────────────────────── state ─────────────────────────
+let DATA = null, OFFERS = [], VIEW = [], WEIGHTS = {}, AXES = {}, LABEL2AXIS = {};
+const charts = {};
+const AXIS_COLORS = { genai:'#2563eb', bigdata:'#0d9488', fullstack:'#059669', cvsec:'#d97706' };
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl = u => /^https?:\/\//i.test(u || '') ? u : '#';
+
+// Same formula as scraper/scoring.py::compute_score — keep both in sync.
+function computeScore(hits, weights, bonus) {
+  const total = Object.values(hits).reduce((a, b) => a + b, 0);
+  if (total <= 0) return 0;
+  const wmax = Math.max(...Object.values(weights)) || 1;
+  let fit = 0;
+  for (const [a, w] of Object.entries(weights)) fit += ((hits[a] || 0) / total) * (w / wmax);
+  const intensity = Math.min(1, total / 12);
+  return Math.min(100, Math.round(100 * (0.6 * fit + 0.4 * intensity)) + (bonus || 0));
+}
+
+function daysAgo(iso) {
+  if (!iso) return '';
+  const d = Math.floor((Date.now() - new Date(iso + 'T00:00:00Z')) / 864e5);
+  return d <= 0 ? "aujourd'hui" : d === 1 ? 'hier' : `il y a ${d} j`;
+}
+const place = o => [o.city, o.modality].filter(Boolean).join(' · ') || '—';
+const dominantAxis = o => LABEL2AXIS[o.domain] || '';
+// 'email:LinkedIn' → 'LinkedIn (alerte)', 'stagiaires.ma' → 'stagiaires.ma'
+const srcLabel = s => (s || '').startsWith('email:') ? s.slice(6) + ' (alerte)' : (s || '—');
+
+const SOURCE_META = {
+  'stagiaires.ma': { label: 'stagiaires.ma', bg: 'bg-sky-50 text-sky-700 border-sky-200', icon: '🌐' },
+  'dreamjob.ma': { label: 'dreamjob.ma', bg: 'bg-purple-50 text-purple-700 border-purple-200', icon: '💼' },
+  'linkedin': { label: 'LinkedIn', bg: 'bg-blue-50 text-blue-700 border-blue-200', icon: '🔗' },
+  'indeed': { label: 'Indeed', bg: 'bg-indigo-50 text-indigo-700 border-indigo-200', icon: '🎯' },
+  'rekrute': { label: 'ReKrute', bg: 'bg-teal-50 text-teal-700 border-teal-200', icon: '📄' },
+  'emploi.ma': { label: 'Emploi.ma', bg: 'bg-amber-50 text-amber-700 border-amber-200', icon: '🇲🇦' },
+  'glassdoor': { label: 'Glassdoor', bg: 'bg-emerald-50 text-emerald-700 border-emerald-200', icon: '🚪' },
+};
+
+function getSourceInfo(src) {
+  const s = String(src || '').toLowerCase();
+  for (const [k, meta] of Object.entries(SOURCE_META)) {
+    if (s.includes(k)) return meta;
+  }
+  return { label: srcLabel(src), bg: 'bg-slate-50 text-slate-700 border-slate-200', icon: '📌' };
+}
+
+function sourceBadge(o) {
+  const info = getSourceInfo(o.source);
+  const extra = (o.also_on && o.also_on.length)
+    ? `<span class="ml-1 px-1.5 py-0.5 rounded-full text-[9px] font-extrabold bg-slate-200 text-slate-700" title="Aussi trouvée sur : ${esc(o.also_on.map(a => srcLabel(a.source)).join(', '))}">+${o.also_on.length}</span>`
+    : '';
+  return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[10px] font-bold tracking-tight whitespace-nowrap ${info.bg}"><span class="text-[10px]">${info.icon}</span><span>${esc(info.label)}</span>${extra}</span>`;
+}
+
+// ───────────────────────── load ─────────────────────────
+async function load() {
+  try {
+    const r = await fetch('data/offers.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    DATA = await r.json();
+  } catch (e) {
+    showBanner('Impossible de charger <code>data/offers.json</code>. Si vous avez ouvert le fichier directement, lancez plutôt <code>python -m http.server -d docs 8000</code> puis ouvrez <code>http://localhost:8000</code>.', 'red');
+    $('updatedBadge').textContent = 'Données indisponibles';
+    return;
+  }
+  const p = DATA.profile || {};
+  AXES = p.axes || {};
+  for (const [k, v] of Object.entries(AXES)) LABEL2AXIS[v] = k;
+  WEIGHTS = { ...(p.weights || {}) };
+  OFFERS = DATA.offers || [];
+  $('candName').textContent = p.name || 'Stage Radar';
+  $('footName').textContent = p.name || 'Stage Radar';
+  $('candHeadline').textContent = p.headline || '';
+  $('initials').textContent = (p.name || 'S R').split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+  if (p.email) $('footContact').innerHTML = `<a class="hover:text-white" href="mailto:${esc(p.email)}">${esc(p.email)}</a>`;
+  const when = DATA.generated_at ? new Date(DATA.generated_at) : null;
+  $('updatedBadge').textContent = when ? `Mis à jour le ${when.toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})} à ${when.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'})}` : 'Mise à jour inconnue';
+  if (when && (Date.now() - when) > 2.5 * 864e5)
+    showBanner('Les données ont plus de 2 jours : vérifiez que la tâche GitHub Actions quotidienne tourne bien.', 'amber');
+  if (!OFFERS.length)
+    showBanner(`Aucune offre active pour l'instant (${DATA.stats?.stored ?? 0} offres stockées au total). Lancez <code>python -m scraper.run</code> ou attendez la prochaine exécution planifiée.`, 'amber');
+
+  buildFilters(); buildSliders(); bind(); recompute();
+}
+
+function showBanner(html, tone) {
+  const b = $('banner');
+  const cls = tone === 'red' ? 'bg-red-50 border-red-200 text-red-900' : 'bg-amber-50 border-amber-200 text-amber-900';
+  b.className = `rounded-2xl border p-4 text-xs sm:text-sm ${cls}`;
+  b.innerHTML = html;
+}
+
+function fillSelect(id, label, values) {
+  $(id).innerHTML = `<option value="">${esc(label)}</option>` + values.map(v => `<option>${esc(v)}</option>`).join('');
+}
+function buildFilters() {
+  const uniq = f => [...new Set(OFFERS.map(f).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'fr'));
+  fillSelect('fDomain', 'Tous les domaines', uniq(o => o.domain));
+  fillSelect('fModality', 'Toutes', uniq(o => o.modality));
+  fillSelect('fCity', 'Toutes les villes', uniq(o => o.city));
+  fillSelect('fSource', 'Toutes les sources', uniq(o => srcLabel(o.source)));
+}
+
+function buildSliders() {
+  $('sliders').innerHTML = Object.entries(AXES).map(([k, label]) => `
+    <label class="block text-xs">
+      <span class="flex justify-between font-semibold mb-2"><span>${esc(label)}</span><b id="w_${k}_l" style="color:${AXIS_COLORS[k] || '#93c5fd'}">${WEIGHTS[k] ?? 0}</b></span>
+      <input type="range" min="0" max="100" value="${WEIGHTS[k] ?? 0}" data-axis="${k}" class="w-full cursor-pointer" style="accent-color:${AXIS_COLORS[k] || '#93c5fd'}">
+    </label>`).join('');
+  $('sliders').querySelectorAll('input').forEach(inp => inp.addEventListener('input', e => {
+    const k = e.target.dataset.axis; WEIGHTS[k] = +e.target.value;
+    $(`w_${k}_l`).textContent = e.target.value; recompute();
+  }));
+}
+function resetWeights() { WEIGHTS = { ...DATA.profile.weights }; buildSliders(); recompute(); }
+
+function bind() {
+  ['fSearch', 'fDomain', 'fModality', 'fCity', 'fSource', 'fSort', 'fNew', 'fPfe', 'fPaid', 'fMin'].forEach(id =>
+    $(id).addEventListener(id === 'fSearch' || id === 'fMin' ? 'input' : 'change', applyFilters));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+}
+function resetFilters() {
+  ['fSearch', 'fDomain', 'fModality', 'fCity', 'fSource'].forEach(id => $(id).value = '');
+  $('fSort').value = 'score'; $('fNew').checked = false; $('fPfe').checked = false; $('fPaid').checked = false; $('fMin').value = 0;
+  applyFilters();
+}
+
+// ───────────────────────── compute & render ─────────────────────────
+function recompute() {
+  OFFERS.forEach(o => o._score = computeScore(o.axis_hits || {}, WEIGHTS, o.bonus || 0));
+  applyFilters();
+}
+
+function applyFilters() {
+  const q = $('fSearch').value.trim().toLowerCase();
+  const dom = $('fDomain').value, mod = $('fModality').value, city = $('fCity').value, src = $('fSource').value;
+  const min = +$('fMin').value; $('fMinLabel').textContent = min;
+  VIEW = OFFERS.filter(o =>
+    (!q || [o.title, o.company, o.description, (o.keywords || []).join(' ')].join(' ').toLowerCase().includes(q)) &&
+    (!dom || o.domain === dom) && (!mod || o.modality === mod) && (!city || o.city === city) &&
+    (!src || srcLabel(o.source) === src || (o.also_on || []).some(a => srcLabel(a.source) === src)) &&
+    (!$('fNew').checked || o.new_today) && (!$('fPfe').checked || o.is_pfe) &&
+    (!$('fPaid').checked || o.is_paid || o.is_remunere) && o._score >= min);
+  const s = $('fSort').value;
+  VIEW.sort(s === 'date' ? (a, b) => (b.date_posted || '').localeCompare(a.date_posted || '')
+          : s === 'expiry' ? (a, b) => (a.valid_through || '9999').localeCompare(b.valid_through || '9999')
+          : (a, b) => b._score - a._score);
+  renderTable(); renderMetrics(); renderCharts();
+}
+
+function scoreClass(s) { return s >= 80 ? 'bg-emerald-100 text-emerald-800' : s >= 65 ? 'bg-brand-100 text-brand-700' : 'bg-slate-100 text-slate-600'; }
+function domainClass(o) {
+  return { genai: 'bg-brand-50 text-brand-700 border-brand-200', bigdata: 'bg-teal-50 text-teal-700 border-teal-200',
+           fullstack: 'bg-emerald-50 text-emerald-700 border-emerald-200', cvsec: 'bg-amber-50 text-amber-700 border-amber-200' }[dominantAxis(o)] || 'bg-slate-50 text-slate-600 border-slate-200';
+}
+
+function renderTable() {
+  $('countBadge').textContent = `${VIEW.length} / ${OFFERS.length} offre${OFFERS.length > 1 ? 's' : ''}`;
+  if (!VIEW.length) {
+    $('tbody').innerHTML = `<tr><td colspan="8" class="py-10 text-center text-slate-400">Aucune offre ne correspond à ces critères.</td></tr>`;
+    return;
+  }
+  $('tbody').innerHTML = VIEW.map(o => `
+    <tr class="hover:bg-slate-50 cursor-pointer" onclick="openModal(${o.id})">
+      <td class="py-3 px-4 font-bold text-slate-900 max-w-xs">
+        ${o.new_today ? '<span class="mr-1 px-1.5 py-0.5 rounded bg-amber-400 text-amber-950 text-[9px] font-extrabold align-middle">NOUVEAU</span>' : ''}
+        ${o.is_pfe ? '<span class="mr-1 px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 text-[9px] font-bold align-middle">PFE</span>' : ''}
+        ${(o.is_paid || o.is_remunere) ? '<span class="mr-1 px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[9px] font-bold align-middle">RÉMUNÉRÉ</span>' : ''}
+        ${esc(o.title)}</td>
+      <td class="py-3 px-4 font-semibold text-slate-700">${esc(o.company || '—')}</td>
+      <td class="py-3 px-4 whitespace-nowrap">${sourceBadge(o)}</td>
+      <td class="py-3 px-4 text-slate-600 whitespace-nowrap">${esc(place(o))}</td>
+      <td class="py-3 px-4"><span class="px-2 py-1 rounded-md border text-[10px] font-bold whitespace-nowrap ${domainClass(o)}">${esc(o.domain)}</span></td>
+      <td class="py-3 px-4 text-slate-500 whitespace-nowrap">${esc(daysAgo(o.date_posted))}</td>
+      <td class="py-3 px-4 text-center"><span class="px-2.5 py-1 rounded-full font-extrabold ${scoreClass(o._score)}">${o._score}%</span></td>
+      <td class="py-3 px-4 text-right whitespace-nowrap">
+        <a href="${esc(safeUrl(o.url))}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold">Postuler ↗</a></td>
+    </tr>`).join('');
+}
+
+function metric(label, value, sub, color) {
+  return `<div class="bg-white p-5 rounded-2xl border border-slate-200"><div class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">${label}</div>
+    <div class="text-3xl font-extrabold mt-2 ${color}">${value}</div><div class="text-xs font-semibold text-slate-500 mt-1">${sub}</div></div>`;
+}
+function renderMetrics() {
+  const n = VIEW.length;
+  const nNew = OFFERS.filter(o => o.new_today).length;
+  const avg = n ? (VIEW.reduce((a, o) => a + o._score, 0) / n).toFixed(0) : '—';
+  const remote = VIEW.filter(o => o.modality === 'Télétravail').length;
+  const top = n ? VIEW.reduce((a, o) => o._score > a._score ? o : a) : null;
+  $('metrics').innerHTML =
+    metric('Offres affichées', n, `${OFFERS.length} actives au total`, 'text-slate-900') +
+    metric("Nouvelles aujourd'hui", nNew, nNew ? 'à traiter en priorité' : 'rien de neuf ce matin', 'text-amber-600') +
+    metric('Score moyen', avg + (n ? '%' : ''), top ? `max ${top._score}% · ${esc(top.company || top.title).slice(0, 28)}` : '—', 'text-brand-600') +
+    metric('Télétravail', n ? Math.round(100 * remote / n) + '%' : '—', `${remote} offre${remote > 1 ? 's' : ''} remote`, 'text-indigo-600');
+}
+
+function upsertChart(key, canvas, cfg) {
+  if (charts[key]) { charts[key].data = cfg.data; charts[key].update(); return; }
+  charts[key] = new Chart($(canvas), cfg);
+}
+function renderCharts() {
+  if (typeof Chart === 'undefined') return;
+  const font = { family: 'Plus Jakarta Sans', size: 11 };
+  // domains
+  const dCount = {}; VIEW.forEach(o => dCount[o.domain] = (dCount[o.domain] || 0) + 1);
+  const dLabels = Object.keys(dCount);
+  upsertChart('d', 'cDomain', { type: 'doughnut',
+    data: { labels: dLabels, datasets: [{ data: dLabels.map(l => dCount[l]), borderColor: '#fff', borderWidth: 2,
+      backgroundColor: dLabels.map(l => AXIS_COLORS[LABEL2AXIS[l]] || '#94a3b8') }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font, boxWidth: 12 } } } } });
+  // cities
+  const cCount = {}; VIEW.forEach(o => { const k = o.modality === 'Télétravail' ? 'Télétravail' : (o.city || 'Non précisé'); cCount[k] = (cCount[k] || 0) + 1; });
+  const cLabels = Object.keys(cCount).sort((a, b) => cCount[b] - cCount[a]).slice(0, 10);
+  upsertChart('c', 'cCity', { type: 'bar',
+    data: { labels: cLabels, datasets: [{ label: 'Offres', data: cLabels.map(l => cCount[l]), backgroundColor: '#1d4ed8', borderRadius: 6 }] },
+    options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }, plugins: { legend: { display: false } } } });
+  // radar: share of each axis in my weights vs in market demand
+  const keys = Object.keys(AXES);
+  const wSum = keys.reduce((a, k) => a + (WEIGHTS[k] || 0), 0) || 1;
+  const demand = Object.fromEntries(keys.map(k => [k, 0]));
+  VIEW.forEach(o => keys.forEach(k => demand[k] += (o.axis_hits || {})[k] || 0));
+  const dSum = keys.reduce((a, k) => a + demand[k], 0) || 1;
+  upsertChart('r', 'cRadar', { type: 'radar',
+    data: { labels: keys.map(k => AXES[k]), datasets: [
+      { label: 'Mes priorités (%)', data: keys.map(k => Math.round(100 * (WEIGHTS[k] || 0) / wSum)), fill: true,
+        backgroundColor: 'rgba(37,99,235,.18)', borderColor: '#2563eb', pointBackgroundColor: '#2563eb' },
+      { label: 'Demande du marché (%)', data: keys.map(k => Math.round(100 * demand[k] / dSum)), fill: true,
+        backgroundColor: 'rgba(13,148,136,.15)', borderColor: '#0d9488', pointBackgroundColor: '#0d9488' }] },
+    options: { responsive: true, maintainAspectRatio: false, scales: { r: { beginAtZero: true, suggestedMax: 50, angleLines: { color: '#e2e8f0' } } },
+      plugins: { legend: { position: 'top', labels: { font } } } } });
+}
+
+// ───────────────────────── modal & export ─────────────────────────
+function openModal(id) {
+  const o = OFFERS.find(x => x.id === id); if (!o) return;
+  $('mDomain').textContent = o.domain;
+  const badges = [];
+  if (o.new_today) badges.push('<span class="px-2 py-0.5 rounded bg-amber-400 text-amber-950 text-[10px] font-extrabold uppercase">NOUVEAU</span>');
+  if (o.is_pfe) badges.push('<span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 text-[10px] font-bold uppercase">PFE</span>');
+  if (o.is_paid || o.is_remunere) badges.push('<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase">RÉMUNÉRÉ</span>');
+  $('mBadges').innerHTML = badges.join(' ');
+  $('mSourceBadge').innerHTML = sourceBadge(o);
+  $('mTitle').textContent = o.title;
+  const exp = o.valid_through ? ` · expire le ${new Date(o.valid_through).toLocaleDateString('fr-FR')}` : '';
+  $('mMeta').textContent = `${o.company || '—'} — ${place(o)} · publiée ${daysAgo(o.date_posted)}${exp}`;
+  $('mKw').innerHTML = (o.keywords || []).map(k => `<span class="px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">${esc(k)}</span>`).join('') || '<span class="text-slate-400">—</span>';
+  $('mAdvice').textContent = (DATA.profile.pitch || {})[dominantAxis(o)] || 'Adaptez votre CV aux compétences détectées ci-dessus.';
+  $('mDesc').textContent = o.description || '';
+  $('mScore').textContent = o._score + '%';
+  $('mLink').href = safeUrl(o.url);
+  $('mLink').textContent = `Voir sur ${srcLabel(o.source)} ↗`;
+  $('mSources').innerHTML = (o.also_on || []).length ? 'Aussi publiée sur : ' + o.also_on.map(a => `<a class="underline hover:text-brand-600" target="_blank" rel="noopener" href="${esc(safeUrl(a.url))}">${esc(srcLabel(a.source))}</a>`).join(', ') : '';
+  $('modal').classList.remove('hidden');
+}
+function closeModal() { $('modal').classList.add('hidden'); }
+
+function exportCSV() {
+  const cols = ['Score', 'Poste', 'Entreprise', 'Ville', 'Modalité', 'Domaine', 'Source', 'PFE', 'Rémunéré', 'Publiée le', 'Expire le', 'Lien'];
+  const q = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+  const rows = VIEW.map(o => [o._score, o.title, o.company, o.city, o.modality, o.domain, srcLabel(o.source), o.is_pfe ? 'Oui' : 'Non', (o.is_paid || o.is_remunere) ? 'Oui' : 'Non', o.date_posted, o.valid_through, o.url].map(q).join(';'));
+  const blob = new Blob(['﻿' + [cols.map(q).join(';'), ...rows].join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `stages_ia_data_${new Date().toISOString().slice(0, 10)}.csv` });
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+}
+
+// ───────────────────────── scraper trigger ─────────────────────────
+let scrapePolling = null;
+
+async function triggerScrape(noFetch = false) {
+  const btn = $('btnRun'), icon = $('btnRunIcon'), text = $('btnRunText'), badge = $('scrapeStatusBadge');
+  if (btn && btn.disabled) return;
+  if (btn) btn.disabled = true;
+  if (icon) icon.classList.add('animate-spin');
+  if (text) text.textContent = noFetch ? 'Recalcul…' : 'Scraping…';
+  if (badge) {
+    badge.className = 'text-xs px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 font-medium inline-flex items-center gap-1.5';
+    badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span> Scraper en cours d’exécution…';
+  }
+
+  try {
+    const res = await fetch('/api/run', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ no_fetch: noFetch, max: 30 })
+    });
+    if (!res.ok) {
+      if (res.status === 404 || res.status === 501) {
+        showBanner(`<strong>Mode serveur statique :</strong> Pour relancer le scraper depuis ce bouton, lancez le serveur local avec :<br><code class="bg-black/10 px-2 py-0.5 rounded font-mono font-bold">python server.py</code> (ou dans le terminal : <code class="bg-black/10 px-2 py-0.5 rounded font-mono font-bold">python -m scraper.run --max 30 -v</code>).`, 'amber');
+        resetRunButton();
+        return;
+      }
+      throw new Error(`Erreur serveur (${res.status})`);
+    }
+    pollScrapeStatus();
+  } catch (err) {
+    showBanner(`Impossible de lancer le scraper depuis le navigateur : ${esc(err.message)}.<br>Lancez le serveur avec <code>python server.py</code> ou exécutez <code>python -m scraper.run --max 30 -v</code>.`, 'amber');
+    resetRunButton();
+  }
+}
+
+function resetRunButton() {
+  const btn = $('btnRun'), icon = $('btnRunIcon'), text = $('btnRunText'), badge = $('scrapeStatusBadge');
+  if (btn) btn.disabled = false;
+  if (icon) icon.classList.remove('animate-spin');
+  if (text) text.textContent = 'Relancer';
+  if (badge) badge.classList.add('hidden');
+}
+
+function pollScrapeStatus() {
+  if (scrapePolling) clearInterval(scrapePolling);
+  scrapePolling = setInterval(async () => {
+    try {
+      const res = await fetch('/api/status', { cache: 'no-store' });
+      if (!res.ok) {
+        clearInterval(scrapePolling); scrapePolling = null;
+        resetRunButton(); await load(); return;
+      }
+      const st = await res.json();
+      const text = $('btnRunText'), badge = $('scrapeStatusBadge');
+      if (st.running) {
+        if (text) text.textContent = st.message || 'Scraping…';
+        if (badge) badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span> ${esc(st.message || 'En cours…')}`;
+      } else {
+        clearInterval(scrapePolling); scrapePolling = null;
+        resetRunButton();
+        if (badge) {
+          badge.className = 'text-xs px-2.5 py-1 rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 font-medium inline-block';
+          badge.textContent = st.message || 'Terminé !';
+          setTimeout(() => badge.classList.add('hidden'), 5000);
+        }
+        await load();
+      }
+    } catch {
+      clearInterval(scrapePolling); scrapePolling = null;
+      resetRunButton(); await load();
+    }
+  }, 2000);
+}
+
+load();
+</script>
+</body>
+</html>
