@@ -840,10 +840,15 @@ async function viewAdmin() {
       <h2 class="font-bold text-slate-900">Invitations</h2>
       <p class="text-xs text-slate-500">Un e-mail invité est validé automatiquement à l’inscription. Envoyez ensuite le lien du site à votre ami(e).</p>
       <form id="inviteForm" class="flex flex-col sm:flex-row gap-2"><input name="email" type="email" required placeholder="ami@exemple.com" class="${input} sm:max-w-sm"><button class="${btnPrimary}">Inviter</button></form>
-      <div class="flex flex-wrap gap-2">${invites.map(i => `<span class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-xs">${esc(i.email)} <button data-uninvite="${esc(i.email)}" class="ml-1 text-rose-600" aria-label="Retirer">✕</button></span>`).join('') || '<span class="text-xs text-slate-400">Aucune invitation en attente.</span>'}</div>
+      <div class="flex flex-wrap gap-2">${invites.map(i => {
+        const mailSub = encodeURIComponent('Invitation à rejoindre ' + CFG.appName);
+        const mailBody = encodeURIComponent('Bonjour,\n\nJe t\'ai invité(e) sur ' + CFG.appName + ', notre plateforme de veille pour les stages au Maroc.\n\nTon adresse est déjà pré-approuvée. Crée directement ton compte ici :\n' + (location.origin + location.pathname) + '\n\nÀ très vite !');
+        return `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-medium">${esc(i.email)} <a href="mailto:${encodeURIComponent(i.email)}?subject=${mailSub}&body=${mailBody}" class="text-blue-600 hover:text-blue-800 text-xs font-semibold" title="Ouvrir un e-mail d'invitation prêt à l'envoi">✉️ Envoyer</a> <button data-uninvite="${esc(i.email)}" class="ml-1 text-slate-400 hover:text-rose-600" aria-label="Retirer" title="Retirer l'invitation">✕</button></span>`;
+      }).join('') || '<span class="text-xs text-slate-400">Aucune invitation en attente.</span>'}</div>
       <div class="flex items-center gap-2 pt-2"><input id="siteLink" readonly value="${esc(location.origin + location.pathname)}" class="${input} sm:max-w-sm text-xs"><button id="copyLink" type="button" class="${btnGhost}">Copier le lien</button></div>
     </section>
   </div>`;
+
   $$('[data-act]').forEach(b => b.onclick = async () => {
     const act = b.dataset.act, patch = act === 'admin' || act === 'user' ? { role: act } : { status: act };
     if (act === 'blocked' && !confirm('Bloquer ce membre ? Il ne pourra plus accéder à l’application.')) return;
