@@ -6,6 +6,7 @@
 <title>Stage Radar — Offres IA & Data au Maroc</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
@@ -39,7 +40,7 @@ if (window.tailwind) tailwind.config = { theme: { extend: {
     </nav>
     <div class="flex items-center gap-2">
       <a href="index.html" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700">🚀 App Multi-utilisateurs</a>
-      <button onclick="exportCSV()" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700">📥 Export CSV</button>
+      <button onclick="exportExcel()" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700 flex items-center gap-1.5 shadow-sm">📊 Exporter Excel (.xlsx)</button>
     </div>
   </div>
 </header>
@@ -469,13 +470,125 @@ function openModal(id) {
 }
 function closeModal() { $('modal').classList.add('hidden'); }
 
-function exportCSV() {
-  const cols = ['Score', 'Poste', 'Entreprise', 'Ville', 'Modalité', 'Domaine', 'Source', 'Publiée le', 'Expire le', 'Lien'];
-  const q = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
-  const rows = VIEW.map(o => [o._score, o.title, o.company, o.city, o.modality, o.domain, srcLabel(o.source), o.date_posted, o.valid_through, o.url].map(q).join(';'));
-  const blob = new Blob(['﻿' + [cols.map(q).join(';'), ...rows].join('\r\n')], { type: 'text/csv;charset=utf-8' });
-  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `stages_ia_data_${new Date().toISOString().slice(0, 10)}.csv` });
-  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+async function exportExcel() {
+  if (!VIEW || !VIEW.length) return alert('Aucune offre à exporter.');
+  if (!window.ExcelJS) {
+    const cols = ['Score', 'Poste', 'Entreprise', 'Ville', 'Modalité', 'Domaine', 'Source', 'Publiée le', 'Expire le', 'Lien'];
+    const q = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+    const rows = VIEW.map(o => [o._score, o.title, o.company, o.city, o.modality, o.domain, srcLabel(o.source), o.date_posted, o.valid_through, o.url].map(q).join(';'));
+    const blob = new Blob(['﻿' + [cols.map(q).join(';'), ...rows].join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `stages_ia_data_${new Date().toISOString().slice(0, 10)}.csv` });
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+    return;
+  }
+
+  const wb = new window.ExcelJS.Workbook();
+  wb.creator = 'Stage Radar';
+  wb.created = new Date();
+
+  const ws = wb.addWorksheet('Offres IA & Data', {
+    views: [{ state: 'frozen', ySplit: 1 }],
+    properties: { defaultRowHeight: 22, tabColor: { argb: 'FF1D4ED8' } },
+  });
+
+  ws.columns = [
+    { header: 'Score', key: 'score', width: 11 },
+    { header: 'Poste', key: 'title', width: 36 },
+    { header: 'Entreprise', key: 'company', width: 24 },
+    { header: 'Lieu', key: 'place', width: 20 },
+    { header: 'Domaine', key: 'domain', width: 22 },
+    { header: 'Compétences clés', key: 'skills', width: 32 },
+    { header: 'Type', key: 'type', width: 12 },
+    { header: 'Source', key: 'source', width: 16 },
+    { header: 'Publiée le', key: 'date', width: 16 },
+    { header: 'Expire le', key: 'expiry', width: 16 },
+    { header: 'Lien vers l\'offre', key: 'link', width: 20 },
+  ];
+
+  const header = ws.getRow(1);
+  header.height = 28;
+  header.eachCell(cell => {
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF0F172A' } };
+    cell.font = { name: 'Segoe UI', size: 11, bold: true, color: { argb: 'FFFFFFFF' } };
+    cell.alignment = { vertical: 'middle', horizontal: 'center' };
+    cell.border = {
+      top: { style: 'thin', color: { argb: 'FF0F172A' } },
+      left: { style: 'thin', color: { argb: 'FF334155' } },
+      bottom: { style: 'medium', color: { argb: 'FF1E293B' } },
+      right: { style: 'thin', color: { argb: 'FF334155' } },
+    };
+  });
+
+  VIEW.forEach((o, i) => {
+    const row = ws.addRow({
+      score: o._score != null ? `${o._score}%` : '—',
+      title: o.title || '—',
+      company: o.company || '—',
+      place: place(o),
+      domain: o.domain || dominantAxis(o) || '—',
+      skills: (o.keywords || []).join(', ') || '—',
+      type: o.is_pfe ? 'PFE' : 'Standard',
+      source: srcLabel(o.source),
+      date: o.date_posted || '—',
+      expiry: o.valid_through || '—',
+      link: o.url ? { text: "Voir l'offre ↗", hyperlink: o.url } : '—',
+    });
+
+    row.height = 22;
+    const bg = i % 2 === 1 ? 'FFF8FAFC' : 'FFFFFFFF';
+
+    row.eachCell({ includeEmpty: true }, (cell, col) => {
+      cell.font = { name: 'Segoe UI', size: 10, color: { argb: 'FF1E293B' } };
+      cell.alignment = { vertical: 'middle', horizontal: 'left' };
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: bg } };
+      cell.border = {
+        top: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+        left: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+        bottom: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+        right: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+      };
+
+      if (col === 1) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.font = { name: 'Segoe UI', size: 10, bold: true };
+        if (o._score >= 75) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1FAE5' } };
+          cell.font.color = { argb: 'FF065F46' };
+        } else if (o._score >= 55) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFDBEAFE' } };
+          cell.font.color = { argb: 'FF1E40AF' };
+        } else {
+          cell.font.color = { argb: 'FF64748B' };
+        }
+      }
+      if (col === 7) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        if (o.is_pfe) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEEF2FF' } };
+          cell.font = { name: 'Segoe UI', size: 10, bold: true, color: { argb: 'FF4338CA' } };
+        }
+      }
+      if (col === 9 || col === 10) cell.alignment = { vertical: 'middle', horizontal: 'center' };
+      if (col === 11 && o.url) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.font = { name: 'Segoe UI', size: 10, color: { argb: 'FF2563EB' }, underline: true };
+      }
+    });
+  });
+
+  ws.autoFilter = {
+    from: { row: 1, column: 1 },
+    to: { row: 1, column: ws.columns.length },
+  };
+
+  const buf = await wb.xlsx.writeBuffer();
+  const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  const filename = `stages_ia_data_${new Date().toISOString().slice(0, 10)}.xlsx`;
+  const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: filename });
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(link.href);
 }
 
 load();

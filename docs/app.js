@@ -363,8 +363,12 @@ async function viewOffers() {
     <section class="${card} space-y-4">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
         <h2 class="text-lg font-bold text-slate-900">Offres pour vous</h2>
-        <div class="flex items-center gap-3"><span id="count" class="bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-full border border-blue-200"></span>
-        <button id="refresh" class="text-xs underline text-slate-500">Actualiser</button><button id="reset" class="text-xs underline text-slate-500">Réinitialiser</button></div>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <span id="count" class="bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-full border border-blue-200"></span>
+          <button id="exportExcel" class="px-3 py-1.5 rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold transition flex items-center gap-1.5 shadow-sm" title="Exporter les offres filtrées au format Excel"><span>📊</span> Exporter Excel (.xlsx)</button>
+          <button id="refresh" class="text-xs underline text-slate-500">Actualiser</button>
+          <button id="reset" class="text-xs underline text-slate-500">Réinitialiser</button>
+        </div>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
         <label class="sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Recherche</span><input id="fq" type="search" value="${esc(f.q)}" placeholder="Poste, entreprise, compétence…" class="${input}"></label>
@@ -420,6 +424,7 @@ async function viewOffers() {
   bind('#fmin', 'min', 'input', Number);
   $('#pageSize').addEventListener('change', e => { S.pageSize = Number(e.target.value); S.page = 1; renderOfferRows(); });
   $('#reset').onclick = () => { Object.assign(S.f, { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' }); S.page = 1; viewOffers(); };
+  $('#exportExcel').onclick = () => exportOffersExcel(filteredOffers());
   $('#refresh').onclick = async () => { S.loadedAt = 0; await viewOffers(); toast('Offres actualisées'); };
   S.sb.from('scrape_runs').select('run_at').order('run_at', { ascending: false }).limit(1).then(({ data }) => {
     if (data && data[0] && $('#lastRun')) $('#lastRun').textContent = `Dernière collecte : ${new Date(data[0].run_at).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short' })}`;
@@ -690,7 +695,7 @@ async function viewApps() {
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
       <div><h1 class="text-2xl font-extrabold text-slate-900">Mes candidatures</h1>
       <p class="text-sm text-slate-500">${S.apps.length} offre${S.apps.length > 1 ? 's' : ''} suivie${S.apps.length > 1 ? 's' : ''}. Visible uniquement par vous.</p></div>
-      <button id="csv" class="${btnGhost}">📥 Export CSV</button>
+      <button id="excelApps" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition flex items-center gap-1.5 shadow-sm"><span>📊</span> Exporter Excel (.xlsx)</button>
     </div>
     <section class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
       ${Object.entries(STATUSES).map(([k, s]) => `<div class="rounded-2xl border p-3 ${s.cls}"><div class="text-[10px] font-bold uppercase">${s.label}</div><div class="text-2xl font-extrabold">${counts[k]}</div></div>`).join('')}
@@ -720,9 +725,258 @@ async function viewApps() {
     try { await saveApplication(offerId, patch); toast('Statut mis à jour'); viewApps(); } catch (err) { toast(errMsg(err), 'err'); }
   }));
   $$('[data-open]').forEach(b => b.addEventListener('click', () => openOffer(Number(b.dataset.open))));
-  $('#csv').onclick = () => downloadCsv(`candidatures_${new Date().toISOString().slice(0, 10)}.csv`,
-    ['Poste', 'Entreprise', 'Ville', 'Statut', 'Envoyée le', 'Notes', 'Lien'],
-    S.apps.map(a => [a.title, a.company, a.city, STATUSES[a.status]?.label, a.applied_at, a.notes, a.url]));
+  $('#excelApps').onclick = () => exportAppsExcel(S.apps);
+}
+
+// ───────────────────────── Excel Export ─────────────────────────
+async function exportOffersExcel(offers) {
+  if (!offers || !offers.length) return toast('Aucune offre à exporter', 'err');
+  if (!window.ExcelJS) {
+    return downloadCsv(`offres_${new Date().toISOString().slice(0, 10)}.csv`,
+      ['Score', 'Poste', 'Entreprise', 'Ville', 'Modalité', 'Domaine', 'Compétences', 'Type', 'Rémunéré', 'Source', 'Date', 'Lien'],
+      offers.map(o => [o.score, o.title, o.company, o.city, o.modality, dominantAxis(o), (o.matched||[]).join(', '), o.is_pfe ? 'PFE' : 'Standard', isPaid(o) ? 'Oui' : 'Non', srcLabel(o.source), o.date_posted || o.first_seen, o.url]));
+  }
+
+  const wb = new window.ExcelJS.Workbook();
+  wb.creator = 'Stage Radar';
+  wb.created = new Date();
+
+  const ws = wb.addWorksheet('Offres de stage', {
+    views: [{ state: 'frozen', ySplit: 1 }],
+    properties: { defaultRowHeight: 22, tabColor: { argb: 'FF1D4ED8' } },
+  });
+
+  ws.columns = [
+    { header: 'Score', key: 'score', width: 11 },
+    { header: 'Poste', key: 'title', width: 36 },
+    { header: 'Entreprise', key: 'company', width: 24 },
+    { header: 'Lieu', key: 'place', width: 20 },
+    { header: 'Domaine', key: 'domain', width: 24 },
+    { header: 'Compétences repérées', key: 'skills', width: 32 },
+    { header: 'Type', key: 'type', width: 12 },
+    { header: 'Rémunération', key: 'paid', width: 16 },
+    { header: 'Source', key: 'source', width: 16 },
+    { header: 'Date publication', key: 'date', width: 16 },
+    { header: 'Statut suivi', key: 'status', width: 16 },
+    { header: 'Lien vers l\'offre', key: 'link', width: 20 },
+  ];
+
+  const header = ws.getRow(1);
+  header.height = 28;
+  header.eachCell(cell => {
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF0F172A' } };
+    cell.font = { name: 'Segoe UI', size: 11, bold: true, color: { argb: 'FFFFFFFF' } };
+    cell.alignment = { vertical: 'middle', horizontal: 'center' };
+    cell.border = {
+      top: { style: 'thin', color: { argb: 'FF0F172A' } },
+      left: { style: 'thin', color: { argb: 'FF334155' } },
+      bottom: { style: 'medium', color: { argb: 'FF1E293B' } },
+      right: { style: 'thin', color: { argb: 'FF334155' } },
+    };
+  });
+
+  offers.forEach((o, i) => {
+    const isPaidOffer = isPaid(o);
+    const scoreVal = o.score != null ? o.score : null;
+    const row = ws.addRow({
+      score: scoreVal != null ? `${scoreVal}%` : '—',
+      title: o.title || '—',
+      company: o.company || '—',
+      place: place(o),
+      domain: dominantAxis(o) || '—',
+      skills: (o.matched || []).join(', ') || '—',
+      type: o.is_pfe ? 'PFE' : 'Standard',
+      paid: isPaidOffer ? '💰 Rémunéré' : 'Non précisé',
+      source: srcLabel(o.source),
+      date: o.date_posted || (o.first_seen ? o.first_seen.slice(0, 10) : '—'),
+      status: o.app_status && STATUSES[o.app_status] ? STATUSES[o.app_status].label : 'Non suivie',
+      link: o.url ? { text: "Voir l'offre ↗", hyperlink: o.url } : '—',
+    });
+
+    row.height = 22;
+    const bg = i % 2 === 1 ? 'FFF8FAFC' : 'FFFFFFFF';
+
+    row.eachCell({ includeEmpty: true }, (cell, col) => {
+      cell.font = { name: 'Segoe UI', size: 10, color: { argb: 'FF1E293B' } };
+      cell.alignment = { vertical: 'middle', horizontal: 'left' };
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: bg } };
+      cell.border = {
+        top: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+        left: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+        bottom: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+        right: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+      };
+
+      if (col === 1) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.font = { name: 'Segoe UI', size: 10, bold: true };
+        if (scoreVal >= 75) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1FAE5' } };
+          cell.font.color = { argb: 'FF065F46' };
+        } else if (scoreVal >= 55) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFDBEAFE' } };
+          cell.font.color = { argb: 'FF1E40AF' };
+        } else {
+          cell.font.color = { argb: 'FF64748B' };
+        }
+      }
+      if (col === 7) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        if (o.is_pfe) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEEF2FF' } };
+          cell.font = { name: 'Segoe UI', size: 10, bold: true, color: { argb: 'FF4338CA' } };
+        }
+      }
+      if (col === 8) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        if (isPaidOffer) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFECFDF5' } };
+          cell.font = { name: 'Segoe UI', size: 10, bold: true, color: { argb: 'FF047857' } };
+        } else {
+          cell.font = { name: 'Segoe UI', size: 10, color: { argb: 'FF94A3B8' } };
+        }
+      }
+      if (col === 10) cell.alignment = { vertical: 'middle', horizontal: 'center' };
+      if (col === 11) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        if (o.app_status && STATUSES[o.app_status]) {
+          cell.font = { name: 'Segoe UI', size: 10, bold: true };
+          if (['entretien', 'offre'].includes(o.app_status)) {
+            cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1FAE5' } };
+            cell.font.color = { argb: 'FF065F46' };
+          } else if (['envoyee', 'relance'].includes(o.app_status)) {
+            cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFDBEAFE' } };
+            cell.font.color = { argb: 'FF1E40AF' };
+          }
+        }
+      }
+      if (col === 12 && o.url) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.font = { name: 'Segoe UI', size: 10, color: { argb: 'FF2563EB' }, underline: true };
+      }
+    });
+  });
+
+  ws.autoFilter = {
+    from: { row: 1, column: 1 },
+    to: { row: 1, column: ws.columns.length },
+  };
+
+  const buf = await wb.xlsx.writeBuffer();
+  const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  const filename = `stage_radar_offres_${new Date().toISOString().slice(0, 10)}.xlsx`;
+  const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: filename });
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(link.href);
+  toast(`Fichier Excel généré (${offers.length} offres)`);
+}
+
+async function exportAppsExcel(apps) {
+  if (!apps || !apps.length) return toast('Aucune candidature à exporter', 'err');
+  if (!window.ExcelJS) {
+    return downloadCsv(`candidatures_${new Date().toISOString().slice(0, 10)}.csv`,
+      ['Poste', 'Entreprise', 'Ville', 'Statut', 'Envoyée le', 'Notes', 'Lien'],
+      apps.map(a => [a.title, a.company, a.city, STATUSES[a.status]?.label, a.applied_at, a.notes, a.url]));
+  }
+
+  const wb = new window.ExcelJS.Workbook();
+  wb.creator = 'Stage Radar';
+  wb.created = new Date();
+
+  const ws = wb.addWorksheet('Mes candidatures', {
+    views: [{ state: 'frozen', ySplit: 1 }],
+    properties: { defaultRowHeight: 22, tabColor: { argb: 'FF047857' } },
+  });
+
+  ws.columns = [
+    { header: 'Poste', key: 'title', width: 34 },
+    { header: 'Entreprise', key: 'company', width: 24 },
+    { header: 'Ville', key: 'city', width: 18 },
+    { header: 'Statut', key: 'status', width: 16 },
+    { header: 'Date d\'envoi', key: 'applied_at', width: 16 },
+    { header: 'Dernière mise à jour', key: 'updated_at', width: 18 },
+    { header: 'Notes / Relance', key: 'notes', width: 38 },
+    { header: 'Lien vers l\'offre', key: 'link', width: 20 },
+  ];
+
+  const header = ws.getRow(1);
+  header.height = 28;
+  header.eachCell(cell => {
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF0F172A' } };
+    cell.font = { name: 'Segoe UI', size: 11, bold: true, color: { argb: 'FFFFFFFF' } };
+    cell.alignment = { vertical: 'middle', horizontal: 'center' };
+    cell.border = {
+      top: { style: 'thin', color: { argb: 'FF0F172A' } },
+      left: { style: 'thin', color: { argb: 'FF334155' } },
+      bottom: { style: 'medium', color: { argb: 'FF1E293B' } },
+      right: { style: 'thin', color: { argb: 'FF334155' } },
+    };
+  });
+
+  apps.forEach((a, i) => {
+    const row = ws.addRow({
+      title: a.title || '—',
+      company: a.company || '—',
+      city: a.city || '—',
+      status: STATUSES[a.status]?.label || a.status || '—',
+      applied_at: a.applied_at || '—',
+      updated_at: a.updated_at ? a.updated_at.slice(0, 10) : '—',
+      notes: a.notes || '',
+      link: a.url ? { text: "Voir l'offre ↗", hyperlink: a.url } : '—',
+    });
+
+    row.height = 22;
+    const bg = i % 2 === 1 ? 'FFF8FAFC' : 'FFFFFFFF';
+
+    row.eachCell({ includeEmpty: true }, (cell, col) => {
+      cell.font = { name: 'Segoe UI', size: 10, color: { argb: 'FF1E293B' } };
+      cell.alignment = { vertical: 'middle', horizontal: 'left' };
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: bg } };
+      cell.border = {
+        top: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+        left: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+        bottom: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+        right: { style: 'thin', color: { argb: 'FFE2E8F0' } },
+      };
+
+      if (col === 4) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.font = { name: 'Segoe UI', size: 10, bold: true };
+        if (['entretien', 'offre'].includes(a.status)) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1FAE5' } };
+          cell.font.color = { argb: 'FF065F46' };
+        } else if (['envoyee', 'relance'].includes(a.status)) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFDBEAFE' } };
+          cell.font.color = { argb: 'FF1E40AF' };
+        } else if (a.status === 'refus') {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFE4E6' } };
+          cell.font.color = { argb: 'FF9F1239' };
+        }
+      }
+      if (col === 5 || col === 6) cell.alignment = { vertical: 'middle', horizontal: 'center' };
+      if (col === 8 && a.url) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.font = { name: 'Segoe UI', size: 10, color: { argb: 'FF2563EB' }, underline: true };
+      }
+    });
+  });
+
+  ws.autoFilter = {
+    from: { row: 1, column: 1 },
+    to: { row: 1, column: ws.columns.length },
+  };
+
+  const buf = await wb.xlsx.writeBuffer();
+  const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  const filename = `stage_radar_candidatures_${new Date().toISOString().slice(0, 10)}.xlsx`;
+  const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: filename });
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(link.href);
+  toast(`Fichier Excel généré (${apps.length} candidatures)`);
 }
 
 function downloadCsv(name, head, rows) {
