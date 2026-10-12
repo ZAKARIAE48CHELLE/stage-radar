@@ -710,13 +710,16 @@ async function viewApps() {
     v.innerHTML = `<div class="${card} text-sm text-rose-600">${esc(errMsg(e))}</div>`; return;
   }
   const counts = Object.fromEntries(Object.keys(STATUSES).map(k => [k, 0]));
-  S.apps.forEach(a => counts[a.status]++);
+  S.apps.forEach(a => { if (counts[a.status] !== undefined) counts[a.status]++; });
   v.innerHTML = `
   <div class="space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
       <div><h1 class="text-2xl font-extrabold text-slate-900">Mes candidatures</h1>
-      <p class="text-sm text-slate-500">${S.apps.length} offre${S.apps.length > 1 ? 's' : ''} suivie${S.apps.length > 1 ? 's' : ''}. Visible uniquement par vous.</p></div>
-      <button id="excelApps" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition flex items-center gap-1.5 shadow-sm"><span>📊</span> Exporter Excel (.xlsx)</button>
+      <p class="text-sm text-slate-500">${S.apps.length} candidature${S.apps.length > 1 ? 's' : ''} suivie${S.apps.length > 1 ? 's' : ''}. Visible uniquement par vous.</p></div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button id="addExtApp" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-700 hover:bg-blue-800 text-white transition flex items-center gap-1.5 shadow-sm"><span>➕</span> Ajouter une candidature externe</button>
+        <button id="excelApps" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition flex items-center gap-1.5 shadow-sm"><span>📊</span> Exporter Excel (.xlsx)</button>
+      </div>
     </div>
     <section class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
       ${Object.entries(STATUSES).map(([k, s]) => `<div class="rounded-2xl border p-3 ${s.cls}"><div class="text-[10px] font-bold uppercase">${s.label}</div><div class="text-2xl font-extrabold">${counts[k]}</div></div>`).join('')}
@@ -726,27 +729,228 @@ async function viewApps() {
         <thead><tr class="text-slate-500 font-bold uppercase tracking-wider border-b border-slate-200">
           <th class="py-2 pr-4">Poste</th><th class="py-2 pr-4">Entreprise</th><th class="py-2 pr-4">Statut</th><th class="py-2 pr-4">Envoyée le</th><th class="py-2 pr-4">Mise à jour</th><th class="py-2"></th></tr></thead>
         <tbody class="divide-y divide-slate-100">${S.apps.map(a => `
-          <tr><td class="py-2.5 pr-4 font-semibold text-slate-900 min-w-[200px]">${esc(a.title)}${a.active ? '' : ' <span class="text-[10px] text-slate-400 font-normal">(offre retirée)</span>'}
+          <tr class="hover:bg-slate-50 transition" data-app="${a.app_id}">
+            <td class="py-2.5 pr-4 font-semibold text-slate-900 min-w-[200px]">
+              ${a.external ? '<span class="mr-1.5 px-1.5 py-0.5 rounded bg-violet-100 text-violet-800 border border-violet-200 text-[9px] font-extrabold uppercase">Externe</span>' : ''}
+              <span class="${a.external ? 'cursor-pointer hover:text-blue-700' : ''}" data-ext-title="${a.app_id}">${esc(a.title)}</span>
+              ${a.active || a.external ? '' : ' <span class="text-[10px] text-slate-400 font-normal">(offre retirée)</span>'}
               ${a.notes ? `<div class="text-[11px] font-normal text-slate-500 truncate max-w-xs">${esc(a.notes)}</div>` : ''}</td>
-            <td class="py-2.5 pr-4">${esc(a.company || '—')}<div class="text-[10px] text-slate-400">${esc(a.city || '')}</div></td>
-            <td class="py-2.5 pr-4"><select data-offer="${a.offer_id}" class="appStatus px-2 py-1.5 rounded-lg border border-slate-300 bg-white text-xs">
+            <td class="py-2.5 pr-4">${esc(a.company || '—')}<div class="text-[10px] text-slate-400">${esc(a.city || '')}${a.source ? (a.city ? ' · ' : '') + esc(srcLabel(a.source)) : ''}</div></td>
+            <td class="py-2.5 pr-4"><select data-app="${a.app_id}" class="appStatus px-2 py-1.5 rounded-lg border border-slate-300 bg-white text-xs">
               ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${a.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}</select></td>
-            <td class="py-2.5 pr-4 whitespace-nowrap">${esc(fmtDate(a.applied_at))}</td>
+            <td class="py-2.5 pr-4 whitespace-nowrap">${esc(fmtDate(a.applied_at || a.ext_date))}</td>
             <td class="py-2.5 pr-4 whitespace-nowrap text-slate-500">${esc(daysAgo(a.updated_at))}</td>
-            <td class="py-2.5 text-right whitespace-nowrap"><button data-open="${a.offer_id}" class="underline text-blue-700">Ouvrir</button></td></tr>`).join('')}
+            <td class="py-2.5 text-right whitespace-nowrap space-x-2">
+              ${a.external
+                ? `<button data-edit-ext="${a.app_id}" class="underline text-blue-700 font-semibold">Modifier</button><button data-del-ext="${a.app_id}" class="underline text-rose-600 font-semibold">Supprimer</button>`
+                : `<button data-open="${a.offer_id}" class="underline text-blue-700">Ouvrir</button>`}
+            </td></tr>`).join('')}
         </tbody></table></div>`
-      : `<p class="text-sm text-slate-500 text-center py-8">Aucune candidature suivie. Ouvrez une offre dans <a href="/offres" class="underline text-blue-700">Offres</a> et choisissez un statut.</p>`}
+      : `<p class="text-sm text-slate-500 text-center py-8">Aucune candidature suivie. Ajoutez une candidature externe ci-dessus ou choisissez une offre dans <a href="/offres" class="underline text-blue-700">Offres</a>.</p>`}
     </section>
   </div>`;
+
+  $('#addExtApp').onclick = () => openExternalAppModal();
   $$('.appStatus').forEach(sel => sel.addEventListener('change', async e => {
-    const offerId = Number(e.target.dataset.offer), status = e.target.value;
-    const a = S.apps.find(x => x.offer_id === offerId);
-    const patch = { status };
-    if (['envoyee', 'relance', 'entretien'].includes(status) && !a.applied_at) patch.applied_at = new Date().toISOString().slice(0, 10);
-    try { await saveApplication(offerId, patch); toast('Statut mis à jour'); viewApps(); } catch (err) { toast(errMsg(err), 'err'); }
+    const appId = Number(e.target.dataset.app), status = e.target.value;
+    const a = S.apps.find(x => x.app_id === appId);
+    if (!a) return;
+    try {
+      await updateApplicationStatus(a, status);
+      toast('Statut mis à jour');
+      viewApps();
+    } catch (err) { toast(errMsg(err), 'err'); }
   }));
   $$('[data-open]').forEach(b => b.addEventListener('click', () => openOffer(Number(b.dataset.open))));
+  $$('[data-edit-ext]').forEach(b => b.addEventListener('click', () => {
+    const a = S.apps.find(x => x.app_id === Number(b.dataset.editExt));
+    if (a) openExternalAppModal(a);
+  }));
+  $$('[data-ext-title]').forEach(el => el.addEventListener('click', () => {
+    const a = S.apps.find(x => x.app_id === Number(el.dataset.extTitle));
+    if (a) openExternalAppModal(a);
+  }));
+  $$('[data-del-ext]').forEach(b => b.addEventListener('click', () => deleteExternalApp(Number(b.dataset.delExt))));
   $('#excelApps').onclick = () => exportAppsExcel(S.apps);
+}
+
+async function updateApplicationStatus(app, status) {
+  const patch = { status };
+  if (['envoyee', 'relance', 'entretien'].includes(status) && !app.applied_at) {
+    patch.applied_at = new Date().toISOString().slice(0, 10);
+  }
+  if (app.external) {
+    if (patch.applied_at) patch.ext_date = patch.applied_at;
+    await call(S.sb.from('applications').update(patch).eq('id', app.app_id).eq('user_id', S.user.id));
+    app.status = status;
+    if (patch.applied_at) app.applied_at = patch.applied_at;
+  } else {
+    await saveApplication(app.offer_id, patch);
+  }
+}
+
+async function deleteExternalApp(appId) {
+  if (!confirm('Voulez-vous vraiment supprimer cette candidature externe ?')) return;
+  try {
+    await call(S.sb.from('applications').delete().eq('id', appId).eq('user_id', S.user.id));
+    toast('Candidature externe supprimée');
+    closeModal();
+    viewApps();
+  } catch (e) {
+    toast(errMsg(e), 'err');
+  }
+}
+
+function openExternalAppModal(app = null) {
+  const isEdit = Boolean(app);
+  const a = app || {};
+  const title = isEdit ? 'Modifier la candidature externe' : 'Nouvelle candidature externe';
+  const statusVal = a.status || 'a_postuler';
+  const dateVal = a.ext_date || a.applied_at || '';
+
+  $('#modalBox').innerHTML = `
+    <button id="mClose" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 font-bold" aria-label="Fermer">✕</button>
+    <div class="space-y-1 border-b border-slate-200 pb-3 pr-8">
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-0.5 rounded-md bg-violet-100 text-violet-800 border border-violet-200 text-[10px] font-extrabold uppercase">Candidature externe</span>
+        ${isEdit && a.updated_at ? `<span class="text-xs text-slate-400">Modifiée ${esc(daysAgo(a.updated_at))}</span>` : ''}
+      </div>
+      <h3 class="text-xl font-bold text-slate-900">${esc(title)}</h3>
+      <p class="text-xs text-slate-500">Suivez vos démarches effectuées hors plateforme (site entreprise, LinkedIn, e-mail, salon…).</p>
+    </div>
+    <form id="extAppForm" class="space-y-4 pt-4 text-xs">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <label class="sm:col-span-2 block font-semibold text-slate-700">
+          Poste / Intitulé du stage <span class="text-rose-500">*</span>
+          <input required name="ext_title" maxlength="140" value="${esc(a.title || '')}" placeholder="ex: Stagiaire Ingénieur DevOps" class="${input} mt-1">
+        </label>
+        <label class="block font-semibold text-slate-700">
+          Entreprise
+          <input name="ext_company" maxlength="100" value="${esc(a.company || '')}" placeholder="ex: OCP, Capgemini, Startup…" class="${input} mt-1">
+        </label>
+        <label class="block font-semibold text-slate-700">
+          Ville / Lieu
+          <input name="ext_city" maxlength="80" value="${esc(a.city || '')}" placeholder="ex: Casablanca, Rabat, Télétravail…" class="${input} mt-1">
+        </label>
+        <label class="block font-semibold text-slate-700">
+          Lien de l'offre
+          <input type="url" name="ext_url" maxlength="500" value="${esc(a.url || '')}" placeholder="https://..." class="${input} mt-1">
+        </label>
+        <label class="block font-semibold text-slate-700">
+          Plateforme / Source
+          <input name="ext_source" maxlength="80" value="${esc(a.source && a.source !== 'externe' ? a.source : '')}" placeholder="ex: LinkedIn, Site entreprise, E-mail, Salon…" class="${input} mt-1">
+        </label>
+        <label class="block font-semibold text-slate-700">
+          Statut
+          <select name="status" class="${input} mt-1">
+            ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${statusVal === k ? 'selected' : ''}>${s.label}</option>`).join('')}
+          </select>
+        </label>
+        <label class="block font-semibold text-slate-700">
+          Date d'envoi
+          <input type="date" name="ext_date" value="${esc(dateVal)}" class="${input} mt-1">
+        </label>
+      </div>
+
+      <label class="block font-semibold text-slate-700">
+        Notes / Suivi
+        <textarea name="notes" rows="3" maxlength="4000" class="${input} mt-1" placeholder="Contact RH, relance prévue, questions entretien…">${esc(a.notes || '')}</textarea>
+      </label>
+
+      <div class="space-y-1">
+        <div class="flex items-center justify-between">
+          <span class="font-semibold text-slate-700">Lettre de motivation</span>
+          <span class="space-x-2">
+            <button type="button" id="extGenLetter" class="underline text-blue-700 font-semibold">Générer</button>
+            <button type="button" id="extCopyLetter" class="underline text-slate-500 font-semibold">Copier</button>
+          </span>
+        </div>
+        <textarea name="letter" rows="5" maxlength="10000" class="${input}" placeholder="Cliquez sur « Générer » pour un brouillon personnalisé.">${esc(a.letter || '')}</textarea>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-200">
+        <button type="submit" class="${btnPrimary} flex-1">Enregistrer</button>
+        ${isEdit ? `<button type="button" id="extDeleteBtn" class="${btnGhost} text-rose-600 hover:bg-rose-50 hover:text-rose-700">Supprimer</button>` : ''}
+        <button type="button" id="extCancelBtn" class="${btnGhost}">Annuler</button>
+      </div>
+
+      ${(a.url || S.profile?.cv_path) ? `
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-2 text-xs text-slate-500 border-t border-slate-100">
+          ${a.url ? `<a href="${esc(safeUrl(a.url))}" target="_blank" rel="noopener" class="underline hover:text-blue-700">Visiter l'offre externe ↗</a>` : '<span></span>'}
+          ${S.profile?.cv_path ? '<button type="button" id="extMyCv" class="underline hover:text-slate-700">Ouvrir mon CV</button>' : ''}
+        </div>` : ''}
+    </form>`;
+
+  $('#modal').classList.remove('hidden');
+  $('#mClose').onclick = closeModal;
+  $('#extCancelBtn').onclick = closeModal;
+
+  const form = $('#extAppForm');
+  form.status.addEventListener('change', () => {
+    if (['envoyee', 'relance', 'entretien'].includes(form.status.value) && !form.ext_date.value) {
+      form.ext_date.value = new Date().toISOString().slice(0, 10);
+    }
+  });
+
+  $('#extGenLetter').onclick = () => {
+    if (form.letter.value.trim() && !confirm('Remplacer la lettre actuelle par un nouveau brouillon ?')) return;
+    const titleVal = form.ext_title.value.trim() || 'Stage';
+    const compVal = form.ext_company.value.trim();
+    const cityVal = form.ext_city.value.trim();
+    form.letter.value = buildLetter({ title: titleVal, company: compVal, city: cityVal, matched: [], is_pfe: false });
+  };
+
+  $('#extCopyLetter').onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(form.letter.value);
+      toast('Lettre copiée');
+    } catch {
+      form.letter.select();
+      toast('Sélectionnée : Ctrl+C pour copier');
+    }
+  };
+
+  if ($('#extMyCv')) $('#extMyCv').onclick = openMyCv;
+  if ($('#extDeleteBtn')) {
+    $('#extDeleteBtn').onclick = () => deleteExternalApp(a.app_id);
+  }
+
+  form.addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const fd = new FormData(form);
+    const extTitle = String(fd.get('ext_title') || '').trim();
+    if (!extTitle) return toast('Le titre du poste est requis', 'err');
+
+    const extDate = fd.get('ext_date') || null;
+    const payload = {
+      user_id: S.user.id,
+      is_external: true,
+      ext_title: extTitle,
+      ext_company: String(fd.get('ext_company') || '').trim() || null,
+      ext_city: String(fd.get('ext_city') || '').trim() || null,
+      ext_url: String(fd.get('ext_url') || '').trim() || null,
+      ext_source: String(fd.get('ext_source') || '').trim() || null,
+      ext_date: extDate,
+      applied_at: extDate,
+      status: fd.get('status') || 'a_postuler',
+      notes: String(fd.get('notes') || ''),
+      letter: String(fd.get('letter') || ''),
+    };
+
+    try {
+      if (isEdit) {
+        await call(S.sb.from('applications').update(payload).eq('id', a.app_id).eq('user_id', S.user.id));
+        toast('Candidature externe modifiée');
+      } else {
+        await call(S.sb.from('applications').insert(payload));
+        toast('Candidature externe ajoutée');
+      }
+      closeModal();
+      viewApps();
+    } catch (e) {
+      toast(errMsg(e), 'err');
+    }
+  });
 }
 
 // ───────────────────────── Excel Export ─────────────────────────
@@ -898,8 +1102,8 @@ async function exportAppsExcel(apps) {
   if (!apps || !apps.length) return toast('Aucune candidature à exporter', 'err');
   if (!window.ExcelJS) {
     return downloadCsv(`candidatures_${new Date().toISOString().slice(0, 10)}.csv`,
-      ['Poste', 'Entreprise', 'Ville', 'Statut', 'Envoyée le', 'Notes', 'Lien'],
-      apps.map(a => [a.title, a.company, a.city, STATUSES[a.status]?.label, a.applied_at, a.notes, a.url]));
+      ['Type', 'Poste', 'Entreprise', 'Ville', 'Statut', 'Envoyée le', 'Notes', 'Lien'],
+      apps.map(a => [a.external ? 'Externe' : 'Interne', a.title, a.company, a.city, STATUSES[a.status]?.label, a.applied_at || a.ext_date, a.notes, a.url]));
   }
 
   const wb = new window.ExcelJS.Workbook();
@@ -912,6 +1116,7 @@ async function exportAppsExcel(apps) {
   });
 
   ws.columns = [
+    { header: 'Type', key: 'type', width: 14 },
     { header: 'Poste', key: 'title', width: 34 },
     { header: 'Entreprise', key: 'company', width: 24 },
     { header: 'Ville', key: 'city', width: 18 },
@@ -938,14 +1143,15 @@ async function exportAppsExcel(apps) {
 
   apps.forEach((a, i) => {
     const row = ws.addRow({
+      type: a.external ? 'Externe' : 'Interne',
       title: a.title || '—',
       company: a.company || '—',
       city: a.city || '—',
       status: STATUSES[a.status]?.label || a.status || '—',
-      applied_at: a.applied_at || '—',
+      applied_at: a.applied_at || a.ext_date || '—',
       updated_at: a.updated_at ? a.updated_at.slice(0, 10) : '—',
       notes: a.notes || '',
-      link: a.url ? { text: "Voir l'offre ↗", hyperlink: a.url } : '—',
+      link: a.url ? { text: a.external ? "Lien externe ↗" : "Voir l'offre ↗", hyperlink: a.url } : '—',
     });
 
     row.height = 22;
@@ -962,7 +1168,18 @@ async function exportAppsExcel(apps) {
         right: { style: 'thin', color: { argb: 'FFE2E8F0' } },
       };
 
-      if (col === 4) {
+      if (col === 1) {
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.font = { name: 'Segoe UI', size: 10, bold: true };
+        if (a.external) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF3E8FF' } };
+          cell.font.color = { argb: 'FF6B21A8' };
+        } else {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEFF6FF' } };
+          cell.font.color = { argb: 'FF1E40AF' };
+        }
+      }
+      if (col === 5) {
         cell.alignment = { vertical: 'middle', horizontal: 'center' };
         cell.font = { name: 'Segoe UI', size: 10, bold: true };
         if (['entretien', 'offre'].includes(a.status)) {
@@ -976,8 +1193,8 @@ async function exportAppsExcel(apps) {
           cell.font.color = { argb: 'FF9F1239' };
         }
       }
-      if (col === 5 || col === 6) cell.alignment = { vertical: 'middle', horizontal: 'center' };
-      if (col === 8 && a.url) {
+      if (col === 6 || col === 7) cell.alignment = { vertical: 'middle', horizontal: 'center' };
+      if (col === 9 && a.url) {
         cell.alignment = { vertical: 'middle', horizontal: 'center' };
         cell.font = { name: 'Segoe UI', size: 10, color: { argb: 'FF2563EB' }, underline: true };
       }

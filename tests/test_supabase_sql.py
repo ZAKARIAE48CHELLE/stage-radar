@@ -187,6 +187,29 @@ def test_applications_are_private(db, users):
     assert stats["apps_by_status"] == {"envoyee": 1} and stats["offers_active"] == 4
 
 
+def test_external_applications(db, users):
+    cur = db.cursor()
+    as_user(cur, users["c"])  # carol is approved
+    cur.execute("""insert into applications (user_id, is_external, ext_title, ext_company, ext_city, ext_url, ext_source, ext_date, status, notes)
+                   values (auth.uid(), true, 'Dev IA Externe', 'Acme Corp', 'Casablanca', 'https://acme.com/jobs/1', 'LinkedIn', '2026-10-10', 'entretien', 'Entretien tech')""")
+    apps = q(cur, "select title, company, city, url, source, status, notes, external from my_applications() where external = true")
+    assert len(apps) == 1
+    assert apps[0] == ('Dev IA Externe', 'Acme Corp', 'Casablanca', 'https://acme.com/jobs/1', 'LinkedIn', 'entretien', 'Entretien tech', True)
+
+    # RLS: bob cannot read carol's external application
+    as_user(cur, users["b"])
+    assert q(cur, "select count(*) from applications where ext_title = 'Dev IA Externe'")[0][0] == 0
+    assert q(cur, "select count(*) from my_applications() where title = 'Dev IA Externe'")[0][0] == 0
+
+    # CHECK constraint: invalid row where neither an offer is linked nor valid external (offer_id null and is_external false)
+    with pytest.raises(psycopg2.Error):
+        cur.execute("insert into applications (user_id, is_external) values (auth.uid(), false)")
+
+    # CHECK constraint: is_external is true but ext_title is null
+    with pytest.raises(psycopg2.Error):
+        cur.execute("insert into applications (user_id, is_external, ext_title) values (auth.uid(), true, null)")
+
+
 def test_cv_storage_own_folder_only(db, users):
     cur = db.cursor()
     as_user(cur, users["b"])

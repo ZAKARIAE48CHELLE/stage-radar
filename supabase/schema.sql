@@ -50,16 +50,36 @@ create index if not exists offers_active_idx on public.offers (active, date_post
 create table if not exists public.applications (
   id          bigint generated always as identity primary key,
   user_id     uuid not null references public.profiles(id) on delete cascade,
-  offer_id    bigint not null references public.offers(id) on delete cascade,
+  offer_id    bigint references public.offers(id) on delete cascade,
   status      text not null default 'a_postuler'
               check (status in ('a_postuler','envoyee','relance','entretien','offre','refus','abandon')),
   notes       text not null default '',
   letter      text not null default '',
   applied_at  date,
+  is_external boolean not null default false,
+  ext_title   text,
+  ext_company text,
+  ext_city    text,
+  ext_url     text,
+  ext_source  text,
+  ext_date    date,
   created_at  timestamptz not null default now(),
   updated_at  timestamptz not null default now(),
   unique (user_id, offer_id)
 );
+alter table public.applications alter column offer_id drop not null;
+alter table public.applications add column if not exists is_external boolean not null default false;
+alter table public.applications add column if not exists ext_title text;
+alter table public.applications add column if not exists ext_company text;
+alter table public.applications add column if not exists ext_city text;
+alter table public.applications add column if not exists ext_url text;
+alter table public.applications add column if not exists ext_source text;
+alter table public.applications add column if not exists ext_date date;
+
+alter table public.applications drop constraint if exists applications_source_check;
+alter table public.applications add constraint applications_source_check
+  check ((not is_external and offer_id is not null) or (is_external and ext_title is not null));
+
 create index if not exists applications_user_idx on public.applications (user_id);
 
 create table if not exists public.invites (
@@ -299,15 +319,29 @@ end $$;
 
 grant execute on function public.my_matches(int) to authenticated;
 
--- Applications on offers that are no longer active still need to show up.
+-- Applications on offers that are no longer active still need to show up,
+-- as well as external applications tracked manually by the user.
+drop function if exists public.my_applications();
 create or replace function public.my_applications()
 returns table (app_id bigint, offer_id bigint, status text, notes text, applied_at date,
                updated_at timestamptz, title text, company text, city text, url text,
-               source text, active boolean, valid_through date)
+               source text, active boolean, valid_through date, external boolean,
+               letter text, ext_date date)
 language sql stable security invoker set search_path = public as $$
-  select a.id, a.offer_id, a.status, a.notes, a.applied_at, a.updated_at,
-         o.title, o.company, o.city, o.url, o.source, o.active, o.valid_through
-  from applications a join offers o on o.id = a.offer_id
+  select a.id, a.offer_id, a.status, a.notes,
+         coalesce(a.applied_at, a.ext_date) as applied_at,
+         a.updated_at,
+         coalesce(o.title, a.ext_title) as title,
+         coalesce(o.company, a.ext_company) as company,
+         coalesce(o.city, a.ext_city) as city,
+         coalesce(o.url, a.ext_url) as url,
+         coalesce(o.source, a.ext_source, 'externe') as source,
+         coalesce(o.active, true) as active,
+         o.valid_through,
+         a.is_external as external,
+         a.letter,
+         a.ext_date
+  from applications a left join offers o on o.id = a.offer_id
   where a.user_id = auth.uid()
   order by a.updated_at desc;
 $$;
