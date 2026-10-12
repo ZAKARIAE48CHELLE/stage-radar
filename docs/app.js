@@ -62,6 +62,8 @@ const S = {
   sb: null, user: null, profile: null, matches: [], loadedAt: 0, apps: null,
   view: 'offres', page: 1, pageSize: 10, charts: {}, recovering: false,
   f: { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' },
+  appPage: 1, appPageSize: 10,
+  appF: { q: '', status: '', type: '', sort: 'updated' },
 };
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -711,6 +713,7 @@ async function viewApps() {
   }
   const counts = Object.fromEntries(Object.keys(STATUSES).map(k => [k, 0]));
   S.apps.forEach(a => { if (counts[a.status] !== undefined) counts[a.status]++; });
+  const f = S.appF;
   v.innerHTML = `
   <div class="space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
@@ -724,54 +727,235 @@ async function viewApps() {
     <section class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
       ${Object.entries(STATUSES).map(([k, s]) => `<div class="rounded-2xl border p-3 ${s.cls}"><div class="text-[10px] font-bold uppercase">${s.label}</div><div class="text-2xl font-extrabold">${counts[k]}</div></div>`).join('')}
     </section>
-    <section class="${card}">
-      ${S.apps.length ? `<div class="overflow-x-auto scroll"><table class="w-full text-left text-xs">
-        <thead><tr class="text-slate-500 font-bold uppercase tracking-wider border-b border-slate-200">
-          <th class="py-2 pr-4">Poste</th><th class="py-2 pr-4">Entreprise</th><th class="py-2 pr-4">Statut</th><th class="py-2 pr-4">Envoyée le</th><th class="py-2 pr-4">Mise à jour</th><th class="py-2"></th></tr></thead>
-        <tbody class="divide-y divide-slate-100">${S.apps.map(a => `
-          <tr class="hover:bg-slate-50 transition" data-app="${a.app_id}">
-            <td class="py-2.5 pr-4 font-semibold text-slate-900 min-w-[200px]">
-              ${a.external ? '<span class="mr-1.5 px-1.5 py-0.5 rounded bg-violet-100 text-violet-800 border border-violet-200 text-[9px] font-extrabold uppercase">Externe</span>' : ''}
-              <span class="${a.external ? 'cursor-pointer hover:text-blue-700' : ''}" data-ext-title="${a.app_id}">${esc(a.title)}</span>
-              ${a.active || a.external ? '' : ' <span class="text-[10px] text-slate-400 font-normal">(offre retirée)</span>'}
-              ${a.notes ? `<div class="text-[11px] font-normal text-slate-500 truncate max-w-xs">${esc(a.notes)}</div>` : ''}</td>
-            <td class="py-2.5 pr-4">${esc(a.company || '—')}<div class="text-[10px] text-slate-400">${esc(a.city || '')}${a.source ? (a.city ? ' · ' : '') + esc(srcLabel(a.source)) : ''}</div></td>
-            <td class="py-2.5 pr-4"><select data-app="${a.app_id}" class="appStatus px-2 py-1.5 rounded-lg border border-slate-300 bg-white text-xs">
-              ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${a.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}</select></td>
-            <td class="py-2.5 pr-4 whitespace-nowrap">${esc(fmtDate(a.applied_at || a.ext_date))}</td>
-            <td class="py-2.5 pr-4 whitespace-nowrap text-slate-500">${esc(daysAgo(a.updated_at))}</td>
-            <td class="py-2.5 text-right whitespace-nowrap space-x-2">
-              ${a.external
-                ? `<button data-edit-ext="${a.app_id}" class="underline text-blue-700 font-semibold">Modifier</button><button data-del-ext="${a.app_id}" class="underline text-rose-600 font-semibold">Supprimer</button>`
-                : `<button data-open="${a.offer_id}" class="underline text-blue-700">Ouvrir</button>`}
-            </td></tr>`).join('')}
-        </tbody></table></div>`
-      : `<p class="text-sm text-slate-500 text-center py-8">Aucune candidature suivie. Ajoutez une candidature externe ci-dessus ou choisissez une offre dans <a href="/offres" class="underline text-blue-700">Offres</a>.</p>`}
+    <section class="${card} space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+        <h2 class="text-lg font-bold text-slate-900">Suivi détaillé</h2>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <span id="appCount" class="bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-full border border-blue-200"></span>
+          <button id="resetApps" class="text-xs underline text-slate-500">Réinitialiser les filtres</button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
+        <label class="sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Recherche</span><input id="appQ" type="search" value="${esc(f.q)}" placeholder="Poste, entreprise, ville, notes…" class="${input}"></label>
+        <label><span class="block font-semibold text-slate-600 mb-1">Statut</span><select id="appStat" class="${input}">
+          <option value="">Tous les statuts</option>
+          ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${f.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}
+        </select></label>
+        <label><span class="block font-semibold text-slate-600 mb-1">Type</span><select id="appType" class="${input}">
+          <option value="" ${!f.type ? 'selected' : ''}>Tous les types</option>
+          <option value="internal" ${f.type === 'internal' ? 'selected' : ''}>Offres internes</option>
+          <option value="external" ${f.type === 'external' ? 'selected' : ''}>Candidatures externes</option>
+        </select></label>
+        <label class="sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Trier par</span><select id="appSort" class="${input}">
+          <option value="updated" ${f.sort === 'updated' ? 'selected' : ''}>Dernière mise à jour</option>
+          <option value="applied" ${f.sort === 'applied' ? 'selected' : ''}>Date d'envoi</option>
+          <option value="company" ${f.sort === 'company' ? 'selected' : ''}>Entreprise (A-Z)</option>
+          <option value="title" ${f.sort === 'title' ? 'selected' : ''}>Poste (A-Z)</option>
+        </select></label>
+      </div>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200 scroll">
+        <table class="w-full text-left text-xs">
+          <thead><tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-slate-200">
+            <th class="py-3 px-4">Poste</th>
+            <th class="py-3 px-4">Entreprise</th>
+            <th class="py-3 px-4">Statut</th>
+            <th class="py-3 px-4">Envoyée le</th>
+            <th class="py-3 px-4">Mise à jour</th>
+            <th class="py-3 px-4 text-right">Actions</th>
+          </tr></thead>
+          <tbody id="appTbody" class="divide-y divide-slate-200"></tbody>
+        </table>
+      </div>
+      <div id="appPaginationBar" class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-3 border-t border-slate-100 text-xs">
+        <div class="flex items-center gap-2 text-slate-600">
+          <span>Lignes par page :</span>
+          <select id="appPageSize" class="px-2.5 py-1.5 rounded-xl border border-slate-300 bg-white font-bold text-slate-700 cursor-pointer">
+            <option value="10" ${S.appPageSize === 10 ? 'selected' : ''}>10</option>
+            <option value="15" ${S.appPageSize === 15 ? 'selected' : ''}>15</option>
+            <option value="20" ${S.appPageSize === 20 ? 'selected' : ''}>20</option>
+            <option value="30" ${S.appPageSize === 30 ? 'selected' : ''}>30</option>
+          </select>
+          <span id="appPageInfo" class="text-slate-500 font-medium"></span>
+        </div>
+        <div id="appPager" class="flex items-center gap-1.5 flex-wrap justify-center"></div>
+      </div>
     </section>
   </div>`;
 
   $('#addExtApp').onclick = () => openExternalAppModal();
-  $$('.appStatus').forEach(sel => sel.addEventListener('change', async e => {
+  $('#excelApps').onclick = () => exportAppsExcel(filteredApps());
+  $('#resetApps').onclick = () => {
+    Object.assign(S.appF, { q: '', status: '', type: '', sort: 'updated' });
+    S.appPage = 1;
+    viewApps();
+  };
+
+  const bind = (id, key, ev = 'change') => $(id).addEventListener(ev, e => {
+    S.appF[key] = e.target.value;
+    S.appPage = 1;
+    renderAppRows();
+  });
+  bind('#appQ', 'q', 'input');
+  bind('#appStat', 'status');
+  bind('#appType', 'type');
+  bind('#appSort', 'sort');
+
+  $('#appPageSize').addEventListener('change', e => {
+    S.appPageSize = Number(e.target.value);
+    S.appPage = 1;
+    renderAppRows();
+  });
+
+  renderAppRows();
+}
+
+function filteredApps() {
+  if (!S.apps) return [];
+  const f = S.appF, q = norm(f.q);
+  const list = S.apps.filter(a => {
+    if (q) {
+      const hay = norm([a.title, a.company, a.city, a.notes, a.source].filter(Boolean).join(' '));
+      if (!hay.includes(q)) return false;
+    }
+    if (f.status && a.status !== f.status) return false;
+    if (f.type === 'external' && !a.external) return false;
+    if (f.type === 'internal' && a.external) return false;
+    return true;
+  });
+
+  const by = {
+    updated: (a, b) => String(b.updated_at || '').localeCompare(String(a.updated_at || '')),
+    applied: (a, b) => String(b.applied_at || b.ext_date || '').localeCompare(String(a.applied_at || a.ext_date || '')),
+    company: (a, b) => String(a.company || '').localeCompare(String(b.company || ''), 'fr'),
+    title: (a, b) => String(a.title || '').localeCompare(String(b.title || ''), 'fr'),
+  };
+  return list.sort(by[f.sort] || by.updated);
+}
+
+function renderAppRows() {
+  const list = filteredApps();
+  const total = list.length;
+  if ($('#appCount')) {
+    $('#appCount').textContent = `${total} / ${S.apps.length} candidature${S.apps.length > 1 ? 's' : ''}`;
+  }
+
+  const pageSize = Number(S.appPageSize) || 10;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  if (S.appPage > totalPages) S.appPage = totalPages;
+  if (S.appPage < 1) S.appPage = 1;
+
+  const startIdx = (S.appPage - 1) * pageSize;
+  const endIdx = Math.min(startIdx + pageSize, total);
+  const rows = list.slice(startIdx, endIdx);
+
+  if ($('#appPageInfo')) {
+    $('#appPageInfo').textContent = total > 0
+      ? `(${startIdx + 1}–${endIdx} sur ${total})`
+      : '(0 candidature)';
+  }
+
+  const tbody = $('#appTbody');
+  if (!tbody) return;
+
+  tbody.innerHTML = rows.length ? rows.map(a => `
+    <tr class="hover:bg-slate-50 transition" data-app="${a.app_id}">
+      <td class="py-3 px-4 font-semibold text-slate-900 min-w-[200px]">
+        ${a.external ? '<span class="mr-1.5 px-1.5 py-0.5 rounded bg-violet-100 text-violet-800 border border-violet-200 text-[9px] font-extrabold uppercase align-middle">Externe</span>' : ''}
+        <span class="${a.external ? 'cursor-pointer hover:text-blue-700' : ''}" data-ext-title="${a.app_id}">${esc(a.title)}</span>
+        ${a.active || a.external ? '' : ' <span class="text-[10px] text-slate-400 font-normal">(offre retirée)</span>'}
+        ${a.notes ? `<div class="text-[11px] font-normal text-slate-500 truncate max-w-xs mt-0.5">${esc(a.notes)}</div>` : ''}
+      </td>
+      <td class="py-3 px-4">
+        <span class="font-semibold text-slate-800">${esc(a.company || '—')}</span>
+        <div class="text-[10px] text-slate-400">${esc(a.city || '')}${a.source ? (a.city ? ' · ' : '') + esc(srcLabel(a.source)) : ''}</div>
+      </td>
+      <td class="py-3 px-4">
+        <select data-app="${a.app_id}" class="appStatus px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-semibold">
+          ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${a.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}
+        </select>
+      </td>
+      <td class="py-3 px-4 whitespace-nowrap text-slate-600">${esc(fmtDate(a.applied_at || a.ext_date))}</td>
+      <td class="py-3 px-4 whitespace-nowrap text-slate-500">${esc(daysAgo(a.updated_at))}</td>
+      <td class="py-3 px-4 text-right whitespace-nowrap space-x-2">
+        ${a.external
+          ? `<button data-edit-ext="${a.app_id}" class="underline text-blue-700 font-semibold">Modifier</button><button data-del-ext="${a.app_id}" class="underline text-rose-600 font-semibold">Supprimer</button>`
+          : `<button data-open="${a.offer_id}" class="underline text-blue-700 font-semibold">Ouvrir</button>`}
+      </td>
+    </tr>`).join('')
+    : `<tr><td colspan="6" class="py-10 text-center text-slate-400">${S.apps.length ? 'Aucune candidature ne correspond à ces filtres.' : 'Aucune candidature suivie. Ajoutez une candidature externe ci-dessus ou choisissez une offre dans <a href="/offres" class="underline text-blue-700">Offres</a>.'}</td></tr>`;
+
+  $$('.appStatus', tbody).forEach(sel => sel.addEventListener('change', async e => {
     const appId = Number(e.target.dataset.app), status = e.target.value;
     const a = S.apps.find(x => x.app_id === appId);
     if (!a) return;
     try {
       await updateApplicationStatus(a, status);
       toast('Statut mis à jour');
-      viewApps();
+      renderAppRows();
     } catch (err) { toast(errMsg(err), 'err'); }
   }));
-  $$('[data-open]').forEach(b => b.addEventListener('click', () => openOffer(Number(b.dataset.open))));
-  $$('[data-edit-ext]').forEach(b => b.addEventListener('click', () => {
+
+  $$('[data-open]', tbody).forEach(b => b.addEventListener('click', () => openOffer(Number(b.dataset.open))));
+  $$('[data-edit-ext]', tbody).forEach(b => b.addEventListener('click', () => {
     const a = S.apps.find(x => x.app_id === Number(b.dataset.editExt));
     if (a) openExternalAppModal(a);
   }));
-  $$('[data-ext-title]').forEach(el => el.addEventListener('click', () => {
+  $$('[data-ext-title]', tbody).forEach(el => el.addEventListener('click', () => {
     const a = S.apps.find(x => x.app_id === Number(el.dataset.extTitle));
     if (a) openExternalAppModal(a);
   }));
-  $$('[data-del-ext]').forEach(b => b.addEventListener('click', () => deleteExternalApp(Number(b.dataset.delExt))));
-  $('#excelApps').onclick = () => exportAppsExcel(S.apps);
+  $$('[data-del-ext]', tbody).forEach(b => b.addEventListener('click', () => deleteExternalApp(Number(b.dataset.delExt))));
+
+  renderAppPager(totalPages);
+}
+
+function renderAppPager(totalPages) {
+  const pager = $('#appPager');
+  if (!pager) return;
+  if (totalPages <= 1) {
+    pager.innerHTML = '';
+    return;
+  }
+  let html = '';
+  const prevDisabled = S.appPage <= 1;
+  html += `<button type="button" class="px-3 py-1.5 rounded-xl border border-slate-200 bg-white font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition" data-app-page="${S.appPage - 1}" ${prevDisabled ? 'disabled' : ''}>← Précédent</button>`;
+
+  const pages = [];
+  if (totalPages <= 7) {
+    for (let i = 1; i <= totalPages; i++) pages.push(i);
+  } else {
+    pages.push(1);
+    if (S.appPage > 3) pages.push('...');
+    const start = Math.max(2, S.appPage - 1);
+    const end = Math.min(totalPages - 1, S.appPage + 1);
+    for (let i = start; i <= end; i++) pages.push(i);
+    if (S.appPage < totalPages - 2) pages.push('...');
+    pages.push(totalPages);
+  }
+
+  pages.forEach(p => {
+    if (p === '...') {
+      html += `<span class="px-2 py-1 text-slate-400 font-semibold select-none">…</span>`;
+    } else {
+      const active = p === S.appPage;
+      const cls = active
+        ? 'bg-blue-700 text-white font-bold shadow-sm'
+        : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 font-semibold';
+      html += `<button type="button" class="px-3 py-1.5 rounded-xl text-xs transition ${cls}" data-app-page="${p}">${p}</button>`;
+    }
+  });
+
+  const nextDisabled = S.appPage >= totalPages;
+  html += `<button type="button" class="px-3 py-1.5 rounded-xl border border-slate-200 bg-white font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition" data-app-page="${S.appPage + 1}" ${nextDisabled ? 'disabled' : ''}>Suivant →</button>`;
+
+  pager.innerHTML = html;
+  pager.querySelectorAll('button[data-app-page]:not([disabled])').forEach(btn => {
+    btn.addEventListener('click', () => {
+      S.appPage = Number(btn.dataset.appPage);
+      renderAppRows();
+      $('#appTbody')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
 }
 
 async function updateApplicationStatus(app, status) {

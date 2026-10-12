@@ -2,7 +2,7 @@
  * Privacy: cross-origin requests (Supabase API, CDNs) are NEVER intercepted or cached here,
  * so no account data, offers or CVs are ever stored by the service worker.
  */
-const VERSION = 'sr-v2';
+const VERSION = 'sr-v3';
 const SHELL = ['/', '/index.html', '/app.js', '/config.js', '/manifest.webmanifest',
                '/icon-192.png', '/icon-512.png'];
 
