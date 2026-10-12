@@ -2,8 +2,19 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Stage Radar</title>
+<meta name="description" content="Les stages du Maroc, triés selon votre profil, avec suivi de candidatures.">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#1d4ed8">
+<link rel="icon" href="/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Stage Radar">
+<script>
+  if ('serviceWorker' in navigator) window.addEventListener('load',
+    () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+</script>
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -15,7 +26,7 @@ if (window.tailwind) tailwind.config = { theme: { extend: {
   fontFamily: { sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'] },
   colors: { brand: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',500:'#2563eb',600:'#1d4ed8',700:'#1e40af',900:'#0f172a' } } } } };
 </script>
-<script src="config.js?v=1.0.2"></script>
+<script src="/config.js"></script>
 <style>
   body { background:#fafaf9; }
   .scroll::-webkit-scrollbar{width:6px;height:6px}.scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}
@@ -29,13 +40,13 @@ if (window.tailwind) tailwind.config = { theme: { extend: {
 
 <header id="topbar" class="hidden sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
-    <a href="#/offres" class="flex items-center gap-2.5 shrink-0">
+    <a href="/offres" class="flex items-center gap-2.5 shrink-0">
       <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-600 text-white flex items-center justify-center font-extrabold text-sm">SR</span>
       <span class="font-extrabold text-slate-900 hidden sm:inline" id="appName">Stage Radar</span>
     </a>
     <nav id="nav" class="flex items-center gap-1 text-sm font-semibold text-slate-600 overflow-x-auto scroll"></nav>
     <div class="flex items-center gap-2 shrink-0">
-      <a href="perso.html" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 hidden sm:inline" title="Voir le dashboard personnel d'origine">Vue Perso</a>
+      <a href="/perso.html" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 hidden sm:inline" title="Voir le dashboard personnel d'origine">Vue Perso</a>
       <span id="whoami" class="hidden md:inline text-xs text-slate-500 max-w-[180px] truncate"></span>
       <button id="logoutBtn" class="text-xs font-semibold px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50">Déconnexion</button>
     </div>
@@ -50,6 +61,6 @@ if (window.tailwind) tailwind.config = { theme: { extend: {
 
 <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[60] hidden px-4 py-2.5 rounded-xl text-sm font-semibold shadow-lg"></div>
 
-<script src="app.js?v=1.0.7"></script>
+<script src="/app.js"></script>
 </body>
 </html>

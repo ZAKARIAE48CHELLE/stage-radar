@@ -154,7 +154,15 @@ function boot() {
     setTimeout(() => onAuth(event, session), 0);
   });
   $('#logoutBtn').addEventListener('click', async () => { await S.sb.auth.signOut(); });
-  window.addEventListener('hashchange', route);
+  window.addEventListener('popstate', route);
+  document.addEventListener('click', e => {               // intercept internal links for clean-URL routing
+    const a = e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || !href.startsWith('/') || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    go(href.split('/').filter(Boolean).pop() || 'offres');
+  });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   $('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
 }
@@ -180,7 +188,11 @@ async function onAuth(event, session) {
   $('#whoami').textContent = S.profile.full_name || S.profile.email;
   if (S.profile.status !== 'approved') return renderPending();
   $('#topbar').classList.remove('hidden');
-  if (!(S.profile.axes || []).length && !location.hash.startsWith('#/profil')) location.hash = '#/profil';
+  if (!(S.profile.axes || []).length) {
+    if (currentRoute() !== 'profil') history.replaceState({}, '', '/profil');   // onboarding
+  } else if (location.pathname === '/' || location.pathname.endsWith('/index.html')) {
+    history.replaceState({}, '', '/offres');                                    // land on a named route
+  }
   route();
 }
 
@@ -295,11 +307,20 @@ function renderPending() {
   $('#out').onclick = () => S.sb.auth.signOut();
 }
 
-// ───────────────────────── routing ─────────────────────────
+// ───────────────────────── routing (clean URLs via History API) ─────────────────────────
+const VIEWS = ['offres', 'candidatures', 'marche', 'profil', 'admin'];
+function currentRoute() {
+  const seg = location.pathname.split('/').filter(Boolean).pop() || 'offres';
+  return VIEWS.includes(seg) ? seg : 'offres';
+}
+function go(view) {                                        // navigate without a full reload
+  if (currentRoute() !== view) history.pushState({}, '', '/' + view);
+  route();
+}
 function route() {
   if (!S.profile || S.profile.status !== 'approved') return;
-  const v = (location.hash.replace(/^#\//, '') || 'offres').split('?')[0];
-  S.view = ['offres', 'candidatures', 'marche', 'profil', 'admin'].includes(v) ? v : 'offres';
+  const v = currentRoute();
+  S.view = v;
   if (S.view === 'admin' && S.profile.role !== 'admin') S.view = 'offres';
   renderNav();
   closeModal();
@@ -312,7 +333,7 @@ function renderNav() {
   const items = [['offres', 'Offres'], ['candidatures', 'Mes candidatures'], ['marche', 'Marché'], ['profil', 'Profil']];
   if (S.profile.role === 'admin') items.push(['admin', 'Admin']);
   $('#nav').innerHTML = items.map(([k, l]) =>
-    `<a href="#/${k}" class="nav-btn px-3 py-2 rounded-lg hover:bg-slate-100 whitespace-nowrap" ${S.view === k ? 'aria-current="page"' : ''}>${l}${k === 'admin' ? '<span id="pendingBadge"></span>' : ''}</a>`).join('');
+    `<a href="/${k}" class="nav-btn px-3 py-2 rounded-lg hover:bg-slate-100 whitespace-nowrap" ${S.view === k ? 'aria-current="page"' : ''}>${l}${k === 'admin' ? '<span id="pendingBadge"></span>' : ''}</a>`).join('');
   if (S.profile.role === 'admin') {
     S.sb.from('profiles').select('id', { count: 'exact', head: true }).eq('status', 'pending').then(({ count }) => {
       if (count && $('#pendingBadge')) $('#pendingBadge').innerHTML = ` <span class="ml-1 px-1.5 rounded-full bg-amber-400 text-amber-950 text-[10px] font-extrabold">${count}</span>`;
@@ -357,7 +378,7 @@ async function viewOffers() {
     <section class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white">
       <p class="text-xs font-semibold text-blue-200" id="lastRun">&nbsp;</p>
       <h1 class="text-2xl sm:text-3xl font-extrabold mt-1">Bonjour ${esc((S.profile.full_name || '').split(' ')[0] || '')} 👋</h1>
-      <p class="text-sm text-slate-300 mt-1">Offres classées selon <a href="#/profil" class="underline">vos compétences</a>. Mettez à jour un statut pour suivre vos candidatures.</p>
+      <p class="text-sm text-slate-300 mt-1">Offres classées selon <a href="/profil" class="underline">vos compétences</a>. Mettez à jour un statut pour suivre vos candidatures.</p>
     </section>
     <section id="kpis" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"></section>
     <section class="${card} space-y-4">
@@ -497,7 +518,7 @@ function renderOfferRows() {
       <td class="py-3 px-4 text-center"><span class="px-2.5 py-1 rounded-full font-extrabold ${scoreCls(o.score)}">${o.score}%</span></td>
       <td class="py-3 px-4">${statusPill(o.app_status) || '<span class="text-slate-300">—</span>'}</td>
     </tr>`).join('')
-    : `<tr><td colspan="7" class="py-10 text-center text-slate-400">${S.matches.length ? 'Aucune offre ne correspond à ces filtres.' : 'Aucune offre ne correspond encore à vos compétences. <a href="#/profil" class="underline text-blue-700">Ajoutez des mots-clés</a> ou attendez la prochaine collecte.'}</td></tr>`;
+    : `<tr><td colspan="7" class="py-10 text-center text-slate-400">${S.matches.length ? 'Aucune offre ne correspond à ces filtres.' : 'Aucune offre ne correspond encore à vos compétences. <a href="/profil" class="underline text-blue-700">Ajoutez des mots-clés</a> ou attendez la prochaine collecte.'}</td></tr>`;
   $$('#tbody tr[data-id]').forEach(tr => tr.addEventListener('click', () => openOffer(Number(tr.dataset.id))));
   renderPager(totalPages);
 }
@@ -613,7 +634,7 @@ async function openOffer(id) {
         </div>
         <div class="flex flex-col gap-2 pt-2 border-t border-slate-200">
           <a href="${esc(safeUrl(o.url))}" target="_blank" rel="noopener" class="${btn} bg-slate-900 hover:bg-slate-800 text-white text-center">Postuler sur ${esc(srcLabel(o.source))} ↗</a>
-          ${S.profile.cv_path ? '<button type="button" id="myCv" class="underline text-slate-500">Ouvrir mon CV</button>' : '<a href="#/profil" class="underline text-slate-500 text-center">Ajouter mon CV au profil</a>'}
+          ${S.profile.cv_path ? '<button type="button" id="myCv" class="underline text-slate-500">Ouvrir mon CV</button>' : '<a href="/profil" class="underline text-slate-500 text-center">Ajouter mon CV au profil</a>'}
         </div>
       </form>
     </div>`;
@@ -714,7 +735,7 @@ async function viewApps() {
             <td class="py-2.5 pr-4 whitespace-nowrap text-slate-500">${esc(daysAgo(a.updated_at))}</td>
             <td class="py-2.5 text-right whitespace-nowrap"><button data-open="${a.offer_id}" class="underline text-blue-700">Ouvrir</button></td></tr>`).join('')}
         </tbody></table></div>`
-      : `<p class="text-sm text-slate-500 text-center py-8">Aucune candidature suivie. Ouvrez une offre dans <a href="#/offres" class="underline text-blue-700">Offres</a> et choisissez un statut.</p>`}
+      : `<p class="text-sm text-slate-500 text-center py-8">Aucune candidature suivie. Ouvrez une offre dans <a href="/offres" class="underline text-blue-700">Offres</a> et choisissez un statut.</p>`}
     </section>
   </div>`;
   $$('.appStatus').forEach(sel => sel.addEventListener('change', async e => {
@@ -1121,7 +1142,7 @@ function viewProfile() {
       S.profile = await call(S.sb.from('profiles').update(patch).eq('id', S.user.id).select().single());
       S.loadedAt = 0; $('#whoami').textContent = S.profile.full_name || S.profile.email;
       toast('Profil enregistré : scores recalculés');
-      if (first) location.hash = '#/offres'; else viewProfile();
+      if (first) go('offres'); else viewProfile();
     } catch (e) { toast(errMsg(e), 'err'); }
   });
 

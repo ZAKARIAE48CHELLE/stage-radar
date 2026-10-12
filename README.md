@@ -18,7 +18,8 @@ alert e-mails (IMAP) ──┘    (GitHub Actions, daily)        └─► Supab
 ## Multi-user app — setup (free, ~20 min)
 
 Stack: **Supabase** (accounts, Postgres database, CV storage; free tier) + the static site on
-**GitHub Pages** + the daily scraper on **GitHub Actions**. No server to run.
+**Cloudflare Pages** (free, clean URLs, fast CDN) + the daily scraper on **GitHub Actions**.
+No server to run. The app is an installable PWA (add-to-home-screen on phone).
 
 1. **Create the Supabase project** at supabase.com (free plan; pick an EU region).
 2. **Create the database:** *SQL Editor* → paste all of `supabase/schema.sql` → *Run*.
@@ -26,17 +27,32 @@ Stack: **Supabase** (accounts, Postgres database, CV storage; free tier) + the s
 3. **Auth settings:** *Authentication → Sign In / Providers → Email*: turn **off**
    "Confirm email". Supabase's built-in mailer only sends to your own team (2 mails/hour),
    so friends could never confirm; your admin approval is the gate instead.
-   *Authentication → URL Configuration*: set *Site URL* to your Pages URL
-   (`https://<user>.github.io/<repo>/`).
 4. **Connect the site:** *Project Settings → API*: copy the *Project URL* and the *anon public*
    key into `docs/config.js`. The anon key is meant to be public; security comes from the
    row-level-security rules in the schema.
-5. **Connect the scraper:** add repo **secrets** `SUPABASE_URL` (same URL) and
+5. **Deploy on Cloudflare Pages** (free): dash.cloudflare.com → *Workers & Pages* → *Create*
+   → *Pages* → *Connect to Git* → pick your `stage-radar` repo. Build settings:
+   **Framework preset: None**, **Build command: empty**, **Build output directory: `docs`**.
+   Deploy. Your app is at `https://<project>.pages.dev` (add a custom domain later for free).
+   Clean URLs (`/offres`, `/profil`) and the app shell work out of the box via `docs/_redirects`.
+   Every push to the repo redeploys automatically.
+6. **Point Supabase at that URL:** *Authentication → URL Configuration* → *Site URL* =
+   `https://<project>.pages.dev` (and add it under *Redirect URLs*). This makes sign-up and
+   password-reset links return to the app.
+7. **Connect the scraper:** add GitHub repo **secrets** `SUPABASE_URL` (same URL) and
    `SUPABASE_SERVICE_ROLE_KEY` (*service_role* key: secret, never put it in `docs/`).
    Then *Actions → Daily internship scrape → Run workflow*.
-6. **Sign up first.** The very first account becomes the admin automatically. Then, in
+8. **Sign up first.** The very first account becomes the admin automatically. Then, in
    *Admin*, invite friends by e-mail (they are approved on sign-up) or approve them when
    they register, and send them the link.
+
+*(Netlify works the same way — New site from Git, publish directory `docs`; the `_redirects`
+and `_headers` files are shared. Vercel: set the root/output to `docs`; its free tier is
+non-commercial only.)*
+
+**Why not GitHub Pages?** It can't do clean URLs (forces `#/…` hashes), is slow to update, and
+lives on a subpath. Cloudflare Pages fixes all three and is just as free. The repo still lives
+on GitHub; only the *hosting* of `docs/` moves.
 
 **Optional, for "mot de passe oublié":** password-reset e-mails need a real mailer. Create a
 free SMTP account (e.g. Brevo, 300 mails/day) and enter it under *Authentication → Emails →
@@ -55,6 +71,32 @@ SMTP Settings*. Without it, you can reset a friend's password from the Supabase 
 
 **Privacy by design:** each user's applications, notes, letters and CV are readable only by
 that user, enforced in the database (not just hidden in the UI). The admin sees counts only.
+
+### Sécurité — vérifier que vos données sont protégées
+
+Your Supabase URL and **anon key live in `docs/config.js` and are public** — that is how
+Supabase is designed. Your data is protected not by hiding that key but by the **Row-Level
+Security (RLS) policies** in `supabase/schema.sql`. If you ever forget to run the schema, or
+disable RLS on a table, anyone with the (public) key can download everything — including your
+friends' CVs, e-mails and private application notes.
+
+So before inviting anyone, run the self-audit — it probes your live project with only the
+public key, exactly as an outsider could:
+
+```bash
+bash supabase/security_check.sh "https://<your-project>.supabase.co" "<your anon key>"
+```
+
+Every table must come back "no data". Any `❌ LEAK` means that table is world-readable — fix
+it before putting real data in. Also confirm in the Supabase dashboard:
+- *Authentication → Policies*: RLS **enabled** on `profiles`, `offers`, `applications`,
+  `invites`, `scrape_runs` (re-running `schema.sql` guarantees this).
+- *Storage → cvs* bucket is **Private** (not public).
+- The **service_role** key appears only in GitHub **secrets**, never in `docs/` or git.
+- Rotate keys in *Project Settings → API* if the service_role key was ever committed or shared.
+
+What this does **not** protect against: an approved member is trusted — they can see every
+active offer (not other members' applications). Only approve people you know.
 
 ### Free-tier limits worth knowing
 Supabase free: 500 MB database, 1 GB files, 2 projects; a project **pauses after 7 days
@@ -80,10 +122,11 @@ browsers block `fetch()` of the JSON from `file://`.
 ## Run it every day for free (GitHub Actions + Pages)
 
 1. Push this folder to a new GitHub repo (public for free Pages; private works for the scraper).
-2. **Settings → Pages** → Source *Deploy from a branch*, branch `main`, folder `/docs`.
+2. For the **personal dashboard only**, GitHub Pages is fine: *Settings → Pages* → *Deploy
+   from a branch*, `main`, `/docs`. (The multi-user app is hosted on Cloudflare Pages — see above.)
 3. **Actions** tab → enable workflows → *Daily internship scrape* → **Run workflow** once.
-4. The app is at `https://<user>.github.io/<repo>/`, your personal dashboard at `…/perso.html`,
-   refreshed daily at ~07:17 Morocco time.
+4. The personal dashboard is then at `https://<user>.github.io/<repo>/perso.html`, refreshed
+   daily at ~07:17 Morocco time. (The multi-user app lives at your Cloudflare `*.pages.dev` URL.)
 
 Optional Telegram alert: create a bot with @BotFather, message it once, read your chat id
 from `https://api.telegram.org/bot<TOKEN>/getUpdates`, then add repo **secrets**
@@ -167,8 +210,11 @@ scraper/storage.py           SQLite store (data/offers.db)
 scraper/notify.py            Telegram alert
 scraper/supabase_sync.py     pushes offers to Supabase (broad filter: config `platform:`)
 supabase/schema.sql          tables, row-level security, approval flow, per-user scoring
+supabase/security_check.sh   anonymous-access self-audit (run before inviting friends)
 docs/index.html, app.js      multi-user app (Supabase auth + data)
 docs/config.js               Supabase URL + anon key (public)
+docs/sw.js, manifest.webmanifest, icon-*.png   PWA (installable, offline shell)
+docs/_redirects, _headers    Cloudflare Pages / Netlify config (SPA routing, cache headers)
 docs/perso.html              personal dashboard (reads docs/data/offers.json)
 tests/                       parsers, pipeline, sync, database (RLS + scoring)
 .github/workflows/daily-scrape.yml

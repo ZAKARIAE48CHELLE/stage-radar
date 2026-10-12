@@ -3,7 +3,8 @@
 ## What this project is
 A daily internship scraper for Morocco (Python 3.11+, no framework, GitHub Actions) feeding:
 - a multi-user app for the owner (Zakariae Chelle) and friends: `docs/index.html` + `docs/app.js`,
-  Supabase for auth/DB/storage (`supabase/schema.sql`), static hosting on GitHub Pages;
+  Supabase for auth/DB/storage (`supabase/schema.sql`), hosted on Cloudflare Pages (output dir
+  `docs`); it's a PWA (`sw.js`, `manifest.webmanifest`) with clean-URL routing via the History API.
 - the owner's original single-user dashboard `docs/perso.html` (reads `docs/data/offers.json`).
 
 ## Rules
@@ -25,6 +26,10 @@ A daily internship scraper for Morocco (Python 3.11+, no framework, GitHub Actio
 - Front ends must escape every database/scraped string (`esc()` / `textContent`): offers are
   untrusted input. French UI. No build step: plain JS + Tailwind CDN + supabase-js + Chart.js.
 - Schema changes must stay idempotent (the user re-runs schema.sql in the SQL editor).
+- App routing is clean URLs (History API): routes are the last path segment (`/offres`, `/profil`).
+  Internal links are `<a href="/route">` (a global click handler calls `go()`); `_redirects`
+  gives the SPA fallback on Cloudflare/Netlify. Script srcs in index.html must stay ABSOLUTE
+  (`/app.js`, `/config.js`) or deep-link reloads break. Bump `sw.js` VERSION when shell files change.
 - Run `python -m pytest -q` after every change; add a fixture test for any new parser.
 
 ## Commands
