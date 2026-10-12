@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-12T10:43:52+00:00",
+ "generated_at": "2026-10-12T15:19:23+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,18 +28,18 @@
   }
  },
  "stats": {
-  "stored": 699,
+  "stored": 716,
   "by_source": {
    "stagiaires.ma": 27,
-   "dreamjob.ma": 1
+   "dreamjob.ma": 2
   },
-  "kept": 28,
-  "new_this_run": 43,
+  "kept": 29,
+  "new_this_run": 17,
   "filter_reasons": {
-   "title excluded": 38,
-   "not data/AI": 562,
+   "title excluded": 39,
+   "not data/AI": 577,
    "not an internship": 22,
-   "ok": 32,
+   "ok": 33,
    "expired": 11,
    "too few skill keywords": 32,
    "too old": 2,
@@ -565,6 +565,38 @@
    "id": 13
   },
   {
+   "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
+   "source": "dreamjob.ma",
+   "title": "À Casablanca, Payment Center for Africa recrute 4 stagiaires PFE",
+   "company": "À Casablanca, Payment Center for Africa",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-12",
+   "valid_through": "",
+   "employment_type": "INTERN",
+   "description": "Payment Center for Africa (PCA)\nrecrute\n4 stagiaires PFE\nà\nCasablanca\n: 2\nIngénieur(e)s Support\net 2\nChargé(e)s de Relation Clients\n. Les stages de\n6 mois\ndémarrent en\njanvier 2027\n, s’adressent aux étudiants en dernière année de\nBac+5\net offrent une perspective d’embauche à l’issue du PFE.\nFiliale du\nGroupe Banque Centrale Populaire\n,\nPCA\nest un centre d’expertise en monétique et en Digital Banking. Il gère des plateformes de traitement des paiements par carte et des services bancaires numériques pour des banques et des partenaires au Maroc et en Afrique.\nStagiaire PFE Ingénieur(e) Support – Casablanca\n2 stages\nsont ouverts sur ce poste. Le sujet du PFE porte sur le support des services de PCA, avec une dimension data: gestion des tickets, analyse des données et intelligence artificielle (ML/NLP)\nSes principales missions seront de:\nParticiper au traitement et au suivi des tickets d’incidents et de demandes.\nAnalyser les données de support pour repérer les incidents récurrents et les délais de traitement.\nConstruire des tableaux de bord de suivi de l’activité de support.\nÉtudier des cas d’usage de\nmachine learning\net de\nNLP\nappliqués aux tickets, comme le classement automatique des demandes.\nDocumenter les travaux et présenter les résultats aux équipes.\nLe profil recherché pour ce poste:\nÊtre en dernière année d’un cursus\nBac+5\nen école d’ingénieurs ou à l’université, en informatique, data science ou intelligence artificielle.\nAvoir des bases en\nanalyse de données\net en programmation, par exemple en Python.\nS’intéresser au\nmachine learning\net au traitement du langage naturel.\nAvoir le sens de l’analyse et de la rigueur.\nStagiaire PFE Chargé(e) de Relation Clients – Casablanca\n2 stages\nsont ouverts sur ce poste. Les missions portent sur la relation avec les clients de PC",
+   "logo": "",
+   "axis_hits": {
+    "genai": 2,
+    "bigdata": 2,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "nlp",
+    "data science",
+    "machine learning"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 73,
+   "is_pfe": true,
+   "first_seen": "2026-10-12",
+   "new_today": true,
+   "id": 14
+  },
+  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6922-stage-de-fin-d-etudes-developpeur-web-full-stack-wordpress-woocommerce-next-js",
    "source": "stagiaires.ma",
    "title": "Stage de fin d’études — Développeur web Full Stack (WordPress/WooCommerce & Next.js)",
@@ -593,7 +625,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 14
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6839-stagiaire-tech-ia-automatisation-l-d",
@@ -624,7 +656,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 15
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6773-data-engineer-stage",
@@ -663,7 +695,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6730-data-engineer-stage"
     }
    ],
-   "id": 16
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6403-stage-mapping-geolocalisation-zonage-intelligence-artificielle-ia-marrakech",
@@ -695,7 +727,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 17
+   "id": 18
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6729-offre-de-stage-seo-geo-ai-search-optimization",
@@ -732,7 +764,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6690-offre-de-stage-seo-geo-ai-search-optimization"
     }
    ],
-   "id": 18
+   "id": 19
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6422-stage-en-analyse-de-donnees-et-ia",
@@ -765,7 +797,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 19
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6399-stage-en-analyse-de-data-et-ia",
@@ -798,7 +830,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 20
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6643-stage-en-cybersecurite-et-intelligence-artificielle",
@@ -829,7 +861,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 21
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6553-ai-engineer-prediction-des-prix-immobiliers",
@@ -861,7 +893,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 22
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6565-offre-de-stage-software-engineer-meta-business-ai-integration",
@@ -892,7 +924,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 23
+   "id": 24
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6538-stagiaire-software-engineer-ia-data-scraping",
@@ -924,7 +956,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 24
+   "id": 25
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -954,7 +986,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 25
+   "id": 26
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6490-stealth-r-d-tech-lab-enterprise-technology-stage-r-d-ia-et-cybersecurite",
@@ -986,7 +1018,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 26
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6612-stage-analyste-en-cybersecurite-et-cyberdefense",
@@ -1022,7 +1054,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6567-stage-analyste-en-cybersecurite-et-cyberdefense"
     }
    ],
-   "id": 27
+   "id": 28
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -1052,7 +1084,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 28
+   "id": 29
   }
  ]
 }
