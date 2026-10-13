@@ -441,7 +441,14 @@ async function saveApplication(offerId, patch) {
   const saved = await call(S.sb.from('applications').upsert(row, { onConflict: 'user_id,offer_id' }).select().single());
   const m = S.matches.find(x => x.id === offerId);
   if (m) { m.app_status = saved.status; m.app_updated = saved.updated_at; }
-  S.apps = null;
+  if (S.apps) {
+    const existing = S.apps.find(x => x.offer_id === offerId || x.app_id === saved.id);
+    if (existing) {
+      Object.assign(existing, saved, { app_id: saved.id });
+    } else {
+      S.apps = null;
+    }
+  }
   return saved;
 }
 
@@ -851,19 +858,8 @@ async function viewApps() {
     </div>
 
     <!-- KPIs par statut & entretiens -->
-    <section class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
-      ${Object.entries(STATUSES).map(([k, s]) => {
-        const isInterview = k === 'entretien';
-        return `
-          <div class="rounded-2xl border p-3 ${s.cls} ${isInterview && scheduledInterviews.length ? 'ring-2 ring-amber-400/70 shadow-sm' : ''}">
-            <div class="text-[10px] font-bold uppercase flex items-center justify-between">
-              <span>${s.label}</span>
-              ${isInterview && scheduledInterviews.length ? `<span class="text-[9px] px-1.5 py-0.2 rounded-full bg-amber-200 text-amber-950 font-black">🗓️ ${scheduledInterviews.length}</span>` : ''}
-            </div>
-            <div class="text-2xl font-extrabold mt-0.5">${counts[k]}</div>
-          </div>
-        `;
-      }).join('')}
+    <section id="appKpis" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
+      ${renderAppKpisHtml()}
     </section>
 
     <!-- Switcher de modes de vue : Tableau · Kanban · Calendrier -->
@@ -940,6 +936,35 @@ async function viewApps() {
   renderCurrentAppView();
 }
 
+function renderAppKpisHtml() {
+  const counts = Object.fromEntries(Object.keys(STATUSES).map(k => [k, 0]));
+  (S.apps || []).forEach(a => { if (counts[a.status] !== undefined) counts[a.status]++; });
+  const scheduledInterviews = (S.apps || []).filter(a => a.interview_at);
+  return Object.entries(STATUSES).map(([k, s]) => {
+    const isInterview = k === 'entretien';
+    return `
+      <div class="rounded-2xl border p-3 ${s.cls} ${isInterview && scheduledInterviews.length ? 'ring-2 ring-amber-400/70 shadow-sm' : ''}">
+        <div class="text-[10px] font-bold uppercase flex items-center justify-between">
+          <span>${s.label}</span>
+          ${isInterview && scheduledInterviews.length ? `<span class="text-[9px] px-1.5 py-0.2 rounded-full bg-amber-200 text-amber-950 font-black">🗓️ ${scheduledInterviews.length}</span>` : ''}
+        </div>
+        <div class="text-2xl font-extrabold mt-0.5">${counts[k]}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateAppKpis() {
+  const el = $('#appKpis');
+  if (el) el.innerHTML = renderAppKpisHtml();
+  const scheduled = (S.apps || []).filter(a => a.interview_at && new Date(a.interview_at).getTime() >= (Date.now() - 36e5));
+  const calBadge = $('#tabModeCalendar span.bg-amber-200');
+  if (calBadge) {
+    if (scheduled.length) calBadge.textContent = scheduled.length;
+    else calBadge.remove();
+  }
+}
+
 function renderCurrentAppView() {
   const container = $('#appMainView');
   if (!container) return;
@@ -947,7 +972,7 @@ function renderCurrentAppView() {
   const list = filteredApps();
   const total = list.length;
   if ($('#appCount')) {
-    $('#appCount').textContent = `${total} / ${S.apps.length} candidature${S.apps.length > 1 ? 's' : ''}`;
+    $('#appCount').textContent = `${total} / ${(S.apps || []).length} candidature${(S.apps || []).length > 1 ? 's' : ''}`;
   }
 
   if (S.appViewMode === 'kanban') {
@@ -1080,6 +1105,7 @@ function renderTableView(container, list) {
     try {
       await updateApplicationStatus(a, status);
       toast('Statut mis à jour');
+      updateAppKpis();
       renderCurrentAppView();
     } catch (err) { toast(errMsg(err), 'err'); }
   }));
@@ -1227,6 +1253,7 @@ function attachKanbanCardEvents(container) {
       try {
         await updateApplicationStatus(a, newStatus);
         toast(`Statut passé à : ${STATUSES[newStatus]?.label || newStatus}`);
+        updateAppKpis();
         renderCurrentAppView();
       } catch (err) { toast(errMsg(err), 'err'); }
     });
@@ -1513,12 +1540,16 @@ async function saveInterviewSchedule(app, interviewAt, interviewType, interviewN
   if (interviewAt && ['a_postuler', 'envoyee', 'relance'].includes(app.status)) {
     patch.status = 'entretien';
   }
-  if (app.external) {
-    await call(S.sb.from('applications').update(patch).eq('id', app.app_id).eq('user_id', S.user.id));
-    Object.assign(app, patch);
+  if (app.app_id) {
+    const updated = await call(S.sb.from('applications').update(patch).eq('id', app.app_id).eq('user_id', S.user.id).select().single());
+    Object.assign(app, patch, { updated_at: updated.updated_at });
+    const m = S.matches.find(x => x.id === app.offer_id);
+    if (m && patch.status) { m.app_status = patch.status; m.app_updated = updated.updated_at; }
+    return updated;
   } else {
-    await saveApplication(app.offer_id, patch);
-    Object.assign(app, patch);
+    const saved = await saveApplication(app.offer_id, patch);
+    Object.assign(app, patch, { app_id: saved.id, updated_at: saved.updated_at });
+    return saved;
   }
 }
 
@@ -1565,7 +1596,7 @@ function renderAppPager(totalPages) {
   pager.querySelectorAll('button[data-app-page]:not([disabled])').forEach(btn => {
     btn.addEventListener('click', () => {
       S.appPage = Number(btn.dataset.appPage);
-      renderAppRows();
+      renderCurrentAppView();
       $('#appTbody')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   });
@@ -1576,13 +1607,17 @@ async function updateApplicationStatus(app, status) {
   if (['envoyee', 'relance', 'entretien'].includes(status) && !app.applied_at) {
     patch.applied_at = new Date().toISOString().slice(0, 10);
   }
-  if (app.external) {
-    if (patch.applied_at) patch.ext_date = patch.applied_at;
-    await call(S.sb.from('applications').update(patch).eq('id', app.app_id).eq('user_id', S.user.id));
-    app.status = status;
-    if (patch.applied_at) app.applied_at = patch.applied_at;
+  if (app.app_id) {
+    if (app.external && patch.applied_at) patch.ext_date = patch.applied_at;
+    const updated = await call(S.sb.from('applications').update(patch).eq('id', app.app_id).eq('user_id', S.user.id).select().single());
+    Object.assign(app, patch, { updated_at: updated.updated_at });
+    const m = S.matches.find(x => x.id === app.offer_id);
+    if (m) { m.app_status = status; m.app_updated = updated.updated_at; }
+    return updated;
   } else {
-    await saveApplication(app.offer_id, patch);
+    const saved = await saveApplication(app.offer_id, patch);
+    Object.assign(app, patch, { app_id: saved.id, updated_at: saved.updated_at });
+    return saved;
   }
 }
 
