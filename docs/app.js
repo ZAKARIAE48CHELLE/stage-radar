@@ -17,6 +17,15 @@ const STATUSES = {
   refus:      { label: 'Refus',      cls: 'bg-rose-50 text-rose-700 border-rose-200' },
   abandon:    { label: 'Abandonnée', cls: 'bg-slate-50 text-slate-400 border-slate-200' },
 };
+const ALL_KANBAN_COLS = [
+  { id: 'a_postuler', title: 'À postuler', icon: '📝', headerCls: 'bg-slate-200 text-slate-800' },
+  { id: 'envoyee',    title: 'Envoyée',    icon: '📤', headerCls: 'bg-blue-100 text-blue-800' },
+  { id: 'relance',    title: 'Relancée',   icon: '🔁', headerCls: 'bg-indigo-100 text-indigo-800' },
+  { id: 'entretien',  title: 'Entretien',  icon: '🎤', headerCls: 'bg-amber-200 text-amber-950 ring-2 ring-amber-400' },
+  { id: 'offre',      title: 'Offre reçue', icon: '🎉', headerCls: 'bg-emerald-200 text-emerald-950 ring-2 ring-emerald-400' },
+  { id: 'refus',      title: 'Refusée',    icon: '✕',  headerCls: 'bg-rose-100 text-rose-800' },
+  { id: 'abandon',    title: 'Sans suite', icon: '📁', headerCls: 'bg-slate-200 text-slate-600' },
+];
 const AXIS_COLORS = ['#2563eb', '#0d9488', '#d97706', '#7c3aed', '#db2777', '#059669'];
 
 // Field templates: starting axes the user can then edit freely.
@@ -65,6 +74,8 @@ const S = {
   appPage: 1, appPageSize: 10,
   appF: { q: '', status: '', type: '', sort: 'updated' },
   appViewMode: 'table', // 'table' | 'kanban' | 'calendar'
+  kanbanCols: ['a_postuler', 'envoyee', 'relance', 'entretien', 'offre', 'refus', 'abandon'],
+  kanbanFilter: 'all',
   calDate: new Date(),
   careerSites: null, careerF: { q: '', category: '' },
 };
@@ -889,7 +900,7 @@ async function viewApps() {
     <!-- Barre de filtres (active pour Tableau et Kanban) -->
     <div id="appFilterBar" class="${S.appViewMode === 'calendar' ? 'hidden' : ''} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
       <label class="sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Recherche</span><input id="appQ" type="search" value="${esc(f.q)}" placeholder="Poste, entreprise, ville, notes…" class="${input}"></label>
-      <label><span class="block font-semibold text-slate-600 mb-1">Statut</span><select id="appStat" class="${input}">
+      <label class="${S.appViewMode === 'kanban' ? 'hidden' : ''}"><span class="block font-semibold text-slate-600 mb-1">Statut</span><select id="appStat" class="${input}">
         <option value="">Tous les statuts</option>
         ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${f.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}
       </select></label>
@@ -915,6 +926,8 @@ async function viewApps() {
   $('#excelApps').onclick = () => exportAppsExcel(filteredApps());
   $('#resetApps').onclick = () => {
     Object.assign(S.appF, { q: '', status: '', type: '', sort: 'updated' });
+    S.kanbanFilter = 'all';
+    S.kanbanCols = ALL_KANBAN_COLS.map(c => c.id);
     S.appPage = 1;
     viewApps();
   };
@@ -990,12 +1003,14 @@ function renderCurrentAppView() {
 function filteredApps() {
   if (!S.apps) return [];
   const f = S.appF, q = norm(f.q);
+  const isKanban = S.appViewMode === 'kanban';
   const list = S.apps.filter(a => {
     if (q) {
       const hay = norm([a.title, a.company, a.city, a.notes, a.source, a.interview_notes].filter(Boolean).join(' '));
       if (!hay.includes(q)) return false;
     }
-    if (f.status && a.status !== f.status) return false;
+    if (!isKanban && f.status && a.status !== f.status) return false;
+    if (isKanban && S.kanbanCols && !S.kanbanCols.includes(a.status)) return false;
     if (f.type === 'external' && !a.external) return false;
     if (f.type === 'internal' && a.external) return false;
     return true;
@@ -1138,22 +1153,72 @@ function renderTableView(container, list) {
 }
 
 function renderKanbanView(container, list) {
-  const cols = [
-    { id: 'a_postuler', title: 'À postuler', icon: '📝', headerCls: 'bg-slate-200 text-slate-800' },
-    { id: 'envoyee',    title: 'Envoyée',    icon: '📤', headerCls: 'bg-blue-100 text-blue-800' },
-    { id: 'relance',    title: 'Relancée',   icon: '🔁', headerCls: 'bg-indigo-100 text-indigo-800' },
-    { id: 'entretien',  title: 'Entretien',  icon: '🎤', headerCls: 'bg-amber-200 text-amber-950 ring-2 ring-amber-400' },
-    { id: 'offre',      title: 'Offre reçue', icon: '🎉', headerCls: 'bg-emerald-200 text-emerald-950 ring-2 ring-emerald-400' },
-    { id: 'refus',      title: 'Refusée',    icon: '✕',  headerCls: 'bg-rose-100 text-rose-800' },
-    { id: 'abandon',    title: 'Sans suite', icon: '📁', headerCls: 'bg-slate-200 text-slate-600' },
-  ];
+  const visibleCols = ALL_KANBAN_COLS.filter(c => (S.kanbanCols || []).includes(c.id));
+  const isSingleOrDouble = visibleCols.length <= 2;
 
-  let html = `<div class="flex gap-4 overflow-x-auto pb-4 scroll items-start min-h-[520px]">`;
+  let html = `
+    <!-- Barre de sélection des colonnes Kanban -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white p-3.5 sm:p-4 rounded-3xl border border-slate-200 shadow-sm text-xs mb-4">
+      <div class="flex items-center gap-2.5 flex-wrap">
+        <label for="kanbanColSelect" class="font-bold text-slate-700 flex items-center gap-1.5 whitespace-nowrap">
+          <span>📊</span><span>Afficher les colonnes :</span>
+        </label>
+        <select id="kanbanColSelect" class="px-3 py-1.5 rounded-xl border border-slate-300 bg-white font-bold text-slate-800 cursor-pointer shadow-xs focus:ring-2 focus:ring-blue-500/20">
+          <option value="all" ${S.kanbanFilter === 'all' ? 'selected' : ''}>Toutes les colonnes (7)</option>
+          <option value="active" ${S.kanbanFilter === 'active' ? 'selected' : ''}>Pipeline actif (5 étapes)</option>
+          <option value="a_postuler" ${S.kanbanFilter === 'a_postuler' ? 'selected' : ''}>📝 À postuler uniquement</option>
+          <option value="envoyee" ${S.kanbanFilter === 'envoyee' ? 'selected' : ''}>📤 Envoyée uniquement</option>
+          <option value="relance" ${S.kanbanFilter === 'relance' ? 'selected' : ''}>🔁 Relancée uniquement</option>
+          <option value="entretien" ${S.kanbanFilter === 'entretien' ? 'selected' : ''}>🎤 Entretien uniquement</option>
+          <option value="offre" ${S.kanbanFilter === 'offre' ? 'selected' : ''}>🎉 Offre reçue uniquement</option>
+          <option value="refus" ${S.kanbanFilter === 'refus' ? 'selected' : ''}>✕ Refusée uniquement</option>
+          <option value="abandon" ${S.kanbanFilter === 'abandon' ? 'selected' : ''}>📁 Sans suite uniquement</option>
+          ${S.kanbanFilter === 'custom' ? '<option value="custom" selected>Personnalisé (' + visibleCols.length + ' colonnes)</option>' : ''}
+        </select>
+        <span class="text-slate-300 font-medium hidden sm:inline">|</span>
+        <span class="text-[11px] text-slate-500 font-semibold hidden sm:inline">Sélection rapide :</span>
+      </div>
 
-  cols.forEach(col => {
-    const colApps = list.filter(a => a.status === col.id);
+      <!-- Puces de sélection individuelle par colonne -->
+      <div class="flex items-center gap-1.5 flex-wrap">
+        ${ALL_KANBAN_COLS.map(c => {
+          const active = (S.kanbanCols || []).includes(c.id);
+          const colCount = (S.apps || []).filter(a => a.status === c.id).length;
+          return `
+            <button type="button" data-toggle-kanban-col="${c.id}" class="px-2.5 py-1 rounded-xl text-[11px] font-bold transition flex items-center gap-1.5 border ${active ? 'bg-slate-900 border-slate-900 text-white shadow-xs' : 'bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100 hover:text-slate-800'}" title="${active ? 'Masquer' : 'Afficher'} la colonne ${esc(c.title)}">
+              <span>${c.icon}</span>
+              <span>${esc(c.title)}</span>
+              <span class="text-[10px] px-1 py-0.2 rounded-full ${active ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-600'}">${colCount}</span>
+            </button>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  if (!visibleCols.length) {
     html += `
-      <div class="w-72 sm:w-80 shrink-0 bg-slate-100/90 rounded-3xl p-3 border border-slate-200 flex flex-col max-h-[78vh]">
+      <div class="bg-white rounded-3xl border border-slate-200 p-12 text-center space-y-3">
+        <div class="text-4xl">👀</div>
+        <h3 class="text-base font-bold text-slate-800">Aucune colonne sélectionnée</h3>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto">Sélectionnez au moins une colonne ci-dessus ou rétablissez toutes les colonnes.</p>
+        <button type="button" id="kanbanResetCols" class="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold transition shadow-sm">
+          Afficher toutes les colonnes
+        </button>
+      </div>
+    `;
+    container.innerHTML = html;
+    attachKanbanControls(container);
+    return;
+  }
+
+  html += `<div class="flex gap-4 overflow-x-auto pb-4 scroll items-start min-h-[520px] ${isSingleOrDouble ? 'justify-start' : ''}">`;
+
+  visibleCols.forEach(col => {
+    const colApps = list.filter(a => a.status === col.id);
+    const colWidthCls = isSingleOrDouble ? 'w-full max-w-md sm:max-w-lg' : 'w-72 sm:w-80 shrink-0';
+    html += `
+      <div class="${colWidthCls} bg-slate-100/90 rounded-3xl p-3 border border-slate-200 flex flex-col max-h-[78vh]">
         <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-200 px-1">
           <div class="flex items-center gap-2">
             <span class="text-base">${col.icon}</span>
@@ -1174,7 +1239,54 @@ function renderKanbanView(container, list) {
 
   html += `</div>`;
   container.innerHTML = html;
+  attachKanbanControls(container);
   attachKanbanCardEvents(container);
+}
+
+function attachKanbanControls(container) {
+  const sel = container.querySelector('#kanbanColSelect');
+  if (sel) {
+    sel.addEventListener('change', e => {
+      const val = e.target.value;
+      S.kanbanFilter = val;
+      if (val === 'all') {
+        S.kanbanCols = ALL_KANBAN_COLS.map(c => c.id);
+      } else if (val === 'active') {
+        S.kanbanCols = ['a_postuler', 'envoyee', 'relance', 'entretien', 'offre'];
+      } else {
+        S.kanbanCols = [val];
+      }
+      renderCurrentAppView();
+    });
+  }
+
+  container.querySelectorAll('[data-toggle-kanban-col]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const colId = btn.dataset.toggleKanbanCol;
+      const current = S.kanbanCols || [];
+      if (current.includes(colId)) {
+        if (current.length === 1) return toast('Au moins une colonne doit rester visible');
+        S.kanbanCols = current.filter(x => x !== colId);
+      } else {
+        S.kanbanCols = [...current, colId];
+      }
+      if (S.kanbanCols.length === ALL_KANBAN_COLS.length) S.kanbanFilter = 'all';
+      else if (S.kanbanCols.length === 5 && ['a_postuler', 'envoyee', 'relance', 'entretien', 'offre'].every(x => S.kanbanCols.includes(x))) S.kanbanFilter = 'active';
+      else if (S.kanbanCols.length === 1) S.kanbanFilter = S.kanbanCols[0];
+      else S.kanbanFilter = 'custom';
+
+      renderCurrentAppView();
+    });
+  });
+
+  const resetBtn = container.querySelector('#kanbanResetCols');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      S.kanbanFilter = 'all';
+      S.kanbanCols = ALL_KANBAN_COLS.map(c => c.id);
+      renderCurrentAppView();
+    });
+  }
 }
 
 function renderKanbanCard(a) {
