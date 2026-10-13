@@ -1,5 +1,8 @@
+import React from 'react';
+import { Search } from 'lucide-react';
+
 interface EmptyStateProps {
-  icon?: string;
+  icon?: React.ReactNode;
   title: string;
   description?: string;
   action?: {
@@ -8,10 +11,15 @@ interface EmptyStateProps {
   };
 }
 
-export function EmptyState({ icon = '🔍', title, description, action }: EmptyStateProps) {
+export function EmptyState({
+  icon = <Search className="w-6 h-6 text-slate-400" />,
+  title,
+  description,
+  action,
+}: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center p-12 text-center bg-white rounded-xl border border-dashed border-slate-200">
-      <div className="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center text-2xl mb-4 border border-slate-100">
+      <div className="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center text-slate-600 mb-4 border border-slate-100">
         {icon}
       </div>
       <h3 className="text-base font-semibold text-slate-800">{title}</h3>

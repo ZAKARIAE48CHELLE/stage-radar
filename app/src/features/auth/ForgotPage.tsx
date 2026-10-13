@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
+import { Mail } from 'lucide-react';
 
 export function ForgotPage() {
   const { resetPassword } = useAuth();
@@ -41,7 +42,9 @@ export function ForgotPage() {
         <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-5">
           {sent ? (
             <div className="space-y-4 text-center">
-              <div className="text-4xl">📬</div>
+              <div className="w-14 h-14 mx-auto rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                <Mail className="w-7 h-7" />
+              </div>
               <h2 className="text-base font-bold text-slate-900">E-mail envoyé</h2>
               <p className="text-xs text-slate-500 leading-relaxed">
                 Si un compte existe pour <b className="text-slate-800">{email}</b>, vous recevrez un lien de réinitialisation sous quelques instants.

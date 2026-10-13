@@ -5,6 +5,7 @@ import { EmptyState } from '../../components/feedback/EmptyState';
 import { STATUSES } from '../../lib/constants';
 import { daysAgo, isFresh, scoreClass } from '../../lib/format';
 import { isPaid } from '../../lib/paid';
+import { Search, Zap, GraduationCap, Coins } from 'lucide-react';
 
 interface OfferTableProps {
   offers: MatchOffer[];
@@ -37,7 +38,7 @@ export function OfferTable({ offers, onSelect, onResetFilters }: OfferTableProps
   if (offers.length === 0) {
     return (
       <EmptyState
-        icon="🔍"
+        icon={<Search className="w-8 h-8 text-slate-400" />}
         title="Aucune offre trouvée"
         description="Essayez d'assouplir vos critères ou de réinitialiser vos filtres."
         action={
@@ -108,18 +109,21 @@ export function OfferTable({ offers, onSelect, onResetFilters }: OfferTableProps
 
                 <div className="flex flex-wrap items-center gap-1 text-[10px] mb-1.5">
                   {fresh && (
-                    <span className="px-1.5 py-0.2 rounded font-bold bg-blue-100 text-blue-700">
-                      ⚡ NOUVEAU
+                    <span className="px-1.5 py-0.2 rounded font-bold bg-blue-100 text-blue-700 flex items-center gap-0.5">
+                      <Zap className="w-2.5 h-2.5" />
+                      <span>NOUVEAU</span>
                     </span>
                   )}
                   {offer.is_pfe && (
-                    <span className="px-1.5 py-0.2 rounded font-bold bg-purple-100 text-purple-700">
-                      🎓 PFE
+                    <span className="px-1.5 py-0.2 rounded font-bold bg-purple-100 text-purple-700 flex items-center gap-0.5">
+                      <GraduationCap className="w-2.5 h-2.5" />
+                      <span>PFE</span>
                     </span>
                   )}
                   {paid && (
-                    <span className="px-1.5 py-0.2 rounded font-bold bg-emerald-100 text-emerald-700">
-                      💰 RÉMUNÉRÉ
+                    <span className="px-1.5 py-0.2 rounded font-bold bg-emerald-100 text-emerald-700 flex items-center gap-0.5">
+                      <Coins className="w-2.5 h-2.5" />
+                      <span>RÉMUNÉRÉ</span>
                     </span>
                   )}
                 </div>

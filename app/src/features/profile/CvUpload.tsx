@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useDeleteCv, useUploadCv } from './api';
+import { Check } from 'lucide-react';
 
 interface CvUploadProps {
   userId: string;
@@ -69,7 +70,10 @@ export function CvUpload({ userId, cvPath }: CvUploadProps) {
           {uploadMutation.isPending ? (
             <span className="text-blue-600 animate-pulse">Envoi en cours...</span>
           ) : cvPath ? (
-            '✅ CV enregistré'
+            <span className="inline-flex items-center gap-1 text-emerald-700 font-bold">
+              <Check className="w-3.5 h-3.5" />
+              <span>CV enregistré</span>
+            </span>
           ) : (
             'Aucun CV enregistré'
           )}

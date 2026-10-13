@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AlertTriangle, Mail, X } from 'lucide-react';
 import {
   useAdminStats,
   useAdminUsers,
@@ -135,8 +136,9 @@ export function AdminPage() {
               <span className="font-semibold text-rose-600">-{run.stats?.deactivated ?? 0}</span> désactivées.
             </p>
             {isRunStale && (
-              <p className="text-amber-700 font-bold bg-amber-50 p-2 rounded-lg border border-amber-200 mt-2">
-                ⚠️ Dernière collecte il y a plus de 2 jours : vérifiez le workflow GitHub Actions.
+              <p className="text-amber-700 font-bold bg-amber-50 p-2 rounded-lg border border-amber-200 mt-2 flex items-center gap-1.5">
+                <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                <span>Dernière collecte il y a plus de 2 jours : vérifiez le workflow GitHub Actions.</span>
               </p>
             )}
           </div>
@@ -320,16 +322,17 @@ export function AdminPage() {
                   <span className="font-mono">{inv.email}</span>
                   <a
                     href={`mailto:${encodeURIComponent(inv.email)}?subject=${mailSub}&body=${mailBody}`}
-                    className="text-blue-600 hover:underline font-semibold"
+                    className="text-blue-600 hover:underline font-semibold flex items-center gap-1"
                   >
-                    ✉️ Envoyer
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Envoyer</span>
                   </a>
                   <button
                     onClick={() => deleteInvite.mutate(inv.email)}
-                    className="text-slate-400 hover:text-rose-600 font-bold ml-1"
+                    className="text-slate-400 hover:text-rose-600 font-bold ml-1 flex items-center"
                     title="Retirer"
                   >
-                    ✕
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </span>
               );

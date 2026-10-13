@@ -12,11 +12,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 DEFAULT_RECIPIENT = "zakariaechelle2001@gmail.com"
-DEFAULT_SUBJECT = "✅ Stage Radar: Repository pushed & CI verified"
+DEFAULT_SUBJECT = "[Stage Radar] Repository pushed & CI verified"
 DEFAULT_BODY = """Bonjour Zakariae,
 
 Le projet Stage Radar a été configuré et synchronisé avec succès sur votre dépôt GitHub :
-🔗 https://github.com/ZAKARIAE48CHELLE/stage-radar
+Lien : https://github.com/ZAKARIAE48CHELLE/stage-radar
 
 Résumé des vérifications :
 1. Code source et fixtures : Intègres (11 tests unitaires passés avec succès).

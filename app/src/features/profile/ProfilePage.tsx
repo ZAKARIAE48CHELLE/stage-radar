@@ -4,6 +4,7 @@ import { CITIES } from '../../lib/constants';
 import { AxesEditor, type AxisItem } from './AxesEditor';
 import { CvUpload } from './CvUpload';
 import { useUpdateProfile } from './api';
+import { CheckCircle2, AlertTriangle } from 'lucide-react';
 
 export function ProfilePage() {
   const { user, profile } = useAuth();
@@ -102,14 +103,16 @@ export function ProfilePage() {
       </div>
 
       {saveSuccess && (
-        <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold rounded-2xl flex items-center justify-between shadow-2xs">
-          <span>✅ Profil enregistré avec succès. Les scores de vos offres ont été recalculés !</span>
+        <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold rounded-2xl flex items-center gap-2 shadow-2xs">
+          <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+          <span>Profil enregistré avec succès. Les scores de vos offres ont été recalculés !</span>
         </div>
       )}
 
       {saveError && (
-        <div className="p-4 bg-rose-50 border border-rose-200 text-rose-800 text-sm font-semibold rounded-2xl">
-          ⚠️ {saveError}
+        <div className="p-4 bg-rose-50 border border-rose-200 text-rose-800 text-sm font-semibold rounded-2xl flex items-center gap-2">
+          <AlertTriangle className="w-5 h-5 text-rose-600 shrink-0" />
+          <span>{saveError}</span>
         </div>
       )}
 

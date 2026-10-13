@@ -6,6 +6,7 @@ import { toDatetimeLocal } from '../../lib/format';
 import { Modal } from '../../components/ui/Modal';
 import { useAuth } from '../auth/AuthProvider';
 import { useDeleteApplication, useSaveExternalApp } from './api';
+import { Plus, Edit3, Calendar } from 'lucide-react';
 
 interface ExternalAppModalProps {
   app: ApplicationItem | null;
@@ -104,7 +105,8 @@ export function ExternalAppModal({ app, isOpen, onClose }: ExternalAppModalProps
       onClose={onClose}
       title={
         <div className="flex items-center gap-2">
-          <span>{app ? '✏️ Modifier la candidature externe' : '➕ Ajouter une candidature externe'}</span>
+          {app ? <Edit3 className="w-5 h-5 text-blue-600" /> : <Plus className="w-5 h-5 text-blue-600" />}
+          <span>{app ? 'Modifier la candidature externe' : 'Ajouter une candidature externe'}</span>
         </div>
       }
       maxWidth="max-w-2xl"
@@ -201,8 +203,9 @@ export function ExternalAppModal({ app, isOpen, onClose }: ExternalAppModalProps
 
         {/* Interview Section */}
         <div className="p-3 bg-amber-50/80 rounded-xl border border-amber-200/90 space-y-2">
-          <div className="font-bold text-amber-950 flex items-center gap-1">
-            <span>🎤</span> Planification d'entretien
+          <div className="font-bold text-amber-950 flex items-center gap-1.5">
+            <Calendar className="w-4 h-4 text-amber-700 shrink-0" />
+            <span>Planification d'entretien</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -223,9 +226,9 @@ export function ExternalAppModal({ app, isOpen, onClose }: ExternalAppModalProps
                 onChange={(e) => setInterviewType(e.target.value as 'visio' | 'presentiel' | 'telephone')}
                 className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs"
               >
-                <option value="visio">💻 Visioconférence</option>
-                <option value="presentiel">🏢 Présentiel</option>
-                <option value="telephone">📞 Téléphone</option>
+                <option value="visio">Visioconférence</option>
+                <option value="presentiel">Présentiel</option>
+                <option value="telephone">Téléphone</option>
               </select>
             </div>
           </div>

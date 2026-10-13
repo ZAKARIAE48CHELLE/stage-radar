@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ApplicationItem } from '../../types/api';
 import { formatDate, interviewCountdown } from '../../lib/format';
+import { Video, Building2, Phone } from 'lucide-react';
 
 interface InterviewCalendarProps {
   apps: ApplicationItem[];
@@ -169,9 +170,15 @@ export function InterviewCalendar({
                       className="p-1.5 rounded-lg bg-amber-50 border border-amber-200/80 hover:bg-amber-100/80 cursor-pointer transition text-left text-[11px]"
                     >
                       <div className="flex items-center justify-between gap-1 font-bold text-amber-950">
-                        <span className="truncate">
-                          {app.interview_type === 'visio' ? '💻' : app.interview_type === 'presentiel' ? '🏢' : '📞'}{' '}
-                          {timeStr}
+                        <span className="truncate flex items-center gap-1">
+                          {app.interview_type === 'visio' ? (
+                            <Video className="w-3 h-3 text-blue-600 shrink-0" />
+                          ) : app.interview_type === 'presentiel' ? (
+                            <Building2 className="w-3 h-3 text-indigo-600 shrink-0" />
+                          ) : (
+                            <Phone className="w-3 h-3 text-emerald-600 shrink-0" />
+                          )}
+                          <span>{timeStr}</span>
                         </span>
                         {countdown && (
                           <span className={`px-1 py-0.2 rounded text-[9px] ${countdown.cls}`}>
@@ -227,9 +234,13 @@ export function InterviewCalendar({
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-bold text-amber-950 text-xs flex items-center gap-1.5">
-                      <span>
-                        {app.interview_type === 'visio' ? '💻' : app.interview_type === 'presentiel' ? '🏢' : '📞'}
-                      </span>
+                      {app.interview_type === 'visio' ? (
+                        <Video className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                      ) : app.interview_type === 'presentiel' ? (
+                        <Building2 className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+                      ) : (
+                        <Phone className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      )}
                       <span>
                         {formatDate(app.interview_at)} • {timeStr}
                       </span>

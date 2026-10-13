@@ -11,13 +11,13 @@ export const STATUSES = {
 export type ApplicationStatus = keyof typeof STATUSES;
 
 export const ALL_KANBAN_COLS = [
-  { id: 'a_postuler', title: 'À postuler', icon: '📝', headerCls: 'bg-slate-200 text-slate-800' },
-  { id: 'envoyee',    title: 'Envoyée',    icon: '📤', headerCls: 'bg-blue-100 text-blue-800' },
-  { id: 'relance',    title: 'Relancée',   icon: '🔁', headerCls: 'bg-indigo-100 text-indigo-800' },
-  { id: 'entretien',  title: 'Entretien',  icon: '🎤', headerCls: 'bg-amber-200 text-amber-950 ring-2 ring-amber-400' },
-  { id: 'offre',      title: 'Offre reçue', icon: '🎉', headerCls: 'bg-emerald-200 text-emerald-950 ring-2 ring-emerald-400' },
-  { id: 'refus',      title: 'Refusée',    icon: '✕',  headerCls: 'bg-rose-100 text-rose-800' },
-  { id: 'abandon',    title: 'Sans suite', icon: '📁', headerCls: 'bg-slate-200 text-slate-600' },
+  { id: 'a_postuler', title: 'À postuler', headerCls: 'bg-slate-200 text-slate-800' },
+  { id: 'envoyee',    title: 'Envoyée',    headerCls: 'bg-blue-100 text-blue-800' },
+  { id: 'relance',    title: 'Relancée',   headerCls: 'bg-indigo-100 text-indigo-800' },
+  { id: 'entretien',  title: 'Entretien',  headerCls: 'bg-amber-200 text-amber-950 ring-2 ring-amber-400' },
+  { id: 'offre',      title: 'Offre reçue', headerCls: 'bg-emerald-200 text-emerald-950 ring-2 ring-emerald-400' },
+  { id: 'refus',      title: 'Refusée',    headerCls: 'bg-rose-100 text-rose-800' },
+  { id: 'abandon',    title: 'Sans suite', headerCls: 'bg-slate-200 text-slate-600' },
 ] as const;
 
 export const CITIES = [

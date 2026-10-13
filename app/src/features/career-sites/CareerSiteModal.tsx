@@ -3,6 +3,7 @@ import type { CareerSite } from '../../types/db';
 import { CAREER_CATEGORIES, useDeleteCareerSite, useSaveCareerSite } from './api';
 import { useAuth } from '../auth/AuthProvider';
 import { Modal } from '../../components/ui/Modal';
+import { Edit3, Plus } from 'lucide-react';
 
 interface CareerSiteModalProps {
   site: CareerSite | null;
@@ -64,7 +65,8 @@ export function CareerSiteModal({ site, isOpen, onClose }: CareerSiteModalProps)
       onClose={onClose}
       title={
         <div className="flex items-center gap-2">
-          <span>{site ? '✏️ Modifier le site carrière' : '➕ Ajouter un site carrière'}</span>
+          {site ? <Edit3 className="w-5 h-5 text-blue-600" /> : <Plus className="w-5 h-5 text-blue-600" />}
+          <span>{site ? 'Modifier le site carrière' : 'Ajouter un site carrière'}</span>
         </div>
       }
       maxWidth="max-w-lg"

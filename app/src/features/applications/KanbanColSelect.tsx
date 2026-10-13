@@ -1,10 +1,41 @@
 import React from 'react';
 import { ALL_KANBAN_COLS } from '../../lib/constants';
+import {
+  FileText,
+  Send,
+  RefreshCw,
+  Calendar,
+  Award,
+  XCircle,
+  Archive,
+} from 'lucide-react';
 
 interface KanbanColSelectProps {
   visibleCols: string[];
   onChangeVisibleCols: (cols: string[]) => void;
   counts: Record<string, number>;
+}
+
+function getColumnIcon(id: string) {
+  const cls = 'w-3.5 h-3.5';
+  switch (id) {
+    case 'a_postuler':
+      return <FileText className={cls} />;
+    case 'envoyee':
+      return <Send className={cls} />;
+    case 'relance':
+      return <RefreshCw className={cls} />;
+    case 'entretien':
+      return <Calendar className={cls} />;
+    case 'offre':
+      return <Award className={cls} />;
+    case 'refus':
+      return <XCircle className={cls} />;
+    case 'abandon':
+      return <Archive className={cls} />;
+    default:
+      return <FileText className={cls} />;
+  }
 }
 
 export function KanbanColSelect({
@@ -61,7 +92,7 @@ export function KanbanColSelect({
             <option disabled>──────────</option>
             {ALL_KANBAN_COLS.map((c) => (
               <option key={c.id} value={c.id}>
-                {c.icon} Colonne {c.title}
+                Colonne {c.title}
               </option>
             ))}
             {currentPreset === 'custom' && <option value="custom">Sélection personnalisée</option>}
@@ -90,7 +121,7 @@ export function KanbanColSelect({
                   : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100 opacity-60'
               }`}
             >
-              <span>{col.icon}</span>
+              {getColumnIcon(col.id)}
               <span>{col.title}</span>
               <span
                 className={`ml-1 px-1.5 py-0.2 rounded-full text-[10px] font-black ${

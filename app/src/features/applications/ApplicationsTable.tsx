@@ -6,6 +6,7 @@ import { formatDate, interviewCountdown } from '../../lib/format';
 import { ApplicationRow } from './ApplicationRow';
 import { EmptyState } from '../../components/feedback/EmptyState';
 import { useUpdateApplicationStatus } from './api';
+import { FileText, Video, Building2, Phone, Calendar } from 'lucide-react';
 
 interface ApplicationsTableProps {
   apps: ApplicationItem[];
@@ -45,7 +46,7 @@ export function ApplicationsTable({
   if (apps.length === 0) {
     return (
       <EmptyState
-        icon="📝"
+        icon={<FileText className="w-8 h-8 text-slate-400" />}
         title="Aucune candidature trouvée"
         description="Vous n'avez pas encore de candidature correspondant à ces critères."
         action={{
@@ -153,9 +154,13 @@ export function ApplicationsTable({
                   className="p-2 bg-amber-50 rounded-xl border border-amber-200/80 flex items-center justify-between text-xs cursor-pointer"
                 >
                   <div className="flex items-center gap-1.5 font-bold text-amber-950 text-[11px]">
-                    <span>
-                      {app.interview_type === 'visio' ? '💻' : app.interview_type === 'presentiel' ? '🏢' : '📞'}
-                    </span>
+                    {app.interview_type === 'visio' ? (
+                      <Video className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                    ) : app.interview_type === 'presentiel' ? (
+                      <Building2 className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+                    ) : (
+                      <Phone className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    )}
                     <span>Entretien : {formatDate(app.interview_at)}</span>
                   </div>
                   {countdown && (
@@ -173,7 +178,8 @@ export function ApplicationsTable({
                     onClick={() => onScheduleInterview(app)}
                     className="text-[11px] text-amber-700 font-semibold hover:underline flex items-center gap-1"
                   >
-                    <span>🎤</span> Planifier entretien
+                    <Calendar className="w-3 h-3 shrink-0" />
+                    <span>Planifier entretien</span>
                   </button>
                 ) : (
                   <div />

@@ -26,14 +26,14 @@ def telegram(new_offers: list[dict], cfg: dict, dashboard_url: str = "") -> None
     if not picks:
         log.info("No new offer above %s — no alert", n["min_score"])
         return
-    lines = [f"🎯 <b>{len(picks)} nouvelle(s) offre(s) IA/Data</b>"]
+    lines = [f"[Stage Radar] <b>{len(picks)} nouvelle(s) offre(s) IA/Data</b>"]
     for o in picks:
         where = " · ".join(x for x in (o.get("city"), o.get("modality")) if x)
         lines.append(f"\n<b>{o['score']}%</b> — <a href=\"{html.escape(o['url'])}\">"
                      f"{html.escape(o['title'])}</a>\n{html.escape(o.get('company') or '?')}"
                      f"{' — ' + html.escape(where) if where else ''}")
     if dashboard_url:
-        lines.append(f"\n📊 <a href=\"{html.escape(dashboard_url)}\">Ouvrir le dashboard</a>")
+        lines.append(f"\n[Dashboard] <a href=\"{html.escape(dashboard_url)}\">Ouvrir le dashboard</a>")
     try:
         r = requests.post(f"https://api.telegram.org/bot{token}/sendMessage", timeout=20, json={
             "chat_id": chat, "text": "\n".join(lines), "parse_mode": "HTML",
@@ -66,7 +66,7 @@ def email(new_offers: list[dict], cfg: dict, dashboard_url: str = "", to_addr: s
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
 
-    subject = f"🎯 Stage Radar : {len(picks)} nouvelle(s) offre(s) IA/Data"
+    subject = f"[Stage Radar] {len(picks)} nouvelle(s) offre(s) IA/Data"
     body_lines = [f"{len(picks)} nouvelle(s) offre(s) IA/Data sélectionnée(s) :"]
     for o in picks:
         where = " · ".join(x for x in (o.get("city"), o.get("modality")) if x)

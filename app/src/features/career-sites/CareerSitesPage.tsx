@@ -12,6 +12,7 @@ import { EmptyState } from '../../components/feedback/EmptyState';
 import { useAuth } from '../auth/AuthProvider';
 import { norm } from '../../lib/text';
 import type { CareerSite } from '../../types/db';
+import { Download, Plus, Search, Globe, Edit3 } from 'lucide-react';
 
 export function CareerSitesPage() {
   const { user } = useAuth();
@@ -115,9 +116,10 @@ export function CareerSitesPage() {
             <button
               onClick={handleImportPresets}
               disabled={isImporting}
-              className="px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition shadow-2xs disabled:opacity-50"
+              className="px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition shadow-2xs disabled:opacity-50 flex items-center gap-1.5"
             >
-              {isImporting ? 'Importation...' : '📥 Importer les portails recommandés'}
+              <Download className="w-3.5 h-3.5" />
+              <span>{isImporting ? 'Importation...' : 'Importer les portails recommandés'}</span>
             </button>
           )}
 
@@ -128,7 +130,8 @@ export function CareerSitesPage() {
             }}
             className="px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white transition flex items-center gap-1.5 shadow-sm"
           >
-            <span>➕</span> Ajouter un site
+            <Plus className="w-4 h-4" />
+            <span>Ajouter un site</span>
           </button>
         </div>
       </div>
@@ -136,7 +139,7 @@ export function CareerSitesPage() {
       {/* Filter toolbar */}
       <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
         <div className="relative flex-1 max-w-sm">
-          <span className="absolute left-3 top-2.5 text-slate-400">🔍</span>
+          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
           <input
             type="text"
             value={query}
@@ -165,11 +168,11 @@ export function CareerSitesPage() {
       {/* Cards Grid */}
       {filteredSites.length === 0 ? (
         <EmptyState
-          icon="🌐"
+          icon={<Globe className="w-8 h-8 text-slate-400" />}
           title="Aucun site carrière enregistré"
           description="Ajoutez vos entreprises favorites ou importez la liste des 12 portails majeurs au Maroc."
           action={{
-            label: '📥 Importer les 12 portails recommandés',
+            label: 'Importer les 12 portails recommandés',
             onClick: handleImportPresets,
           }}
         />
@@ -188,9 +191,10 @@ export function CareerSitesPage() {
                       setSelectedSite(site);
                       setIsModalOpen(true);
                     }}
-                    className="text-xs text-slate-400 hover:text-slate-700 font-semibold"
+                    className="text-xs text-slate-400 hover:text-slate-700 font-semibold flex items-center gap-1"
                   >
-                    ✏️ Modifier
+                    <Edit3 className="w-3.5 h-3.5" />
+                    <span>Modifier</span>
                   </button>
                 </div>
 

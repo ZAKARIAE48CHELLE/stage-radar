@@ -1,4 +1,5 @@
 import React from 'react';
+import { Video, Building2, Phone, Calendar } from 'lucide-react';
 import type { ApplicationItem } from '../../types/api';
 import type { ApplicationStatus } from '../../lib/constants';
 import { STATUSES } from '../../lib/constants';
@@ -93,10 +94,14 @@ export function KanbanCard({
       {/* Interview alert if present */}
       {app.interview_at && (
         <div className="mt-2.5 p-2 bg-amber-50/90 rounded-lg border border-amber-200 flex items-center justify-between gap-1.5">
-          <div className="flex items-center gap-1 text-[11px] font-bold text-amber-950">
-            <span>
-              {app.interview_type === 'visio' ? '💻' : app.interview_type === 'presentiel' ? '🏢' : '📞'}
-            </span>
+          <div className="flex items-center gap-1.5 text-[11px] font-bold text-amber-950">
+            {app.interview_type === 'visio' ? (
+              <Video className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            ) : app.interview_type === 'presentiel' ? (
+              <Building2 className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+            ) : (
+              <Phone className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            )}
             <span>{formatDate(app.interview_at)}</span>
           </div>
           {countdown && (
@@ -128,10 +133,10 @@ export function KanbanCard({
         <button
           type="button"
           onClick={() => onScheduleInterview(app)}
-          className="text-[11px] text-amber-700 hover:text-amber-900 font-semibold flex items-center gap-1"
+          className="p-1 rounded-lg hover:bg-amber-100 text-amber-700 hover:text-amber-900 transition flex items-center justify-center"
           title="Planifier ou modifier l'entretien"
         >
-          <span>🎤</span>
+          <Calendar className="w-3.5 h-3.5" />
         </button>
       </div>
     </div>

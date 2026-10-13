@@ -1,5 +1,5 @@
 /**
- * ⚠ SAME formula as scraper/scoring.py::compute_score and supabase/schema.sql::my_matches
+ * NOTE: SAME formula as scraper/scoring.py::compute_score and supabase/schema.sql::my_matches
  * Change all three mirrors together.
  *
  * hits_i    = distinct keywords of axis i found (a keyword in title counts twice)

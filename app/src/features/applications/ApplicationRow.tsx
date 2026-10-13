@@ -1,4 +1,5 @@
 import React from 'react';
+import { Video, Building2, Phone } from 'lucide-react';
 import type { ApplicationItem } from '../../types/api';
 import type { ApplicationStatus } from '../../lib/constants';
 import { STATUSES } from '../../lib/constants';
@@ -93,10 +94,14 @@ export function ApplicationRow({ app, onEdit, onScheduleInterview }: Application
               onClick={() => onScheduleInterview(app)}
               className="text-left group cursor-pointer"
             >
-              <div className="font-bold text-slate-800 text-[11px] group-hover:text-blue-600 flex items-center gap-1">
-                <span>
-                  {app.interview_type === 'visio' ? '💻' : app.interview_type === 'presentiel' ? '🏢' : '📞'}
-                </span>
+              <div className="font-bold text-slate-800 text-[11px] group-hover:text-blue-600 flex items-center gap-1.5">
+                {app.interview_type === 'visio' ? (
+                  <Video className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                ) : app.interview_type === 'presentiel' ? (
+                  <Building2 className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+                ) : (
+                  <Phone className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                )}
                 <span>{formatDate(app.interview_at)}</span>
               </div>
               {countdown && (

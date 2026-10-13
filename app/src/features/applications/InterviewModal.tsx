@@ -4,6 +4,7 @@ import { interviewCountdown, toDatetimeLocal } from '../../lib/format';
 import { Modal } from '../../components/ui/Modal';
 import { supabase } from '../../lib/supabase';
 import { useQueryClient } from '@tanstack/react-query';
+import { Calendar } from 'lucide-react';
 
 interface InterviewModalProps {
   app: ApplicationItem | null;
@@ -102,7 +103,7 @@ export function InterviewModal({ app, isOpen, onClose }: InterviewModalProps) {
       onClose={onClose}
       title={
         <div className="flex items-center gap-2">
-          <span>🎤</span>
+          <Calendar className="w-5 h-5 text-amber-700" />
           <span>Planifier un entretien</span>
         </div>
       }
@@ -146,9 +147,9 @@ export function InterviewModal({ app, isOpen, onClose }: InterviewModalProps) {
             onChange={(e) => setInterviewType(e.target.value as 'visio' | 'presentiel' | 'telephone')}
             className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20"
           >
-            <option value="visio">💻 Visioconférence (Google Meet, Teams, Zoom...)</option>
-            <option value="presentiel">🏢 Présentiel (Dans les locaux de l'entreprise)</option>
-            <option value="telephone">📞 Entretien téléphonique</option>
+            <option value="visio">Visioconférence (Google Meet, Teams, Zoom...)</option>
+            <option value="presentiel">Présentiel (Dans les locaux de l'entreprise)</option>
+            <option value="telephone">Entretien téléphonique</option>
           </select>
         </div>
 

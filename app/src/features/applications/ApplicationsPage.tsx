@@ -12,6 +12,7 @@ import { Spinner } from '../../components/feedback/Spinner';
 import { ErrorState } from '../../components/feedback/ErrorState';
 import { exportAppsExcel } from './exportExcel';
 import { ALL_KANBAN_COLS, STATUSES } from '../../lib/constants';
+import { FileSpreadsheet, Plus, Table, LayoutDashboard, Calendar } from 'lucide-react';
 import { norm } from '../../lib/text';
 import type { ApplicationItem, MatchOffer } from '../../types/api';
 import { useMatches } from '../offers/api';
@@ -144,14 +145,16 @@ export function ApplicationsPage() {
             onClick={() => exportAppsExcel(filteredApps)}
             className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition flex items-center gap-1.5 shadow-sm"
           >
-            <span>📊</span> Exporter Excel (.xlsx)
+            <FileSpreadsheet className="w-4 h-4" />
+            <span>Exporter Excel (.xlsx)</span>
           </button>
 
           <button
             onClick={handleAddExternal}
             className="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white transition flex items-center gap-1.5 shadow-sm"
           >
-            <span>➕</span> Ajouter externe
+            <Plus className="w-4 h-4" />
+            <span>Ajouter externe</span>
           </button>
         </div>
       </div>
@@ -169,29 +172,29 @@ export function ApplicationsPage() {
         <div className="grid grid-cols-3 sm:flex items-center gap-1 bg-slate-100 p-1 rounded-xl w-full sm:w-auto">
           <button
             onClick={() => setViewMode('table')}
-            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1 sm:gap-1.5 ${
+            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
               viewMode === 'table' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <span>📋</span>
+            <Table className="w-3.5 h-3.5" />
             <span>Tableau</span>
           </button>
           <button
             onClick={() => setViewMode('kanban')}
-            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1 sm:gap-1.5 ${
+            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
               viewMode === 'kanban' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <span>📊</span>
+            <LayoutDashboard className="w-3.5 h-3.5" />
             <span>Kanban</span>
           </button>
           <button
             onClick={() => setViewMode('calendar')}
-            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1 sm:gap-1.5 truncate ${
+            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 truncate ${
               viewMode === 'calendar' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <span>📅</span>
+            <Calendar className="w-3.5 h-3.5" />
             <span>Calendrier</span>
             {upcomingInterviewsCount > 0 && (
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0" />

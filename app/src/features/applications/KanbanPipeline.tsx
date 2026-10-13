@@ -1,12 +1,43 @@
 import type { ApplicationItem } from '../../types/api';
 import { ALL_KANBAN_COLS } from '../../lib/constants';
 import { KanbanCard } from './KanbanCard';
+import {
+  FileText,
+  Send,
+  RefreshCw,
+  Calendar,
+  Award,
+  XCircle,
+  Archive,
+} from 'lucide-react';
 
 interface KanbanPipelineProps {
   apps: ApplicationItem[];
   visibleCols: string[];
   onEdit: (app: ApplicationItem) => void;
   onScheduleInterview: (app: ApplicationItem) => void;
+}
+
+function getColumnIcon(id: string) {
+  const cls = 'w-3.5 h-3.5';
+  switch (id) {
+    case 'a_postuler':
+      return <FileText className={cls} />;
+    case 'envoyee':
+      return <Send className={cls} />;
+    case 'relance':
+      return <RefreshCw className={cls} />;
+    case 'entretien':
+      return <Calendar className={cls} />;
+    case 'offre':
+      return <Award className={cls} />;
+    case 'refus':
+      return <XCircle className={cls} />;
+    case 'abandon':
+      return <Archive className={cls} />;
+    default:
+      return <FileText className={cls} />;
+  }
 }
 
 export function KanbanPipeline({
@@ -59,7 +90,7 @@ export function KanbanPipeline({
               className={`px-3 py-2 rounded-xl flex items-center justify-between mb-2.5 sm:mb-3 font-bold text-xs shadow-2xs ${col.headerCls}`}
             >
               <div className="flex items-center gap-1.5">
-                <span>{col.icon}</span>
+                {getColumnIcon(col.id)}
                 <span>{col.title}</span>
               </div>
               <span className="px-2 py-0.5 rounded-full bg-white/70 text-slate-800 text-[10px] font-black">

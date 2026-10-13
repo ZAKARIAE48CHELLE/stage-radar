@@ -1,4 +1,5 @@
 import { useAuth } from './AuthProvider';
+import { ShieldAlert, Clock } from 'lucide-react';
 
 export function PendingPage() {
   const { profile, isBlocked, signOut, refreshProfile } = useAuth();
@@ -6,7 +7,13 @@ export function PendingPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-slate-50">
       <div className="max-w-md w-full bg-white rounded-3xl border border-slate-200 p-8 text-center space-y-4 shadow-xs">
-        <div className="text-4xl">{isBlocked ? '⛔' : '⏳'}</div>
+        <div className="w-16 h-16 mx-auto rounded-full bg-slate-100 flex items-center justify-center">
+          {isBlocked ? (
+            <ShieldAlert className="w-8 h-8 text-rose-600" />
+          ) : (
+            <Clock className="w-8 h-8 text-amber-600" />
+          )}
+        </div>
         <h1 className="text-xl font-extrabold text-slate-900">
           {isBlocked ? 'Compte désactivé' : 'Compte en attente de validation'}
         </h1>
