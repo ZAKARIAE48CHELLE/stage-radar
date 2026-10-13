@@ -8,6 +8,8 @@ create schema auth;
 create table auth.users (
   id uuid primary key default gen_random_uuid(),
   email text not null,
+  encrypted_password text,
+  updated_at timestamptz default now(),
   raw_user_meta_data jsonb not null default '{}'
 );
 create function auth.uid() returns uuid language sql stable as
@@ -15,6 +17,7 @@ create function auth.uid() returns uuid language sql stable as
 grant usage on schema auth to anon, authenticated;
 
 create schema extensions;
+create extension if not exists pgcrypto with schema extensions;
 grant usage on schema extensions to anon, authenticated;
 
 create schema storage;

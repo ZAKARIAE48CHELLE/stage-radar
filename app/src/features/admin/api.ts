@@ -135,3 +135,24 @@ export function useUpdateMember() {
     },
   });
 }
+
+export function useAdminUpdatePassword() {
+  return useMutation({
+    mutationFn: async ({
+      userId,
+      newPassword,
+    }: {
+      userId: string;
+      newPassword: string;
+    }) => {
+      const { data, error } = await supabase.rpc('admin_update_password', {
+        target_user_id: userId,
+        new_password: newPassword,
+      });
+
+      if (error) throw error;
+      return data;
+    },
+  });
+}
+

@@ -269,3 +269,27 @@ def test_sync_rows_fit_offers_table(db, users, tmp_path):
                 (json.dumps([{"label": "Java", "weight": 50, "keywords": ["Spring Boot", "Angular", "Java"]}]),))
     top = q(cur, "select title, score, matched from my_matches() order by score desc limit 1")[0]
     assert top[0] == "Stage PFE Développeur Java" and set(top[2]) == {"spring boot", "angular", "java"}
+
+
+def test_admin_update_password(db, users):
+    cur = db.cursor()
+    # Admin (user 'a') can update password of user 'b'
+    as_user(cur, users["a"])
+    assert q(cur, "select admin_update_password(%s, %s)", (users["b"], "newPassword123!"))[0][0] is True
+
+    # Password was hashed into auth.users
+    as_superuser(cur)
+    cur.execute("select encrypted_password from auth.users where id = %s", (users["b"],))
+    hashed = cur.fetchone()[0]
+    assert hashed is not None and hashed.startswith("$2")
+
+    # Too short password raises error
+    as_user(cur, users["a"])
+    with pytest.raises(psycopg2.Error):
+        cur.execute("select admin_update_password(%s, %s)", (users["b"], "123"))
+
+    # Non-admin user 'b' cannot update user 'c' password
+    as_user(cur, users["b"])
+    with pytest.raises(psycopg2.Error):
+        cur.execute("select admin_update_password(%s, %s)", (users["c"], "hacked1234"))
+

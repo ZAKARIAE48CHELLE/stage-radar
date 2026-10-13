@@ -4,6 +4,7 @@
 -- ═══════════════════════════════════════════════════════════════════════════
 
 create extension if not exists unaccent with schema extensions;
+create extension if not exists pgcrypto with schema extensions;
 
 -- ───────────────────────────── tables ─────────────────────────────
 
@@ -423,6 +424,33 @@ begin
   return out;
 end $$;
 grant execute on function public.admin_stats() to authenticated;
+
+-- Admin reset of a member's password (callable only by approved admins).
+create or replace function public.admin_update_password(target_user_id uuid, new_password text)
+returns boolean
+language plpgsql security definer set search_path = public, extensions, auth as $$
+begin
+  if not public.is_admin() then
+    raise exception 'Admins only';
+  end if;
+
+  if length(new_password) < 6 then
+    raise exception 'Le mot de passe doit contenir au moins 6 caractères';
+  end if;
+
+  if not exists (select 1 from public.profiles where id = target_user_id) then
+    raise exception 'Utilisateur introuvable';
+  end if;
+
+  update auth.users
+  set encrypted_password = extensions.crypt(new_password, extensions.gen_salt('bf')),
+      updated_at = now()
+  where id = target_user_id;
+
+  return true;
+end $$;
+revoke execute on function public.admin_update_password(uuid, text) from public, anon;
+grant execute on function public.admin_update_password(uuid, text) to authenticated;
 
 -- Used by the scraper (service role) after each sync.
 create or replace function public.deactivate_unsynced(run_started timestamptz)

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertTriangle, Mail, X } from 'lucide-react';
+import { AlertTriangle, Mail, X, KeyRound, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 import {
   useAdminStats,
   useAdminUsers,
@@ -7,12 +7,15 @@ import {
   useDeleteInvite,
   useInvites,
   useUpdateMember,
+  useAdminUpdatePassword,
 } from './api';
 import { useAuth } from '../auth/AuthProvider';
 import { Spinner } from '../../components/feedback/Spinner';
 import { ErrorState } from '../../components/feedback/ErrorState';
+import { Modal } from '../../components/ui/Modal';
 import { daysAgo, formatDateTime, srcLabel } from '../../lib/format';
 import { FIELDS } from '../../lib/constants';
+import type { AdminUserItem } from '../../types/api';
 
 export function AdminPage() {
   const { user } = useAuth();
@@ -23,10 +26,65 @@ export function AdminPage() {
   const updateMember = useUpdateMember();
   const createInvite = useCreateInvite();
   const deleteInvite = useDeleteInvite();
+  const adminUpdatePassword = useAdminUpdatePassword();
 
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteError, setInviteError] = useState('');
   const [copiedLink, setCopiedLink] = useState(false);
+
+  // Password reset modal state
+  const [passwordUser, setPasswordUser] = useState<AdminUserItem | null>(null);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordSuccess, setPasswordSuccess] = useState(false);
+
+  function openPasswordModal(u: AdminUserItem) {
+    setPasswordUser(u);
+    setNewPassword('');
+    setConfirmPassword('');
+    setPasswordError('');
+    setPasswordSuccess(false);
+    setShowPassword(false);
+  }
+
+  function closePasswordModal() {
+    setPasswordUser(null);
+    setNewPassword('');
+    setConfirmPassword('');
+    setPasswordError('');
+    setPasswordSuccess(false);
+  }
+
+  async function handlePasswordSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!passwordUser) return;
+    setPasswordError('');
+    setPasswordSuccess(false);
+
+    if (newPassword.length < 6) {
+      setPasswordError('Le mot de passe doit contenir au moins 6 caractères.');
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setPasswordError('Les deux mots de passe ne correspondent pas.');
+      return;
+    }
+
+    try {
+      await adminUpdatePassword.mutateAsync({
+        userId: passwordUser.id,
+        newPassword,
+      });
+      setPasswordSuccess(true);
+      setTimeout(() => {
+        closePasswordModal();
+      }, 1500);
+    } catch (err: unknown) {
+      setPasswordError((err as Error).message || 'Erreur lors de la mise à jour du mot de passe.');
+    }
+  }
 
   if (isLoadingUsers || isLoadingStats) {
     return <Spinner className="w-8 h-8 text-blue-600" text="Chargement du back-office..." />;
@@ -261,6 +319,15 @@ export function AdminPage() {
                             {u.role === 'admin' ? 'Retirer admin' : 'Rendre admin'}
                           </button>
                         )}
+                        <button
+                          type="button"
+                          onClick={() => openPasswordModal(u)}
+                          className="font-bold text-amber-700 hover:text-amber-800 hover:underline inline-flex items-center gap-1"
+                          title="Modifier le mot de passe"
+                        >
+                          <KeyRound className="w-3.5 h-3.5" />
+                          <span>Mot de passe</span>
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -356,6 +423,101 @@ export function AdminPage() {
           </button>
         </div>
       </div>
+
+      {/* Password Reset Modal */}
+      <Modal
+        isOpen={!!passwordUser}
+        onClose={closePasswordModal}
+        title={
+          <div className="flex items-center gap-2">
+            <KeyRound className="w-5 h-5 text-amber-600" />
+            <span>Modifier le mot de passe</span>
+          </div>
+        }
+        maxWidth="max-w-md"
+      >
+        <form onSubmit={handlePasswordSubmit} className="space-y-4 text-xs">
+          {/* Target user info */}
+          <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <div className="font-bold text-slate-900 text-sm truncate">
+              {passwordUser?.full_name || 'Sans nom'}
+            </div>
+            <div className="text-slate-500 font-mono text-xs mt-0.5">
+              {passwordUser?.email}
+            </div>
+          </div>
+
+          {passwordError && (
+            <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 font-semibold flex items-center gap-2">
+              <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0" />
+              <span>{passwordError}</span>
+            </div>
+          )}
+
+          {passwordSuccess && (
+            <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 font-bold flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>Mot de passe mis à jour avec succès !</span>
+            </div>
+          )}
+
+          <div>
+            <label className="block font-semibold text-slate-700 mb-1">
+              Nouveau mot de passe
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Au moins 6 caractères"
+                required
+                minLength={6}
+                className="w-full px-3 py-2 pr-10 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label className="block font-semibold text-slate-700 mb-1">
+              Confirmer le nouveau mot de passe
+            </label>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Répétez le mot de passe"
+              required
+              minLength={6}
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            />
+          </div>
+
+          <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+            <button
+              type="button"
+              onClick={closePasswordModal}
+              className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold transition"
+            >
+              Annuler
+            </button>
+            <button
+              type="submit"
+              disabled={adminUpdatePassword.isPending || passwordSuccess}
+              className="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold transition shadow-sm disabled:opacity-50"
+            >
+              {adminUpdatePassword.isPending ? 'Mise à jour...' : 'Valider le changement'}
+            </button>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 }
