@@ -8,12 +8,12 @@ interface AppKpisProps {
 
 export function AppKpis({ counts, total, upcomingInterviewsCount }: AppKpisProps) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-6">
+    <div className="flex gap-2 overflow-x-auto pb-2 scroll sm:grid sm:grid-cols-4 lg:grid-cols-8 sm:gap-3 mb-4 sm:mb-6">
       {/* Total Tile */}
-      <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-2xs">
-        <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Total</div>
-        <div className="text-xl font-black text-slate-900 mt-0.5">{total}</div>
-        <div className="text-[10px] text-slate-400">
+      <div className="bg-white border border-slate-200 rounded-xl p-2.5 sm:p-3 shadow-2xs min-w-[100px] sm:min-w-0 shrink-0">
+        <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider">Total</div>
+        <div className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">{total}</div>
+        <div className="text-[10px] text-slate-400 truncate">
           {upcomingInterviewsCount > 0 ? `${upcomingInterviewsCount} entretien(s)` : 'suivies'}
         </div>
       </div>
@@ -24,10 +24,10 @@ export function AppKpis({ counts, total, upcomingInterviewsCount }: AppKpisProps
         return (
           <div
             key={id}
-            className={`border rounded-xl p-3 shadow-2xs transition ${info.cls} bg-opacity-30`}
+            className={`border rounded-xl p-2.5 sm:p-3 shadow-2xs transition min-w-[105px] sm:min-w-0 shrink-0 ${info.cls} bg-opacity-30`}
           >
-            <div className="text-[11px] font-bold uppercase tracking-wider truncate">{info.label}</div>
-            <div className="text-xl font-black mt-0.5">{count}</div>
+            <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider truncate">{info.label}</div>
+            <div className="text-lg sm:text-xl font-black mt-0.5">{count}</div>
             <div className="text-[10px] opacity-75">
               {total > 0 ? `${Math.round((100 * count) / total)}%` : '0%'}
             </div>

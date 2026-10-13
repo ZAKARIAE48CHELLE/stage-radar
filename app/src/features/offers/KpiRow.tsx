@@ -14,18 +14,18 @@ export function KpiRow({ total, paidCount, freshCount, topCount }: KpiRowProps) 
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mb-4 sm:mb-6">
       {kpis.map((k, i) => (
         <div
           key={i}
-          className={`${k.bg} border border-slate-200/80 rounded-xl p-4 shadow-sm flex items-center justify-between`}
+          className={`${k.bg} border border-slate-200/80 rounded-2xl p-3 sm:p-4 shadow-2xs flex items-center justify-between`}
         >
           <div>
-            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{k.label}</div>
-            <div className={`text-2xl font-black mt-1 ${k.color}`}>{k.value}</div>
-            <div className="text-[11px] text-slate-400 mt-0.5">{k.sub}</div>
+            <div className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">{k.label}</div>
+            <div className={`text-xl sm:text-2xl font-black mt-0.5 sm:mt-1 ${k.color}`}>{k.value}</div>
+            <div className="text-[10px] text-slate-400 mt-0.5 truncate hidden sm:block">{k.sub}</div>
           </div>
-          <div className="text-2xl opacity-80">{k.icon}</div>
+          <div className="text-xl sm:text-2xl opacity-80 shrink-0">{k.icon}</div>
         </div>
       ))}
     </div>

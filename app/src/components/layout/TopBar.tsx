@@ -16,8 +16,8 @@ export function TopBar() {
           </span>
         </Link>
 
-        {/* Navigation Tabs */}
-        <div className="flex-1 max-w-xl mx-2">
+        {/* Navigation Tabs (Desktop) */}
+        <div className="hidden md:flex flex-1 max-w-xl mx-4 justify-center">
           <NavBar />
         </div>
 

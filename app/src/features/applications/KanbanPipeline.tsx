@@ -37,7 +37,7 @@ export function KanbanPipeline({
           ? 'max-w-xl mx-auto'
           : isTwoCols
           ? 'grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto'
-          : 'flex gap-4 overflow-x-auto pb-4 scroll items-start'
+          : 'flex gap-3 sm:gap-4 overflow-x-auto pb-4 scroll items-start snap-x snap-mandatory'
       }`}
     >
       {activeCols.map((col) => {
@@ -46,17 +46,17 @@ export function KanbanPipeline({
         return (
           <div
             key={col.id}
-            className={`flex flex-col bg-slate-100/70 border border-slate-200/90 rounded-2xl p-3 ${
+            className={`flex flex-col bg-slate-100/70 border border-slate-200/90 rounded-2xl p-2.5 sm:p-3 snap-center ${
               isSingleCol
                 ? 'w-full'
                 : isTwoCols
                 ? 'w-full'
-                : 'min-w-[280px] max-w-[320px] shrink-0'
+                : 'w-[88vw] sm:w-auto sm:min-w-[280px] sm:max-w-[320px] shrink-0'
             }`}
           >
             {/* Column Header */}
             <div
-              className={`px-3 py-2 rounded-xl flex items-center justify-between mb-3 font-bold text-xs shadow-2xs ${col.headerCls}`}
+              className={`px-3 py-2 rounded-xl flex items-center justify-between mb-2.5 sm:mb-3 font-bold text-xs shadow-2xs ${col.headerCls}`}
             >
               <div className="flex items-center gap-1.5">
                 <span>{col.icon}</span>
@@ -68,7 +68,7 @@ export function KanbanPipeline({
             </div>
 
             {/* Column Cards */}
-            <div className="flex-1 space-y-3 min-h-[120px] overflow-y-auto max-h-[calc(100vh-280px)] pr-0.5">
+            <div className="flex-1 space-y-2.5 sm:space-y-3 min-h-[100px] overflow-y-auto max-h-[calc(100vh-280px)] pr-0.5">
               {colApps.length === 0 ? (
                 <div className="flex flex-col items-center justify-center p-6 text-center border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-xs">
                   <span>Aucune candidature</span>

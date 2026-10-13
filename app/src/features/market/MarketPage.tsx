@@ -107,9 +107,9 @@ export function MarketPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Offres par ville */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+        <div className="bg-white rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-sm">
           <h2 className="text-base font-bold text-slate-900 mb-1">Offres par ville</h2>
           <p className="text-xs text-slate-500 mb-4">Top des villes les plus représentées.</p>
 
@@ -129,7 +129,7 @@ export function MarketPage() {
         </div>
 
         {/* Offres par source */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+        <div className="bg-white rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-sm">
           <h2 className="text-base font-bold text-slate-900 mb-1">Offres par source</h2>
           <p className="text-xs text-slate-500 mb-4">Répartition des plateformes d'origine.</p>
 
@@ -149,7 +149,7 @@ export function MarketPage() {
         </div>
 
         {/* Vos priorités vs la demande */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-2">
+        <div className="bg-white rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-sm lg:col-span-2">
           <h2 className="text-base font-bold text-slate-900 mb-1">Vos priorités vs la demande du marché</h2>
           <p className="text-xs text-slate-500 mb-4">
             Comparaison entre la part de chaque axe dans vos pondérations personnelles et sa part réelle dans les compétences demandées par les recruteurs.
@@ -184,7 +184,7 @@ export function MarketPage() {
         </div>
 
         {/* Compétences les plus demandées */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-2">
+        <div className="bg-white rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-sm lg:col-span-2">
           <h2 className="text-base font-bold text-slate-900 mb-1">
             Compétences les plus demandées (parmi vos mots-clés)
           </h2>

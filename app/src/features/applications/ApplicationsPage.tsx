@@ -164,46 +164,49 @@ export function ApplicationsPage() {
       />
 
       {/* View Switcher & Filter Bar */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
         {/* View Mode Buttons */}
-        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl self-start">
+        <div className="grid grid-cols-3 sm:flex items-center gap-1 bg-slate-100 p-1 rounded-xl w-full sm:w-auto">
           <button
             onClick={() => setViewMode('table')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1 sm:gap-1.5 ${
               viewMode === 'table' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <span>📋</span> Tableau
+            <span>📋</span>
+            <span>Tableau</span>
           </button>
           <button
             onClick={() => setViewMode('kanban')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1 sm:gap-1.5 ${
               viewMode === 'kanban' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <span>📊</span> Kanban Pipeline
+            <span>📊</span>
+            <span>Kanban</span>
           </button>
           <button
             onClick={() => setViewMode('calendar')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1 sm:gap-1.5 truncate ${
               viewMode === 'calendar' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <span>📅</span> Calendrier entretiens
+            <span>📅</span>
+            <span>Calendrier</span>
             {upcomingInterviewsCount > 0 && (
-              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
             )}
           </button>
         </div>
 
         {/* Filter Inputs */}
-        <div className="flex flex-wrap items-center gap-2 text-xs">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 text-xs">
           <input
             type="text"
             value={filterQuery}
             onChange={(e) => setFilterQuery(e.target.value)}
             placeholder="Rechercher candidature..."
-            className="px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full sm:w-44 px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
           />
 
           <select

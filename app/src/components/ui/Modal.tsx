@@ -32,7 +32,7 @@ export function Modal({ isOpen, onClose, title, children, maxWidth = 'max-w-2xl'
 
   return (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in duration-150"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -41,21 +41,21 @@ export function Modal({ isOpen, onClose, title, children, maxWidth = 'max-w-2xl'
     >
       <div
         ref={modalRef}
-        className={`w-full ${maxWidth} bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[90vh]`}
+        className={`w-full ${maxWidth} bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[90vh]`}
       >
-        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-          <div className="text-lg font-bold text-slate-800 truncate pr-4">{title}</div>
+        <div className="px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/70 shrink-0">
+          <div className="text-base sm:text-lg font-bold text-slate-800 truncate pr-3">{title}</div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 w-8 h-8 rounded-full flex items-center justify-center transition"
+            className="text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 w-8 h-8 rounded-full flex items-center justify-center transition shrink-0"
             aria-label="Fermer"
           >
             ✕
           </button>
         </div>
-        <div className="p-6 overflow-y-auto flex-1 text-slate-700">{children}</div>
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1 text-slate-700">{children}</div>
         {footer && (
-          <div className="px-6 py-3 border-t border-slate-100 bg-slate-50 flex items-center justify-end gap-3">
+          <div className="px-4 sm:px-6 py-3 border-t border-slate-100 bg-slate-50 flex items-center justify-end gap-3 shrink-0">
             {footer}
           </div>
         )}

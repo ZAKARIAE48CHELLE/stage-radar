@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import type { ApplicationItem } from '../../types/api';
+import type { ApplicationStatus } from '../../lib/constants';
+import { STATUSES } from '../../lib/constants';
+import { formatDate, interviewCountdown } from '../../lib/format';
 import { ApplicationRow } from './ApplicationRow';
 import { EmptyState } from '../../components/feedback/EmptyState';
+import { useUpdateApplicationStatus } from './api';
 
 interface ApplicationsTableProps {
   apps: ApplicationItem[];
@@ -18,6 +22,7 @@ export function ApplicationsTable({
 }: ApplicationsTableProps) {
   const [pageSize, setPageSize] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const updateStatus = useUpdateApplicationStatus();
 
   const totalPages = Math.max(1, Math.ceil(apps.length / pageSize));
   const safePage = Math.min(currentPage, totalPages);
@@ -52,15 +57,15 @@ export function ApplicationsTable({
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
       {/* Top Header Controls */}
-      <div className="px-4 py-3 bg-slate-50/60 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <div className="font-semibold text-slate-700">
+      <div className="px-4 py-3 bg-slate-50/60 border-b border-slate-200 flex items-center justify-between gap-3 text-sm">
+        <div className="font-semibold text-slate-700 text-xs sm:text-sm">
           <span className="text-blue-600 font-bold">{apps.length}</span> candidature{apps.length > 1 ? 's' : ''}
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-slate-500">
-          <span>Lignes par page :</span>
+        <div className="flex items-center gap-1.5 text-xs text-slate-500">
+          <span className="hidden sm:inline">Lignes par page :</span>
           <select
             value={pageSize}
             onChange={(e) => handlePageSizeChange(Number(e.target.value))}
@@ -74,8 +79,132 @@ export function ApplicationsTable({
         </div>
       </div>
 
-      {/* Table */}
-      <div className="overflow-x-auto">
+      {/* Mobile Card List (< sm screens) */}
+      <div className="sm:hidden divide-y divide-slate-100">
+        {currentApps.map((app) => {
+          const countdown = interviewCountdown(app.interview_at);
+
+          return (
+            <div key={app.app_id} className="p-3.5 space-y-2.5">
+              {/* Header: Type + Status */}
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  {app.external ? (
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-700">
+                      EXTERNE
+                    </span>
+                  ) : (
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700">
+                      INTERNE
+                    </span>
+                  )}
+                  {app.applied_at && (
+                    <span className="text-[11px] text-slate-400">
+                      {formatDate(app.applied_at || app.ext_date)}
+                    </span>
+                  )}
+                </div>
+
+                {/* In-place status selector */}
+                <select
+                  value={app.status}
+                  onChange={(e) => {
+                    const newStatus = e.target.value as ApplicationStatus;
+                    updateStatus.mutate({
+                      appId: app.app_id,
+                      status: newStatus,
+                      appliedAt:
+                        ['envoyee', 'relance', 'entretien'].includes(newStatus) && !app.applied_at
+                          ? new Date().toISOString().slice(0, 10)
+                          : undefined,
+                    });
+                  }}
+                  disabled={updateStatus.isPending}
+                  className={`px-2.5 py-1 rounded-lg border font-bold text-xs focus:outline-none shadow-2xs ${
+                    STATUSES[app.status]?.cls || 'bg-slate-100 text-slate-700 border-slate-200'
+                  }`}
+                >
+                  {Object.entries(STATUSES).map(([id, info]) => (
+                    <option key={id} value={id}>
+                      {info.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Title & Company */}
+              <div
+                onClick={() => onEdit(app)}
+                className="cursor-pointer active:text-blue-600 transition"
+              >
+                <h3 className="font-bold text-slate-900 text-sm leading-snug line-clamp-2">
+                  {app.title}
+                </h3>
+                <div className="text-xs text-slate-500 font-medium mt-0.5">
+                  <span className="font-semibold text-slate-700">{app.company}</span>
+                  {app.city && <span> • {app.city}</span>}
+                </div>
+              </div>
+
+              {/* Interview banner if scheduled */}
+              {app.interview_at && (
+                <div
+                  onClick={() => onScheduleInterview(app)}
+                  className="p-2 bg-amber-50 rounded-xl border border-amber-200/80 flex items-center justify-between text-xs cursor-pointer"
+                >
+                  <div className="flex items-center gap-1.5 font-bold text-amber-950 text-[11px]">
+                    <span>
+                      {app.interview_type === 'visio' ? '💻' : app.interview_type === 'presentiel' ? '🏢' : '📞'}
+                    </span>
+                    <span>Entretien : {formatDate(app.interview_at)}</span>
+                  </div>
+                  {countdown && (
+                    <span className={`px-2 py-0.2 rounded-full text-[10px] ${countdown.cls}`}>
+                      {countdown.label}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Footer Actions */}
+              <div className="flex items-center justify-between pt-1 text-xs">
+                {!app.interview_at ? (
+                  <button
+                    onClick={() => onScheduleInterview(app)}
+                    className="text-[11px] text-amber-700 font-semibold hover:underline flex items-center gap-1"
+                  >
+                    <span>🎤</span> Planifier entretien
+                  </button>
+                ) : (
+                  <div />
+                )}
+
+                <div className="flex items-center gap-2">
+                  {app.url && (
+                    <a
+                      href={app.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1 text-slate-500 border border-slate-200 rounded-lg hover:bg-slate-50 text-[11px] font-medium"
+                    >
+                      Lien ↗
+                    </a>
+                  )}
+                  <button
+                    onClick={() => onEdit(app)}
+                    className="px-3 py-1 bg-slate-900 text-white rounded-lg text-[11px] font-bold"
+                  >
+                    Détails
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Desktop Table (>= sm screens) */}
+      <div className="hidden sm:block overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-slate-50 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-200">
@@ -102,9 +231,9 @@ export function ApplicationsTable({
 
       {/* Pagination Footer */}
       {totalPages > 1 && (
-        <div className="px-4 py-3 bg-slate-50/60 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-sm">
+        <div className="px-4 py-3 bg-slate-50/60 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
           <div className="text-xs text-slate-500">
-            Affichage de <span className="font-medium text-slate-700">{startIndex + 1}</span> à{' '}
+            <span className="font-medium text-slate-700">{startIndex + 1}</span>-
             <span className="font-medium text-slate-700">{Math.min(startIndex + pageSize, apps.length)}</span> sur{' '}
             <span className="font-medium text-slate-700">{apps.length}</span>
           </div>
@@ -124,7 +253,7 @@ export function ApplicationsTable({
                 .map((p, idx, arr) => (
                   <React.Fragment key={p}>
                     {idx > 0 && arr[idx - 1] !== p - 1 && (
-                      <span className="px-1 text-xs text-slate-400">...</span>
+                      <span className="px-0.5 text-xs text-slate-400">...</span>
                     )}
                     <button
                       onClick={() => handlePageChange(p)}
