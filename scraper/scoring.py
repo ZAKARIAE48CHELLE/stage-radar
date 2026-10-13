@@ -1,7 +1,7 @@
 """Relevance filtering + profile match scoring.
 
-The SAME formula is re-implemented in docs/index.html (function computeScore) so the
-dashboard sliders recompute scores exactly. Change both together.
+The SAME formula is re-implemented in app/src/lib/scoring.ts (function computeScore),
+app/public/perso.html, and supabase/schema.sql (my_matches). Change all together.
 
   hits_i    = distinct keywords of axis i found (a keyword in the title counts twice)
   pref_i    = weight_i / max(weights)                         (0..1)

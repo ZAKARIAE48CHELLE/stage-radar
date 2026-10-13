@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Stage Radar — security self-audit.
-# Acts as an ATTACKER who only has your public anon key (from docs/config.js) and tries to
+# Acts as an ATTACKER who only has your public anon key (from app/.env.local) and tries to
 # read your data anonymously. If RLS is set up correctly, every table returns 0 rows or an
 # error. Any table that returns real rows is a LEAK you must fix.
 #

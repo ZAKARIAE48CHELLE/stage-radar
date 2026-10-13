@@ -3,21 +3,21 @@
 Every morning a scraper collects new internship offers from stagiaires.ma, dreamjob.ma and
 job-alert e-mails (LinkedIn, Indeed, ReKrute, Emploi.ma). They feed two front ends:
 
-- **The multi-user app** (`docs/index.html`): friends create an account, you approve them,
+- **The multi-user app** (`app/`): friends create an account, you approve them,
   each person sets their own field and skills and gets their own scores, tracks their
   applications (status, notes, CV, cover-letter drafts). You get a back office.
-- **Your personal dashboard** (`docs/perso.html`): the original single-user page.
+- **Your personal dashboard** (`app/public/perso.html`): the original single-user page.
 
 ```
-stagiaires.ma sitemap ─┐                                   ┌─► docs/perso.html (your dashboard)
+stagiaires.ma sitemap ─┐                                   ┌─► app/public/perso.html (your dashboard)
 dreamjob.ma JSON API ──┼──► SQLite store ──► filter/score ─┤
-alert e-mails (IMAP) ──┘    (GitHub Actions, daily)        └─► Supabase ──► docs/index.html (app)
+alert e-mails (IMAP) ──┘    (GitHub Actions, daily)        └─► Supabase ──► app/ (React PWA)
                                                                  auth · offers · applications · CVs
 ```
 
 ## Multi-user app — setup (free, ~20 min)
 
-Stack: **Supabase** (accounts, Postgres database, CV storage; free tier) + the static site on
+Stack: **Supabase** (accounts, Postgres database, CV storage; free tier) + the React PWA on
 **Cloudflare Pages** (free, clean URLs, fast CDN) + the daily scraper on **GitHub Actions**.
 No server to run. The app is an installable PWA (add-to-home-screen on phone).
 
@@ -27,32 +27,32 @@ No server to run. The app is an installable PWA (add-to-home-screen on phone).
 3. **Auth settings:** *Authentication → Sign In / Providers → Email*: turn **off**
    "Confirm email". Supabase's built-in mailer only sends to your own team (2 mails/hour),
    so friends could never confirm; your admin approval is the gate instead.
-4. **Connect the site:** *Project Settings → API*: copy the *Project URL* and the *anon public*
-   key into `docs/config.js`. The anon key is meant to be public; security comes from the
+4. **Connect the site:** copy `app/.env.example` to `app/.env.local` and set `VITE_SUPABASE_URL`
+   and `VITE_SUPABASE_ANON_KEY`. The anon key is meant to be public; security comes from the
    row-level-security rules in the schema.
 5. **Deploy on Cloudflare Pages** (free): dash.cloudflare.com → *Workers & Pages* → *Create*
    → *Pages* → *Connect to Git* → pick your `stage-radar` repo. Build settings:
-   **Framework preset: None**, **Build command: empty**, **Build output directory: `docs`**.
-   Deploy. Your app is at `https://<project>.pages.dev` (add a custom domain later for free).
-   Clean URLs (`/offres`, `/profil`) and the app shell work out of the box via `docs/_redirects`.
+   **Framework preset: None (or Vite)**, **Build command: `cd app && npm ci && npm run build`**,
+   **Build output directory: `app/dist`**. Set environment variables `VITE_SUPABASE_URL` and
+   `VITE_SUPABASE_ANON_KEY`. Deploy. Your app is at `https://<project>.pages.dev` (add a custom domain later for free).
+   Clean URLs (`/offres`, `/profil`) and the app shell work out of the box via `app/public/_redirects`.
    Every push to the repo redeploys automatically.
 6. **Point Supabase at that URL:** *Authentication → URL Configuration* → *Site URL* =
    `https://<project>.pages.dev` (and add it under *Redirect URLs*). This makes sign-up and
    password-reset links return to the app.
 7. **Connect the scraper:** add GitHub repo **secrets** `SUPABASE_URL` (same URL) and
-   `SUPABASE_SERVICE_ROLE_KEY` (*service_role* key: secret, never put it in `docs/`).
+   `SUPABASE_SERVICE_ROLE_KEY` (*service_role* key: secret, never put it in `app/`).
    Then *Actions → Daily internship scrape → Run workflow*.
 8. **Sign up first.** The very first account becomes the admin automatically. Then, in
    *Admin*, invite friends by e-mail (they are approved on sign-up) or approve them when
    they register, and send them the link.
 
-*(Netlify works the same way — New site from Git, publish directory `docs`; the `_redirects`
-and `_headers` files are shared. Vercel: set the root/output to `docs`; its free tier is
-non-commercial only.)*
+*(Netlify works similarly with build command `cd app && npm ci && npm run build` and publish
+directory `app/dist`.)*
 
 **Why not GitHub Pages?** It can't do clean URLs (forces `#/…` hashes), is slow to update, and
 lives on a subpath. Cloudflare Pages fixes all three and is just as free. The repo still lives
-on GitHub; only the *hosting* of `docs/` moves.
+on GitHub; Cloudflare builds and hosts the `app/dist` bundle.
 
 **Optional, for "mot de passe oublié":** password-reset e-mails need a real mailer. Create a
 free SMTP account (e.g. Brevo, 300 mails/day) and enter it under *Authentication → Emails →
@@ -74,7 +74,7 @@ that user, enforced in the database (not just hidden in the UI). The admin sees 
 
 ### Sécurité — vérifier que vos données sont protégées
 
-Your Supabase URL and **anon key live in `docs/config.js` and are public** — that is how
+Your Supabase URL and **anon key live in `app/.env.local` (and Cloudflare env vars) and are public** — that is how
 Supabase is designed. Your data is protected not by hiding that key but by the **Row-Level
 Security (RLS) policies** in `supabase/schema.sql`. If you ever forget to run the schema, or
 disable RLS on a table, anyone with the (public) key can download everything — including your
@@ -92,7 +92,7 @@ it before putting real data in. Also confirm in the Supabase dashboard:
 - *Authentication → Policies*: RLS **enabled** on `profiles`, `offers`, `applications`,
   `invites`, `scrape_runs` (re-running `schema.sql` guarantees this).
 - *Storage → cvs* bucket is **Private** (not public).
-- The **service_role** key appears only in GitHub **secrets**, never in `docs/` or git.
+- The **service_role** key appears only in GitHub **secrets**, never in `app/` or git.
 - Rotate keys in *Project Settings → API* if the service_role key was ever committed or shared.
 
 What this does **not** protect against: an approved member is trusted — they can see every
@@ -109,24 +109,21 @@ without activity** (the daily scraper sync normally keeps it awake; if it pauses
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python -m pytest -q                                     # offline tests (DB tests need SR_TEST_PG_DSN)
-python -m scraper.run --max 40 -v                       # first small run (~1 min)
-python -m http.server -d docs 8000                      # app: /  ·  personal dashboard: /perso.html
+python -m scraper.run --max 40 -v                       # first small run (~1 min, exports to app/public/data)
+cd app && npm ci && npm run dev                         # app: http://localhost:5173  ·  perso: http://localhost:5173/perso.html
 ```
 
 The first full run fetches every offer from the last 45 days (a few hundred pages at
 1.5 s each, ~5–10 min). Later runs only fetch what is new, usually a few dozen pages.
 
-Open the dashboard through the local server, not by double-clicking `index.html`:
-browsers block `fetch()` of the JSON from `file://`.
+## Run it every day for free (GitHub Actions + Cloudflare Pages)
 
-## Run it every day for free (GitHub Actions + Pages)
-
-1. Push this folder to a new GitHub repo (public for free Pages; private works for the scraper).
-2. For the **personal dashboard only**, GitHub Pages is fine: *Settings → Pages* → *Deploy
-   from a branch*, `main`, `/docs`. (The multi-user app is hosted on Cloudflare Pages — see above.)
+1. Push this folder to your GitHub repo.
+2. In Cloudflare Pages, connect the repo with build command `cd app && npm ci && npm run build` and output `app/dist`.
 3. **Actions** tab → enable workflows → *Daily internship scrape* → **Run workflow** once.
-4. The personal dashboard is then at `https://<user>.github.io/<repo>/perso.html`, refreshed
-   daily at ~07:17 Morocco time. (The multi-user app lives at your Cloudflare `*.pages.dev` URL.)
+4. The workflow scrapes daily at ~07:17 Morocco time, syncs offers to Supabase, exports
+   `offers.json`/`offers.csv` to `app/public/data/`, and commits them. Cloudflare Pages then
+   automatically rebuilds and deploys both the React app and `/perso.html`.
 
 Optional Telegram alert: create a bot with @BotFather, message it once, read your chat id
 from `https://api.telegram.org/bot<TOKEN>/getUpdates`, then add repo **secrets**
@@ -155,9 +152,10 @@ For each axis, count the distinct skill keywords found (title mentions count twi
 `fit` = how much the offer leans toward the axes you weight highest; `intensity` = how
 clearly it is a data/AI role (saturates at 12 hits).
 `score = 60·fit + 40·intensity + bonus (PFE +5, preferred city/remote +3)`, capped at 100.
-The same formula runs in the personal dashboard (`docs/perso.html::computeScore`) and, per
-user with their own axes, in the database (`supabase/schema.sql::my_matches`). Change all three
-together; `tests/test_supabase_sql.py` checks the SQL against the Python version.
+The same formula runs in the personal dashboard (`app/public/perso.html::computeScore`),
+in the React app (`app/src/lib/scoring.ts::computeScore`), and per user with their own axes
+in the database (`supabase/schema.sql::my_matches`). Change all together; `tests/test_supabase_sql.py`
+and frontend vitest tests check the implementation.
 
 ### Database tests
 `tests/test_supabase_sql.py` runs the real schema on a local Postgres 15+ (with a stub of
@@ -201,22 +199,23 @@ APIs, RSS feeds, sitemaps or e-mail alerts over HTML scraping.
 
 ```
 config/profile.yaml          your profile, keywords, filters, weights
-scraper/run.py               CLI entry point / pipeline
+scraper/run.py               CLI entry point / pipeline (exports to app/public/data)
 scraper/sources/stagiaires_ma.py   sitemap discovery + JSON-LD parsing
 scraper/sources/dreamjob_ma.py     WordPress REST API
 scraper/sources/email_alerts.py    IMAP job-alert parser (LinkedIn, Indeed, ReKrute…)
 scraper/scoring.py           relevance filter + score formula
 scraper/storage.py           SQLite store (data/offers.db)
-scraper/notify.py            Telegram alert
+scraper/notify.py            Telegram & email alerts
 scraper/supabase_sync.py     pushes offers to Supabase (broad filter: config `platform:`)
 supabase/schema.sql          tables, row-level security, approval flow, per-user scoring
 supabase/security_check.sh   anonymous-access self-audit (run before inviting friends)
-docs/index.html, app.js      multi-user app (Supabase auth + data)
-docs/config.js               Supabase URL + anon key (public)
-docs/sw.js, manifest.webmanifest, icon-*.png   PWA (installable, offline shell)
-docs/_redirects, _headers    Cloudflare Pages / Netlify config (SPA routing, cache headers)
-docs/perso.html              personal dashboard (reads docs/data/offers.json)
+app/                         React 18 + Vite + Tailwind + PWA multi-user application
+app/src/                     pages, components, state hooks, and scoring formula
+app/public/                  static assets, _redirects, _headers, icons
+app/public/perso.html        personal single-user dashboard (reads /data/offers.json)
+app/public/data/             offers.json and offers.csv generated by scraper
+docs/                        documentation (MIGRATION.md, MERGE_GUIDE.md)
 tests/                       parsers, pipeline, sync, database (RLS + scoring)
-.github/workflows/daily-scrape.yml
+.github/workflows/           CI (tests + build) and daily scrape workflow
 AGENTS.md                    context + task prompts for Antigravity / coding agents
 ```

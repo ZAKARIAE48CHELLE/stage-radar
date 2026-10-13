@@ -183,7 +183,7 @@ def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--config", default=ROOT / "config" / "profile.yaml", type=Path)
     ap.add_argument("--db", default=ROOT / "data" / "offers.db", type=Path)
-    ap.add_argument("--out", default=ROOT / "docs" / "data", type=Path)
+    ap.add_argument("--out", default=ROOT / "app" / "public" / "data", type=Path)
     ap.add_argument("--no-fetch", action="store_true", help="skip scraping, only re-score and export")
     ap.add_argument("--max", type=int, default=None, help="cap on new pages fetched this run")
     ap.add_argument("--no-sync", action="store_true", help="do not push offers to Supabase")

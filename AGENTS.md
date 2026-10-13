@@ -2,10 +2,11 @@
 
 ## What this project is
 A daily internship scraper for Morocco (Python 3.11+, no framework, GitHub Actions) feeding:
-- a multi-user app for the owner (Zakariae Chelle) and friends: `docs/index.html` + `docs/app.js`,
-  Supabase for auth/DB/storage (`supabase/schema.sql`), hosted on Cloudflare Pages (output dir
-  `docs`); it's a PWA (`sw.js`, `manifest.webmanifest`) with clean-URL routing via the History API.
-- the owner's original single-user dashboard `docs/perso.html` (reads `docs/data/offers.json`).
+- a multi-user React PWA for the owner (Zakariae Chelle) and friends: `app/` (React 18 + Vite +
+  Tailwind + Lucide + Supabase), hosted on Cloudflare Pages (build: `cd app && npm ci && npm run build`,
+  output: `app/dist`); it's a PWA with clean-URL routing via React Router + `_redirects`.
+- the owner's original single-user dashboard `app/public/perso.html` (reads `/data/offers.json`,
+  exported by the scraper to `app/public/data/`).
 
 ## Rules
 - Respect robots.txt and site terms. Never fetch pages from rekrute.com, emploi.ma, Indeed,
@@ -15,28 +16,28 @@ A daily internship scraper for Morocco (Python 3.11+, no framework, GitHub Actio
 - Sources: `stagiaires_ma` (sitemap + JSON-LD), `dreamjob_ma` (WordPress REST API),
   `email_alerts` (IMAP). A failing source must not stop the others (`run_source` wrapper).
 - All network access goes through `scraper.http.PoliteSession` (robots check, crawl delay, retries).
-- The score formula exists three times: `scraper/scoring.py::compute_score`,
-  `docs/perso.html::computeScore` and `supabase/schema.sql::my_matches` (per-user axes).
-  Change all three; `tests/test_supabase_sql.py` compares SQL vs Python.
+- The score formula exists four times: `scraper/scoring.py::compute_score`,
+  `app/src/lib/scoring.ts::computeScore`, `app/public/perso.html::computeScore` and
+  `supabase/schema.sql::my_matches` (per-user axes). Change all; `tests/test_supabase_sql.py`
+  compares SQL vs Python and frontend tests verify TypeScript.
 - Security lives in the database: every table has RLS. Applications, notes, letters and CVs
   are private to their owner (admins get counts only via `admin_users()`). Never weaken a
-  policy to make a UI feature work; never put the service_role key in `docs/`.
+  policy to make a UI feature work; never put the service_role key in `app/`.
 - Users cannot change their own `role`/`status` (trigger `guard_profile_update`); the last
   approved admin cannot demote themself (`guard_last_admin`).
-- Front ends must escape every database/scraped string (`esc()` / `textContent`): offers are
-  untrusted input. French UI. No build step: plain JS + Tailwind CDN + supabase-js + Chart.js.
+- Front ends must sanitize/escape untrusted input: offers are untrusted input. French UI.
 - Schema changes must stay idempotent (the user re-runs schema.sql in the SQL editor).
-- App routing is clean URLs (History API): routes are the last path segment (`/offres`, `/profil`).
-  Internal links are `<a href="/route">` (a global click handler calls `go()`); `_redirects`
-  gives the SPA fallback on Cloudflare/Netlify. Script srcs in index.html must stay ABSOLUTE
-  (`/app.js`, `/config.js`) or deep-link reloads break. Bump `sw.js` VERSION when shell files change.
-- Run `python -m pytest -q` after every change; add a fixture test for any new parser.
+- App routing is clean URLs via React Router (`/offres`, `/candidatures`, `/carrieres`, `/marche`,
+  `/profil`, `/admin`). `app/public/_redirects` provides SPA fallback on Cloudflare Pages.
+- Run `python -m pytest -q` and `npm run test:run` after changes; add a fixture test for any new parser.
 
 ## Commands
-- Tests: `python -m pytest -q` (DB tests: set `SR_TEST_PG_DSN`, needs psycopg2-binary + Postgres 15+)
+- Python Tests: `python -m pytest -q` (DB tests: set `SR_TEST_PG_DSN`, needs psycopg2-binary + Postgres 15+)
+- Frontend Dev: `cd app && npm run dev` (app: http://localhost:5173 · perso: http://localhost:5173/perso.html)
+- Frontend Lint & Test: `cd app && npm run lint && npm run test:run`
+- Frontend Build: `cd app && npm run build`
 - Small live run: `python -m scraper.run --max 30 -v`
 - Re-score only: `python -m scraper.run --no-fetch`
-- Preview: `python -m http.server -d docs 8000`
 
 ## Ready-to-use task prompts
 1. *"Run a live scrape with `--max 40 -v`, then review 10 kept and 10 rejected offers in
