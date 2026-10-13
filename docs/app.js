@@ -412,7 +412,7 @@ function route() {
 }
 
 function renderNav() {
-  const items = [['offres', 'Offres'], ['candidatures', 'Mes candidatures'], ['carrieres', 'Sites carrières'], ['marche', 'Marché'], ['profil', 'Profil']];
+  const items = [['offres', 'Offres'], ['candidatures', 'Mes candidatures'], ['carrieres', 'Sites carrières'], ['marche', 'Marché']];
   if (S.profile.role === 'admin') items.push(['admin', 'Admin']);
   $('#nav').innerHTML = items.map(([k, l]) =>
     `<a href="/${k}" class="nav-btn px-3 py-2 rounded-lg hover:bg-slate-100 whitespace-nowrap" ${S.view === k ? 'aria-current="page"' : ''}>${l}${k === 'admin' ? '<span id="pendingBadge"></span>' : ''}</a>`).join('');
@@ -421,6 +421,9 @@ function renderNav() {
       if (count && $('#pendingBadge')) $('#pendingBadge').innerHTML = ` <span class="ml-1 px-1.5 rounded-full bg-amber-400 text-amber-950 text-[10px] font-extrabold">${count}</span>`;
     });
   }
+  const isProfile = S.view === 'profil';
+  $('#userMenuBtn')?.classList.toggle('ring-2', isProfile);
+  $('#userMenuBtn')?.classList.toggle('ring-blue-600', isProfile);
 }
 
 // ───────────────────────── data ─────────────────────────
