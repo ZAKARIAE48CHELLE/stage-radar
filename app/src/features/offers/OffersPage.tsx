@@ -3,6 +3,7 @@ import { useMatches } from './api';
 import { KpiRow } from './KpiRow';
 import { OfferFilters, type OfferFilterState } from './OfferFilters';
 import { OfferTable } from './OfferTable';
+import { OfferCardGrid } from './OfferCardGrid';
 import { OfferModal } from './OfferModal';
 import { Spinner } from '../../components/feedback/Spinner';
 import { ErrorState } from '../../components/feedback/ErrorState';
@@ -10,11 +11,30 @@ import type { MatchOffer } from '../../types/api';
 import { isFresh } from '../../lib/format';
 import { isPaid } from '../../lib/paid';
 import { norm } from '../../lib/text';
+import { LayoutGrid, Table } from 'lucide-react';
 
 export function OffersPage() {
   const { data: offers = [], isLoading, error, refetch } = useMatches();
 
   const [selectedOffer, setSelectedOffer] = useState<MatchOffer | null>(null);
+  const [viewMode, setViewMode] = useState<'cards' | 'table'>(() => {
+    try {
+      const saved = localStorage.getItem('sr_offers_view_mode');
+      return saved === 'table' ? 'table' : 'cards';
+    } catch {
+      return 'cards';
+    }
+  });
+
+  function handleViewModeChange(mode: 'cards' | 'table') {
+    setViewMode(mode);
+    try {
+      localStorage.setItem('sr_offers_view_mode', mode);
+    } catch {
+      // ignore
+    }
+  }
+
   const [filters, setFilters] = useState<OfferFilterState>({
     q: '',
     city: '',
@@ -140,13 +160,41 @@ export function OffersPage() {
 
   return (
     <div className="space-y-6">
-      {/* Title & header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      {/* Title & header with View Mode Switcher */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-black text-slate-900 tracking-tight">Offres de stage</h1>
           <p className="text-sm text-slate-500">
             Stages ciblés au Maroc, scorés en temps réel selon vos compétences et vos axes de recherche.
           </p>
+        </div>
+
+        {/* View Mode Toggle: Cards (Default) vs Table */}
+        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl self-start sm:self-auto shadow-2xs">
+          <button
+            type="button"
+            onClick={() => handleViewModeChange('cards')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+              viewMode === 'cards'
+                ? 'bg-white text-slate-900 shadow-2xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <LayoutGrid className="w-3.5 h-3.5" />
+            <span>Cartes</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => handleViewModeChange('table')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+              viewMode === 'table'
+                ? 'bg-white text-slate-900 shadow-2xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <Table className="w-3.5 h-3.5" />
+            <span>Tableau</span>
+          </button>
         </div>
       </div>
 
@@ -160,25 +208,46 @@ export function OffersPage() {
         sources={uniqueSources}
       />
 
-      {/* Table view */}
-      <OfferTable
-        offers={filteredOffers}
-        onSelect={setSelectedOffer}
-        onResetFilters={() =>
-          setFilters({
-            q: '',
-            city: '',
-            modality: '',
-            source: '',
-            status: '',
-            fresh: false,
-            pfe: false,
-            paid: false,
-            minScore: 0,
-            sort: 'score',
-          })
-        }
-      />
+      {/* Offers Display: Default Cards vs Table */}
+      {viewMode === 'cards' ? (
+        <OfferCardGrid
+          offers={filteredOffers}
+          onSelect={setSelectedOffer}
+          onResetFilters={() =>
+            setFilters({
+              q: '',
+              city: '',
+              modality: '',
+              source: '',
+              status: '',
+              fresh: false,
+              pfe: false,
+              paid: false,
+              minScore: 0,
+              sort: 'score',
+            })
+          }
+        />
+      ) : (
+        <OfferTable
+          offers={filteredOffers}
+          onSelect={setSelectedOffer}
+          onResetFilters={() =>
+            setFilters({
+              q: '',
+              city: '',
+              modality: '',
+              source: '',
+              status: '',
+              fresh: false,
+              pfe: false,
+              paid: false,
+              minScore: 0,
+              sort: 'score',
+            })
+          }
+        />
+      )}
 
       {/* Offer detail & application modal */}
       <OfferModal

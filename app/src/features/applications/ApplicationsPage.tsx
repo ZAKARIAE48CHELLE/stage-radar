@@ -21,7 +21,7 @@ export function ApplicationsPage() {
   const { data: apps = [], isLoading, error, refetch } = useApplications();
   const { data: matches = [] } = useMatches();
 
-  const [viewMode, setViewMode] = useState<'table' | 'kanban' | 'calendar'>('table');
+  const [viewMode, setViewMode] = useState<'kanban' | 'table' | 'calendar'>('kanban');
   const [filterQuery, setFilterQuery] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'internal' | 'external'>('all');
@@ -172,6 +172,15 @@ export function ApplicationsPage() {
         {/* View Mode Buttons */}
         <div className="grid grid-cols-3 sm:flex items-center gap-1 bg-slate-100 p-1 rounded-xl w-full sm:w-auto">
           <button
+            onClick={() => setViewMode('kanban')}
+            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
+              viewMode === 'kanban' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <LayoutDashboard className="w-3.5 h-3.5" />
+            <span>Kanban (Cartes)</span>
+          </button>
+          <button
             onClick={() => setViewMode('table')}
             className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
               viewMode === 'table' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
@@ -179,15 +188,6 @@ export function ApplicationsPage() {
           >
             <Table className="w-3.5 h-3.5" />
             <span>Tableau</span>
-          </button>
-          <button
-            onClick={() => setViewMode('kanban')}
-            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
-              viewMode === 'kanban' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <LayoutDashboard className="w-3.5 h-3.5" />
-            <span>Kanban</span>
           </button>
           <button
             onClick={() => setViewMode('calendar')}
