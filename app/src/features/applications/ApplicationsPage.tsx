@@ -34,6 +34,7 @@ export function ApplicationsPage() {
   const [isExternalModalOpen, setIsExternalModalOpen] = useState(false);
 
   const [selectedInterviewApp, setSelectedInterviewApp] = useState<ApplicationItem | null>(null);
+  const [selectedInterviewDate, setSelectedInterviewDate] = useState<string | null>(null);
   const [isInterviewModalOpen, setIsInterviewModalOpen] = useState(false);
 
   const [selectedOfferMatch, setSelectedOfferMatch] = useState<MatchOffer | null>(null);
@@ -266,7 +267,17 @@ export function ApplicationsPage() {
       {viewMode === 'calendar' && (
         <InterviewCalendar
           apps={filteredApps}
-          onSelectInterview={handleScheduleInterview}
+          allApps={apps}
+          onSelectInterview={(app) => {
+            setSelectedInterviewApp(app);
+            setSelectedInterviewDate(null);
+            setIsInterviewModalOpen(true);
+          }}
+          onScheduleNew={(dateStr) => {
+            setSelectedInterviewApp(null);
+            setSelectedInterviewDate(dateStr || null);
+            setIsInterviewModalOpen(true);
+          }}
         />
       )}
 
@@ -282,10 +293,13 @@ export function ApplicationsPage() {
 
       <InterviewModal
         app={selectedInterviewApp}
+        apps={apps}
+        initialDate={selectedInterviewDate}
         isOpen={isInterviewModalOpen}
         onClose={() => {
           setIsInterviewModalOpen(false);
           setSelectedInterviewApp(null);
+          setSelectedInterviewDate(null);
         }}
       />
 

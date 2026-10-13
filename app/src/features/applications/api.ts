@@ -51,6 +51,7 @@ export function useUpdateApplicationStatus() {
       queryClient.setQueryData<ApplicationItem[]>(['applications'], (old = []) =>
         old.map((app) => (app.app_id === updated.id ? { ...app, status: updated.status, applied_at: updated.applied_at, updated_at: updated.updated_at } : app))
       );
+      queryClient.invalidateQueries({ queryKey: ['applications'] });
       // Invalidate matches so offer rows show the updated status pill
       queryClient.invalidateQueries({ queryKey: ['matches'] });
     },

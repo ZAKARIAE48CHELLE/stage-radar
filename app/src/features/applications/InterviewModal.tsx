@@ -8,32 +8,53 @@ import { Calendar } from 'lucide-react';
 
 interface InterviewModalProps {
   app: ApplicationItem | null;
+  apps?: ApplicationItem[];
+  initialDate?: string | null;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function InterviewModal({ app, isOpen, onClose }: InterviewModalProps) {
+export function InterviewModal({
+  app,
+  apps = [],
+  initialDate,
+  isOpen,
+  onClose,
+}: InterviewModalProps) {
   const queryClient = useQueryClient();
+  const [selectedAppId, setSelectedAppId] = useState<number | null>(null);
   const [interviewAt, setInterviewAt] = useState<string>('');
   const [interviewType, setInterviewType] = useState<'visio' | 'presentiel' | 'telephone'>('visio');
   const [interviewNotes, setInterviewNotes] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
+    if (!isOpen) return;
+
     if (app) {
-      setInterviewAt(app.interview_at ? toDatetimeLocal(app.interview_at) : '');
+      setSelectedAppId(app.app_id);
+      setInterviewAt(app.interview_at ? toDatetimeLocal(app.interview_at) : (initialDate ? `${initialDate}T10:00` : ''));
       setInterviewType(app.interview_type || 'visio');
       setInterviewNotes(app.interview_notes || '');
+    } else if (apps.length > 0) {
+      // Pick first app in 'entretien' status, or fallback to first app
+      const preferred = apps.find((a) => a.status === 'entretien') || apps[0];
+      setSelectedAppId(preferred.app_id);
+      setInterviewAt(preferred.interview_at ? toDatetimeLocal(preferred.interview_at) : (initialDate ? `${initialDate}T10:00` : ''));
+      setInterviewType(preferred.interview_type || 'visio');
+      setInterviewNotes(preferred.interview_notes || '');
     }
-  }, [app]);
+  }, [app, apps, initialDate, isOpen]);
 
-  if (!app) return null;
+  const targetApp = app || apps.find((a) => a.app_id === selectedAppId) || apps[0] || null;
+
+  if (!isOpen) return null;
 
   const countdown = interviewCountdown(interviewAt ? new Date(interviewAt).toISOString() : null);
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
-    if (!app) return;
+    if (!targetApp) return;
     setIsSubmitting(true);
 
     try {
@@ -44,22 +65,23 @@ export function InterviewModal({ app, isOpen, onClose }: InterviewModalProps) {
         updated_at: new Date().toISOString(),
       };
 
-      if (interviewAt && ['a_postuler', 'envoyee', 'relance'].includes(app.status)) {
+      if (interviewAt && ['a_postuler', 'envoyee', 'relance'].includes(targetApp.status)) {
         patch.status = 'entretien';
       }
 
       const { data, error } = await supabase
         .from('applications')
         .update(patch)
-        .eq('id', app.app_id)
+        .eq('id', targetApp.app_id)
         .select()
         .single();
 
       if (error) throw error;
 
       queryClient.setQueryData<ApplicationItem[]>(['applications'], (old = []) =>
-        old.map((item) => (item.app_id === app.app_id ? { ...item, ...data } : item))
+        old.map((item) => (item.app_id === targetApp.app_id ? { ...item, ...data } : item))
       );
+      queryClient.invalidateQueries({ queryKey: ['applications'] });
       queryClient.invalidateQueries({ queryKey: ['matches'] });
       onClose();
     } catch (err: unknown) {
@@ -70,7 +92,7 @@ export function InterviewModal({ app, isOpen, onClose }: InterviewModalProps) {
   }
 
   async function handleClearInterview() {
-    if (!app) return;
+    if (!targetApp) return;
     setIsSubmitting(true);
     try {
       const { data, error } = await supabase
@@ -80,15 +102,17 @@ export function InterviewModal({ app, isOpen, onClose }: InterviewModalProps) {
           interview_notes: '',
           updated_at: new Date().toISOString(),
         })
-        .eq('id', app.app_id)
+        .eq('id', targetApp.app_id)
         .select()
         .single();
 
       if (error) throw error;
 
       queryClient.setQueryData<ApplicationItem[]>(['applications'], (old = []) =>
-        old.map((item) => (item.app_id === app.app_id ? { ...item, ...data } : item))
+        old.map((item) => (item.app_id === targetApp.app_id ? { ...item, ...data } : item))
       );
+      queryClient.invalidateQueries({ queryKey: ['applications'] });
+      queryClient.invalidateQueries({ queryKey: ['matches'] });
       onClose();
     } catch (err: unknown) {
       alert((err as Error).message || 'Erreur');
@@ -110,13 +134,45 @@ export function InterviewModal({ app, isOpen, onClose }: InterviewModalProps) {
       maxWidth="max-w-lg"
     >
       <form onSubmit={handleSave} className="space-y-4 text-xs">
-        {/* Application context */}
-        <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-          <div className="font-bold text-slate-800 text-sm truncate">{app.title}</div>
-          <div className="text-slate-500 font-medium mt-0.5">
-            {app.company} • {app.city || 'Maroc'}
+        {/* Application context or selector */}
+        {app ? (
+          <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <div className="font-bold text-slate-800 text-sm truncate">{app.title}</div>
+            <div className="text-slate-500 font-medium mt-0.5">
+              {app.company} • {app.city || 'Maroc'}
+            </div>
           </div>
-        </div>
+        ) : apps.length > 0 ? (
+          <div>
+            <label className="block font-semibold text-slate-700 mb-1">
+              Candidature concernée
+            </label>
+            <select
+              value={targetApp?.app_id || ''}
+              onChange={(e) => {
+                const id = Number(e.target.value);
+                setSelectedAppId(id);
+                const found = apps.find((a) => a.app_id === id);
+                if (found) {
+                  setInterviewAt(found.interview_at ? toDatetimeLocal(found.interview_at) : (initialDate ? `${initialDate}T10:00` : ''));
+                  setInterviewType(found.interview_type || 'visio');
+                  setInterviewNotes(found.interview_notes || '');
+                }
+              }}
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            >
+              {apps.map((a) => (
+                <option key={a.app_id} value={a.app_id}>
+                  {a.company} — {a.title} ({a.status})
+                </option>
+              ))}
+            </select>
+          </div>
+        ) : (
+          <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-amber-900 text-xs">
+            Aucune candidature enregistrée pour le moment. Ajoutez d'abord une candidature depuis la liste des offres ou via "Ajouter externe".
+          </div>
+        )}
 
         {/* Live Countdown badge */}
         {countdown && (
@@ -166,7 +222,7 @@ export function InterviewModal({ app, isOpen, onClose }: InterviewModalProps) {
         </div>
 
         <div className="flex items-center justify-between gap-3 pt-3 border-t border-slate-100">
-          {app.interview_at ? (
+          {targetApp?.interview_at ? (
             <button
               type="button"
               onClick={handleClearInterview}
@@ -189,7 +245,7 @@ export function InterviewModal({ app, isOpen, onClose }: InterviewModalProps) {
             </button>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !targetApp}
               className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-sm disabled:opacity-50"
             >
               {isSubmitting ? 'Enregistrement...' : 'Enregistrer'}
