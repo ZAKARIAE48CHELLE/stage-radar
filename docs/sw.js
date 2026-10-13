@@ -2,7 +2,7 @@
  * Privacy: cross-origin requests (Supabase API, CDNs) are NEVER intercepted or cached here,
  * so no account data, offers or CVs are ever stored by the service worker.
  */
-const VERSION = 'sr-v4';
+const VERSION = 'sr-v5';
 const SHELL = ['/', '/index.html', '/app.js', '/config.js', '/manifest.webmanifest',
                '/icon-192.png', '/icon-512.png'];
 
@@ -29,7 +29,10 @@ self.addEventListener('fetch', e => {
   // Same-origin assets: serve from cache fast, refresh in the background.
   e.respondWith(caches.match(req).then(hit => {
     const net = fetch(req).then(res => {
-      if (res && res.ok) caches.open(VERSION).then(c => c.put(req, res.clone()));
+      if (res && res.ok) {
+        const copy = res.clone();
+        caches.open(VERSION).then(c => c.put(req, copy)).catch(() => {});
+      }
       return res;
     }).catch(() => hit);
     return hit || net;

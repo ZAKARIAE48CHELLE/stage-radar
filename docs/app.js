@@ -1462,7 +1462,7 @@ async function viewCareerSites() {
   }
 
   const f = S.careerF;
-  const categories = [...new Set(['Tous', ...CAREER_CATEGORIES, ...(S.careerSites || []).map(s => s.category).filter(Boolean))];
+  const categories = [...new Set(['Tous', ...CAREER_CATEGORIES, ...(S.careerSites || []).map(s => s.category).filter(Boolean)])];
 
   v.innerHTML = `
   <div class="space-y-6">
