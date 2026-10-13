@@ -64,6 +64,8 @@ const S = {
   f: { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' },
   appPage: 1, appPageSize: 10,
   appF: { q: '', status: '', type: '', sort: 'updated' },
+  appViewMode: 'table', // 'table' | 'kanban' | 'calendar'
+  calDate: new Date(),
   careerSites: null, careerF: { q: '', category: '' },
 };
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -74,6 +76,36 @@ const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLow
 const srcLabel = s => (s || '').startsWith('email:') ? s.slice(6) + ' (alerte)' : (s || '—');
 const place = o => [o.city, o.modality].filter(Boolean).join(' · ') || '—';
 const fmtDate = d => d ? new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+function toDatetimeLocal(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  const pad = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+function fmtDateTime(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '—';
+  return d.toLocaleString('fr-FR', {
+    weekday: 'short', day: 'numeric', month: 'short',
+    hour: '2-digit', minute: '2-digit'
+  });
+}
+function interviewCountdown(iso) {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return null;
+  const diffMs = d.getTime() - Date.now();
+  const diffDays = Math.round(diffMs / 864e5);
+  const diffHours = Math.round(diffMs / 36e5);
+  if (diffMs < -36e5) return { label: 'Passé', cls: 'bg-slate-100 text-slate-500' };
+  if (Math.abs(diffHours) <= 18 && Math.abs(diffDays) <= 1) return { label: "Aujourd'hui !", cls: 'bg-amber-100 text-amber-900 font-extrabold animate-pulse' };
+  if (diffDays === 1) return { label: 'Demain', cls: 'bg-amber-50 text-amber-800 font-bold' };
+  if (diffDays > 1 && diffDays <= 7) return { label: `Dans ${diffDays} j`, cls: 'bg-blue-50 text-blue-700 font-bold' };
+  if (diffDays > 7) return { label: `Dans ${diffDays} j`, cls: 'bg-slate-100 text-slate-600' };
+  return { label: 'En cours', cls: 'bg-emerald-100 text-emerald-800' };
+}
 function daysAgo(iso) {
   if (!iso) return '—';
   const d = Math.floor((Date.now() - new Date(String(iso).slice(0, 10) + 'T00:00:00Z')) / 864e5);
@@ -156,7 +188,25 @@ function boot() {
     // never await supabase calls inside this callback (supabase-js deadlock); defer instead
     setTimeout(() => onAuth(event, session), 0);
   });
-  $('#logoutBtn').addEventListener('click', async () => { await S.sb.auth.signOut(); });
+  $('#logoutBtn').addEventListener('click', async () => {
+    closeUserMenu();
+    await S.sb.auth.signOut();
+  });
+  const userBtn = $('#userMenuBtn');
+  if (userBtn) {
+    userBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const drop = $('#userDropdown');
+      if (drop) {
+        const isHidden = drop.classList.contains('hidden');
+        drop.classList.toggle('hidden', !isHidden);
+        userBtn.setAttribute('aria-expanded', String(isHidden));
+      }
+    });
+  }
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#userMenuWrap')) closeUserMenu();
+  });
   window.addEventListener('popstate', route);
   document.addEventListener('click', e => {               // intercept internal links for clean-URL routing
     const a = e.target.closest('a');
@@ -164,10 +214,24 @@ function boot() {
     const href = a.getAttribute('href');
     if (!href || !href.startsWith('/') || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
+    closeUserMenu();
     go(href.split('/').filter(Boolean).pop() || 'offres');
   });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal();
+      closeUserMenu();
+    }
+  });
   $('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+}
+
+function closeUserMenu() {
+  const drop = $('#userDropdown');
+  if (drop && !drop.classList.contains('hidden')) {
+    drop.classList.add('hidden');
+    $('#userMenuBtn')?.setAttribute('aria-expanded', 'false');
+  }
 }
 
 async function onAuth(event, session) {
@@ -179,6 +243,7 @@ async function onAuth(event, session) {
     Object.assign(S, { profile: null, matches: [], apps: null, loadedAt: 0, page: 1, pageSize: 10 });
     S.f = { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' };
     $('#topbar').classList.add('hidden');
+    closeUserMenu();
     return renderAuth();
   }
   if (S.profile && S.profile.id === S.user.id && event === 'SIGNED_IN') return;  // tab refocus
@@ -188,7 +253,21 @@ async function onAuth(event, session) {
     $('#view').innerHTML = `<div class="${card} max-w-lg mx-auto mt-10 text-sm">Profil introuvable : ${esc(errMsg(e))}. Vérifiez que <code>supabase/schema.sql</code> a bien été exécuté.</div>`;
     return;
   }
-  $('#whoami').textContent = S.profile.full_name || S.profile.email;
+  const displayName = S.profile.full_name || S.profile.email;
+  const displayEmail = S.profile.email || S.user.email || '';
+  const initials = (S.profile.full_name || displayEmail).split(' ').filter(Boolean).map(x => x[0]).slice(0, 2).join('').toUpperCase() || 'U';
+
+  if ($('#whoami')) $('#whoami').textContent = displayName;
+  if ($('#userAvatar')) $('#userAvatar').textContent = initials;
+  if ($('#userDropdownName')) $('#userDropdownName').textContent = displayName;
+  if ($('#userDropdownEmail')) $('#userDropdownEmail').textContent = displayEmail;
+  if ($('#userDropdownBadge')) {
+    const isAdmin = S.profile.role === 'admin';
+    $('#userDropdownBadge').innerHTML = isAdmin
+      ? '<span class="inline-block px-2 py-0.5 rounded-md bg-purple-100 text-purple-800 text-[10px] font-bold">Administrateur</span>'
+      : '<span class="inline-block px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 text-[10px] font-bold">Étudiant(e)</span>';
+  }
+
   if (S.profile.status !== 'approved') return renderPending();
   $('#topbar').classList.remove('hidden');
   if (!(S.profile.axes || []).length) {
@@ -625,11 +704,34 @@ async function openOffer(id) {
         <label class="block font-semibold text-slate-600">Statut<select name="status" class="${input} mt-1">
           <option value="">— Non suivie —</option>${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${app?.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}</select></label>
         <label class="block font-semibold text-slate-600">Date d’envoi<input type="date" name="applied_at" value="${esc(app?.applied_at || '')}" class="${input} mt-1"></label>
+        
+        <div class="p-3 bg-amber-50/80 rounded-xl border border-amber-200/90 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-amber-950 text-[11px] flex items-center gap-1"><span>🎤</span> Entretien & Planning</span>
+            ${app?.interview_at ? `<span class="text-[10px] text-amber-900 font-bold">${esc(fmtDateTime(app.interview_at))}</span>` : ''}
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+            <label class="block font-semibold text-slate-600">Date et heure
+              <input type="datetime-local" name="interview_at" value="${toDatetimeLocal(app?.interview_at)}" class="${input} mt-0.5 text-xs py-1.5">
+            </label>
+            <label class="block font-semibold text-slate-600">Format
+              <select name="interview_type" class="${input} mt-0.5 text-xs py-1.5">
+                <option value="visio" ${app?.interview_type === 'visio' || !app?.interview_type ? 'selected' : ''}>💻 Visio</option>
+                <option value="presentiel" ${app?.interview_type === 'presentiel' ? 'selected' : ''}>🏢 Présentiel</option>
+                <option value="telephone" ${app?.interview_type === 'telephone' ? 'selected' : ''}>📞 Téléphone</option>
+              </select>
+            </label>
+          </div>
+          <label class="block font-semibold text-slate-600 text-[11px]">Notes / Lien de visio
+            <input name="interview_notes" value="${esc(app?.interview_notes || '')}" placeholder="Lien Meet/Teams, contact, adresse..." class="${input} mt-0.5 text-xs py-1.5">
+          </label>
+        </div>
+
         <label class="block font-semibold text-slate-600">Notes<textarea name="notes" rows="3" maxlength="4000" class="${input} mt-1" placeholder="Contact RH, relance prévue…">${esc(app?.notes || '')}</textarea></label>
         <div class="space-y-1">
           <div class="flex items-center justify-between"><span class="font-semibold text-slate-600">Lettre de motivation</span>
             <span class="space-x-2"><button type="button" id="genLetter" class="underline text-blue-700">Générer</button><button type="button" id="copyLetter" class="underline text-slate-500">Copier</button></span></div>
-          <textarea name="letter" rows="6" maxlength="10000" class="${input}" placeholder="Cliquez sur « Générer » pour un brouillon personnalisé.">${esc(app?.letter || '')}</textarea>
+          <textarea name="letter" rows="5" maxlength="10000" class="${input}" placeholder="Cliquez sur « Générer » pour un brouillon personnalisé.">${esc(app?.letter || '')}</textarea>
         </div>
         <div class="flex flex-wrap gap-2 pt-1">
           <button class="${btnPrimary} flex-1">Enregistrer</button>
@@ -667,9 +769,24 @@ async function openOffer(id) {
   form.addEventListener('submit', async ev => {
     ev.preventDefault();
     const fd = new FormData(form);
-    if (!fd.get('status')) { if (!app) return closeModal(); fd.set('status', 'a_postuler'); }
+    const intAt = fd.get('interview_at') || null;
+    let st = fd.get('status');
+    if (!st) {
+      if (!app && !intAt) return closeModal();
+      st = intAt ? 'entretien' : 'a_postuler';
+    } else if (intAt && ['a_postuler', 'envoyee', 'relance'].includes(st)) {
+      st = 'entretien';
+    }
     try {
-      await saveApplication(id, { status: fd.get('status'), notes: fd.get('notes'), letter: fd.get('letter'), applied_at: fd.get('applied_at') || null });
+      await saveApplication(id, {
+        status: st,
+        notes: fd.get('notes'),
+        letter: fd.get('letter'),
+        applied_at: fd.get('applied_at') || null,
+        interview_at: intAt,
+        interview_type: fd.get('interview_type') || 'visio',
+        interview_notes: fd.get('interview_notes') || '',
+      });
       toast('Candidature enregistrée'); closeModal(); refreshCurrent();
     } catch (e) { toast(errMsg(e), 'err'); }
   });
@@ -714,73 +831,85 @@ async function viewApps() {
   }
   const counts = Object.fromEntries(Object.keys(STATUSES).map(k => [k, 0]));
   S.apps.forEach(a => { if (counts[a.status] !== undefined) counts[a.status]++; });
+
+  const scheduledInterviews = S.apps.filter(a => a.interview_at);
+  const nowMs = Date.now() - 36e5;
+  const upcomingInterviews = scheduledInterviews.filter(a => new Date(a.interview_at).getTime() >= nowMs);
+
   const f = S.appF;
   v.innerHTML = `
   <div class="space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-      <div><h1 class="text-2xl font-extrabold text-slate-900">Mes candidatures</h1>
-      <p class="text-sm text-slate-500">${S.apps.length} candidature${S.apps.length > 1 ? 's' : ''} suivie${S.apps.length > 1 ? 's' : ''}. Visible uniquement par vous.</p></div>
+      <div>
+        <h1 class="text-2xl font-extrabold text-slate-900">Mes candidatures</h1>
+        <p class="text-sm text-slate-500">${S.apps.length} candidature${S.apps.length > 1 ? 's' : ''} suivie${S.apps.length > 1 ? 's' : ''}. Visible uniquement par vous.</p>
+      </div>
       <div class="flex items-center gap-2 flex-wrap">
         <button id="addExtApp" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-700 hover:bg-blue-800 text-white transition flex items-center gap-1.5 shadow-sm"><span>➕</span> Ajouter une candidature externe</button>
         <button id="excelApps" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition flex items-center gap-1.5 shadow-sm"><span>📊</span> Exporter Excel (.xlsx)</button>
       </div>
     </div>
+
+    <!-- KPIs par statut & entretiens -->
     <section class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
-      ${Object.entries(STATUSES).map(([k, s]) => `<div class="rounded-2xl border p-3 ${s.cls}"><div class="text-[10px] font-bold uppercase">${s.label}</div><div class="text-2xl font-extrabold">${counts[k]}</div></div>`).join('')}
+      ${Object.entries(STATUSES).map(([k, s]) => {
+        const isInterview = k === 'entretien';
+        return `
+          <div class="rounded-2xl border p-3 ${s.cls} ${isInterview && scheduledInterviews.length ? 'ring-2 ring-amber-400/70 shadow-sm' : ''}">
+            <div class="text-[10px] font-bold uppercase flex items-center justify-between">
+              <span>${s.label}</span>
+              ${isInterview && scheduledInterviews.length ? `<span class="text-[9px] px-1.5 py-0.2 rounded-full bg-amber-200 text-amber-950 font-black">🗓️ ${scheduledInterviews.length}</span>` : ''}
+            </div>
+            <div class="text-2xl font-extrabold mt-0.5">${counts[k]}</div>
+          </div>
+        `;
+      }).join('')}
     </section>
-    <section class="${card} space-y-4">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
-        <h2 class="text-lg font-bold text-slate-900">Suivi détaillé</h2>
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <span id="appCount" class="bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-full border border-blue-200"></span>
-          <button id="resetApps" class="text-xs underline text-slate-500">Réinitialiser les filtres</button>
-        </div>
+
+    <!-- Switcher de modes de vue : Tableau · Kanban · Calendrier -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-2.5 rounded-2xl border border-slate-200 shadow-sm">
+      <div class="inline-flex p-1 bg-slate-100 rounded-xl border border-slate-200 text-xs font-bold text-slate-600">
+        <button type="button" id="tabModeTable" class="px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 ${S.appViewMode === 'table' ? 'bg-white text-blue-700 shadow-sm font-black' : 'hover:text-slate-900'}">
+          <span>📋</span><span>Tableau</span>
+        </button>
+        <button type="button" id="tabModeKanban" class="px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 ${S.appViewMode === 'kanban' ? 'bg-white text-blue-700 shadow-sm font-black' : 'hover:text-slate-900'}">
+          <span>📊</span><span>Kanban Pipeline</span>
+        </button>
+        <button type="button" id="tabModeCalendar" class="px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 ${S.appViewMode === 'calendar' ? 'bg-white text-blue-700 shadow-sm font-black' : 'hover:text-slate-900'}">
+          <span>📅</span><span>Calendrier des entretiens</span>
+          ${upcomingInterviews.length ? `<span class="px-1.5 py-0.2 rounded-full bg-amber-200 text-amber-950 text-[10px] font-extrabold ml-0.5">${upcomingInterviews.length}</span>` : ''}
+        </button>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
-        <label class="sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Recherche</span><input id="appQ" type="search" value="${esc(f.q)}" placeholder="Poste, entreprise, ville, notes…" class="${input}"></label>
-        <label><span class="block font-semibold text-slate-600 mb-1">Statut</span><select id="appStat" class="${input}">
-          <option value="">Tous les statuts</option>
-          ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${f.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}
-        </select></label>
-        <label><span class="block font-semibold text-slate-600 mb-1">Type</span><select id="appType" class="${input}">
-          <option value="" ${!f.type ? 'selected' : ''}>Tous les types</option>
-          <option value="internal" ${f.type === 'internal' ? 'selected' : ''}>Offres internes</option>
-          <option value="external" ${f.type === 'external' ? 'selected' : ''}>Candidatures externes</option>
-        </select></label>
-        <label class="sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Trier par</span><select id="appSort" class="${input}">
-          <option value="updated" ${f.sort === 'updated' ? 'selected' : ''}>Dernière mise à jour</option>
-          <option value="applied" ${f.sort === 'applied' ? 'selected' : ''}>Date d'envoi</option>
-          <option value="company" ${f.sort === 'company' ? 'selected' : ''}>Entreprise (A-Z)</option>
-          <option value="title" ${f.sort === 'title' ? 'selected' : ''}>Poste (A-Z)</option>
-        </select></label>
+
+      <div class="flex items-center gap-2.5 text-xs">
+        <span id="appCount" class="bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-full border border-blue-200"></span>
+        <button id="resetApps" class="text-xs underline text-slate-500 hover:text-slate-800">Réinitialiser les filtres</button>
       </div>
-      <div class="overflow-x-auto rounded-2xl border border-slate-200 scroll">
-        <table class="w-full text-left text-xs">
-          <thead><tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-slate-200">
-            <th class="py-3 px-4">Poste</th>
-            <th class="py-3 px-4">Entreprise</th>
-            <th class="py-3 px-4">Statut</th>
-            <th class="py-3 px-4">Envoyée le</th>
-            <th class="py-3 px-4">Mise à jour</th>
-            <th class="py-3 px-4 text-right">Actions</th>
-          </tr></thead>
-          <tbody id="appTbody" class="divide-y divide-slate-200"></tbody>
-        </table>
-      </div>
-      <div id="appPaginationBar" class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-3 border-t border-slate-100 text-xs">
-        <div class="flex items-center gap-2 text-slate-600">
-          <span>Lignes par page :</span>
-          <select id="appPageSize" class="px-2.5 py-1.5 rounded-xl border border-slate-300 bg-white font-bold text-slate-700 cursor-pointer">
-            <option value="10" ${S.appPageSize === 10 ? 'selected' : ''}>10</option>
-            <option value="15" ${S.appPageSize === 15 ? 'selected' : ''}>15</option>
-            <option value="20" ${S.appPageSize === 20 ? 'selected' : ''}>20</option>
-            <option value="30" ${S.appPageSize === 30 ? 'selected' : ''}>30</option>
-          </select>
-          <span id="appPageInfo" class="text-slate-500 font-medium"></span>
-        </div>
-        <div id="appPager" class="flex items-center gap-1.5 flex-wrap justify-center"></div>
-      </div>
-    </section>
+    </div>
+
+    <!-- Barre de filtres (active pour Tableau et Kanban) -->
+    <div id="appFilterBar" class="${S.appViewMode === 'calendar' ? 'hidden' : ''} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
+      <label class="sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Recherche</span><input id="appQ" type="search" value="${esc(f.q)}" placeholder="Poste, entreprise, ville, notes…" class="${input}"></label>
+      <label><span class="block font-semibold text-slate-600 mb-1">Statut</span><select id="appStat" class="${input}">
+        <option value="">Tous les statuts</option>
+        ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${f.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}
+      </select></label>
+      <label><span class="block font-semibold text-slate-600 mb-1">Type</span><select id="appType" class="${input}">
+        <option value="" ${!f.type ? 'selected' : ''}>Tous les types</option>
+        <option value="internal" ${f.type === 'internal' ? 'selected' : ''}>Offres internes</option>
+        <option value="external" ${f.type === 'external' ? 'selected' : ''}>Candidatures externes</option>
+      </select></label>
+      <label class="sm:col-span-2"><span class="block font-semibold text-slate-600 mb-1">Trier par</span><select id="appSort" class="${input}">
+        <option value="updated" ${f.sort === 'updated' ? 'selected' : ''}>Dernière mise à jour</option>
+        <option value="applied" ${f.sort === 'applied' ? 'selected' : ''}>Date d'envoi</option>
+        <option value="interview" ${f.sort === 'interview' ? 'selected' : ''}>Date d'entretien</option>
+        <option value="company" ${f.sort === 'company' ? 'selected' : ''}>Entreprise (A-Z)</option>
+        <option value="title" ${f.sort === 'title' ? 'selected' : ''}>Poste (A-Z)</option>
+      </select></label>
+    </div>
+
+    <!-- Conteneur principal de la vue -->
+    <div id="appMainView"></div>
   </div>`;
 
   $('#addExtApp').onclick = () => openExternalAppModal();
@@ -791,23 +920,43 @@ async function viewApps() {
     viewApps();
   };
 
-  const bind = (id, key, ev = 'change') => $(id).addEventListener(ev, e => {
-    S.appF[key] = e.target.value;
-    S.appPage = 1;
-    renderAppRows();
-  });
+  $('#tabModeTable').onclick = () => { S.appViewMode = 'table'; viewApps(); };
+  $('#tabModeKanban').onclick = () => { S.appViewMode = 'kanban'; viewApps(); };
+  $('#tabModeCalendar').onclick = () => { S.appViewMode = 'calendar'; viewApps(); };
+
+  const bind = (id, key, ev = 'change') => {
+    const el = $(id);
+    if (el) el.addEventListener(ev, e => {
+      S.appF[key] = e.target.value;
+      S.appPage = 1;
+      renderCurrentAppView();
+    });
+  };
   bind('#appQ', 'q', 'input');
   bind('#appStat', 'status');
   bind('#appType', 'type');
   bind('#appSort', 'sort');
 
-  $('#appPageSize').addEventListener('change', e => {
-    S.appPageSize = Number(e.target.value);
-    S.appPage = 1;
-    renderAppRows();
-  });
+  renderCurrentAppView();
+}
 
-  renderAppRows();
+function renderCurrentAppView() {
+  const container = $('#appMainView');
+  if (!container) return;
+
+  const list = filteredApps();
+  const total = list.length;
+  if ($('#appCount')) {
+    $('#appCount').textContent = `${total} / ${S.apps.length} candidature${S.apps.length > 1 ? 's' : ''}`;
+  }
+
+  if (S.appViewMode === 'kanban') {
+    renderKanbanView(container, list);
+  } else if (S.appViewMode === 'calendar') {
+    renderCalendarView(container);
+  } else {
+    renderTableView(container, list);
+  }
 }
 
 function filteredApps() {
@@ -815,7 +964,7 @@ function filteredApps() {
   const f = S.appF, q = norm(f.q);
   const list = S.apps.filter(a => {
     if (q) {
-      const hay = norm([a.title, a.company, a.city, a.notes, a.source].filter(Boolean).join(' '));
+      const hay = norm([a.title, a.company, a.city, a.notes, a.source, a.interview_notes].filter(Boolean).join(' '));
       if (!hay.includes(q)) return false;
     }
     if (f.status && a.status !== f.status) return false;
@@ -827,19 +976,15 @@ function filteredApps() {
   const by = {
     updated: (a, b) => String(b.updated_at || '').localeCompare(String(a.updated_at || '')),
     applied: (a, b) => String(b.applied_at || b.ext_date || '').localeCompare(String(a.applied_at || a.ext_date || '')),
+    interview: (a, b) => String(b.interview_at || '').localeCompare(String(a.interview_at || '')),
     company: (a, b) => String(a.company || '').localeCompare(String(b.company || ''), 'fr'),
     title: (a, b) => String(a.title || '').localeCompare(String(b.title || ''), 'fr'),
   };
   return list.sort(by[f.sort] || by.updated);
 }
 
-function renderAppRows() {
-  const list = filteredApps();
+function renderTableView(container, list) {
   const total = list.length;
-  if ($('#appCount')) {
-    $('#appCount').textContent = `${total} / ${S.apps.length} candidature${S.apps.length > 1 ? 's' : ''}`;
-  }
-
   const pageSize = Number(S.appPageSize) || 10;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   if (S.appPage > totalPages) S.appPage = totalPages;
@@ -849,42 +994,85 @@ function renderAppRows() {
   const endIdx = Math.min(startIdx + pageSize, total);
   const rows = list.slice(startIdx, endIdx);
 
-  if ($('#appPageInfo')) {
-    $('#appPageInfo').textContent = total > 0
-      ? `(${startIdx + 1}–${endIdx} sur ${total})`
-      : '(0 candidature)';
-  }
+  container.innerHTML = `
+    <section class="${card} space-y-4">
+      <div class="overflow-x-auto rounded-2xl border border-slate-200 scroll">
+        <table class="w-full text-left text-xs">
+          <thead><tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-slate-200">
+            <th class="py-3 px-4">Poste & Entreprise</th>
+            <th class="py-3 px-4">Statut</th>
+            <th class="py-3 px-4">Entretien planifié</th>
+            <th class="py-3 px-4">Envoyée le</th>
+            <th class="py-3 px-4">Mise à jour</th>
+            <th class="py-3 px-4 text-right">Actions</th>
+          </tr></thead>
+          <tbody id="appTbody" class="divide-y divide-slate-200">
+            ${rows.length ? rows.map(a => {
+              const countdown = a.interview_at ? interviewCountdown(a.interview_at) : null;
+              return `
+                <tr class="hover:bg-slate-50 transition" data-app="${a.app_id}">
+                  <td class="py-3 px-4 font-semibold text-slate-900 min-w-[200px]">
+                    <div class="flex items-center gap-1.5 flex-wrap">
+                      ${a.external ? '<span class="px-1.5 py-0.5 rounded bg-violet-100 text-violet-800 border border-violet-200 text-[9px] font-extrabold uppercase">Externe</span>' : ''}
+                      <span class="${a.external ? 'cursor-pointer hover:text-blue-700' : ''}" data-ext-title="${a.app_id}">${esc(a.title)}</span>
+                      ${a.active || a.external ? '' : ' <span class="text-[10px] text-slate-400 font-normal">(offre retirée)</span>'}
+                    </div>
+                    <div class="text-[11px] font-normal text-slate-500 mt-0.5">
+                      <b class="text-slate-700">${esc(a.company || '—')}</b>
+                      ${a.city ? ` · ${esc(a.city)}` : ''}
+                      ${a.source ? ` · ${esc(srcLabel(a.source))}` : ''}
+                    </div>
+                    ${a.notes ? `<div class="text-[10px] text-slate-400 truncate max-w-xs mt-0.5 italic">${esc(a.notes)}</div>` : ''}
+                  </td>
+                  <td class="py-3 px-4">
+                    <select data-app="${a.app_id}" class="appStatus px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-semibold">
+                      ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${a.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}
+                    </select>
+                  </td>
+                  <td class="py-3 px-4 whitespace-nowrap">
+                    ${a.interview_at ? `
+                      <button type="button" data-plan-interview="${a.app_id}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-950 text-xs font-bold transition shadow-xs">
+                        <span>🎤</span>
+                        <span>${esc(fmtDateTime(a.interview_at))}</span>
+                        ${countdown ? `<span class="px-1.5 py-0.2 rounded text-[9px] ${countdown.cls}">${countdown.label}</span>` : ''}
+                      </button>
+                    ` : `
+                      <button type="button" data-plan-interview="${a.app_id}" class="text-xs text-slate-400 hover:text-amber-700 font-medium underline">
+                        + Fixer date
+                      </button>
+                    `}
+                  </td>
+                  <td class="py-3 px-4 whitespace-nowrap text-slate-600">${esc(fmtDate(a.applied_at || a.ext_date))}</td>
+                  <td class="py-3 px-4 whitespace-nowrap text-slate-500">${esc(daysAgo(a.updated_at))}</td>
+                  <td class="py-3 px-4 text-right whitespace-nowrap space-x-2">
+                    <button type="button" data-plan-interview="${a.app_id}" class="underline text-amber-700 font-semibold" title="Planifier l'entretien">Entretien</button>
+                    ${a.external
+                      ? `<button data-edit-ext="${a.app_id}" class="underline text-blue-700 font-semibold">Modifier</button><button data-del-ext="${a.app_id}" class="underline text-rose-600 font-semibold">Supprimer</button>`
+                      : `<button data-open="${a.offer_id}" class="underline text-blue-700 font-semibold">Ouvrir</button>`}
+                  </td>
+                </tr>
+              `;
+            }).join('') : `<tr><td colspan="6" class="py-10 text-center text-slate-400">${S.apps.length ? 'Aucune candidature ne correspond à ces filtres.' : 'Aucune candidature suivie. Ajoutez une candidature externe ci-dessus ou choisissez une offre dans <a href="/offres" class="underline text-blue-700">Offres</a>.'}</td></tr>`}
+          </tbody>
+        </table>
+      </div>
+      <div id="appPaginationBar" class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-3 border-t border-slate-100 text-xs">
+        <div class="flex items-center gap-2 text-slate-600">
+          <span>Lignes par page :</span>
+          <select id="appPageSize" class="px-2.5 py-1.5 rounded-xl border border-slate-300 bg-white font-bold text-slate-700 cursor-pointer">
+            <option value="10" ${S.appPageSize === 10 ? 'selected' : ''}>10</option>
+            <option value="15" ${S.appPageSize === 15 ? 'selected' : ''}>15</option>
+            <option value="20" ${S.appPageSize === 20 ? 'selected' : ''}>20</option>
+            <option value="30" ${S.appPageSize === 30 ? 'selected' : ''}>30</option>
+          </select>
+          <span id="appPageInfo" class="text-slate-500 font-medium">(${total > 0 ? `${startIdx + 1}–${endIdx} sur ${total}` : '0 candidature'})</span>
+        </div>
+        <div id="appPager" class="flex items-center gap-1.5 flex-wrap justify-center"></div>
+      </div>
+    </section>
+  `;
 
   const tbody = $('#appTbody');
-  if (!tbody) return;
-
-  tbody.innerHTML = rows.length ? rows.map(a => `
-    <tr class="hover:bg-slate-50 transition" data-app="${a.app_id}">
-      <td class="py-3 px-4 font-semibold text-slate-900 min-w-[200px]">
-        ${a.external ? '<span class="mr-1.5 px-1.5 py-0.5 rounded bg-violet-100 text-violet-800 border border-violet-200 text-[9px] font-extrabold uppercase align-middle">Externe</span>' : ''}
-        <span class="${a.external ? 'cursor-pointer hover:text-blue-700' : ''}" data-ext-title="${a.app_id}">${esc(a.title)}</span>
-        ${a.active || a.external ? '' : ' <span class="text-[10px] text-slate-400 font-normal">(offre retirée)</span>'}
-        ${a.notes ? `<div class="text-[11px] font-normal text-slate-500 truncate max-w-xs mt-0.5">${esc(a.notes)}</div>` : ''}
-      </td>
-      <td class="py-3 px-4">
-        <span class="font-semibold text-slate-800">${esc(a.company || '—')}</span>
-        <div class="text-[10px] text-slate-400">${esc(a.city || '')}${a.source ? (a.city ? ' · ' : '') + esc(srcLabel(a.source)) : ''}</div>
-      </td>
-      <td class="py-3 px-4">
-        <select data-app="${a.app_id}" class="appStatus px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-semibold">
-          ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${a.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}
-        </select>
-      </td>
-      <td class="py-3 px-4 whitespace-nowrap text-slate-600">${esc(fmtDate(a.applied_at || a.ext_date))}</td>
-      <td class="py-3 px-4 whitespace-nowrap text-slate-500">${esc(daysAgo(a.updated_at))}</td>
-      <td class="py-3 px-4 text-right whitespace-nowrap space-x-2">
-        ${a.external
-          ? `<button data-edit-ext="${a.app_id}" class="underline text-blue-700 font-semibold">Modifier</button><button data-del-ext="${a.app_id}" class="underline text-rose-600 font-semibold">Supprimer</button>`
-          : `<button data-open="${a.offer_id}" class="underline text-blue-700 font-semibold">Ouvrir</button>`}
-      </td>
-    </tr>`).join('')
-    : `<tr><td colspan="6" class="py-10 text-center text-slate-400">${S.apps.length ? 'Aucune candidature ne correspond à ces filtres.' : 'Aucune candidature suivie. Ajoutez une candidature externe ci-dessus ou choisissez une offre dans <a href="/offres" class="underline text-blue-700">Offres</a>.'}</td></tr>`;
-
   $$('.appStatus', tbody).forEach(sel => sel.addEventListener('change', async e => {
     const appId = Number(e.target.dataset.app), status = e.target.value;
     const a = S.apps.find(x => x.app_id === appId);
@@ -892,7 +1080,7 @@ function renderAppRows() {
     try {
       await updateApplicationStatus(a, status);
       toast('Statut mis à jour');
-      renderAppRows();
+      renderCurrentAppView();
     } catch (err) { toast(errMsg(err), 'err'); }
   }));
 
@@ -906,8 +1094,432 @@ function renderAppRows() {
     if (a) openExternalAppModal(a);
   }));
   $$('[data-del-ext]', tbody).forEach(b => b.addEventListener('click', () => deleteExternalApp(Number(b.dataset.delExt))));
+  $$('[data-plan-interview]', tbody).forEach(b => b.addEventListener('click', () => {
+    const a = S.apps.find(x => x.app_id === Number(b.dataset.planInterview));
+    if (a) openInterviewModal(a);
+  }));
+
+  $('#appPageSize')?.addEventListener('change', e => {
+    S.appPageSize = Number(e.target.value);
+    S.appPage = 1;
+    renderCurrentAppView();
+  });
 
   renderAppPager(totalPages);
+}
+
+function renderKanbanView(container, list) {
+  const cols = [
+    { id: 'a_postuler', title: 'À postuler', icon: '📝', headerCls: 'bg-slate-200 text-slate-800' },
+    { id: 'envoyee',    title: 'Envoyée',    icon: '📤', headerCls: 'bg-blue-100 text-blue-800' },
+    { id: 'relance',    title: 'Relancée',   icon: '🔁', headerCls: 'bg-indigo-100 text-indigo-800' },
+    { id: 'entretien',  title: 'Entretien',  icon: '🎤', headerCls: 'bg-amber-200 text-amber-950 ring-2 ring-amber-400' },
+    { id: 'offre',      title: 'Offre reçue', icon: '🎉', headerCls: 'bg-emerald-200 text-emerald-950 ring-2 ring-emerald-400' },
+    { id: 'refus',      title: 'Refusée',    icon: '✕',  headerCls: 'bg-rose-100 text-rose-800' },
+    { id: 'abandon',    title: 'Sans suite', icon: '📁', headerCls: 'bg-slate-200 text-slate-600' },
+  ];
+
+  let html = `<div class="flex gap-4 overflow-x-auto pb-4 scroll items-start min-h-[520px]">`;
+
+  cols.forEach(col => {
+    const colApps = list.filter(a => a.status === col.id);
+    html += `
+      <div class="w-72 sm:w-80 shrink-0 bg-slate-100/90 rounded-3xl p-3 border border-slate-200 flex flex-col max-h-[78vh]">
+        <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-200 px-1">
+          <div class="flex items-center gap-2">
+            <span class="text-base">${col.icon}</span>
+            <span class="font-extrabold text-xs text-slate-800 uppercase tracking-wider">${esc(col.title)}</span>
+          </div>
+          <span class="px-2 py-0.5 rounded-full text-[10px] font-black ${col.headerCls}">${colApps.length}</span>
+        </div>
+        <div class="space-y-3 overflow-y-auto scroll flex-1 pr-1">
+          ${colApps.length ? colApps.map(a => renderKanbanCard(a)).join('') : `
+            <div class="py-10 text-center text-slate-400 text-xs italic border-2 border-dashed border-slate-200 rounded-2xl">
+              Aucune candidature
+            </div>
+          `}
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+  container.innerHTML = html;
+  attachKanbanCardEvents(container);
+}
+
+function renderKanbanCard(a) {
+  const countdown = a.interview_at ? interviewCountdown(a.interview_at) : null;
+  const isInterview = Boolean(a.interview_at);
+  const typeIcon = a.interview_type === 'presentiel' ? '🏢' : a.interview_type === 'telephone' ? '📞' : '💻';
+
+  return `
+    <div class="bg-white rounded-2xl p-3.5 border ${isInterview ? 'border-amber-300 shadow-amber-500/10' : 'border-slate-200/90'} shadow-sm hover:shadow-md transition space-y-2.5 text-xs">
+      <div class="flex items-start justify-between gap-1.5">
+        <div class="font-extrabold text-slate-900 leading-snug line-clamp-2 hover:text-blue-700 cursor-pointer" data-card-open="${a.app_id}">
+          ${esc(a.title)}
+        </div>
+        ${a.external
+          ? '<span class="shrink-0 px-1.5 py-0.5 rounded bg-violet-100 text-violet-800 border border-violet-200 text-[9px] font-black uppercase">Externe</span>'
+          : `<span class="shrink-0 px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 text-[9px] font-semibold">${esc(srcLabel(a.source))}</span>`}
+      </div>
+
+      <div class="text-[11px] text-slate-600 font-semibold">
+        <span class="text-slate-900 font-bold">${esc(a.company || '—')}</span>
+        ${a.city ? ` · <span>${esc(a.city)}</span>` : ''}
+      </div>
+
+      ${a.interview_at ? `
+        <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-300 text-amber-950 space-y-1">
+          <div class="flex items-center justify-between gap-1 text-[11px] font-bold">
+            <span class="flex items-center gap-1">
+              <span>${typeIcon}</span>
+              <span>${esc(fmtDateTime(a.interview_at))}</span>
+            </span>
+            ${countdown ? `<span class="px-1.5 py-0.5 rounded text-[9px] font-black ${countdown.cls}">${countdown.label}</span>` : ''}
+          </div>
+          ${a.interview_notes ? `<p class="text-[10px] text-amber-900 truncate" title="${esc(a.interview_notes)}">📝 ${esc(a.interview_notes)}</p>` : ''}
+        </div>
+      ` : ''}
+
+      ${a.notes && !a.interview_at ? `
+        <p class="text-[10px] text-slate-500 line-clamp-2 bg-slate-50 p-2 rounded-lg border border-slate-100 italic">
+          ${esc(a.notes)}
+        </p>
+      ` : ''}
+
+      <div class="flex items-center justify-between gap-1 pt-1.5 border-t border-slate-100 text-[11px]">
+        <button type="button" data-plan-interview="${a.app_id}" class="inline-flex items-center gap-1 font-bold ${a.interview_at ? 'text-amber-700 hover:text-amber-800' : 'text-blue-700 hover:text-blue-800'} transition">
+          <span>⏰</span><span>${a.interview_at ? 'Modifier heure' : 'Planifier'}</span>
+        </button>
+
+        <select data-move-status="${a.app_id}" class="text-[10px] font-bold py-1 px-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 hover:bg-white cursor-pointer">
+          ${Object.entries(STATUSES).map(([k, s]) => `<option value="${k}" ${a.status === k ? 'selected' : ''}>${s.label}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+  `;
+}
+
+function attachKanbanCardEvents(container) {
+  container.querySelectorAll('[data-card-open]').forEach(el => {
+    el.addEventListener('click', () => {
+      const a = (S.apps || []).find(x => x.app_id === Number(el.dataset.cardOpen));
+      if (!a) return;
+      if (a.external) openExternalAppModal(a);
+      else openOffer(a.offer_id);
+    });
+  });
+
+  container.querySelectorAll('[data-plan-interview]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const a = (S.apps || []).find(x => x.app_id === Number(btn.dataset.planInterview));
+      if (a) openInterviewModal(a);
+    });
+  });
+
+  container.querySelectorAll('[data-move-status]').forEach(sel => {
+    sel.addEventListener('change', async e => {
+      const appId = Number(e.target.dataset.moveStatus);
+      const newStatus = e.target.value;
+      const a = (S.apps || []).find(x => x.app_id === appId);
+      if (!a) return;
+      try {
+        await updateApplicationStatus(a, newStatus);
+        toast(`Statut passé à : ${STATUSES[newStatus]?.label || newStatus}`);
+        renderCurrentAppView();
+      } catch (err) { toast(errMsg(err), 'err'); }
+    });
+  });
+}
+
+function renderCalendarView(container) {
+  const currentYear = S.calDate.getFullYear();
+  const currentMonth = S.calDate.getMonth();
+  const monthName = S.calDate.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+  const capitalizedMonth = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+
+  const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+  const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
+  const totalDays = lastDayOfMonth.getDate();
+
+  let startDayOfWeek = firstDayOfMonth.getDay() - 1;
+  if (startDayOfWeek === -1) startDayOfWeek = 6;
+
+  const now = new Date();
+  const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+  const appsWithInterviews = (S.apps || []).filter(a => a.interview_at);
+  const upcomingInterviews = appsWithInterviews
+    .filter(a => new Date(a.interview_at).getTime() >= Date.now() - 36e5)
+    .sort((a, b) => new Date(a.interview_at) - new Date(b.interview_at));
+
+  let html = `
+    <div class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-3xl border border-slate-200 shadow-sm">
+        <div class="flex items-center gap-3">
+          <h3 class="text-xl font-extrabold text-slate-900">${capitalizedMonth}</h3>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
+            ${appsWithInterviews.length} entretien${appsWithInterviews.length > 1 ? 's' : ''} planifié${appsWithInterviews.length > 1 ? 's' : ''}
+          </span>
+        </div>
+        <div class="flex items-center gap-1.5 flex-wrap">
+          <button type="button" id="calPrevMonth" class="px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 font-bold text-xs text-slate-700 transition">← Mois précédent</button>
+          <button type="button" id="calToday" class="px-3.5 py-2 rounded-xl border border-blue-200 bg-blue-50 hover:bg-blue-100 font-bold text-xs text-blue-700 transition">Aujourd'hui</button>
+          <button type="button" id="calNextMonth" class="px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 font-bold text-xs text-slate-700 transition">Mois suivant →</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="grid grid-cols-7 bg-slate-100/90 border-b border-slate-200 text-center text-xs font-extrabold text-slate-600 py-2.5">
+          <div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div class="text-indigo-600 font-black">Sam</div><div class="text-indigo-600 font-black">Dim</div>
+        </div>
+        <div class="grid grid-cols-7 divide-x divide-y divide-slate-100 text-xs">
+  `;
+
+  for (let i = 0; i < startDayOfWeek; i++) {
+    html += `<div class="min-h-[90px] sm:min-h-[115px] bg-slate-50/40 p-2 text-slate-300"></div>`;
+  }
+
+  for (let day = 1; day <= totalDays; day++) {
+    const padDay = String(day).padStart(2, '0');
+    const padMon = String(currentMonth + 1).padStart(2, '0');
+    const dateStr = `${currentYear}-${padMon}-${padDay}`;
+    const isToday = dateStr === todayStr;
+
+    const dayInterviews = (S.apps || []).filter(a => {
+      if (!a.interview_at) return false;
+      const d = new Date(a.interview_at);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` === dateStr;
+    });
+
+    const daySent = (S.apps || []).filter(a => (a.applied_at || a.ext_date) === dateStr);
+
+    html += `
+      <div class="min-h-[90px] sm:min-h-[115px] p-2 flex flex-col justify-between transition hover:bg-slate-50/80 ${isToday ? 'bg-blue-50/30 ring-1 ring-inset ring-blue-300' : ''}">
+        <div class="flex items-center justify-between">
+          <span class="w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${isToday ? 'bg-blue-700 text-white shadow-xs' : 'text-slate-700'}">
+            ${day}
+          </span>
+          ${dayInterviews.length ? `<span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" title="Entretien planifié"></span>` : ''}
+        </div>
+
+        <div class="space-y-1 my-1 overflow-y-auto max-h-[75px] scroll">
+          ${dayInterviews.map(a => {
+            const time = new Date(a.interview_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+            return `
+              <div data-plan-interview="${a.app_id}" class="p-1 rounded-lg bg-amber-100 hover:bg-amber-200 border border-amber-300 text-[10px] text-amber-950 font-bold truncate cursor-pointer transition flex items-center gap-1 shadow-xs" title="${esc(a.title)} (${esc(a.company)})">
+                <span>🎤</span>
+                <span>${esc(time)} ${esc(a.company || a.title)}</span>
+              </div>
+            `;
+          }).join('')}
+
+          ${daySent.map(a => `
+            <div class="px-1 py-0.5 rounded bg-blue-50 border border-blue-200 text-[9px] text-blue-800 font-medium truncate" title="Candidature envoyée : ${esc(a.company || a.title)}">
+              📤 ${esc(a.company || a.title)}
+            </div>
+          `).join('')}
+        </div>
+
+        <div></div>
+      </div>
+    `;
+  }
+
+  const totalCells = startDayOfWeek + totalDays;
+  const trailingCells = (7 - (totalCells % 7)) % 7;
+  for (let i = 0; i < trailingCells; i++) {
+    html += `<div class="min-h-[90px] sm:min-h-[115px] bg-slate-50/40 p-2 text-slate-300"></div>`;
+  }
+
+  html += `
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+          <span>🗓️</span><span>Agenda des prochains entretiens</span>
+        </h3>
+
+        ${upcomingInterviews.length ? `
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${upcomingInterviews.map(a => {
+              const countdown = interviewCountdown(a.interview_at);
+              const typeLabel = a.interview_type === 'presentiel' ? '🏢 Présentiel' : a.interview_type === 'telephone' ? '📞 Téléphonique' : '💻 Visioconférence';
+              return `
+                <div class="bg-white rounded-3xl p-4 border border-amber-200 shadow-sm hover:shadow-md transition space-y-3">
+                  <div class="flex items-start justify-between gap-2">
+                    <span class="px-2.5 py-1 rounded-xl text-xs font-black bg-amber-100 text-amber-950 border border-amber-300 flex items-center gap-1.5">
+                      <span>🎤</span><span>${esc(fmtDateTime(a.interview_at))}</span>
+                    </span>
+                    ${countdown ? `<span class="px-2 py-0.5 rounded-md text-[10px] font-black ${countdown.cls}">${countdown.label}</span>` : ''}
+                  </div>
+
+                  <div>
+                    <h4 class="font-extrabold text-slate-900 text-sm line-clamp-1">${esc(a.title)}</h4>
+                    <p class="text-xs font-bold text-slate-600 mt-0.5">${esc(a.company || '—')}${a.city ? ' · ' + esc(a.city) : ''}</p>
+                    <div class="mt-1 inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500">
+                      <span>${typeLabel}</span>
+                    </div>
+                  </div>
+
+                  ${a.interview_notes ? `
+                    <div class="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 text-xs">
+                      <p class="font-bold text-[10px] text-slate-400 uppercase">Notes & Coordonnées</p>
+                      <p class="text-xs break-words mt-0.5">${esc(a.interview_notes)}</p>
+                    </div>
+                  ` : ''}
+
+                  <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+                    <button type="button" data-plan-interview="${a.app_id}" class="px-3 py-1.5 rounded-xl bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs transition shadow-xs">
+                      Modifier l'entretien
+                    </button>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        ` : `
+          <div class="p-8 bg-white rounded-3xl border border-slate-200 text-center space-y-2">
+            <div class="text-3xl">☕</div>
+            <p class="text-sm font-bold text-slate-800">Aucun entretien à venir pour le moment</p>
+            <p class="text-xs text-slate-500 max-w-md mx-auto">
+              Dès qu'une entreprise vous contacte, cliquez sur <b>« ⏰ Planifier »</b> sur votre candidature dans le tableau ou le Kanban pour enregistrer le rendez-vous.
+            </p>
+          </div>
+        `}
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = html;
+
+  $('#calPrevMonth')?.addEventListener('click', () => {
+    S.calDate = new Date(currentYear, currentMonth - 1, 1);
+    renderCalendarView(container);
+  });
+  $('#calNextMonth')?.addEventListener('click', () => {
+    S.calDate = new Date(currentYear, currentMonth + 1, 1);
+    renderCalendarView(container);
+  });
+  $('#calToday')?.addEventListener('click', () => {
+    S.calDate = new Date();
+    renderCalendarView(container);
+  });
+
+  container.querySelectorAll('[data-plan-interview]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const a = (S.apps || []).find(x => x.app_id === Number(btn.dataset.planInterview));
+      if (a) openInterviewModal(a);
+    });
+  });
+}
+
+function openInterviewModal(app) {
+  if (!app) return;
+  const countdown = app.interview_at ? interviewCountdown(app.interview_at) : null;
+  $('#modalBox').innerHTML = `
+    <button id="mClose" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 font-bold" aria-label="Fermer">✕</button>
+    <div class="space-y-1 border-b border-slate-200 pb-3 pr-8">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-extrabold uppercase flex items-center gap-1">
+          <span>🎤</span> Planification d'entretien
+        </span>
+        ${countdown ? `<span class="px-2 py-0.5 rounded text-[10px] font-black ${countdown.cls}">${countdown.label}</span>` : ''}
+        ${app.status && STATUSES[app.status] ? `<span class="px-2 py-0.5 rounded-md border text-[10px] font-bold ${STATUSES[app.status].cls}">${STATUSES[app.status].label}</span>` : ''}
+      </div>
+      <h3 class="text-xl font-bold text-slate-900">${esc(app.title)}</h3>
+      <p class="text-xs text-slate-500 font-semibold">${esc(app.company || '—')}${app.city ? ' · ' + esc(app.city) : ''}</p>
+    </div>
+
+    <form id="interviewScheduleForm" class="space-y-4 pt-4 text-xs">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <label class="block font-semibold text-slate-700">
+          Date et heure de l'entretien <span class="text-rose-500">*</span>
+          <input required type="datetime-local" name="interview_at" value="${toDatetimeLocal(app.interview_at)}" class="${input} mt-1 font-semibold text-slate-800">
+        </label>
+        <label class="block font-semibold text-slate-700">
+          Format de l'entretien
+          <select name="interview_type" class="${input} mt-1 font-semibold">
+            <option value="visio" ${app.interview_type === 'visio' || !app.interview_type ? 'selected' : ''}>💻 Visioconférence (Meet, Teams, Zoom)</option>
+            <option value="presentiel" ${app.interview_type === 'presentiel' ? 'selected' : ''}>🏢 Présentiel (Locaux de l'entreprise)</option>
+            <option value="telephone" ${app.interview_type === 'telephone' ? 'selected' : ''}>📞 Téléphonique</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="block font-semibold text-slate-700">
+        Lien visio / Lieu / Interlocuteurs / Préparation
+        <textarea name="interview_notes" rows="4" maxlength="4000" class="${input} mt-1" placeholder="Ex: https://meet.google.com/xyz, Mme Dupont (RH), questions techniques sur Python/SQL...">${esc(app.interview_notes || '')}</textarea>
+      </label>
+
+      <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-amber-900 text-[11px] flex items-start gap-2.5">
+        <span class="text-lg leading-none">💡</span>
+        <div>
+          <span class="font-bold">Mise à jour automatique :</span>
+          <p class="text-amber-800 mt-0.5">Enregistrer ce créneau passera automatiquement votre candidature en statut <b>« Entretien »</b> et ajoutera le rappel à votre calendrier.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-200">
+        <button type="submit" class="${btnPrimary} flex-1 shadow-sm">Enregistrer l'entretien</button>
+        ${app.interview_at ? `<button type="button" id="clearInterviewBtn" class="${btnGhost} text-rose-600 hover:bg-rose-50">Annuler ce créneau</button>` : ''}
+        <button type="button" id="intCancelBtn" class="${btnGhost}">Fermer</button>
+      </div>
+    </form>
+  `;
+
+  $('#modal').classList.remove('hidden');
+  $('#mClose').onclick = closeModal;
+  $('#intCancelBtn').onclick = closeModal;
+
+  if ($('#clearInterviewBtn')) {
+    $('#clearInterviewBtn').onclick = async () => {
+      try {
+        await saveInterviewSchedule(app, null, 'visio', '');
+        toast('Créneau d\'entretien retiré');
+        closeModal();
+        viewApps();
+      } catch (e) { toast(errMsg(e), 'err'); }
+    };
+  }
+
+  $('#interviewScheduleForm').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const fd = new FormData(ev.target);
+    const intAt = fd.get('interview_at') || null;
+    const intType = fd.get('interview_type') || 'visio';
+    const intNotes = String(fd.get('interview_notes') || '').trim();
+    if (!intAt) return toast('La date et l\'heure sont requises', 'err');
+
+    try {
+      await saveInterviewSchedule(app, intAt, intType, intNotes);
+      toast('Entretien planifié avec succès !');
+      closeModal();
+      viewApps();
+    } catch (e) {
+      toast(errMsg(e), 'err');
+    }
+  });
+}
+
+async function saveInterviewSchedule(app, interviewAt, interviewType, interviewNotes) {
+  const patch = {
+    interview_at: interviewAt || null,
+    interview_type: interviewType || 'visio',
+    interview_notes: interviewNotes || '',
+  };
+  if (interviewAt && ['a_postuler', 'envoyee', 'relance'].includes(app.status)) {
+    patch.status = 'entretien';
+  }
+  if (app.external) {
+    await call(S.sb.from('applications').update(patch).eq('id', app.app_id).eq('user_id', S.user.id));
+    Object.assign(app, patch);
+  } else {
+    await saveApplication(app.offer_id, patch);
+    Object.assign(app, patch);
+  }
 }
 
 function renderAppPager(totalPages) {
@@ -1037,6 +1649,28 @@ function openExternalAppModal(app = null) {
         </label>
       </div>
 
+      <div class="p-3 bg-amber-50/80 rounded-xl border border-amber-200/90 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-amber-950 text-[11px] flex items-center gap-1"><span>🎤</span> Entretien & Planning</span>
+          ${a.interview_at ? `<span class="text-[10px] text-amber-900 font-bold">${esc(fmtDateTime(a.interview_at))}</span>` : ''}
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+          <label class="block font-semibold text-slate-700">Date et heure
+            <input type="datetime-local" name="interview_at" value="${toDatetimeLocal(a.interview_at)}" class="${input} mt-0.5 text-xs py-1.5">
+          </label>
+          <label class="block font-semibold text-slate-700">Format
+            <select name="interview_type" class="${input} mt-0.5 text-xs py-1.5">
+              <option value="visio" ${a.interview_type === 'visio' || !a.interview_type ? 'selected' : ''}>💻 Visio</option>
+              <option value="presentiel" ${a.interview_type === 'presentiel' ? 'selected' : ''}>🏢 Présentiel</option>
+              <option value="telephone" ${a.interview_type === 'telephone' ? 'selected' : ''}>📞 Téléphone</option>
+            </select>
+          </label>
+        </div>
+        <label class="block font-semibold text-slate-700 text-[11px]">Lien visio / Lieu / Préparation
+          <input name="interview_notes" value="${esc(a.interview_notes || '')}" placeholder="Lien Meet/Teams, contact, questions..." class="${input} mt-0.5 text-xs py-1.5">
+        </label>
+      </div>
+
       <label class="block font-semibold text-slate-700">
         Notes / Suivi
         <textarea name="notes" rows="3" maxlength="4000" class="${input} mt-1" placeholder="Contact RH, relance prévue, questions entretien…">${esc(a.notes || '')}</textarea>
@@ -1107,6 +1741,12 @@ function openExternalAppModal(app = null) {
     if (!extTitle) return toast('Le titre du poste est requis', 'err');
 
     const extDate = fd.get('ext_date') || null;
+    const intAt = fd.get('interview_at') || null;
+    let finalStatus = fd.get('status') || 'a_postuler';
+    if (intAt && ['a_postuler', 'envoyee', 'relance'].includes(finalStatus)) {
+      finalStatus = 'entretien';
+    }
+
     const payload = {
       user_id: S.user.id,
       is_external: true,
@@ -1117,9 +1757,12 @@ function openExternalAppModal(app = null) {
       ext_source: String(fd.get('ext_source') || '').trim() || null,
       ext_date: extDate,
       applied_at: extDate,
-      status: fd.get('status') || 'a_postuler',
+      status: finalStatus,
       notes: String(fd.get('notes') || ''),
       letter: String(fd.get('letter') || ''),
+      interview_at: intAt,
+      interview_type: fd.get('interview_type') || 'visio',
+      interview_notes: String(fd.get('interview_notes') || ''),
     };
 
     try {

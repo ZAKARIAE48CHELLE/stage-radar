@@ -63,6 +63,9 @@ create table if not exists public.applications (
   ext_url     text,
   ext_source  text,
   ext_date    date,
+  interview_at timestamptz,
+  interview_type text not null default 'visio',
+  interview_notes text not null default '',
   created_at  timestamptz not null default now(),
   updated_at  timestamptz not null default now(),
   unique (user_id, offer_id)
@@ -75,6 +78,9 @@ alter table public.applications add column if not exists ext_city text;
 alter table public.applications add column if not exists ext_url text;
 alter table public.applications add column if not exists ext_source text;
 alter table public.applications add column if not exists ext_date date;
+alter table public.applications add column if not exists interview_at timestamptz;
+alter table public.applications add column if not exists interview_type text not null default 'visio';
+alter table public.applications add column if not exists interview_notes text not null default '';
 
 alter table public.applications drop constraint if exists applications_source_check;
 alter table public.applications add constraint applications_source_check
@@ -350,7 +356,8 @@ create or replace function public.my_applications()
 returns table (app_id bigint, offer_id bigint, status text, notes text, applied_at date,
                updated_at timestamptz, title text, company text, city text, url text,
                source text, active boolean, valid_through date, external boolean,
-               letter text, ext_date date)
+               letter text, ext_date date,
+               interview_at timestamptz, interview_type text, interview_notes text)
 language sql stable security invoker set search_path = public as $$
   select a.id, a.offer_id, a.status, a.notes,
          coalesce(a.applied_at, a.ext_date) as applied_at,
@@ -364,7 +371,10 @@ language sql stable security invoker set search_path = public as $$
          o.valid_through,
          a.is_external as external,
          a.letter,
-         a.ext_date
+         a.ext_date,
+         a.interview_at,
+         coalesce(a.interview_type, 'visio') as interview_type,
+         coalesce(a.interview_notes, '') as interview_notes
   from applications a left join offers o on o.id = a.offer_id
   where a.user_id = auth.uid()
   order by a.updated_at desc;

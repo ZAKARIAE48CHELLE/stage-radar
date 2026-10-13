@@ -190,11 +190,11 @@ def test_applications_are_private(db, users):
 def test_external_applications(db, users):
     cur = db.cursor()
     as_user(cur, users["c"])  # carol is approved
-    cur.execute("""insert into applications (user_id, is_external, ext_title, ext_company, ext_city, ext_url, ext_source, ext_date, status, notes)
-                   values (auth.uid(), true, 'Dev IA Externe', 'Acme Corp', 'Casablanca', 'https://acme.com/jobs/1', 'LinkedIn', '2026-10-10', 'entretien', 'Entretien tech')""")
-    apps = q(cur, "select title, company, city, url, source, status, notes, external from my_applications() where external = true")
+    cur.execute("""insert into applications (user_id, is_external, ext_title, ext_company, ext_city, ext_url, ext_source, ext_date, status, notes, interview_at, interview_type, interview_notes)
+                   values (auth.uid(), true, 'Dev IA Externe', 'Acme Corp', 'Casablanca', 'https://acme.com/jobs/1', 'LinkedIn', '2026-10-10', 'entretien', 'Entretien tech', '2026-10-25 14:30:00+00', 'visio', 'Lien Meet')""")
+    apps = q(cur, "select title, company, city, url, source, status, notes, external, interview_type, interview_notes from my_applications() where external = true")
     assert len(apps) == 1
-    assert apps[0] == ('Dev IA Externe', 'Acme Corp', 'Casablanca', 'https://acme.com/jobs/1', 'LinkedIn', 'entretien', 'Entretien tech', True)
+    assert apps[0] == ('Dev IA Externe', 'Acme Corp', 'Casablanca', 'https://acme.com/jobs/1', 'LinkedIn', 'entretien', 'Entretien tech', True, 'visio', 'Lien Meet')
 
     # RLS: bob cannot read carol's external application
     as_user(cur, users["b"])

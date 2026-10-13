@@ -47,9 +47,45 @@ if (window.tailwind) tailwind.config = { theme: { extend: {
     </a>
     <nav id="nav" class="flex items-center gap-1 text-sm font-semibold text-slate-600 overflow-x-auto scroll"></nav>
     <div class="flex items-center gap-2 shrink-0">
-      <a href="/perso.html" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 hidden sm:inline" title="Voir le dashboard personnel d'origine">Vue Perso</a>
-      <span id="whoami" class="hidden md:inline text-xs text-slate-500 max-w-[180px] truncate"></span>
-      <button id="logoutBtn" class="text-xs font-semibold px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50">Déconnexion</button>
+      <a href="/perso.html" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 hidden md:inline" title="Voir le dashboard personnel d'origine">Vue Perso</a>
+      
+      <!-- Menu Profil utilisateur & Déconnexion -->
+      <div class="relative" id="userMenuWrap">
+        <button id="userMenuBtn" type="button" aria-expanded="false" aria-haspopup="true" class="flex items-center gap-2 p-1 sm:px-2.5 sm:py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+          <span id="userAvatar" class="w-7 h-7 rounded-lg bg-gradient-to-tr from-blue-700 to-indigo-600 text-white font-extrabold text-xs flex items-center justify-center shadow-inner">U</span>
+          <span id="whoami" class="text-xs font-bold text-slate-800 max-w-[140px] truncate hidden sm:inline"></span>
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+
+        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-60 rounded-2xl bg-white border border-slate-200 shadow-2xl py-2 z-50 text-xs">
+          <div class="px-4 py-2.5 border-b border-slate-100">
+            <p id="userDropdownName" class="font-bold text-slate-900 truncate text-sm"></p>
+            <p id="userDropdownEmail" class="text-[11px] text-slate-500 truncate mt-0.5"></p>
+            <div id="userDropdownBadge" class="mt-1.5"></div>
+          </div>
+          
+          <div class="py-1">
+            <a href="/profil" id="editProfileLink" class="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-semibold transition">
+              <span class="text-base">👤</span>
+              <div class="flex-1">
+                <div>Éditer le profil</div>
+                <div class="text-[10px] text-slate-400 font-normal">CV, axes, villes, préférences</div>
+              </div>
+            </a>
+            <a href="/perso.html" class="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-slate-50 font-semibold transition md:hidden">
+              <span class="text-base">📊</span>
+              <div>Vue Perso historique</div>
+            </a>
+          </div>
+
+          <div class="border-t border-slate-100 my-1"></div>
+
+          <button id="logoutBtn" type="button" class="w-full text-left flex items-center gap-2.5 px-4 py-2 text-rose-600 hover:bg-rose-50 font-semibold transition">
+            <span class="text-base">🚪</span>
+            <span>Se déconnecter</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </header>
