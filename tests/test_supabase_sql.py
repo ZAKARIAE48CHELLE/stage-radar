@@ -210,6 +210,17 @@ def test_external_applications(db, users):
         cur.execute("insert into applications (user_id, is_external, ext_title) values (auth.uid(), true, null)")
 
 
+def test_career_sites_are_private(db, users):
+    cur = db.cursor()
+    as_user(cur, users["c"])  # carol is approved
+    cur.execute("insert into career_sites (user_id, name, url, category, notes) values (auth.uid(), 'OCP Careers', 'https://ocp.com', 'Industrie', 'Stage PFE')")
+    assert q(cur, "select name, category from career_sites where user_id = auth.uid()")[0] == ('OCP Careers', 'Industrie')
+    as_user(cur, users["b"])
+    assert q(cur, "select count(*) from career_sites where name = 'OCP Careers'")[0][0] == 0
+    with pytest.raises(psycopg2.Error):
+        cur.execute("insert into career_sites (user_id, name, url) values (%s, 'Test', 'https://test.com')", (users["c"],))
+
+
 def test_cv_storage_own_folder_only(db, users):
     cur = db.cursor()
     as_user(cur, users["b"])

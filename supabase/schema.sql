@@ -82,6 +82,18 @@ alter table public.applications add constraint applications_source_check
 
 create index if not exists applications_user_idx on public.applications (user_id);
 
+create table if not exists public.career_sites (
+  id          bigint generated always as identity primary key,
+  user_id     uuid not null references public.profiles(id) on delete cascade,
+  name        text not null,
+  url         text not null,
+  category    text not null default 'Général',
+  notes       text not null default '',
+  created_at  timestamptz not null default now(),
+  updated_at  timestamptz not null default now()
+);
+create index if not exists career_sites_user_idx on public.career_sites (user_id);
+
 create table if not exists public.invites (
   email       text primary key,                       -- stored lowercase
   invited_by  uuid references public.profiles(id) on delete set null,
@@ -114,6 +126,9 @@ create trigger profiles_touch before update on public.profiles
   for each row execute function public.touch_updated_at();
 drop trigger if exists applications_touch on public.applications;
 create trigger applications_touch before update on public.applications
+  for each row execute function public.touch_updated_at();
+drop trigger if exists career_sites_touch on public.career_sites;
+create trigger career_sites_touch before update on public.career_sites
   for each row execute function public.touch_updated_at();
 
 -- New auth user → profile. The very first user becomes the approved admin;
@@ -178,6 +193,7 @@ create trigger profiles_last_admin before update on public.profiles
 alter table public.profiles     enable row level security;
 alter table public.offers       enable row level security;
 alter table public.applications enable row level security;
+alter table public.career_sites enable row level security;
 alter table public.invites      enable row level security;
 alter table public.scrape_runs  enable row level security;
 
@@ -203,6 +219,13 @@ create policy "applications: own rows" on public.applications
   using (user_id = auth.uid() and public.is_approved())
   with check (user_id = auth.uid() and public.is_approved());
 
+-- Career sites are private to their owner.
+drop policy if exists "career_sites: own rows" on public.career_sites;
+create policy "career_sites: own rows" on public.career_sites
+  for all to authenticated
+  using (user_id = auth.uid() and public.is_approved())
+  with check (user_id = auth.uid() and public.is_approved());
+
 drop policy if exists "invites: admin" on public.invites;
 create policy "invites: admin" on public.invites
   for all to authenticated using (public.is_admin()) with check (public.is_admin());
@@ -211,10 +234,11 @@ drop policy if exists "scrape_runs: approved read" on public.scrape_runs;
 create policy "scrape_runs: approved read" on public.scrape_runs
   for select to authenticated using (public.is_approved());
 
-revoke all on public.profiles, public.offers, public.applications, public.invites, public.scrape_runs from anon;
+revoke all on public.profiles, public.offers, public.applications, public.career_sites, public.invites, public.scrape_runs from anon;
 grant select, update, delete       on public.profiles     to authenticated;
 grant select                       on public.offers       to authenticated;
 grant select, insert, update, delete on public.applications to authenticated;
+grant select, insert, update, delete on public.career_sites to authenticated;
 grant select, insert, delete       on public.invites      to authenticated;
 grant select                       on public.scrape_runs  to authenticated;
 

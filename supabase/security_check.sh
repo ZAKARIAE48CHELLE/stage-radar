@@ -37,6 +37,7 @@ echo "Tables (expected: no data):"
 probe "offers"        "offers?select=*&limit=3"
 probe "profiles"      "profiles?select=*&limit=3"
 probe "applications"  "applications?select=*&limit=3"   # friends' private notes/letters
+probe "career_sites"  "career_sites?select=*&limit=3"   # user's saved career websites
 probe "invites"       "invites?select=*&limit=3"
 probe "scrape_runs"   "scrape_runs?select=*&limit=3"
 

@@ -64,6 +64,7 @@ const S = {
   f: { q: '', city: '', modality: '', source: '', domain: '', status: '', fresh: false, pfe: false, paid: false, min: 0, sort: 'score' },
   appPage: 1, appPageSize: 10,
   appF: { q: '', status: '', type: '', sort: 'updated' },
+  careerSites: null, careerF: { q: '', category: '' },
 };
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -310,7 +311,7 @@ function renderPending() {
 }
 
 // ───────────────────────── routing (clean URLs via History API) ─────────────────────────
-const VIEWS = ['offres', 'candidatures', 'marche', 'profil', 'admin'];
+const VIEWS = ['offres', 'candidatures', 'carrieres', 'marche', 'profil', 'admin'];
 function currentRoute() {
   const seg = location.pathname.split('/').filter(Boolean).pop() || 'offres';
   return VIEWS.includes(seg) ? seg : 'offres';
@@ -327,12 +328,12 @@ function route() {
   renderNav();
   closeModal();
   Object.values(S.charts).forEach(c => c.destroy()); S.charts = {};
-  ({ offres: viewOffers, candidatures: viewApps, marche: viewMarket, profil: viewProfile, admin: viewAdmin })[S.view]();
+  ({ offres: viewOffers, candidatures: viewApps, carrieres: viewCareerSites, marche: viewMarket, profil: viewProfile, admin: viewAdmin })[S.view]();
   window.scrollTo(0, 0);
 }
 
 function renderNav() {
-  const items = [['offres', 'Offres'], ['candidatures', 'Mes candidatures'], ['marche', 'Marché'], ['profil', 'Profil']];
+  const items = [['offres', 'Offres'], ['candidatures', 'Mes candidatures'], ['carrieres', 'Sites carrières'], ['marche', 'Marché'], ['profil', 'Profil']];
   if (S.profile.role === 'admin') items.push(['admin', 'Admin']);
   $('#nav').innerHTML = items.map(([k, l]) =>
     `<a href="/${k}" class="nav-btn px-3 py-2 rounded-lg hover:bg-slate-100 whitespace-nowrap" ${S.view === k ? 'aria-current="page"' : ''}>${l}${k === 'admin' ? '<span id="pendingBadge"></span>' : ''}</a>`).join('');
@@ -1406,6 +1407,348 @@ function downloadCsv(name, head, rows) {
   const blob = new Blob(['﻿' + [head, ...rows].map(r => r.map(q).join(';')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
   const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: name });
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+// ───────────────────────── view: sites carrières ─────────────────────────
+const PRESET_CAREER_SITES = [
+  { name: 'OCP Group', url: 'https://careers.ocpgroup.ma/', category: 'Industrie & Énergie', notes: 'Portail carrières officiel d’OCP (stages PFE, jeunes diplômés et profils expérimentés).' },
+  { name: 'Capgemini Maroc', url: 'https://www.capgemini.com/ma-fr/carrieres/', category: 'Tech & Conseil', notes: 'Recrutement IT, Cloud, Digital, Data et IA (Casablanca & Rabat).' },
+  { name: 'Attijariwafa bank', url: 'https://recrutement.attijariwafabank.com/', category: 'Banque & Finance', notes: 'Plateforme officielle de recrutement Attijariwafa (stages et opportunités).' },
+  { name: 'Bank of Africa (BMCE)', url: 'https://recrutement.bankofafrica.ma/', category: 'Banque & Finance', notes: 'Espace carrières et candidatures de Bank of Africa.' },
+  { name: 'Groupe CDG', url: 'https://recrutement.cdg.ma/', category: 'Finance & Investissement', notes: 'Portail RH de la Caisse de Dépôt et de Gestion.' },
+  { name: 'Maroc Telecom', url: 'https://www.iam.ma/groupe-maroc-telecom/carrieres/recrutement.aspx', category: 'Télécoms', notes: 'Portail de recrutement Maroc Telecom (IAM).' },
+  { name: 'Orange Maroc', url: 'https://recrutement.orange.ma/', category: 'Télécoms', notes: 'Stages et carrières Orange Maroc.' },
+  { name: 'Inwi', url: 'https://carrieres.inwi.ma/', category: 'Télécoms', notes: 'Espace carrières et opportunités chez Inwi.' },
+  { name: 'Renault Group Maroc', url: 'https://renault.talent-soft.com/', category: 'Automobile & Industrie', notes: 'Usines Tanger & Casablanca, ingénierie et fonctions support.' },
+  { name: 'Stellantis Maroc', url: 'https://careers.stellantis.com/', category: 'Automobile & Industrie', notes: 'Usine de Kénitra et centre technique de Casablanca.' },
+  { name: 'Sopra Steria Maroc', url: 'https://www.soprasteria.ma/carrieres', category: 'Tech & Conseil', notes: 'ESN européenne implantée à Casablanca et Rabat.' },
+  { name: 'DXC Technology Maroc', url: 'https://dxc.com/ma/fr/careers', category: 'Tech & Conseil', notes: 'Services IT, cloud et cybersécurité à Technopolis Salé.' },
+];
+
+const CAREER_CATEGORIES = [
+  'Tech & Conseil',
+  'Banque & Finance',
+  'Industrie & Énergie',
+  'Télécoms',
+  'Automobile & Industrie',
+  'Finance & Investissement',
+  'Général',
+  'Autre',
+];
+
+function categoryBadge(cat) {
+  const map = {
+    'Tech & Conseil': 'bg-blue-100 text-blue-800 border-blue-200',
+    'Banque & Finance': 'bg-emerald-100 text-emerald-800 border-emerald-200',
+    'Finance & Investissement': 'bg-teal-100 text-teal-800 border-teal-200',
+    'Industrie & Énergie': 'bg-amber-100 text-amber-900 border-amber-200',
+    'Télécoms': 'bg-purple-100 text-purple-800 border-purple-200',
+    'Automobile & Industrie': 'bg-rose-100 text-rose-800 border-rose-200',
+  };
+  const cls = map[cat] || 'bg-slate-100 text-slate-700 border-slate-200';
+  return `<span class="px-2.5 py-0.5 rounded-full border text-[10px] font-bold ${cls}">${esc(cat || 'Général')}</span>`;
+}
+
+async function viewCareerSites() {
+  const v = $('#view');
+  v.innerHTML = `<div class="${card} text-sm text-slate-500">Chargement des sites carrières…</div>`;
+  try {
+    const { data, error } = await S.sb.from('career_sites').select('*').order('created_at', { ascending: false });
+    if (error) throw error;
+    S.careerSites = data || [];
+  } catch (e) {
+    v.innerHTML = `<div class="${card} text-sm text-rose-600">${esc(errMsg(e))}</div>`;
+    return;
+  }
+
+  const f = S.careerF;
+  const categories = [...new Set(['Tous', ...CAREER_CATEGORIES, ...(S.careerSites || []).map(s => s.category).filter(Boolean))];
+
+  v.innerHTML = `
+  <div class="space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+      <div>
+        <h1 class="text-2xl font-extrabold text-slate-900">Sites & Portails Carrières</h1>
+        <p class="text-sm text-slate-500">Conservez et accédez directement aux plateformes de recrutement des entreprises qui disposent de leur propre site séparé.</p>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button id="addSiteBtn" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-700 hover:bg-blue-800 text-white transition flex items-center gap-1.5 shadow-sm">
+          <span>➕</span> Ajouter un site carrière
+        </button>
+        <button id="importPresetsBtn" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-50 border border-indigo-200 text-indigo-700 hover:bg-indigo-100 transition flex items-center gap-1.5 shadow-sm">
+          <span>✨</span> Suggestions Maroc
+        </button>
+      </div>
+    </div>
+
+    <section class="${card} space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <h2 class="text-lg font-bold text-slate-900">Vos portails enregistrés</h2>
+        <span id="siteCount" class="bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-full border border-blue-200"></span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
+        <label class="sm:col-span-2">
+          <span class="block font-semibold text-slate-600 mb-1">Recherche</span>
+          <input id="siteQ" type="search" value="${esc(f.q)}" placeholder="Nom de l'entreprise, mot-clé, notes…" class="${input}">
+        </label>
+        <label>
+          <span class="block font-semibold text-slate-600 mb-1">Catégorie / Secteur</span>
+          <select id="siteCat" class="${input}">
+            ${categories.map(c => `<option value="${c === 'Tous' ? '' : esc(c)}" ${f.category === (c === 'Tous' ? '' : c) ? 'selected' : ''}>${esc(c)}</option>`).join('')}
+          </select>
+        </label>
+      </div>
+
+      <div id="sitesGrid" class="pt-1"></div>
+    </section>
+  </div>`;
+
+  $('#addSiteBtn').onclick = () => openCareerSiteModal();
+  $('#importPresetsBtn').onclick = () => openPresetSitesModal();
+
+  $('#siteQ').addEventListener('input', e => {
+    S.careerF.q = e.target.value;
+    renderCareerSitesList();
+  });
+  $('#siteCat').addEventListener('change', e => {
+    S.careerF.category = e.target.value;
+    renderCareerSitesList();
+  });
+
+  renderCareerSitesList();
+}
+
+function renderCareerSitesList() {
+  const f = S.careerF, q = norm(f.q);
+  const list = (S.careerSites || []).filter(s => {
+    if (q) {
+      const hay = norm([s.name, s.url, s.category, s.notes].filter(Boolean).join(' '));
+      if (!hay.includes(q)) return false;
+    }
+    if (f.category && s.category !== f.category) return false;
+    return true;
+  });
+
+  if ($('#siteCount')) {
+    $('#siteCount').textContent = `${list.length} / ${(S.careerSites || []).length} portail${(S.careerSites || []).length > 1 ? 's' : ''}`;
+  }
+
+  const grid = $('#sitesGrid');
+  if (!grid) return;
+
+  if (!list.length) {
+    grid.className = 'py-12 text-center text-slate-400 text-sm space-y-2';
+    grid.innerHTML = (S.careerSites || []).length
+      ? '<p>Aucun site carrière ne correspond à votre recherche.</p>'
+      : `<p class="font-medium text-slate-600">Vous n'avez pas encore enregistré de portail carrière.</p>
+         <p class="text-xs text-slate-400">Cliquez sur <b>« + Ajouter un site carrière »</b> ou découvrez nos <b>« ✨ Suggestions Maroc »</b> pour ajouter les plus grandes entreprises en un clic.</p>`;
+    return;
+  }
+
+  grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-1';
+  grid.innerHTML = list.map(s => `
+    <div class="bg-white rounded-2xl border border-slate-200 p-4 flex flex-col justify-between hover:shadow-md transition">
+      <div class="space-y-2">
+        <div class="flex items-start justify-between gap-2">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 flex items-center justify-center font-extrabold text-xs shrink-0">
+              ${esc(s.name.slice(0, 2).toUpperCase())}
+            </span>
+            <h3 class="font-bold text-slate-900 truncate text-sm" title="${esc(s.name)}">${esc(s.name)}</h3>
+          </div>
+          ${categoryBadge(s.category)}
+        </div>
+        ${s.notes ? `<p class="text-xs text-slate-500 bg-slate-50 rounded-xl p-2.5 border border-slate-100 line-clamp-3 leading-relaxed">${esc(s.notes)}</p>` : ''}
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2 mt-3">
+        <a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition flex items-center gap-1">
+          <span>Ouvrir le portail</span> ↗
+        </a>
+        <div class="flex items-center gap-2">
+          <button data-edit-site="${s.id}" class="text-xs underline text-blue-700 font-semibold">Modifier</button>
+          <button data-del-site="${s.id}" class="text-xs underline text-rose-600 font-semibold">Supprimer</button>
+        </div>
+      </div>
+    </div>`).join('');
+
+  $$('[data-edit-site]', grid).forEach(b => b.addEventListener('click', () => {
+    const s = S.careerSites.find(x => x.id === Number(b.dataset.editSite));
+    if (s) openCareerSiteModal(s);
+  }));
+
+  $$('[data-del-site]', grid).forEach(b => b.addEventListener('click', () => {
+    deleteCareerSite(Number(b.dataset.delSite));
+  }));
+}
+
+function openCareerSiteModal(site = null) {
+  const isEdit = Boolean(site);
+  const s = site || {};
+  const title = isEdit ? 'Modifier le site carrière' : 'Ajouter un site carrière';
+
+  $('#modalBox').innerHTML = `
+    <button id="mClose" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 font-bold" aria-label="Fermer">✕</button>
+    <div class="space-y-1 border-b border-slate-200 pb-3 pr-8">
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-800 border border-indigo-200 text-[10px] font-extrabold uppercase">Portail carrière</span>
+      </div>
+      <h3 class="text-xl font-bold text-slate-900">${esc(title)}</h3>
+      <p class="text-xs text-slate-500">Enregistrez le portail de recrutement officiel pour y postuler directement.</p>
+    </div>
+    <form id="siteForm" class="space-y-4 pt-4 text-xs">
+      <div>
+        <label class="block font-semibold text-slate-700">
+          Nom de l'entreprise / Plateforme <span class="text-rose-500">*</span>
+          <input required name="name" maxlength="100" value="${esc(s.name || '')}" placeholder="ex: OCP Group, Capgemini, Attijariwafa…" class="${input} mt-1">
+        </label>
+      </div>
+      <div>
+        <label class="block font-semibold text-slate-700">
+          Lien du site carrière (URL) <span class="text-rose-500">*</span>
+          <input required type="url" name="url" maxlength="500" value="${esc(s.url || '')}" placeholder="https://recrutement.entreprise.ma" class="${input} mt-1">
+        </label>
+      </div>
+      <div>
+        <label class="block font-semibold text-slate-700">
+          Catégorie / Secteur
+          <select name="category" class="${input} mt-1">
+            ${CAREER_CATEGORIES.map(c => `<option value="${esc(c)}" ${(s.category || 'Général') === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}
+          </select>
+        </label>
+      </div>
+      <div>
+        <label class="block font-semibold text-slate-700">
+          Notes / Conseils personnalisés
+          <textarea name="notes" rows="3" maxlength="2000" class="${input} mt-1" placeholder="Périodes de stages, contact RH, lien formulaire spontané…">${esc(s.notes || '')}</textarea>
+        </label>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-200">
+        <button type="submit" class="${btnPrimary} flex-1">Enregistrer</button>
+        ${isEdit ? `<button type="button" id="siteDelBtn" class="${btnGhost} text-rose-600 hover:bg-rose-50 hover:text-rose-700">Supprimer</button>` : ''}
+        <button type="button" id="siteCancelBtn" class="${btnGhost}">Annuler</button>
+      </div>
+
+      ${s.url ? `
+        <div class="pt-2 text-right border-t border-slate-100">
+          <a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener" class="text-xs underline text-blue-700 font-semibold">Tester le lien en direct ↗</a>
+        </div>` : ''}
+    </form>`;
+
+  $('#modal').classList.remove('hidden');
+  $('#mClose').onclick = closeModal;
+  $('#siteCancelBtn').onclick = closeModal;
+
+  if ($('#siteDelBtn')) {
+    $('#siteDelBtn').onclick = () => deleteCareerSite(s.id);
+  }
+
+  $('#siteForm').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const fd = new FormData(ev.target);
+    const name = String(fd.get('name') || '').trim();
+    const url = String(fd.get('url') || '').trim();
+    if (!name || !url) return toast('Le nom et le lien sont obligatoires', 'err');
+
+    const payload = {
+      user_id: S.user.id,
+      name,
+      url,
+      category: String(fd.get('category') || 'Général').trim(),
+      notes: String(fd.get('notes') || '').trim(),
+    };
+
+    try {
+      if (isEdit) {
+        await call(S.sb.from('career_sites').update(payload).eq('id', s.id).eq('user_id', S.user.id));
+        toast('Site carrière mis à jour');
+      } else {
+        await call(S.sb.from('career_sites').insert(payload));
+        toast('Site carrière ajouté');
+      }
+      closeModal();
+      viewCareerSites();
+    } catch (e) {
+      toast(errMsg(e), 'err');
+    }
+  });
+}
+
+async function deleteCareerSite(id) {
+  if (!confirm('Supprimer ce site carrière ?')) return;
+  try {
+    await call(S.sb.from('career_sites').delete().eq('id', id).eq('user_id', S.user.id));
+    toast('Site carrière supprimé');
+    closeModal();
+    viewCareerSites();
+  } catch (e) {
+    toast(errMsg(e), 'err');
+  }
+}
+
+function openPresetSitesModal() {
+  const existingUrls = new Set((S.careerSites || []).map(s => s.url.toLowerCase().replace(/\/+$/, '')));
+
+  $('#modalBox').innerHTML = `
+    <button id="mClose" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 font-bold" aria-label="Fermer">✕</button>
+    <div class="space-y-1 border-b border-slate-200 pb-3 pr-8">
+      <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-800 border border-indigo-200 text-[10px] font-extrabold uppercase">Portails clés</span>
+      <h3 class="text-xl font-bold text-slate-900">Suggestions de sites carrières au Maroc</h3>
+      <p class="text-xs text-slate-500">Ajoutez d'un clic les plateformes de recrutement des grandes entreprises marocaines.</p>
+    </div>
+    <div class="space-y-3 pt-4 text-xs max-h-96 overflow-y-auto scroll">
+      ${PRESET_CAREER_SITES.map((p, idx) => {
+        const added = existingUrls.has(p.url.toLowerCase().replace(/\/+$/, ''));
+        return `
+        <div class="p-3 rounded-xl border border-slate-200 flex items-center justify-between gap-3 bg-slate-50 hover:bg-white transition">
+          <div class="space-y-1 min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-900 text-xs">${esc(p.name)}</span>
+              ${categoryBadge(p.category)}
+            </div>
+            <p class="text-[11px] text-slate-500 truncate">${esc(p.notes)}</p>
+            <a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener" class="text-[10px] underline text-blue-600 block truncate">${esc(p.url)}</a>
+          </div>
+          <div>
+            ${added
+              ? '<span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-[11px] font-bold">Ajouté ✓</span>'
+              : `<button data-add-preset="${idx}" class="${btnPrimary} text-xs py-1.5 px-3 whitespace-nowrap">Ajouter +</button>`}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="pt-3 border-t border-slate-200 flex justify-end">
+      <button id="closePresetBtn" class="${btnGhost}">Fermer</button>
+    </div>`;
+
+  $('#modal').classList.remove('hidden');
+  $('#mClose').onclick = closeModal;
+  $('#closePresetBtn').onclick = closeModal;
+
+  $$('[data-add-preset]').forEach(btn => btn.addEventListener('click', async () => {
+    const preset = PRESET_CAREER_SITES[Number(btn.dataset.addPreset)];
+    if (!preset) return;
+    btn.disabled = true;
+    try {
+      await call(S.sb.from('career_sites').insert({
+        user_id: S.user.id,
+        name: preset.name,
+        url: preset.url,
+        category: preset.category,
+        notes: preset.notes,
+      }));
+      toast(`${preset.name} ajouté à vos sites carrières`);
+      const { data } = await S.sb.from('career_sites').select('*').order('created_at', { ascending: false });
+      S.careerSites = data || [];
+      openPresetSitesModal();
+      if (S.view === 'carrieres') viewCareerSites();
+    } catch (e) {
+      toast(errMsg(e), 'err');
+      btn.disabled = false;
+    }
+  }));
 }
 
 // ───────────────────────── view: marché ─────────────────────────
