@@ -388,6 +388,7 @@ grant execute on function public.my_applications() to authenticated;
 -- ───────────────────────────── admin back office ─────────────────────────────
 
 -- Users with application counts only (no notes/letters: those stay private).
+drop function if exists public.admin_users();
 create or replace function public.admin_users()
 returns table (id uuid, email text, full_name text, school text, field text, role text,
                status text, created_at timestamptz, n_applications bigint, n_sent bigint,
