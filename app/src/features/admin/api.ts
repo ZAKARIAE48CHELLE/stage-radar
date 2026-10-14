@@ -117,7 +117,11 @@ export function useUpdateMember() {
       patch,
     }: {
       userId: string;
-      patch: { status?: 'approved' | 'pending' | 'blocked'; role?: 'admin' | 'user' };
+      patch: {
+        status?: 'approved' | 'pending' | 'blocked';
+        role?: 'admin' | 'user';
+        features?: Record<string, boolean>;
+      };
     }) => {
       const { data, error } = await supabase
         .from('profiles')

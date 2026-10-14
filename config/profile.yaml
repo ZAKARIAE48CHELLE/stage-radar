@@ -117,3 +117,11 @@ sources:
       - "rekrute.com"
       - "emploi.ma"
       - "glassdoor.com"
+
+  france_travail:              # France Travail official API Offres d'emploi v2
+    enabled: false
+    keywords: "stage OR alternance OR data OR \"intelligence artificielle\""
+    type_contrat: "STG,FS,E1,E2"
+    departements: []           # e.g. ["75", "92"] or empty for all
+    crawl_delay_seconds: 0.5   # API allows up to 10 req/s
+    max_new_per_run: 500

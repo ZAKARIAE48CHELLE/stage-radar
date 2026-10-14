@@ -71,6 +71,7 @@ export function scoreClass(score: number): string {
 
 export function srcLabel(s: string | null | undefined): string {
   if (!s) return '—';
+  if (s === 'france_travail') return 'France Travail';
   if (s.startsWith('email:')) return s.slice(6) + ' (alerte)';
   return s;
 }

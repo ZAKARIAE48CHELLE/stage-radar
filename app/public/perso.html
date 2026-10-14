@@ -177,6 +177,7 @@ if (window.tailwind) tailwind.config = { theme: { extend: {
       <div><h4 class="font-bold text-slate-900 mb-1">Compétences détectées</h4><div id="mKw" class="flex flex-wrap gap-1.5"></div></div>
       <div><h4 class="font-bold text-slate-900 mb-1">Conseil d'approche</h4><p id="mAdvice" class="bg-emerald-50 border border-emerald-200 text-emerald-900 p-3 rounded-xl font-medium"></p></div>
       <div><h4 class="font-bold text-slate-900 mb-1">Description</h4><p id="mDesc" class="desc bg-slate-50 p-3 rounded-xl border border-slate-200 text-slate-600 leading-relaxed"></p></div>
+      <p id="mAttribution" class="text-[11px] text-slate-400 italic hidden">Offres fournies par France Travail</p>
     </div>
     <div class="flex items-center justify-between pt-4 border-t border-slate-200">
       <span class="text-xs text-slate-500">Score : <b id="mScore" class="text-sm text-brand-600"></b></span>
@@ -212,8 +213,8 @@ function daysAgo(iso) {
 }
 const place = o => [o.city, o.modality].filter(Boolean).join(' · ') || '—';
 const dominantAxis = o => LABEL2AXIS[o.domain] || '';
-// 'email:LinkedIn' → 'LinkedIn (alerte)', 'stagiaires.ma' → 'stagiaires.ma'
-const srcLabel = s => (s || '').startsWith('email:') ? s.slice(6) + ' (alerte)' : (s || '—');
+// 'email:LinkedIn' → 'LinkedIn (alerte)', 'france_travail' → 'France Travail'
+const srcLabel = s => s === 'france_travail' ? 'France Travail' : (s || '').startsWith('email:') ? s.slice(6) + ' (alerte)' : (s || '—');
 
 // ───────────────────────── load ─────────────────────────
 async function load() {
@@ -466,6 +467,7 @@ function openModal(id) {
   $('mLink').href = safeUrl(o.url);
   $('mLink').textContent = `Voir sur ${srcLabel(o.source)} ↗`;
   $('mSources').innerHTML = (o.also_on || []).length ? 'Aussi publiée sur : ' + o.also_on.map(a => `<a class="underline hover:text-brand-600" target="_blank" rel="noopener" href="${esc(safeUrl(a.url))}">${esc(srcLabel(a.source))}</a>`).join(', ') : '';
+  $('mAttribution').classList.toggle('hidden', o.source !== 'france_travail');
   $('modal').classList.remove('hidden');
 }
 function closeModal() { $('modal').classList.add('hidden'); }

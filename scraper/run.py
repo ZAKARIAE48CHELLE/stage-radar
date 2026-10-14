@@ -20,7 +20,7 @@ import yaml
 from . import notify, supabase_sync
 from .http import PoliteSession
 from .scoring import analyse, is_relevant
-from .sources import stagiaires_ma, dreamjob_ma, email_alerts
+from .sources import stagiaires_ma, dreamjob_ma, email_alerts, france_travail
 from .text import norm
 from .storage import Store
 
@@ -82,6 +82,15 @@ def fetch(cfg: dict, store: Store, max_new: int | None) -> set[str]:
     em = srcs.get("email_alerts", {})
     if em.get("enabled", False):
         run_source("email", lambda: save(email_alerts.collect(em, store.known())))
+
+    # 4) france_travail — official France Travail Offres d'emploi v2 REST API
+    ft = srcs.get("france_travail", {})
+    if ft.get("enabled", False):
+        def _france_travail():
+            session = PoliteSession(delay=ft.get("crawl_delay_seconds", 0.5))
+            cap = max_new if max_new is not None else ft.get("max_new_per_run", 500)
+            save(france_travail.collect(session, ft, f["max_age_days"], store.known(), cap))
+        run_source("france_travail", _france_travail)
 
     log.info("%d new offers stored this run", len(inserted))
     return inserted

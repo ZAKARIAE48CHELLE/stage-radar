@@ -1,18 +1,21 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../features/auth/AuthProvider';
+import { hasFeature } from '../../lib/features';
 
 export function NavBar() {
-  const { isAdmin } = useAuth();
+  const { profile, isAdmin } = useAuth();
 
-  const navItems = [
-    { to: '/offres', label: 'Offres' },
-    { to: '/candidatures', label: 'Mes candidatures' },
-    { to: '/carrieres', label: 'Sites carrières' },
-    { to: '/marche', label: 'Marché' },
+  const allItems = [
+    { to: '/offres', label: 'Offres', feature: 'page_offers' },
+    { to: '/candidatures', label: 'Mes candidatures', feature: 'page_applications' },
+    { to: '/carrieres', label: 'Sites carrières', feature: 'page_carrieres' },
+    { to: '/marche', label: 'Marché', feature: 'page_marche' },
   ];
 
+  const navItems = allItems.filter((item) => hasFeature(profile, item.feature));
+
   if (isAdmin) {
-    navItems.push({ to: '/admin', label: 'Admin' });
+    navItems.push({ to: '/admin', label: 'Admin', feature: '' });
   }
 
   return (

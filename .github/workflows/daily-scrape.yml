@@ -45,6 +45,9 @@ jobs:
           SMTP_HOST: ${{ vars.SMTP_HOST }}
           MAIL_TO: ${{ vars.MAIL_TO }}
 
+          FRANCE_TRAVAIL_CLIENT_ID: ${{ secrets.FRANCE_TRAVAIL_CLIENT_ID }}
+          FRANCE_TRAVAIL_CLIENT_SECRET: ${{ secrets.FRANCE_TRAVAIL_CLIENT_SECRET }}
+
         run: python -m scraper.run --notify
 
       - name: Commit updated data

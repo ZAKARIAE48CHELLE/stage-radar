@@ -21,11 +21,13 @@ create table if not exists public.profiles (
   -- [{ "label": "IA & GenAI", "weight": 35, "keywords": ["llm","rag", …] }, …]
   axes              jsonb not null default '[]'::jsonb,
   cv_path           text,
+  features          jsonb not null default '{}'::jsonb,
   role              text not null default 'user'    check (role in ('user','admin')),
   status            text not null default 'pending' check (status in ('pending','approved','blocked')),
   created_at        timestamptz not null default now(),
   updated_at        timestamptz not null default now()
 );
+alter table public.profiles add column if not exists features jsonb not null default '{}'::jsonb;
 
 create table if not exists public.offers (
   id              bigint generated always as identity primary key,
@@ -169,8 +171,9 @@ begin
     return new;
   end if;
   if new.role is distinct from old.role or new.status is distinct from old.status
-     or new.email is distinct from old.email or new.id is distinct from old.id then
-    raise exception 'Not allowed to change role, status or e-mail';
+     or new.email is distinct from old.email or new.id is distinct from old.id
+     or new.features is distinct from old.features then
+    raise exception 'Not allowed to change role, status, e-mail or features';
   end if;
   return new;
 end $$;
@@ -388,7 +391,7 @@ grant execute on function public.my_applications() to authenticated;
 create or replace function public.admin_users()
 returns table (id uuid, email text, full_name text, school text, field text, role text,
                status text, created_at timestamptz, n_applications bigint, n_sent bigint,
-               n_interviews bigint, last_activity timestamptz)
+               n_interviews bigint, last_activity timestamptz, features jsonb)
 language plpgsql stable security definer set search_path = public as $$
 begin
   if not public.is_admin() then raise exception 'Admins only'; end if;
@@ -397,7 +400,8 @@ begin
          count(a.id),
          count(a.id) filter (where a.status in ('envoyee','relance','entretien','offre','refus')),
          count(a.id) filter (where a.status in ('entretien','offre')),
-         max(a.updated_at)
+         max(a.updated_at),
+         pr.features
   from profiles pr left join applications a on a.user_id = pr.id
   group by pr.id
   order by (pr.status = 'pending') desc, pr.created_at desc;

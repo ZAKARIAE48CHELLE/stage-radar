@@ -1,19 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../features/auth/AuthProvider';
+import { hasFeature } from '../../lib/features';
 import { Briefcase, FileText, Globe, BarChart3, Settings } from 'lucide-react';
 
 export function MobileNav() {
-  const { isAdmin } = useAuth();
+  const { profile, isAdmin } = useAuth();
 
-  const navItems = [
-    { to: '/offres', label: 'Offres', icon: Briefcase },
-    { to: '/candidatures', label: 'Candidatures', icon: FileText },
-    { to: '/carrieres', label: 'Sites', icon: Globe },
-    { to: '/marche', label: 'Marché', icon: BarChart3 },
+  const allItems = [
+    { to: '/offres', label: 'Offres', icon: Briefcase, feature: 'page_offers' },
+    { to: '/candidatures', label: 'Candidatures', icon: FileText, feature: 'page_applications' },
+    { to: '/carrieres', label: 'Sites', icon: Globe, feature: 'page_carrieres' },
+    { to: '/marche', label: 'Marché', icon: BarChart3, feature: 'page_marche' },
   ];
 
+  const navItems = allItems.filter((item) => hasFeature(profile, item.feature));
+
   if (isAdmin) {
-    navItems.push({ to: '/admin', label: 'Admin', icon: Settings });
+    navItems.push({ to: '/admin', label: 'Admin', icon: Settings, feature: '' });
   }
 
   return (

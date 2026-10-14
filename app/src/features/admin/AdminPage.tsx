@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertTriangle, Mail, X, KeyRound, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
+import { AlertTriangle, Mail, X, KeyRound, Eye, EyeOff, CheckCircle2, SlidersHorizontal, ShieldCheck } from 'lucide-react';
 import {
   useAdminStats,
   useAdminUsers,
@@ -15,6 +15,7 @@ import { ErrorState } from '../../components/feedback/ErrorState';
 import { Modal } from '../../components/ui/Modal';
 import { daysAgo, formatDateTime, srcLabel } from '../../lib/format';
 import { FIELDS } from '../../lib/constants';
+import { ALL_FEATURES, FEATURE_CATEGORIES, DEFAULT_FEATURES } from '../../lib/features';
 import type { AdminUserItem } from '../../types/api';
 
 export function AdminPage() {
@@ -55,6 +56,63 @@ export function AdminPage() {
     setConfirmPassword('');
     setPasswordError('');
     setPasswordSuccess(false);
+  }
+
+  // Features modal state
+  const [featureUser, setFeatureUser] = useState<AdminUserItem | null>(null);
+  const [userFeatures, setUserFeatures] = useState<Record<string, boolean>>({});
+  const [featureSuccess, setFeatureSuccess] = useState(false);
+
+  function openFeaturesModal(u: AdminUserItem) {
+    setFeatureUser(u);
+    setFeatureSuccess(false);
+    const initial: Record<string, boolean> = { ...DEFAULT_FEATURES };
+    if (u.features) {
+      Object.entries(u.features).forEach(([k, v]) => {
+        initial[k] = Boolean(v);
+      });
+    }
+    setUserFeatures(initial);
+  }
+
+  function closeFeaturesModal() {
+    setFeatureUser(null);
+    setFeatureSuccess(false);
+  }
+
+  function handleToggleFeature(key: string) {
+    setUserFeatures((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  }
+
+  function handleSetAllFeatures(val: boolean) {
+    const next: Record<string, boolean> = {};
+    ALL_FEATURES.forEach((f) => {
+      next[f.key] = val;
+    });
+    setUserFeatures(next);
+  }
+
+  function handleResetDefaultFeatures() {
+    setUserFeatures({ ...DEFAULT_FEATURES });
+  }
+
+  async function handleSaveFeatures() {
+    if (!featureUser) return;
+    try {
+      await updateMember.mutateAsync({
+        userId: featureUser.id,
+        patch: { features: userFeatures },
+      });
+      setFeatureSuccess(true);
+      setTimeout(() => {
+        closeFeaturesModal();
+      }, 700);
+    } catch {
+      // handled by mutation
+    }
   }
 
   async function handlePasswordSubmit(e: React.FormEvent) {
@@ -222,6 +280,7 @@ export function AdminPage() {
                 <th className="py-3 pl-6 pr-3">Membre</th>
                 <th className="py-3 px-3">École & Domaine</th>
                 <th className="py-3 px-3">Statut</th>
+                <th className="py-3 px-3">Fonctionnalités</th>
                 <th className="py-3 px-3 text-center">Suivies</th>
                 <th className="py-3 px-3 text-center">Envoyées</th>
                 <th className="py-3 px-3 text-center">Entretiens</th>
@@ -233,6 +292,9 @@ export function AdminPage() {
               {users.map((u) => {
                 const isMe = u.id === user?.id;
                 const fieldLabel = FIELDS[u.field]?.label || u.field || '—';
+                const activeCount = ALL_FEATURES.filter((f) =>
+                  u.features && u.features[f.key] !== undefined ? u.features[f.key] : f.default
+                ).length;
 
                 return (
                   <tr key={u.id} className="hover:bg-slate-50/70 transition">
@@ -266,6 +328,20 @@ export function AdminPage() {
                       >
                         {u.status === 'approved' ? 'Validé' : u.status === 'pending' ? 'En attente' : 'Bloqué'}
                       </span>
+                    </td>
+
+                    <td className="py-3 px-3 align-middle whitespace-nowrap">
+                      <button
+                        type="button"
+                        onClick={() => openFeaturesModal(u)}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200/80 font-bold text-[11px] transition shadow-2xs"
+                        title="Configurer les accès et fonctionnalités de ce membre"
+                      >
+                        <SlidersHorizontal className="w-3 h-3 text-blue-600" />
+                        <span>
+                          {u.role === 'admin' ? 'Tout (admin)' : `${activeCount}/${ALL_FEATURES.length} actives`}
+                        </span>
+                      </button>
                     </td>
 
                     <td className="py-3 px-3 align-middle text-center font-bold text-slate-700">
@@ -319,6 +395,15 @@ export function AdminPage() {
                             {u.role === 'admin' ? 'Retirer admin' : 'Rendre admin'}
                           </button>
                         )}
+                        <button
+                          type="button"
+                          onClick={() => openFeaturesModal(u)}
+                          className="font-bold text-blue-700 hover:text-blue-800 hover:underline inline-flex items-center gap-1"
+                          title="Gérer les fonctionnalités"
+                        >
+                          <SlidersHorizontal className="w-3.5 h-3.5" />
+                          <span>Accès</span>
+                        </button>
                         <button
                           type="button"
                           onClick={() => openPasswordModal(u)}
@@ -517,6 +602,153 @@ export function AdminPage() {
             </button>
           </div>
         </form>
+      </Modal>
+
+      {/* Features Management Modal */}
+      <Modal
+        isOpen={Boolean(featureUser)}
+        onClose={closeFeaturesModal}
+        title="Droits & Fonctionnalités du membre"
+      >
+        {featureUser && (
+          <div className="space-y-4 text-xs">
+            {/* Header / Member context */}
+            <div className="p-3 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between gap-3">
+              <div>
+                <div className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                  <span>{featureUser.full_name || featureUser.email}</span>
+                  {featureUser.role === 'admin' && (
+                    <span className="px-1.5 py-0.2 rounded text-[10px] bg-slate-900 text-white font-bold">
+                      Admin
+                    </span>
+                  )}
+                </div>
+                <div className="text-slate-500 font-mono text-[11px]">{featureUser.email}</div>
+              </div>
+
+              {featureUser.role === 'admin' && (
+                <div className="flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-xl text-[11px]">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Accès total (Admin)</span>
+                </div>
+              )}
+            </div>
+
+            {/* Quick Actions Bar */}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+              <span className="font-bold text-slate-700">Actions rapides</span>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => handleSetAllFeatures(true)}
+                  className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition text-[11px]"
+                >
+                  Tout activer
+                </button>
+                <button
+                  type="button"
+                  onClick={handleResetDefaultFeatures}
+                  className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition text-[11px]"
+                >
+                  Par défaut
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleSetAllFeatures(false)}
+                  className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-rose-700 font-bold transition text-[11px]"
+                >
+                  Tout désactiver
+                </button>
+              </div>
+            </div>
+
+            {/* Feature categories */}
+            <div className="space-y-4 max-h-[55vh] overflow-y-auto pr-1">
+              {Object.entries(FEATURE_CATEGORIES).map(([catKey, catInfo]) => {
+                const catFeatures = ALL_FEATURES.filter((f) => f.category === catKey);
+
+                return (
+                  <div key={catKey} className="space-y-2">
+                    <h3 className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                      {catInfo.label}
+                    </h3>
+                    <div className="space-y-1.5">
+                      {catFeatures.map((f) => {
+                        const isEnabled = userFeatures[f.key] ?? f.default;
+
+                        return (
+                          <div
+                            key={f.key}
+                            onClick={() => handleToggleFeature(f.key)}
+                            className={`p-3 rounded-xl border transition flex items-center justify-between gap-3 cursor-pointer select-none ${
+                              isEnabled
+                                ? 'bg-blue-50/40 border-blue-200 hover:bg-blue-50/70'
+                                : 'bg-slate-50/60 border-slate-200/80 hover:bg-slate-100/60 opacity-75'
+                            }`}
+                          >
+                            <div className="space-y-0.5">
+                              <div className="font-bold text-slate-900 flex items-center gap-2">
+                                <span>{f.label}</span>
+                                <span
+                                  className={`px-1.5 py-0.2 rounded text-[10px] font-bold ${
+                                    isEnabled
+                                      ? 'bg-blue-100 text-blue-700'
+                                      : 'bg-slate-200 text-slate-600'
+                                  }`}
+                                >
+                                  {isEnabled ? 'Activé' : 'Désactivé'}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-slate-500 leading-snug">
+                                {f.description}
+                              </p>
+                            </div>
+
+                            {/* Toggle Switch */}
+                            <div
+                              className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors duration-200 ease-in-out shrink-0 ${
+                                isEnabled ? 'bg-blue-600 justify-end' : 'bg-slate-300 justify-start'
+                              }`}
+                            >
+                              <div className="bg-white w-4 h-4 rounded-full shadow-md" />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Feedback alert */}
+            {featureSuccess && (
+              <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 font-bold flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Fonctionnalités enregistrées avec succès !</span>
+              </div>
+            )}
+
+            {/* Modal Actions */}
+            <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={closeFeaturesModal}
+                className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold transition"
+              >
+                Annuler
+              </button>
+              <button
+                type="button"
+                onClick={handleSaveFeatures}
+                disabled={updateMember.isPending || featureSuccess}
+                className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition shadow-sm disabled:opacity-50"
+              >
+                {updateMember.isPending ? 'Enregistrement...' : 'Enregistrer les droits'}
+              </button>
+            </div>
+          </div>
+        )}
       </Modal>
     </div>
   );

@@ -143,34 +143,47 @@ export function ExternalAppModal({ app, isOpen, onClose }: ExternalAppModalProps
           </div>
         </div>
 
-        {/* Row: City & URL */}
+        {/* Row: City & Source */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label className="block font-semibold text-slate-700 mb-1">Ville</label>
-            <select
+            <input
+              type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
+              placeholder="Ex: Casablanca, Paris, À distance..."
+              list="external-cities-list"
               className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-            >
-              <option value="">Sélectionner une ville</option>
+            />
+            <datalist id="external-cities-list">
               {CITIES.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
+                <option key={c} value={c} />
               ))}
-            </select>
+            </datalist>
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">Lien de l'offre ou de l'annonce</label>
+            <label className="block font-semibold text-slate-700 mb-1">Source de l'annonce</label>
             <input
-              type="url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder="https://..."
+              type="text"
+              value={source}
+              onChange={(e) => setSource(e.target.value)}
+              placeholder="Ex: LinkedIn, Indeed, Site carrière..."
               className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20"
             />
           </div>
+        </div>
+
+        {/* Row: URL / Reference */}
+        <div>
+          <label className="block font-semibold text-slate-700 mb-1">Lien de l'offre ou de l'annonce</label>
+          <input
+            type="text"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="https://... ou référence de l'annonce"
+            className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          />
         </div>
 
         {/* Row: Status & Applied Date */}

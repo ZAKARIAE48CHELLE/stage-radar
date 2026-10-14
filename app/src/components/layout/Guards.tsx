@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../features/auth/AuthProvider';
+import { hasFeature } from '../../lib/features';
 
 export function RequireAuth() {
   const { session, loading, isBlocked, isPending } = useAuth();
@@ -43,6 +44,26 @@ export function PublicOnly() {
   if (loading) return null;
   if (session && isApproved) {
     return <Navigate to="/offres" replace />;
+  }
+
+  return <Outlet />;
+}
+
+export function RequireFeature({ feature }: { feature: string }) {
+  const { profile, loading } = useAuth();
+
+  if (loading) return null;
+  if (!hasFeature(profile, feature)) {
+    const fallback = hasFeature(profile, 'page_offers')
+      ? '/offres'
+      : hasFeature(profile, 'page_applications')
+      ? '/candidatures'
+      : hasFeature(profile, 'page_carrieres')
+      ? '/carrieres'
+      : hasFeature(profile, 'page_marche')
+      ? '/marche'
+      : '/profil';
+    return <Navigate to={fallback} replace />;
   }
 
   return <Outlet />;

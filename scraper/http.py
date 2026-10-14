@@ -12,6 +12,7 @@ from urllib3.util.retry import Retry
 
 log = logging.getLogger(__name__)
 
+AUTHORIZED_API_HOSTS = ("api.francetravail.io", "entreprise.francetravail.fr")
 NO_QUERY_HOSTS = ("stagiaires.ma",)  # robots.txt: Disallow: /*?*
 USER_AGENT = "StageRadarBot/1.0 (personal internship search; +https://github.com/)"
 
@@ -33,6 +34,8 @@ class PoliteSession:
 
     def allowed(self, url: str) -> bool:
         p = urlparse(url)
+        if p.netloc in AUTHORIZED_API_HOSTS:
+            return True
         if "?" in url and p.netloc.endswith(NO_QUERY_HOSTS):
             return False  # these sites disallow /*?* in robots.txt
         root = f"{p.scheme}://{p.netloc}"
@@ -47,7 +50,8 @@ class PoliteSession:
             self._robots[root] = rp
         return rp.can_fetch(USER_AGENT, url)
 
-    def get(self, url: str) -> requests.Response | None:
+    def get(self, url: str, headers: dict | None = None, params: dict | None = None,
+            ok_statuses: tuple[int, ...] = (200,)) -> requests.Response | None:
         if not self.allowed(url):
             log.warning("robots.txt disallows %s — skipped", url)
             return None
@@ -55,13 +59,33 @@ class PoliteSession:
         if wait > 0:
             time.sleep(wait)
         try:
-            r = self.s.get(url, timeout=self.timeout)
+            r = self.s.get(url, headers=headers, params=params, timeout=self.timeout)
         except requests.RequestException as e:
             log.warning("GET %s failed: %s", url, e)
             return None
         finally:
             self._last = time.monotonic()
-        if r.status_code != 200:
+        if r.status_code not in ok_statuses:
             log.warning("GET %s -> HTTP %s", url, r.status_code)
+            return None
+        return r
+
+    def post(self, url: str, data: dict | None = None, headers: dict | None = None,
+             ok_statuses: tuple[int, ...] = (200,)) -> requests.Response | None:
+        if not self.allowed(url):
+            log.warning("robots.txt disallows %s — skipped", url)
+            return None
+        wait = self.delay - (time.monotonic() - self._last)
+        if wait > 0:
+            time.sleep(wait)
+        try:
+            r = self.s.post(url, data=data, headers=headers, timeout=self.timeout)
+        except requests.RequestException as e:
+            log.warning("POST %s failed: %s", url, e)
+            return None
+        finally:
+            self._last = time.monotonic()
+        if r.status_code not in ok_statuses:
+            log.warning("POST %s -> HTTP %s", url, r.status_code)
             return None
         return r

@@ -55,4 +55,5 @@ export interface AdminUserItem {
   n_sent: number;
   n_interviews: number;
   last_activity: string | null;
+  features?: Record<string, boolean>;
 }

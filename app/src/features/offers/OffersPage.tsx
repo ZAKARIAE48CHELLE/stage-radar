@@ -12,19 +12,31 @@ import { isFresh } from '../../lib/format';
 import { isPaid } from '../../lib/paid';
 import { norm } from '../../lib/text';
 import { LayoutGrid, Table } from 'lucide-react';
+import { useAuth } from '../auth/AuthProvider';
+import { hasFeature } from '../../lib/features';
 
 export function OffersPage() {
+  const { profile } = useAuth();
   const { data: offers = [], isLoading, error, refetch } = useMatches();
+
+  const canCards = hasFeature(profile, 'offers_view_cards');
+  const canTable = hasFeature(profile, 'offers_view_table');
+  const canKpi = hasFeature(profile, 'offers_kpi_row');
 
   const [selectedOffer, setSelectedOffer] = useState<MatchOffer | null>(null);
   const [viewMode, setViewMode] = useState<'cards' | 'table'>(() => {
     try {
       const saved = localStorage.getItem('sr_offers_view_mode');
-      return saved === 'table' ? 'table' : 'cards';
+      if (saved === 'table' && canTable) return 'table';
+      if (saved === 'cards' && canCards) return 'cards';
     } catch {
-      return 'cards';
+      // ignore
     }
+    return canCards ? 'cards' : (canTable ? 'table' : 'cards');
   });
+
+  const activeViewMode: 'cards' | 'table' =
+    (!canCards && canTable) ? 'table' : (!canTable && canCards) ? 'cards' : viewMode;
 
   function handleViewModeChange(mode: 'cards' | 'table') {
     setViewMode(mode);
@@ -170,36 +182,38 @@ export function OffersPage() {
         </div>
 
         {/* View Mode Toggle: Cards (Default) vs Table */}
-        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl self-start sm:self-auto shadow-2xs">
-          <button
-            type="button"
-            onClick={() => handleViewModeChange('cards')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
-              viewMode === 'cards'
-                ? 'bg-white text-slate-900 shadow-2xs'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <LayoutGrid className="w-3.5 h-3.5" />
-            <span>Cartes</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => handleViewModeChange('table')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
-              viewMode === 'table'
-                ? 'bg-white text-slate-900 shadow-2xs'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <Table className="w-3.5 h-3.5" />
-            <span>Tableau</span>
-          </button>
-        </div>
+        {canCards && canTable && (
+          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl self-start sm:self-auto shadow-2xs">
+            <button
+              type="button"
+              onClick={() => handleViewModeChange('cards')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+                activeViewMode === 'cards'
+                  ? 'bg-white text-slate-900 shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+              <span>Cartes</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleViewModeChange('table')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+                activeViewMode === 'table'
+                  ? 'bg-white text-slate-900 shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Table className="w-3.5 h-3.5" />
+              <span>Tableau</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* KPI row */}
-      <KpiRow {...kpis} />
+      {canKpi && <KpiRow {...kpis} />}
 
       {/* Filter toolbar */}
       <OfferFilters
@@ -209,7 +223,7 @@ export function OffersPage() {
       />
 
       {/* Offers Display: Default Cards vs Table */}
-      {viewMode === 'cards' ? (
+      {activeViewMode === 'cards' ? (
         <OfferCardGrid
           offers={filteredOffers}
           onSelect={setSelectedOffer}

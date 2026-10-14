@@ -5,7 +5,7 @@ from pathlib import Path
 import scraper.run as run
 from scraper.models import Offer
 from scraper.scoring import analyse, is_relevant
-from scraper.sources import dreamjob_ma, email_alerts
+from scraper.sources import dreamjob_ma, email_alerts, france_travail
 from scraper.storage import Store
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -106,3 +106,134 @@ def test_cross_source_dedupe(tmp_path):
     assert len(kept) == 1 and len(kept[0]["also_on"]) == 1
     data = json.loads((tmp_path / "offers.json").read_text(encoding="utf-8"))
     assert data["stats"]["filter_reasons"]["duplicate"] == 1
+
+
+FT_SEARCH_ITEM_1 = {
+    "id": "182ABCD",
+    "intitule": "Stagiaire Data Engineer / IA (H/F)",
+    "description": "Nous recherchons un stagiaire PFE pour nos projets Big Data et LLM. Connaissances en Python, Spark et LangChain. Télétravail partiel.",
+    "dateCreation": "2026-10-10T09:30:00.000Z",
+    "typeContrat": "FS",
+    "typeContratLibelle": "Formation / Stage",
+    "alternance": False,
+    "entreprise": {
+        "nom": "Capgemini Engineering"
+    },
+    "lieuTravail": {
+        "libelle": "75 - Paris"
+    },
+    "origineOffre": {
+        "origine": "2",
+        "urlOrigine": "https://carrieres.capgemini.com/jobs/182ABCD"
+    }
+}
+
+FT_SEARCH_ITEM_2 = {
+    "id": "999XYZW",
+    "intitule": "Alternant Data Analyst (H/F)",
+    "description": "Alternance en analyse de données et business intelligence.",
+    "dateCreation": "2026-10-11T14:15:00.000Z",
+    "typeContrat": "E2",
+    "typeContratLibelle": "Contrat de professionnalisation",
+    "alternance": True,
+    "entreprise": {
+        "nom": "Atos"
+    },
+    "lieuTravail": {
+        "libelle": "69 - Lyon"
+    },
+    "origineOffre": {
+        "origine": "1"
+    }
+}
+
+
+def test_france_travail_offer_json_to_offer():
+    # 1) Offer with urlOrigine
+    o1 = france_travail.offer_json_to_offer(FT_SEARCH_ITEM_1)
+    assert o1 is not None
+    assert o1.title == "Stagiaire Data Engineer / IA (H/F)"
+    assert o1.company == "Capgemini Engineering"
+    assert o1.city == "75 - Paris"
+    assert o1.date_posted == "2026-10-10"
+    assert o1.url == "https://carrieres.capgemini.com/jobs/182ABCD"
+    assert o1.source == "france_travail"
+    assert o1.employment_type == "INTERN"
+    assert o1.is_pfe is True
+    assert o1.modality == "Télétravail"
+
+    # 2) Offer with fallback public URL
+    o2 = france_travail.offer_json_to_offer(FT_SEARCH_ITEM_2)
+    assert o2 is not None
+    assert o2.title == "Alternant Data Analyst (H/F)"
+    assert o2.company == "Atos"
+    assert o2.city == "69 - Lyon"
+    assert o2.date_posted == "2026-10-11"
+    assert o2.url == "https://candidat.francetravail.fr/offres/recherche/detail/999XYZW"
+    assert o2.source == "france_travail"
+    assert o2.employment_type == "INTERN"
+
+
+def test_france_travail_collect_without_credentials_is_noop(monkeypatch):
+    monkeypatch.delenv("FRANCE_TRAVAIL_CLIENT_ID", raising=False)
+    monkeypatch.delenv("FRANCE_TRAVAIL_CLIENT_SECRET", raising=False)
+    session = FakeSession([])
+    res = france_travail.collect(session, {"keywords": "data"}, 45, known=set(), cap=50)
+    assert res == []
+
+
+def test_france_travail_collect_with_mock_api(monkeypatch):
+    monkeypatch.setenv("FRANCE_TRAVAIL_CLIENT_ID", "mock_id")
+    monkeypatch.setenv("FRANCE_TRAVAIL_CLIENT_SECRET", "mock_secret")
+
+    class MockApiResponse:
+        def __init__(self, data, headers=None, status_code=200):
+            self._data = data
+            self.headers = headers or {}
+            self.status_code = status_code
+
+        def json(self):
+            return self._data
+
+    class MockFtSession:
+        def __init__(self):
+            self.posts = []
+            self.gets = []
+
+        def post(self, url, data=None, headers=None, ok_statuses=(200,)):
+            self.posts.append((url, data, headers))
+            return MockApiResponse({"access_token": "mock_token_123"})
+
+        def get(self, url, headers=None, params=None, ok_statuses=(200,)):
+            self.gets.append((url, headers, params))
+            resp_headers = {"Content-Range": "offres 0-1/2"}
+            return MockApiResponse({"resultats": [FT_SEARCH_ITEM_1, FT_SEARCH_ITEM_2]}, headers=resp_headers, status_code=206)
+
+    sess = MockFtSession()
+    cfg_src = {
+        "keywords": "data",
+        "type_contrat": "FS,E2",
+        "departements": ["75", "69"],
+    }
+    known = {"https://candidat.francetravail.fr/offres/recherche/detail/999XYZW"}
+    offers = france_travail.collect(sess, cfg_src, max_age_days=30, known=known, cap=10)
+
+    # Verifies OAuth token was requested
+    assert len(sess.posts) == 1
+    assert sess.posts[0][1]["client_id"] == "mock_id"
+    assert sess.posts[0][1]["scope"] == "api_offresdemploiv2"
+
+    # Verifies search request headers and params
+    assert len(sess.gets) == 1
+    req_headers = sess.gets[0][1]
+    assert req_headers["Authorization"] == "Bearer mock_token_123"
+    assert "Range" in req_headers
+    req_params = sess.gets[0][2]
+    assert req_params["motsCles"] == "data"
+    assert req_params["typeContrat"] == "FS,E2"
+    assert req_params["departement"] == "75,69"
+    assert "minCreationDate" in req_params
+
+    # Deduplication against known should leave only item 1
+    assert len(offers) == 1
+    assert offers[0].url == "https://carrieres.capgemini.com/jobs/182ABCD"

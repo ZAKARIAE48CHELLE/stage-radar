@@ -16,12 +16,38 @@ import { FileSpreadsheet, Plus, Table, LayoutDashboard, Calendar } from 'lucide-
 import { norm } from '../../lib/text';
 import type { ApplicationItem, MatchOffer } from '../../types/api';
 import { useMatches } from '../offers/api';
+import { useAuth } from '../auth/AuthProvider';
+import { hasFeature } from '../../lib/features';
 
 export function ApplicationsPage() {
+  const { profile } = useAuth();
   const { data: apps = [], isLoading, error, refetch } = useApplications();
   const { data: matches = [] } = useMatches();
 
-  const [viewMode, setViewMode] = useState<'kanban' | 'table' | 'calendar'>('kanban');
+  const canKanban = hasFeature(profile, 'apps_kanban');
+  const canTable = hasFeature(profile, 'apps_table');
+  const canCalendar = hasFeature(profile, 'apps_calendar');
+  const canAddExternal = hasFeature(profile, 'apps_add_external');
+  const canExportExcel = hasFeature(profile, 'apps_export_excel');
+
+  const defaultMode: 'kanban' | 'table' | 'calendar' = canKanban
+    ? 'kanban'
+    : canTable
+    ? 'table'
+    : canCalendar
+    ? 'calendar'
+    : 'kanban';
+
+  const [viewMode, setViewMode] = useState<'kanban' | 'table' | 'calendar'>(defaultMode);
+
+  // Fallback to permitted view mode if current mode is restricted
+  const activeViewMode: 'kanban' | 'table' | 'calendar' =
+    (viewMode === 'kanban' && !canKanban) ||
+    (viewMode === 'table' && !canTable) ||
+    (viewMode === 'calendar' && !canCalendar)
+      ? defaultMode
+      : viewMode;
+
   const [filterQuery, setFilterQuery] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'internal' | 'external'>('all');
@@ -142,21 +168,25 @@ export function ApplicationsPage() {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <button
-            onClick={() => exportAppsExcel(filteredApps)}
-            className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition flex items-center gap-1.5 shadow-sm"
-          >
-            <FileSpreadsheet className="w-4 h-4" />
-            <span>Exporter Excel (.xlsx)</span>
-          </button>
+          {canExportExcel && (
+            <button
+              onClick={() => exportAppsExcel(filteredApps)}
+              className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition flex items-center gap-1.5 shadow-sm"
+            >
+              <FileSpreadsheet className="w-4 h-4" />
+              <span>Exporter Excel (.xlsx)</span>
+            </button>
+          )}
 
-          <button
-            onClick={handleAddExternal}
-            className="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white transition flex items-center gap-1.5 shadow-sm"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Ajouter externe</span>
-          </button>
+          {canAddExternal && (
+            <button
+              onClick={handleAddExternal}
+              className="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white transition flex items-center gap-1.5 shadow-sm"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Ajouter externe</span>
+            </button>
+          )}
         </div>
       </div>
 
@@ -170,37 +200,43 @@ export function ApplicationsPage() {
       {/* View Switcher & Filter Bar */}
       <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
         {/* View Mode Buttons */}
-        <div className="grid grid-cols-3 sm:flex items-center gap-1 bg-slate-100 p-1 rounded-xl w-full sm:w-auto">
-          <button
-            onClick={() => setViewMode('kanban')}
-            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
-              viewMode === 'kanban' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <LayoutDashboard className="w-3.5 h-3.5" />
-            <span>Kanban (Cartes)</span>
-          </button>
-          <button
-            onClick={() => setViewMode('table')}
-            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
-              viewMode === 'table' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <Table className="w-3.5 h-3.5" />
-            <span>Tableau</span>
-          </button>
-          <button
-            onClick={() => setViewMode('calendar')}
-            className={`py-1.5 px-2 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 truncate ${
-              viewMode === 'calendar' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <Calendar className="w-3.5 h-3.5" />
-            <span>Calendrier</span>
-            {upcomingInterviewsCount > 0 && (
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
-            )}
-          </button>
+        <div className="flex flex-wrap items-center gap-1 bg-slate-100 p-1 rounded-xl w-full sm:w-auto">
+          {canKanban && (
+            <button
+              onClick={() => setViewMode('kanban')}
+              className={`py-1.5 px-2.5 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
+                activeViewMode === 'kanban' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <LayoutDashboard className="w-3.5 h-3.5" />
+              <span>Kanban (Cartes)</span>
+            </button>
+          )}
+          {canTable && (
+            <button
+              onClick={() => setViewMode('table')}
+              className={`py-1.5 px-2.5 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
+                activeViewMode === 'table' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Table className="w-3.5 h-3.5" />
+              <span>Tableau</span>
+            </button>
+          )}
+          {canCalendar && (
+            <button
+              onClick={() => setViewMode('calendar')}
+              className={`py-1.5 px-2.5 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 truncate ${
+                activeViewMode === 'calendar' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              <span>Calendrier</span>
+              {upcomingInterviewsCount > 0 && (
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
+              )}
+            </button>
+          )}
         </div>
 
         {/* Filter Inputs */}
@@ -239,7 +275,7 @@ export function ApplicationsPage() {
       </div>
 
       {/* Active View Container */}
-      {viewMode === 'table' && (
+      {activeViewMode === 'table' && (
         <ApplicationsTable
           apps={filteredApps}
           onEdit={handleEditApp}
@@ -248,7 +284,7 @@ export function ApplicationsPage() {
         />
       )}
 
-      {viewMode === 'kanban' && (
+      {activeViewMode === 'kanban' && (
         <div>
           <KanbanColSelect
             visibleCols={visibleCols}
@@ -264,7 +300,7 @@ export function ApplicationsPage() {
         </div>
       )}
 
-      {viewMode === 'calendar' && (
+      {activeViewMode === 'calendar' && (
         <InterviewCalendar
           apps={filteredApps}
           allApps={apps}

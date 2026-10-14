@@ -11,6 +11,7 @@ import { Modal } from '../../components/ui/Modal';
 import { Spinner } from '../../components/feedback/Spinner';
 import { supabase } from '../../lib/supabase';
 import { Coins, FileText, Calendar } from 'lucide-react';
+import { hasFeature } from '../../lib/features';
 
 interface OfferModalProps {
   offer: MatchOffer | null;
@@ -302,6 +303,12 @@ export function OfferModal({ offer, isOpen, onClose }: OfferModalProps) {
                 </div>
               )}
             </div>
+
+            {offer.source === 'france_travail' && (
+              <p className="text-[11px] text-slate-400 italic">
+                Offres fournies par France Travail
+              </p>
+            )}
           </div>
 
           {/* Right: Application form */}
@@ -428,34 +435,36 @@ export function OfferModal({ offer, isOpen, onClose }: OfferModalProps) {
                 </div>
 
                 {/* Cover letter */}
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <label className="font-semibold text-slate-700">Lettre de motivation</label>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={handleGenerateLetter}
-                        className="text-blue-600 hover:underline font-semibold"
-                      >
-                        Générer
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleCopyLetter}
-                        className="text-slate-500 hover:underline"
-                      >
-                        {copyFeedback || 'Copier'}
-                      </button>
+                {hasFeature(profile, 'offers_letter_generator') && (
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="font-semibold text-slate-700">Lettre de motivation</label>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={handleGenerateLetter}
+                          className="text-blue-600 hover:underline font-semibold"
+                        >
+                          Générer
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleCopyLetter}
+                          className="text-slate-500 hover:underline"
+                        >
+                          {copyFeedback || 'Copier'}
+                        </button>
+                      </div>
                     </div>
+                    <textarea
+                      rows={4}
+                      value={letter}
+                      onChange={(e) => setLetter(e.target.value)}
+                      placeholder="Cliquez sur « Générer » pour un brouillon personnalisé..."
+                      className="w-full px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 leading-relaxed"
+                    />
                   </div>
-                  <textarea
-                    rows={4}
-                    value={letter}
-                    onChange={(e) => setLetter(e.target.value)}
-                    placeholder="Cliquez sur « Générer » pour un brouillon personnalisé..."
-                    className="w-full px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 leading-relaxed"
-                  />
-                </div>
+                )}
 
                 {/* Actions */}
                 <div className="flex items-center gap-2 pt-1">

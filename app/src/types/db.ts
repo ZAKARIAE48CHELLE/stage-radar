@@ -16,6 +16,7 @@ export interface Profile {
     weight: number;
     keywords: string[];
   }>;
+  features?: Record<string, boolean>;
   role: 'admin' | 'user';
   status: 'pending' | 'approved' | 'blocked';
   created_at: string;
