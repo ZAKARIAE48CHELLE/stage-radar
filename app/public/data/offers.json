@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-14T11:48:55+00:00",
+ "generated_at": "2026-10-15T11:25:43+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,19 +28,19 @@
   }
  },
  "stats": {
-  "stored": 778,
+  "stored": 799,
   "by_source": {
-   "stagiaires.ma": 25,
+   "stagiaires.ma": 24,
    "dreamjob.ma": 2
   },
-  "kept": 27,
-  "new_this_run": 27,
+  "kept": 26,
+  "new_this_run": 21,
   "filter_reasons": {
-   "title excluded": 43,
-   "not data/AI": 629,
+   "title excluded": 44,
+   "not data/AI": 649,
    "not an internship": 24,
-   "ok": 31,
-   "expired": 10,
+   "ok": 30,
+   "expired": 11,
    "too few skill keywords": 36,
    "too old": 5,
    "duplicate": 4
@@ -735,39 +735,6 @@
    "id": 18
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6422-stage-en-analyse-de-donnees-et-ia",
-   "source": "stagiaires.ma",
-   "title": "Stage en Analyse de Données et IA",
-   "company": "Orchid Island Real Estate",
-   "city": "Marrakech",
-   "modality": "",
-   "date_posted": "2026-09-14",
-   "valid_through": "2026-10-14",
-   "employment_type": "INTERN",
-   "description": "Orchid Island recherche un stagiaire Data Analyst & IA à Marrakech. Vos missions incluent l'analyse de données réelles, l'utilisation de l'IA comme outil, la création de rapports et de dashboards. Profil recherché : étudiant en Data Analytics, Data Science, Informatique, Statistiques, Économie, Finance, Gestion ou similaire. Bonnes connaissances Excel, notions de Power BI, SQL, Python et intérêt pour l'IA sont requis.\nDescription du poste\nOrchid Island recherche un stagiaire Data Analyst & IA. Vous analyserez des données réelles, utiliserez l'IA comme outil, créerez des rapports et des dashboards. Profil : étudiant en Data Analytics, Data Science, Informatique, Statistiques, Économie, Finance, Gestion ou similaire. Bonnes connaissances Excel, notions de Power BI, SQL, Python un atout. Intérêt pour l'IA (ChatGPT). Poste basé à Marrakech. Chez\nOrchid Island\n, nous recherchons un(e)\nstagiaire Data Analyst & Intelligence Artificielle\n, curieux(se), analytique et passionné(e) par les données et les nouvelles technologies.\nAujourd’hui, les données jouent un rôle essentiel dans la prise de décision. Associées à l'Intelligence Artificielle, elles permettent d'identifier des tendances, d'automatiser certaines tâches, de produire des analyses plus rapidement et de transformer les données en informations utiles.\nCe stage d’apprentissage vous permettra de travailler sur des données réelles, de développer vos compétences analytiques et d’apprendre à utiliser\nl’IA comme un véritable outil d’analyse et de productivité\n.\nVOS MISSIONS\nAnalyse de données & Reporting\nParticiper à la collecte, au nettoyage et à l’organisation des données.\nAnalyser des données afin d’identifier des tendances et des informations pertinentes.\nPréparer des tableaux de suivi et des reportings.\nCréer et mettre à",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
-   "axis_hits": {
-    "genai": 1,
-    "bigdata": 3,
-    "fullstack": 1,
-    "cvsec": 0
-   },
-   "keywords": [
-    "intelligence artificielle",
-    "data science",
-    "power bi",
-    "sql",
-    "automatisation"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 0,
-   "score": 63,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 19
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6643-stage-en-cybersecurite-et-intelligence-artificielle",
    "source": "stagiaires.ma",
    "title": "Stage en Cybersécurité et Intelligence Artificielle",
@@ -796,7 +763,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 20
+   "id": 19
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6553-ai-engineer-prediction-des-prix-immobiliers",
@@ -828,7 +795,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 21
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6565-offre-de-stage-software-engineer-meta-business-ai-integration",
@@ -859,7 +826,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 22
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6538-stagiaire-software-engineer-ia-data-scraping",
@@ -891,7 +858,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 23
+   "id": 22
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -921,7 +888,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 24
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6490-stealth-r-d-tech-lab-enterprise-technology-stage-r-d-ia-et-cybersecurite",
@@ -953,7 +920,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 25
+   "id": 24
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6612-stage-analyste-en-cybersecurite-et-cyberdefense",
@@ -989,7 +956,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6567-stage-analyste-en-cybersecurite-et-cyberdefense"
     }
    ],
-   "id": 26
+   "id": 25
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -1019,7 +986,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 27
+   "id": 26
   }
  ]
 }
