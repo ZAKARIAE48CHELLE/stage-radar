@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-15T11:25:43+00:00",
+ "generated_at": "2026-10-16T11:20:22+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 799,
+  "stored": 821,
   "by_source": {
-   "stagiaires.ma": 24,
+   "stagiaires.ma": 23,
    "dreamjob.ma": 2
   },
-  "kept": 26,
-  "new_this_run": 21,
+  "kept": 25,
+  "new_this_run": 22,
   "filter_reasons": {
-   "title excluded": 44,
-   "not data/AI": 649,
-   "not an internship": 24,
-   "ok": 30,
-   "expired": 11,
-   "too few skill keywords": 36,
+   "title excluded": 45,
+   "not data/AI": 667,
+   "not an internship": 25,
+   "ok": 28,
+   "expired": 13,
+   "too few skill keywords": 38,
    "too old": 5,
-   "duplicate": 4
+   "duplicate": 3
   }
  },
  "offers": [
@@ -89,47 +89,6 @@
    "id": 1
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6460-stage-intelligence-artificielle-automatisation-et-agents-ia-rabat-sur-site",
-   "source": "stagiaires.ma",
-   "title": "Stage Intelligence Artificielle - Automatisation et Agents IA - Rabat (sur site)",
-   "company": "cenit",
-   "city": "Rabat",
-   "modality": "Sur site",
-   "date_posted": "2026-09-15",
-   "valid_through": "2026-10-15",
-   "employment_type": "INTERN",
-   "description": "Stage conventionné de 4 à 6 mois à Rabat chez CENIT, centre d'excellence en IA. Vous travaillerez sur des outils internes : automatisations, agents IA et plateforme pédagogique. Missions incluant la formation, l'automatisation de workflows, le prototypage d'agents IA, la contribution à la pédagogie et la veille technologique. Profil : Bac+4/5 en informatique/IA, Python, APIs LLM, RAG. Bon français/anglais. Gratification et perspectives d'évolution.\nCENIT - Centre d'Excellence Numérique, Intelligence Artificielle & Technologies\n· Agdal, Rabat\nConvention de stage · Durée : 4 à 6 mois\n·\nPrésentiel Rabat\n· Stage PFE accepté\nChez CENIT, les formateurs sont aussi des ingénieurs IA : ils construisent et ils partagent. Nous recherchons un(e) stagiaire pour rejoindre cette équipe et travailler sur nos propres outils : automatisations, agents IA, plateforme pédagogique. Vous livrerez des choses qui tournent en production, pas des prototypes oubliés.\nVos missions\nFormation :\nParticiper activement aux formations proposées pour nos clients juniors comme professionnels, dans nos locaux ou chez les partenaires.\nAutomatisation :\nConcevoir et maintenir des workflows d'automatisation reliant nos outils (CRM, emailing, prise de rendez-vous, plateforme e-learning), qualification des leads, relances, onboarding des apprenants.\nAgents IA :\nPrototyper des assistants (RAG, chatbots) pour l'accueil des candidats, le support pédagogique et l'animation des groupes de cohortes.\nPédagogie :\nContribuer aux contenus des formations pros et des parcours Juniors : exercices, cas pratiques, quiz, modules e-learning, et intervenir en appui des formateurs sur les sessions live et le suivi distanciel.\nVeille :\nTester les nouveaux modèles et outils (LLM, génération d'images et de vidéos, agents) et documente",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/08/26094538/cenit.ma.jpeg",
-   "axis_hits": {
-    "genai": 10,
-    "bigdata": 1,
-    "fullstack": 5,
-    "cvsec": 0
-   },
-   "keywords": [
-    "agents ia",
-    "anthropic",
-    "ia generative",
-    "intelligence artificielle",
-    "llm",
-    "openai",
-    "prompt engineering",
-    "rag",
-    "docker",
-    "apis",
-    "automatisation",
-    "make",
-    "n8n"
-   ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 8,
-   "score": 100,
-   "is_pfe": true,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 2
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6873-stagiaire-en-data-f-h",
    "source": "stagiaires.ma",
    "title": "Stagiaire en Data (F/H)",
@@ -170,7 +129,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 3
+   "id": 2
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6952-stage-developpeur-llm-et-automatisation",
@@ -207,7 +166,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 4
+   "id": 3
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6489-stage-pre-embauche-data-scientist-ia-automation",
@@ -249,13 +208,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "also_on": [
-    {
-     "source": "stagiaires.ma",
-     "url": "https://www.stagiaires.ma/stage-emploi-maroc/6461-stage-pre-embauche-data-scientist-ia-automation"
-    }
-   ],
-   "id": 5
+   "id": 4
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6926-data-engineering-intern-bcg-x",
@@ -297,7 +250,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 6
+   "id": 5
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6914-delivery-ai-data-engineering-intern",
@@ -339,7 +292,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 7
+   "id": 6
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6896-stage-delivery-ai-data-engineering",
@@ -381,7 +334,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 8
+   "id": 7
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6515-stagiaire-data-engineer-intelligence-artificielle-marrakech",
@@ -423,7 +376,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 9
+   "id": 8
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6579-stage-en-prompt-engineering-intelligence-artificielle",
@@ -457,7 +410,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 10
+   "id": 9
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7014-stagiaire-pfe-intelligence-artificielle-ia",
@@ -488,7 +441,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 11
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6554-software-engineer-ia-stage",
@@ -525,7 +478,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 12
+   "id": 11
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6516-software-engineer-ia-stage",
@@ -562,7 +515,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 13
+   "id": 12
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -594,7 +547,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 14
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6922-stage-de-fin-d-etudes-developpeur-web-full-stack-wordpress-woocommerce-next-js",
@@ -625,7 +578,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 15
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6839-stagiaire-tech-ia-automatisation-l-d",
@@ -656,7 +609,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 16
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6773-data-engineer-stage",
@@ -695,7 +648,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6730-data-engineer-stage"
     }
    ],
-   "id": 17
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6729-offre-de-stage-seo-geo-ai-search-optimization",
@@ -732,7 +685,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6690-offre-de-stage-seo-geo-ai-search-optimization"
     }
    ],
-   "id": 18
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6643-stage-en-cybersecurite-et-intelligence-artificielle",
@@ -763,7 +716,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 19
+   "id": 18
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6553-ai-engineer-prediction-des-prix-immobiliers",
@@ -795,7 +748,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 20
+   "id": 19
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6565-offre-de-stage-software-engineer-meta-business-ai-integration",
@@ -826,7 +779,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 21
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6538-stagiaire-software-engineer-ia-data-scraping",
@@ -858,7 +811,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 22
+   "id": 21
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -888,7 +841,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 23
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6490-stealth-r-d-tech-lab-enterprise-technology-stage-r-d-ia-et-cybersecurite",
@@ -920,7 +873,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 24
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6612-stage-analyste-en-cybersecurite-et-cyberdefense",
@@ -956,7 +909,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6567-stage-analyste-en-cybersecurite-et-cyberdefense"
     }
    ],
-   "id": 25
+   "id": 24
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -986,7 +939,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 26
+   "id": 25
   }
  ]
 }
