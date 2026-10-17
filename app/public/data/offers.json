@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-16T11:20:22+00:00",
+ "generated_at": "2026-10-17T10:40:53+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,66 +28,25 @@
   }
  },
  "stats": {
-  "stored": 821,
+  "stored": 842,
   "by_source": {
-   "stagiaires.ma": 23,
+   "stagiaires.ma": 20,
    "dreamjob.ma": 2
   },
-  "kept": 25,
-  "new_this_run": 22,
+  "kept": 22,
+  "new_this_run": 21,
   "filter_reasons": {
-   "title excluded": 45,
-   "not data/AI": 667,
+   "title excluded": 47,
+   "not data/AI": 686,
    "not an internship": 25,
-   "ok": 28,
-   "expired": 13,
+   "ok": 25,
+   "expired": 14,
    "too few skill keywords": 38,
-   "too old": 5,
+   "too old": 7,
    "duplicate": 3
   }
  },
  "offers": [
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6481-stage-intelligence-artificielle-automatisation-et-agents-ia-a-rabat-sur-site",
-   "source": "stagiaires.ma",
-   "title": "Stage Intelligence Artificielle - Automatisation et Agents IA à Rabat (sur site)",
-   "company": "cenit",
-   "city": "Rabat",
-   "modality": "Sur site",
-   "date_posted": "2026-09-16",
-   "valid_through": "2026-10-16",
-   "employment_type": "INTERN",
-   "description": "CENIT, centre d'excellence en IA à Rabat, recherche un stagiaire IA (Bac+4/5) pour 4-6 mois. Missions : automatisation, agents IA, plateforme pédagogique, formation, veille tech. Profil : Python, APIs LLM, RAG. Gratification, certification et perspectives d'embauche. Postulez avec CV et projet IA.\nStage Conventionné en Intelligence Artificielle chez CENIT (Rabat)\nRejoignez CENIT, un centre d'excellence en IA à Rabat, pour un stage conventionné de 4 à 6 mois. Vous travaillerez sur des outils internes innovants tels que des automatisations, des agents IA et une plateforme pédagogique. Vos missions incluront la participation à des formations, l'automatisation de workflows, le prototypage d'agents IA, la contribution à la création de contenus pédagogiques et la veille technologique.\nCENIT - Centre d'Excellence Numérique, Intelligence Artificielle & Technologies\n· Agdal, Rabat\nConvention de stage\n· Durée : 4 à 6 mois ·\nPrésentiel à Rabat\n· Stage PFE accepté\nChez CENIT, nous croyons en l'union de l'ingénierie et de la pédagogie. Nous recherchons un(e) stagiaire passionné(e) pour contribuer au développement de nos outils internes. Vous aurez l'opportunité de livrer des solutions opérationnelles utilisées par de vrais utilisateurs.\nMissions Principales\nFormation :\nParticiper aux formations dispensées à nos clients (juniors et professionnels), en présentiel ou chez nos partenaires.\nAutomatisation :\nConcevoir et maintenir des workflows d'automatisation pour nos outils internes (CRM, emailing, prise de rendez-vous, plateforme e-learning), incluant la qualification de leads, les relances et l'intégration des apprenants.\nAgents IA :\nPrototyper des assistants basés sur des modèles comme le RAG et des chatbots pour l'accueil des candidats, le support pédagogique et l'animation de grou",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/08/26094538/cenit.ma.jpeg",
-   "axis_hits": {
-    "genai": 10,
-    "bigdata": 1,
-    "fullstack": 5,
-    "cvsec": 0
-   },
-   "keywords": [
-    "agents ia",
-    "anthropic",
-    "ia generative",
-    "intelligence artificielle",
-    "llm",
-    "openai",
-    "prompt engineering",
-    "rag",
-    "docker",
-    "apis",
-    "automatisation",
-    "make",
-    "n8n"
-   ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 8,
-   "score": 100,
-   "is_pfe": true,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 1
-  },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6873-stagiaire-en-data-f-h",
    "source": "stagiaires.ma",
@@ -129,7 +88,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 2
+   "id": 1
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6952-stage-developpeur-llm-et-automatisation",
@@ -166,49 +125,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 3
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6489-stage-pre-embauche-data-scientist-ia-automation",
-   "source": "stagiaires.ma",
-   "title": "Stage Pré-Embauche Data Scientist / IA & Automation",
-   "company": "MABSYRA",
-   "city": "Agadir",
-   "modality": "",
-   "date_posted": "2026-09-16",
-   "valid_through": "2026-10-16",
-   "employment_type": "INTERN",
-   "description": "Stage pré-embauche en Data Science / IA & Automation à Agadir. Opportunité d'intégration en CDI. Missions axées sur l'IA, la Data, l'automatisation des processus, l'IA générative et les agents IA. Bac+3 à Bac+5 requis. Compétences en Python, Machine Learning, SQL et API recherchées. Curiosité, autonomie et esprit d'innovation valorisés. Contactez via la plateforme pour postuler.\nDescription du poste\nRejoignez notre équipe à Agadir pour un stage pré-embauche en Data Science / IA & Automation. Ce stage rémunéré offre une réelle possibilité d'intégration en CDI. Vous participerez à des projets concrets en IA, data et automatisation, concevant des solutions pour optimiser nos opérations. Missions incluant Data Science, IA générative, agents IA, automatisation des processus et développement d'outils.\nÀ propos du poste:\nDans le cadre de notre développement, nous recherchons un(e) Stagiaire Data Scientist / IA & Automation pour rejoindre notre équipe à Agadir. Il s’agit d’un stage pré-embauche rémunéré, avec une réelle possibilité d’intégration en CDI à l’issue du stage, en fonction des résultats, de l’implication et de l’adéquation avec les besoins de l’entreprise.\nVous participerez à des projets concrets et opérationnels liés à l’intelligence artificielle, la data et l’automatisation, avec pour objectif de concevoir des solutions permettant d’optimiser les opérations de nos différentes activités.\nVous travaillerez notamment sur des sujets mêlant Data Science, IA générative, agents IA, automatisation des processus et développement d’outils internes.\nVos missions:\nData Science & Intelligence Artificielle:\nCollecter, nettoyer et structurer des données provenant de différentes sources.\nRéaliser des analyses exploratoires et produire des rapports d’aide à la décision.\nDévelopper ",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/04/20112344/MABSYRA.png",
-   "axis_hits": {
-    "genai": 5,
-    "bigdata": 5,
-    "fullstack": 6,
-    "cvsec": 0
-   },
-   "keywords": [
-    "agents ia",
-    "ia generative",
-    "intelligence artificielle",
-    "llm",
-    "openai",
-    "data science",
-    "data scientist",
-    "machine learning",
-    "sql",
-    "automation",
-    "automatisation",
-    "make",
-    "n8n",
-    "zapier"
-   ],
-   "domain": "Full-Stack & Automatisations",
-   "bonus": 0,
-   "score": 88,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 4
+   "id": 2
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6926-data-engineering-intern-bcg-x",
@@ -250,7 +167,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 5
+   "id": 3
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6914-delivery-ai-data-engineering-intern",
@@ -292,7 +209,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 6
+   "id": 4
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6896-stage-delivery-ai-data-engineering",
@@ -334,7 +251,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 7
+   "id": 5
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6515-stagiaire-data-engineer-intelligence-artificielle-marrakech",
@@ -376,7 +293,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 8
+   "id": 6
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6579-stage-en-prompt-engineering-intelligence-artificielle",
@@ -410,7 +327,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 9
+   "id": 7
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7014-stagiaire-pfe-intelligence-artificielle-ia",
@@ -441,7 +358,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 10
+   "id": 8
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6554-software-engineer-ia-stage",
@@ -478,7 +395,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 11
+   "id": 9
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6516-software-engineer-ia-stage",
@@ -515,7 +432,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 12
+   "id": 10
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -547,7 +464,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 13
+   "id": 11
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6922-stage-de-fin-d-etudes-developpeur-web-full-stack-wordpress-woocommerce-next-js",
@@ -578,7 +495,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 14
+   "id": 12
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6839-stagiaire-tech-ia-automatisation-l-d",
@@ -609,7 +526,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 15
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6773-data-engineer-stage",
@@ -648,7 +565,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6730-data-engineer-stage"
     }
    ],
-   "id": 16
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6729-offre-de-stage-seo-geo-ai-search-optimization",
@@ -685,7 +602,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6690-offre-de-stage-seo-geo-ai-search-optimization"
     }
    ],
-   "id": 17
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6643-stage-en-cybersecurite-et-intelligence-artificielle",
@@ -716,7 +633,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 18
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6553-ai-engineer-prediction-des-prix-immobiliers",
@@ -748,7 +665,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 19
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6565-offre-de-stage-software-engineer-meta-business-ai-integration",
@@ -779,7 +696,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 20
+   "id": 18
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6538-stagiaire-software-engineer-ia-data-scraping",
@@ -811,7 +728,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 21
+   "id": 19
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -841,39 +758,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 22
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6490-stealth-r-d-tech-lab-enterprise-technology-stage-r-d-ia-et-cybersecurite",
-   "source": "stagiaires.ma",
-   "title": "Stealth R&D Tech Lab (Enterprise Technology) - Stage R&D IA et Cybersécurité",
-   "company": "Golgi",
-   "city": "Marrakech",
-   "modality": "",
-   "date_posted": "2026-09-16",
-   "valid_through": "2026-10-16",
-   "employment_type": "INTERN",
-   "description": "Rejoignez un laboratoire R&D expérimental en IA pour un stage de 4-6 mois axé sur la cybersécurité et l'intelligence opérationnelle. Développez des compétences en détection d'anomalies, réponse aux incidents, observabilité et automatisation. Travaillez sur des défis réels en cybersécurité. Le processus de sélection inclut un diagnostic écrit et un défi technique. Rémunération en equity pour les contributeurs exceptionnels. Offre entièrement à distance.\nDescription du poste\nRejoignez un laboratoire R&D expérimental en IA à distance. Ce stage de 4-6 mois se concentre sur la cybersécurité des systèmes et l'intelligence opérationnelle. Vous développerez des compétences en détection d'anomalies, réponse aux incidents, observabilité et automatisation. Le processus de sélection comprend un diagnostic écrit et un défi technique.\nOrganisation :\nStealth R&D Lab (Enterprise Technology)\nLocalisation :\nEntièrement à distance (Global)\nDurée :\n4-6 mois\nRémunération :\nConsidération en equity pour les contributeurs exceptionnels\nDate de début :\nEn continu\nLE LAB\nUn environnement de recherche expérimental pour l'infrastructure native IA. Systèmes vivants, vrais défis de sécurité, complexité opérationnelle authentique, pas de simulations de classe.\nPhilosophie principale : Apprendre en faisant. Tout documenter. Échouer en toute sécurité.\nVOTRE FOCUS : Cybersécurité des Systèmes & Intelligence Opérationnelle\nVous serez responsable de la couche de sécurité et de visibilité : savoir ce qui se passe avant que cela ne casse, et pourquoi cela a cassé quand cela arrive.\nResponsabilités :\nSurveillance en temps réel : Opérer des tableaux de bord d'observabilité de niveau production suivant les événements de sécurité et la santé des systèmes\nTriage des alertes : Distinguer les menaces réelles du br",
-   "logo": "",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 2,
-    "fullstack": 1,
-    "cvsec": 2
-   },
-   "keywords": [
-    "pipelines",
-    "sql",
-    "automatisation",
-    "cybersecurite"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 0,
-   "score": 53,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 23
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6612-stage-analyste-en-cybersecurite-et-cyberdefense",
@@ -909,7 +794,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6567-stage-analyste-en-cybersecurite-et-cyberdefense"
     }
    ],
-   "id": 24
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -939,7 +824,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 25
+   "id": 22
   }
  ]
 }
