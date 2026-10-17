@@ -125,3 +125,11 @@ sources:
     departements: []           # e.g. ["75", "92"] or empty for all
     crawl_delay_seconds: 0.5   # API allows up to 10 req/s
     max_new_per_run: 500
+
+  joblia_ma:                   # WordPress REST API + JSON-LD # awaiting written permission (mentions légales)
+    enabled: false
+    lookback_days: 45
+    max_pages: 40
+    crawl_delay_seconds: 1.5
+    max_new_per_run: 500
+

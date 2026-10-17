@@ -14,7 +14,7 @@ A daily internship scraper for Morocco (Python 3.11+, no framework, GitHub Actio
   e-mail-alert source, which reads the user's own inbox read-only and never follows links.
 - Never add query-string URLs for stagiaires.ma (robots.txt `Disallow: /*?*`).
 - Sources: `stagiaires_ma` (sitemap + JSON-LD), `dreamjob_ma` (WordPress REST API),
-  `email_alerts` (IMAP). A failing source must not stop the others (`run_source` wrapper).
+  `email_alerts` (IMAP), `france_travail` (official REST API), `joblia_ma` (WordPress REST API + JSON-LD, disabled pending permission). A failing source must not stop the others (`run_source` wrapper).
 - All network access goes through `scraper.http.PoliteSession` (robots check, crawl delay, retries).
 - The score formula exists four times: `scraper/scoring.py::compute_score`,
   `app/src/lib/scoring.ts::computeScore`, `app/public/perso.html::computeScore` and

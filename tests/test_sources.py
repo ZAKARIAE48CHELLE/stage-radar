@@ -5,7 +5,7 @@ from pathlib import Path
 import scraper.run as run
 from scraper.models import Offer
 from scraper.scoring import analyse, is_relevant
-from scraper.sources import dreamjob_ma, email_alerts, france_travail
+from scraper.sources import dreamjob_ma, email_alerts, france_travail, joblia_ma
 from scraper.storage import Store
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -237,3 +237,142 @@ def test_france_travail_collect_with_mock_api(monkeypatch):
     # Deduplication against known should leave only item 1
     assert len(offers) == 1
     assert offers[0].url == "https://carrieres.capgemini.com/jobs/182ABCD"
+
+
+JOBLIA_OFFRE_REST_WITH_CONTENT = {
+    "id": 101,
+    "date": "2026-10-15T14:30:00",
+    "link": "https://joblia.ma/offre/stage-pfe-data-engineer-casablanca/",
+    "title": {"rendered": "DataTech recrute un Stagiaire PFE Data Engineer (H/F)"},
+    "excerpt": {"rendered": "<p>Offre de stage PFE Data Engineer chez DataTech à Casablanca...</p>"},
+    "content": {"rendered": "<p>DataTech recherche un stagiaire PFE pour concevoir des pipelines ETL avec Python, SQL, Airflow et PySpark. Télétravail partiel possible.</p>"},
+    "offre_ville": [12],
+    "offre_contrat": [5],
+    "_embedded": {
+        "wp:term": [
+            [{"id": 12, "name": "Casablanca", "taxonomy": "offre_ville"}],
+            [{"id": 5, "name": "Stage", "taxonomy": "offre_contrat"}],
+        ]
+    },
+}
+
+JOBLIA_OFFRE_REST_EMPTY_CONTENT = {
+    "id": 102,
+    "date": "2026-10-16T09:15:00",
+    "link": "https://joblia.ma/offre/stage-pre-embauche-ia-llm-rabat/",
+    "title": {"rendered": "AI Labs recrute Stagiaire IA / RAG &amp; LLM"},
+    "excerpt": {"rendered": "<p>AI Labs propose un stage pré-embauche en intelligence artificielle à Rabat.</p>"},
+    "content": {"rendered": ""},
+    "offre_ville": [14],
+    "offre_contrat": [6],
+    "_embedded": {
+        "wp:term": [
+            [{"id": 14, "name": "Rabat", "taxonomy": "offre_ville"}],
+            [{"id": 6, "name": "Stage pré-embauche", "taxonomy": "offre_contrat"}],
+        ]
+    },
+}
+
+JOBLIA_HTML_WITH_JSONLD = """<!DOCTYPE html>
+<html>
+<head>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": "Stagiaire IA / RAG & LLM",
+  "description": "<p>Au sein de notre équipe R&D, vous développerez des applications RAG avec LangChain, FastAPI et des modèles open-source. Mode hybride avec 2 jours de télétravail par semaine.</p>",
+  "datePosted": "2026-10-16",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "AI Labs"
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Rabat",
+      "addressCountry": "MA"
+    }
+  }
+}
+</script>
+</head>
+<body><h1>Stagiaire IA</h1></body>
+</html>
+"""
+
+
+def test_joblia_post_to_offer_with_rest_content():
+    o = joblia_ma.post_to_offer(JOBLIA_OFFRE_REST_WITH_CONTENT)
+    assert o is not None
+    assert o.source == "joblia.ma"
+    assert o.url == "https://joblia.ma/offre/stage-pfe-data-engineer-casablanca/"
+    assert o.title == "DataTech recrute un Stagiaire PFE Data Engineer (H/F)"
+    assert o.company == "DataTech"
+    assert o.city == "Casablanca"
+    assert o.date_posted == "2026-10-15"
+    assert o.employment_type == "INTERN"
+    assert o.is_pfe is True
+    assert o.modality == "Télétravail"
+    assert "pipelines ETL" in o.description
+
+
+def test_joblia_post_to_offer_fetch_jsonld():
+    class MockHtmlResp:
+        def __init__(self, html_text):
+            self.content = html_text.encode("utf-8")
+            self.text = html_text
+
+    class MockJobliaSession:
+        def __init__(self):
+            self.urls = []
+
+        def get(self, url, headers=None, ok_statuses=(200,)):
+            self.urls.append(url)
+            if url == JOBLIA_OFFRE_REST_EMPTY_CONTENT["link"]:
+                return MockHtmlResp(JOBLIA_HTML_WITH_JSONLD)
+            return None
+
+    sess = MockJobliaSession()
+    o = joblia_ma.post_to_offer(JOBLIA_OFFRE_REST_EMPTY_CONTENT, session=sess)
+    assert o is not None
+    assert o.source == "joblia.ma"
+    assert o.url == "https://joblia.ma/offre/stage-pre-embauche-ia-llm-rabat/"
+    assert o.title == "AI Labs recrute Stagiaire IA / RAG & LLM"
+    assert o.company == "AI Labs"
+    assert o.city == "Rabat"
+    assert o.date_posted == "2026-10-16"
+    assert o.employment_type == "INTERN"
+    assert o.modality == "Hybride"
+    assert "applications RAG" in o.description
+    assert sess.urls == [JOBLIA_OFFRE_REST_EMPTY_CONTENT["link"]]
+
+
+def test_joblia_collect_stops_at_known_and_respects_cap():
+    post_a = JOBLIA_OFFRE_REST_WITH_CONTENT
+    post_b = dict(JOBLIA_OFFRE_REST_WITH_CONTENT, link="https://joblia.ma/offre/known-already/")
+
+    class MockApiResponse:
+        def __init__(self, data):
+            self._d = data
+        def json(self):
+            return self._d
+
+    class MockWpSession:
+        def __init__(self, pages):
+            self.pages = pages
+            self.urls = []
+
+        def get(self, url, headers=None, ok_statuses=(200,)):
+            self.urls.append(url)
+            page = int(url.split("&page=")[1].split("&")[0])
+            if page <= len(self.pages):
+                return MockApiResponse(self.pages[page - 1])
+            return None
+
+    s = MockWpSession([[post_a, post_b], [post_b]])
+    got = joblia_ma.collect(s, {"max_pages": 10}, 45, known={post_b["link"]}, cap=10)
+    assert [o.url for o in got] == [post_a["link"]]
+    assert all("/wp-json/wp/v2/offre?" in u and "after=" in u for u in s.urls)
+
