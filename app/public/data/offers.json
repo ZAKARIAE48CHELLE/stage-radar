@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-18T11:01:25+00:00",
+ "generated_at": "2026-10-19T13:09:04+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,21 +28,21 @@
   }
  },
  "stats": {
-  "stored": 848,
+  "stored": 860,
   "by_source": {
-   "stagiaires.ma": 18,
-   "dreamjob.ma": 2
+   "stagiaires.ma": 15,
+   "dreamjob.ma": 3
   },
-  "kept": 20,
-  "new_this_run": 6,
+  "kept": 18,
+  "new_this_run": 12,
   "filter_reasons": {
    "title excluded": 47,
-   "not data/AI": 692,
+   "not data/AI": 702,
    "not an internship": 25,
-   "ok": 23,
-   "expired": 15,
-   "too few skill keywords": 38,
-   "too old": 8,
+   "ok": 21,
+   "expired": 17,
+   "too few skill keywords": 39,
+   "too old": 9,
    "duplicate": 3
   }
  },
@@ -319,43 +319,6 @@
    "id": 7
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6554-software-engineer-ia-stage",
-   "source": "stagiaires.ma",
-   "title": "Software Engineer & IA - Stage",
-   "company": "Orchid Island Real Estate",
-   "city": "Marrakech",
-   "modality": "",
-   "date_posted": "2026-09-18",
-   "valid_through": "2026-10-18",
-   "employment_type": "INTERN",
-   "description": "Orchid Island recherche un stagiaire Software Engineer & IA motivé pour concevoir et développer des solutions logicielles en utilisant l'IA comme outil. Les missions incluent le développement logiciel, l'utilisation d'outils IA (ChatGPT, GitHub Copilot) et l'automatisation de tâches. Profil recherché : étudiant en informatique avec des connaissances en programmation et un intérêt pour l'IA. Ce stage à Marrakech vous permettra d'acquérir des compétences pratiques en développement logiciel assisté par IA.\nDescription du poste\nOrchid Island recherche un(e) stagiaire Software Engineer & Intelligence Artificielle motivé(e) et curieux(se). Ce stage d'apprentissage vous permettra de participer à la conception et au développement de solutions logicielles tout en apprenant à utiliser l'IA comme un outil de développement, d'analyse et d'automatisation. Vos missions incluent le développement logiciel, l'utilisation d'outils IA comme ChatGPT et GitHub Copilot, et l'automatisation de tâches. Profil recherché : étudiant(e) en informatique ou domaine similaire, avec des connaissances en programmation et un intérêt pour l'IA.\nChez\nOrchid Island\n, nous recherchons un(e)\nstagiaire Software Engineer & Intelligence Artificielle\n, motivé(e), curieux(se) et passionné(e) par le développement logiciel, l’Intelligence Artificielle et les nouvelles technologies.\nL’intégration de l’IA dans le développement logiciel permet d’améliorer la productivité, d’automatiser certaines tâches et de développer des solutions plus intelligentes et efficaces.\nCe stage d’apprentissage vous permettra de participer à la conception et au développement de solutions logicielles tout en apprenant à utiliser\nl’IA comme un véritable outil de développement, d’analyse et d’automatisation\n.\nVOS MISSIONS\nDéveloppement logici",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
-   "axis_hits": {
-    "genai": 4,
-    "bigdata": 2,
-    "fullstack": 3,
-    "cvsec": 0
-   },
-   "keywords": [
-    "copilot",
-    "generative ai",
-    "ia generative",
-    "intelligence artificielle",
-    "data science",
-    "machine learning",
-    "apis",
-    "automation",
-    "automatisation"
-   ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 0,
-   "score": 80,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 8
-  },
-  {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
    "source": "dreamjob.ma",
    "title": "À Casablanca, Payment Center for Africa recrute 4 stagiaires PFE",
@@ -385,7 +348,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 9
+   "id": 8
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6922-stage-de-fin-d-etudes-developpeur-web-full-stack-wordpress-woocommerce-next-js",
@@ -416,7 +379,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 10
+   "id": 9
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6839-stagiaire-tech-ia-automatisation-l-d",
@@ -447,7 +410,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 11
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6773-data-engineer-stage",
@@ -486,7 +449,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6730-data-engineer-stage"
     }
    ],
-   "id": 12
+   "id": 11
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6729-offre-de-stage-seo-geo-ai-search-optimization",
@@ -523,7 +486,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6690-offre-de-stage-seo-geo-ai-search-optimization"
     }
    ],
-   "id": 13
+   "id": 12
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6643-stage-en-cybersecurite-et-intelligence-artificielle",
@@ -554,39 +517,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 14
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6553-ai-engineer-prediction-des-prix-immobiliers",
-   "source": "stagiaires.ma",
-   "title": "AI Engineer | Prédiction des Prix Immobiliers",
-   "company": "Orchid Island Real Estate",
-   "city": "Marrakech",
-   "modality": "Hybride",
-   "date_posted": "2026-09-18",
-   "valid_through": "2026-10-18",
-   "employment_type": "INTERN",
-   "description": "Orchid Island Real Estate à Marrakech recherche un(e) stagiaire AI Engineer spécialisé(e) en prédiction des prix immobiliers. Vous développerez des modèles de Machine Learning pour analyser et prédire les prix de l'immobilier. Compétences requises : Python, Machine Learning, Data Analysis. Stage non rémunéré, mode de travail hybride. Une opportunité concrète d'appliquer l'IA au secteur immobilier.\nOrchid Island Real Estate\n, entreprise spécialisée dans l'immobilier à\nMarrakech\n, recherche un(e)\nstagiaire AI Engineer spécialisé(e) en prédiction des prix\npour rejoindre son équipe et participer au développement de solutions d'intelligence artificielle appliquées au secteur immobilier.\nInformations sur le stage\nEntreprise :\nOrchid Island Real Estate\nPoste :\nStagiaire AI Engineer – Price Prediction\nType :\nStage d’apprentissage\nRémunération :\nStage non rémunéré\nLieu :\nMarrakech\nMode de travail :\nHybride\nDébut :\nImmédiat\nMissions\nCollecter, nettoyer et analyser des données immobilières afin d'identifier les facteurs influençant les prix.\nDévelopper et tester des modèles de\nMachine Learning pour la prédiction des prix immobiliers\n.\nParticiper à la création de modèles permettant d'estimer la valeur des biens selon leur localisation, superficie, caractéristiques et marché.\nAnalyser les performances des modèles et améliorer leur précision.\nCollaborer avec l'équipe afin de transformer les données en outils d’aide à la décision.\nProfil recherché\nNous recherchons une personne\ncurieuse, autonome et passionnée par l’intelligence artificielle et la Data Science\n, qui souhaite mettre ses connaissances en pratique dans un environnement réel.\nCompétences souhaitées :\nPython\nMachine Learning\nData Analysis\nPandas / NumPy\nScikit-learn\nStatistiques et analyse de données\nNotions de prédiction e",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
-   "axis_hits": {
-    "genai": 1,
-    "bigdata": 3,
-    "fullstack": 0,
-    "cvsec": 0
-   },
-   "keywords": [
-    "intelligence artificielle",
-    "data science",
-    "machine learning",
-    "scikit-learn"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 0,
-   "score": 60,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 15
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6565-offre-de-stage-software-engineer-meta-business-ai-integration",
@@ -617,39 +548,37 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 16
+   "id": 14
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6538-stagiaire-software-engineer-ia-data-scraping",
-   "source": "stagiaires.ma",
-   "title": "Stagiaire Software Engineer & IA (Data Scraping)",
-   "company": "Orchid Island Real Estate",
-   "city": "Marrakech",
-   "modality": "Hybride",
-   "date_posted": "2026-09-18",
-   "valid_through": "2026-10-18",
+   "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
+   "source": "dreamjob.ma",
+   "title": "TI Automotive renforce ses équipes data et achats avec des stagiaires à Tanger",
+   "company": "TI Automotive",
+   "city": "Tanger",
+   "modality": "",
+   "date_posted": "2026-10-19",
+   "valid_through": "",
    "employment_type": "INTERN",
-   "description": "Orchid Island Real Estate à Marrakech recherche un Stagiaire Software Engineer spécialisé en Data Scraping. Vos missions incluront le développement de scripts pour collecter automatiquement des données immobilières, leur structuration et nettoyage. Vous travaillerez sur des problématiques concrètes d'automatisation et d'analyse de données immobilières. Compétences recherchées : Python, Web Scraping, BeautifulSoup, Scrapy, Selenium, Requests, APIs, HTML/CSS, Pandas, Bases de données et SQL.\nOrchid Island Real Estate recherche un(e) Stagiaire Software Engineer spécialisé(e) en Data Scraping\nOrchid Island Real Estate\n, entreprise spécialisée dans l'immobilier à\nMarrakech\n, recherche un(e)\nstagiaire Software Engineer spécialisé(e) en Data Scraping\npour rejoindre son équipe et participer au développement de solutions permettant de collecter et structurer automatiquement des données immobilières provenant de différentes sources en ligne.\nInformations sur le stage\nEntreprise :\nOrchid Island Real Estate\nPoste :\nStagiaire Software Engineer – Data Scraping\nType :\nStage d’apprentissage\nRémunération :\nStage non rémunéré\nLieu :\nMarrakech\nMode de travail :\nHybride\nDébut :\nImmédiat\nMissions\nDévelopper des scripts et outils permettant de\ncollecter automatiquement des données immobilières\ndepuis différentes sources web.\nConcevoir et maintenir des solutions de\nweb scraping et d'extraction de données\n.\nNettoyer, structurer et organiser les données collectées afin de les rendre exploitables.\nAutomatiser les processus de collecte et de mise à jour des données.\nIdentifier et résoudre les problèmes liés à la qualité, la fiabilité et la disponibilité des données.\nCollaborer avec l'équipe pour transformer les données collectées en informations utiles à l'analyse du marché immobilier.\nProfil rec",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
+   "description": "TI Automotive Morocco\npropose deux stages à\nTanger\n: un\nStage Data Analytics / Data Science\nde\n3 mois\net un\nStage Achats\nde\n4 mois\n. Les stages s’adressent à des étudiants et jeunes diplômés de\nBac+3 à Bac+5\n.\nPrésent à l’échelle internationale,\nTI Automotive\ndéveloppe des technologies de stockage, de transport et de distribution de fluides pour les constructeurs automobiles.\nLe groupe compte environ\n28 000 collaborateurs\net\n114 sites\ndans\n28 pays\n, et s’appuie sur une organisation industrielle structurée.\nStagiaire Data Analytics / Data Science – Tanger\nCe stage de\n3 mois\nse déroule au sein des équipes de TI Automotive Morocco à Tanger.\nSes principales missions seront de:\nDévelopper et automatiser des fichiers\nExcel\n.\nAnalyser et traiter des données volumineuses (\nBig Data\n).\nCréer des\ntableaux de bord\net des reportings.\nContribuer à l’amélioration des processus grâce à l’analyse des données.\nLe profil recherché pour ce poste:\nPréparer ou être titulaire d’un\nBac+3 à Bac+5\nen Data Science, Data Analytics, Informatique, Statistiques ou équivalent.\nAvoir une\nexcellente maîtrise d’Excel\n.\nAvoir l’esprit analytique et un intérêt pour la gestion des données.\nStagiaire Achats – Tanger\nCe stage de\n4 mois\nse déroule au sein du service Achats de TI Automotive Morocco à Tanger.\nSes principales missions seront de:\nCréer et mettre à jour la base de données des contrats fournisseurs.\nArchiver les contrats et suivre les échéances contractuelles.\nApporter un support administratif aux activités quotidiennes du service Achats.\nParticiper au suivi des commandes et des fournisseurs.\nLe profil recherché pour ce poste:\nPréparer ou être titulaire d’un\nBac+5\nen Achats, Supply Chain, Gestion ou équivalent.\nMaîtriser les outils bureautiques, notamment\nExcel\n.\nFaire preuve de rigueur, d’organisa",
+   "logo": "",
    "axis_hits": {
     "genai": 0,
     "bigdata": 2,
-    "fullstack": 2,
+    "fullstack": 0,
     "cvsec": 0
    },
    "keywords": [
-    "data engineering",
-    "sql",
-    "apis",
-    "automatisation"
+    "big data",
+    "data science"
    ],
    "domain": "Big Data & MLOps",
-   "bonus": 0,
-   "score": 56,
+   "bonus": 3,
+   "score": 53,
    "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 17
+   "first_seen": "2026-10-19",
+   "new_today": true,
+   "id": 15
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -679,7 +608,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 18
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6612-stage-analyste-en-cybersecurite-et-cyberdefense",
@@ -715,7 +644,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6567-stage-analyste-en-cybersecurite-et-cyberdefense"
     }
    ],
-   "id": 19
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -745,7 +674,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 20
+   "id": 18
   }
  ]
 }
