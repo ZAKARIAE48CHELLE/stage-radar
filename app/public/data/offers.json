@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-19T13:09:04+00:00",
+ "generated_at": "2026-10-20T11:33:06+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 860,
+  "stored": 878,
   "by_source": {
-   "stagiaires.ma": 15,
+   "stagiaires.ma": 13,
    "dreamjob.ma": 3
   },
-  "kept": 18,
-  "new_this_run": 12,
+  "kept": 16,
+  "new_this_run": 18,
   "filter_reasons": {
-   "title excluded": 47,
-   "not data/AI": 702,
-   "not an internship": 25,
-   "ok": 21,
-   "expired": 17,
+   "title excluded": 48,
+   "not data/AI": 718,
+   "not an internship": 26,
+   "ok": 18,
+   "expired": 20,
    "too few skill keywords": 39,
    "too old": 9,
-   "duplicate": 3
+   "duplicate": 2
   }
  },
  "offers": [
@@ -254,40 +254,6 @@
    "id": 5
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6579-stage-en-prompt-engineering-intelligence-artificielle",
-   "source": "stagiaires.ma",
-   "title": "Stage en Prompt Engineering & Intelligence Artificielle",
-   "company": "Orchid Island Real Estate",
-   "city": "Marrakech",
-   "modality": "Sur site",
-   "date_posted": "2026-09-19",
-   "valid_through": "2026-10-19",
-   "employment_type": "INTERN",
-   "description": "Orchid Island recherche un stagiaire en Prompt Engineering & IA pour un stage d'apprentissage non rémunéré de 3 mois minimum à Marrakech. Vous participerez à la conception et optimisation de prompts, à l'utilisation d'outils d'IA comme ChatGPT et à l'automatisation de tâches. Profil recherché : étudiant en informatique/IA/Data Science, créatif, curieux et autonome. La maîtrise du français est requise, l'anglais est un plus.\nOffre de Stage – Prompt Engineering & Intelligence Artificielle\nInformations sur le Stage\nEntreprise :\nOrchid Island\nPoste :\nStagiaire Prompt Engineer & Intelligence Artificielle\nType :\nStage d’apprentissage\nDurée :\n3 mois minimum\nRémunération :\nStage non rémunéré\nLieu :\nJbel Gueliz – 40000 Marrakech\nDébut :\nImmédiat\nModalité :\nEn présentiel\nÀ Propos du Stage\nChez\nOrchid Island\n, nous recherchons un(e) stagiaire\ncurieux(se), créatif(ve) et passionné(e) par l’intelligence artificielle\net les nouvelles technologies. Ce stage vous permettra de découvrir concrètement le\nPrompt Engineering\n, l’IA générative et l’automatisation, notamment à travers l’utilisation de\nChatGPT et d’autres outils d’IA\n. Vous apprendrez à concevoir, tester et optimiser des prompts afin d’obtenir des résultats plus précis, pertinents et adaptés aux différents besoins professionnels.\nVos Missions\nPrompt Engineering\nConcevoir et optimiser des\nprompts efficaces et structurés\n.\nTester différentes formulations et comparer les résultats.\nCréer des modèles de prompts réutilisables.\nAdapter les prompts selon les objectifs et les utilisateurs.\nDocumenter les méthodes et bonnes pratiques.\nIA & Automatisation\nUtiliser\nChatGPT et différents outils d’IA générative\n.\nExploiter l’IA pour la recherche, la rédaction, l’analyse et la création de contenu.\nParticiper à l’\nautomatisation de tâches ré",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
-   "axis_hits": {
-    "genai": 6,
-    "bigdata": 1,
-    "fullstack": 1,
-    "cvsec": 0
-   },
-   "keywords": [
-    "ia generative",
-    "intelligence artificielle",
-    "llm",
-    "prompt engineering",
-    "data science",
-    "automatisation"
-   ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 0,
-   "score": 82,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 6
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7014-stagiaire-pfe-intelligence-artificielle-ia",
    "source": "stagiaires.ma",
    "title": "Stagiaire PFE - Intelligence Artificielle (IA)",
@@ -316,7 +282,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 7
+   "id": 6
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -348,7 +314,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 8
+   "id": 7
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6922-stage-de-fin-d-etudes-developpeur-web-full-stack-wordpress-woocommerce-next-js",
@@ -379,7 +345,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 9
+   "id": 8
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6839-stagiaire-tech-ia-automatisation-l-d",
@@ -410,7 +376,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 10
+   "id": 9
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6773-data-engineer-stage",
@@ -449,7 +415,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6730-data-engineer-stage"
     }
    ],
-   "id": 11
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6729-offre-de-stage-seo-geo-ai-search-optimization",
@@ -486,7 +452,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/6690-offre-de-stage-seo-geo-ai-search-optimization"
     }
    ],
-   "id": 12
+   "id": 11
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6643-stage-en-cybersecurite-et-intelligence-artificielle",
@@ -517,38 +483,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 13
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6565-offre-de-stage-software-engineer-meta-business-ai-integration",
-   "source": "stagiaires.ma",
-   "title": "Offre de Stage : Software Engineer (Meta Business & AI Integration)",
-   "company": "Orchid Island Real Estate",
-   "city": "Marrakech",
-   "modality": "",
-   "date_posted": "2026-09-19",
-   "valid_through": "2026-10-19",
-   "employment_type": "INTERN",
-   "description": "Orchid Island Real Estate recherche un stagiaire Software Engineer à Marrakech pour intégrer un agent IA aux plateformes Meta. Vous automatiserez les réponses aux clients via Facebook, Instagram, etc. Compétences requises : Meta Business Suite, Meta for Developers, APIs Meta. Stage non rémunéré.\nOrchid Island Real Estate, une entreprise immobilière basée à Marrakech, recherche un(e) stagiaire Software Engineer spécialisé(e) en intégration Meta et IA. Le rôle consiste à connecter un agent IA existant aux comptes de réseaux sociaux de l'entreprise afin d'automatiser les réponses aux clients.\nInformations sur le Stage\nEntreprise :\nOrchid Island Real Estate\nType :\nStage d’apprentissage\nRémunération :\nStage non rémunéré\nLieu :\nJbel Gueliz, 40000 Marrakech\nDate de début :\nImmédiate\nMission Principale\nLe/la stagiaire sera chargé(e) de configurer l'intégration entre l'agent IA existant d'Orchid Island et les comptes professionnels de l'entreprise sur les plateformes Meta. L'objectif est de permettre à l'agent IA de recevoir les messages des clients et d'y répondre automatiquement.\nMissions Détailées\nConfigurer et gérer Meta Business Suite et Meta for Developers.\nConnecter les comptes Facebook, Instagram et autres services Meta aux systèmes nécessaires.\nMettre en place les APIs Meta, Webhooks, permissions et tokens d'accès requis.\nConnecter l'agent IA déjà développé aux systèmes de messagerie Meta.\nPermettre à l'agent IA de recevoir, traiter et répondre automatiquement aux messages des clients.\nTester et corriger l'intégration, y compris les erreurs liées aux APIs, permissions ou authentification.\nAssurer le bon fonctionnement de l'automatisation et documenter la configuration réalisée.\nCompétences Requises\nLe/la candidat(e) doit impérativement maîtriser Meta Business Suite et M",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
-   "axis_hits": {
-    "genai": 1,
-    "bigdata": 0,
-    "fullstack": 2,
-    "cvsec": 0
-   },
-   "keywords": [
-    "agent ia",
-    "apis",
-    "automatisation"
-   ],
-   "domain": "Full-Stack & Automatisations",
-   "bonus": 0,
-   "score": 59,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 14
+   "id": 12
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -577,8 +512,8 @@
    "score": 53,
    "is_pfe": false,
    "first_seen": "2026-10-19",
-   "new_today": true,
-   "id": 15
+   "new_today": false,
+   "id": 13
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -608,7 +543,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 16
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6612-stage-analyste-en-cybersecurite-et-cyberdefense",
@@ -638,13 +573,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "also_on": [
-    {
-     "source": "stagiaires.ma",
-     "url": "https://www.stagiaires.ma/stage-emploi-maroc/6567-stage-analyste-en-cybersecurite-et-cyberdefense"
-    }
-   ],
-   "id": 17
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -674,7 +603,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 18
+   "id": 16
   }
  ]
 }
