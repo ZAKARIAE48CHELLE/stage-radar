@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-20T11:33:06+00:00",
+ "generated_at": "2026-10-21T11:45:23+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,20 +28,20 @@
   }
  },
  "stats": {
-  "stored": 878,
+  "stored": 898,
   "by_source": {
    "stagiaires.ma": 13,
    "dreamjob.ma": 3
   },
   "kept": 16,
-  "new_this_run": 18,
+  "new_this_run": 20,
   "filter_reasons": {
-   "title excluded": 48,
-   "not data/AI": 718,
-   "not an internship": 26,
+   "title excluded": 49,
+   "not data/AI": 735,
+   "not an internship": 27,
    "ok": 18,
    "expired": 20,
-   "too few skill keywords": 39,
+   "too few skill keywords": 40,
    "too old": 9,
    "duplicate": 2
   }
