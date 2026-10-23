@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-22T11:48:27+00:00",
+ "generated_at": "2026-10-23T11:35:21+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,21 +28,21 @@
   }
  },
  "stats": {
-  "stored": 926,
+  "stored": 948,
   "by_source": {
    "stagiaires.ma": 12,
-   "dreamjob.ma": 3
+   "dreamjob.ma": 4
   },
-  "kept": 15,
-  "new_this_run": 28,
+  "kept": 16,
+  "new_this_run": 22,
   "filter_reasons": {
-   "title excluded": 50,
-   "not data/AI": 757,
+   "title excluded": 52,
+   "not data/AI": 775,
    "not an internship": 30,
-   "ok": 17,
-   "expired": 20,
-   "too few skill keywords": 42,
-   "too old": 10,
+   "ok": 18,
+   "expired": 19,
+   "too few skill keywords": 43,
+   "too old": 11,
    "duplicate": 2
   }
  },
@@ -455,6 +455,38 @@
    "id": 11
   },
   {
+   "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
+   "source": "dreamjob.ma",
+   "title": "Candidature spontanée chez Inetum Maroc: plusieurs opportunités à Casablanca",
+   "company": "",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-22",
+   "valid_through": "",
+   "employment_type": "INTERN",
+   "description": "Inetum Maroc\nouvre les candidatures spontanées pour plusieurs\npostes techniques et fonctionnels\nà\nCasablanca\n, dans le cadre du\nForum Geni Entreprises\n. Les postes sont proposés en\nCDI\nou en\nstage PFE\nselon le profil, pour des diplômés\nBac+5\n.\nInetum\nest un groupe européen de services numériques présent dans\n19 pays\n, avec plus de\n27 000 collaborateurs\net un chiffre d’affaires de 2,4 milliards d’euros en 2024. Il accompagne entreprises et institutions dans leur transformation digitale.\nPrésent au Maroc depuis plus de 20 ans,\nInetum Maroc\ncompte plus de\n800 collaborateurs\n, un centre de services partagés et un FabLab à Casablanca. L’entité s’appuie sur trois lignes de métiers, Inetum Consulting, Inetum Technologies et Inetum Solutions, et sur des partenariats avec Microsoft, SAP et Sage.\nCandidatures Spontanées – Casablanca\nLes opportunités disponibles couvrent les domaines suivants:\nOverHeads:\nFinance, Contrôle de gestion, Ressources Humaines.\nDéveloppement Java\n.\nDéveloppement .NET\n.\nBusiness Intelligence (BI)\n.\nData:\nData Engineering, Data Science et Data Analytics.\nDevOps et Cloud\n.\nSage X3, 100 et 1000\n.\nMicrosoft Dynamics 365\n.\nSAP:\nFI, MM, SD, ABAP.\nServiceNow\n.\nSalesforce\n.\nLes candidats retenus seront intégrés dans des équipes projet, en fonction de leur expertise, de leur potentiel et de leur intérêt pour les technologies proposées.\nLe profil recherché pour ces postes:\nÊtre titulaire d’un\nBac+5 en informatique, télécommunications, systèmes d’information\nou discipline connexe.\nAvoir une\nbonne maîtrise du français\nà l’écrit et à l’oral.\nDisposer de connaissances techniques dans au moins un de ces domaines: développement (Java, .NET, Python), infrastructure, cloud, cybersécurité, ERP ou data.\nAvoir l’esprit d’équipe, de la curiosité, une capacité d’adaptation et l",
+   "logo": "",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 1,
+    "cvsec": 1
+   },
+   "keywords": [
+    "data engineering",
+    "data science",
+    "devops",
+    "cybersecurite"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 60,
+   "is_pfe": true,
+   "first_seen": "2026-10-23",
+   "new_today": true,
+   "id": 12
+  },
+  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6643-stage-en-cybersecurite-et-intelligence-artificielle",
    "source": "stagiaires.ma",
    "title": "Stage en Cybersécurité et Intelligence Artificielle",
@@ -483,7 +515,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 12
+   "id": 13
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -513,7 +545,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 13
+   "id": 14
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -543,7 +575,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 14
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -573,7 +605,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 15
+   "id": 16
   }
  ]
 }
