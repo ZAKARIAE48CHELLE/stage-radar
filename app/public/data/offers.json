@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-24T10:55:56+00:00",
+ "generated_at": "2026-10-25T11:22:59+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -30,20 +30,20 @@
  "stats": {
   "stored": 948,
   "by_source": {
-   "stagiaires.ma": 12,
+   "stagiaires.ma": 11,
    "dreamjob.ma": 4
   },
-  "kept": 16,
+  "kept": 15,
   "new_this_run": 0,
   "filter_reasons": {
    "title excluded": 52,
    "not data/AI": 775,
    "not an internship": 30,
-   "ok": 18,
-   "expired": 18,
+   "ok": 16,
+   "expired": 20,
    "too few skill keywords": 43,
    "too old": 12,
-   "duplicate": 2
+   "duplicate": 1
   }
  },
  "offers": [
@@ -446,12 +446,6 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "also_on": [
-    {
-     "source": "stagiaires.ma",
-     "url": "https://www.stagiaires.ma/stage-emploi-maroc/6690-offre-de-stage-seo-geo-ai-search-optimization"
-    }
-   ],
    "id": 11
   },
   {
@@ -487,37 +481,6 @@
    "id": 12
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6643-stage-en-cybersecurite-et-intelligence-artificielle",
-   "source": "stagiaires.ma",
-   "title": "Stage en Cybersécurité et Intelligence Artificielle",
-   "company": "Orchid Island Real Estate",
-   "city": "Marrakech",
-   "modality": "Sur site",
-   "date_posted": "2026-09-24",
-   "valid_through": "2026-10-24",
-   "employment_type": "INTERN",
-   "description": "Orchid Island Real Estate recherche un stagiaire AI & Cybersecurity Engineer à Marrakech pour renforcer ses systèmes de sécurité. Vous participerez à l'analyse des vulnérabilités, à la mise en place de mesures de protection et à l'exploration de l'intelligence artificielle pour la détection des menaces. Ce stage est idéal pour un profil curieux et rigoureux souhaitant se spécialiser en cybersécurité et IA au sein d'une structure dynamique. Une opportunité concrète pour développer vos compétences techniques en audit, réseau et protection des données.\nPrésentation\nOrchid Island Real Estate, entreprise spécialisée dans l’immobilier à Marrakech, recherche un(e) stagiaire\nAI & Cybersecurity Engineer\npour rejoindre son équipe et participer au développement et à l’amélioration de solutions liées à la cybersécurité et à l’intelligence artificielle.\nCe stage représente une opportunité de travailler sur des problématiques concrètes de sécurité informatique, d’identifier les risques et vulnérabilités potentiels et d’explorer l’utilisation de l’intelligence artificielle dans la détection et la prévention des menaces.\nInformations sur le stage\nEntreprise :\nOrchid Island Real Estate\nPoste :\nStagiaire AI & Cybersecurity Engineer\nType :\nStage d’apprentissage\nRémunération :\nNon rémunéré\nLieu :\nMarrakech, Maroc\nMode de travail :\nPrésentiel\nDébut :\nImmédiatement\nMissions\nAnalyser les systèmes et infrastructures pour identifier les risques de sécurité.\nParticiper aux audits de sécurité et à l’évaluation des systèmes.\nIdentifier les vulnérabilités des applications et réseaux.\nMettre en place des mesures de protection contre les cybermenaces.\nExplorer l'usage de l'IA et du Machine Learning pour la détection d'anomalies.\nEffectuer une veille technologique sur les menaces et solutions de sécur",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
-   "axis_hits": {
-    "genai": 2,
-    "bigdata": 1,
-    "fullstack": 0,
-    "cvsec": 2
-   },
-   "keywords": [
-    "intelligence artificielle",
-    "machine learning",
-    "cybersecurite"
-   ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 0,
-   "score": 60,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 13
-  },
-  {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
    "source": "dreamjob.ma",
    "title": "TI Automotive renforce ses équipes data et achats avec des stagiaires à Tanger",
@@ -545,7 +508,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 14
+   "id": 13
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -575,7 +538,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 15
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -605,7 +568,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 16
+   "id": 15
   }
  ]
 }
