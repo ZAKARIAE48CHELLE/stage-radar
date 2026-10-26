@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-25T11:22:59+00:00",
+ "generated_at": "2026-10-26T12:57:08+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -30,20 +30,19 @@
  "stats": {
   "stored": 948,
   "by_source": {
-   "stagiaires.ma": 11,
+   "stagiaires.ma": 10,
    "dreamjob.ma": 4
   },
-  "kept": 15,
+  "kept": 14,
   "new_this_run": 0,
   "filter_reasons": {
    "title excluded": 52,
    "not data/AI": 775,
    "not an internship": 30,
-   "ok": 16,
-   "expired": 20,
-   "too few skill keywords": 43,
-   "too old": 12,
-   "duplicate": 1
+   "ok": 14,
+   "expired": 21,
+   "too old": 13,
+   "too few skill keywords": 43
   }
  },
  "offers": [
@@ -409,44 +408,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "also_on": [
-    {
-     "source": "stagiaires.ma",
-     "url": "https://www.stagiaires.ma/stage-emploi-maroc/6730-data-engineer-stage"
-    }
-   ],
    "id": 10
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6729-offre-de-stage-seo-geo-ai-search-optimization",
-   "source": "stagiaires.ma",
-   "title": "OFFRE DE STAGE – SEO, GEO & AI SEARCH OPTIMIZATION",
-   "company": "Orchid Island Real Estate",
-   "city": "Marrakech",
-   "modality": "",
-   "date_posted": "2026-09-25",
-   "valid_through": "2026-10-25",
-   "employment_type": "INTERN",
-   "description": "Orchid Island Real Estate à Marrakech recherche un(e) stagiaire passionné(e) par le SEO, la data et l'IA. Vous contribuerez au développement de notre visibilité numérique à travers le SEO technique, local, la stratégie de contenu et le GEO (Generative Engine Optimization). Ouvert aux étudiants ou jeunes diplômés en marketing digital, communication ou informatique, ce stage est l'opportunité idéale pour monter en compétences sur des outils de pointe et l'automatisation au sein d'une structure immobilière haut de gamme.\nDescription du poste\nOrchid Island Real Estate recrute un(e) stagiaire passionné(e) par le SEO, la data et l'intelligence artificielle pour accompagner son développement digital à Marrakech. Vous travaillerez sur le SEO technique, local, la stratégie de contenu et l'optimisation pour les moteurs de recherche génératifs (GEO). Idéal pour un profil curieux et analytique issu du marketing digital ou de l'informatique souhaitant monter en compétences sur des outils comme Ahrefs, Semrush et l'IA appliquée au search. Rejoignez une structure dynamique spécialisée dans l'immobilier haut de gamme.\nÀ PROPOS D’ORCHID ISLAND REAL ESTATE\nOrchid Island Real Estate\névolue dans l’immobilier haut de gamme, l’investissement et le conseil à Marrakech. Dans le cadre de notre développement digital, nous travaillons sur des projets liés à la\ndata, l’intelligence artificielle, l’analyse de marché, l’estimation immobilière, le CRM et l’automatisation\n.\nVOTRE MISSION\nVous participerez à l’amélioration de la visibilité organique d'Orchid Island. Votre rôle couvrira plusieurs dimensions :\nSEO technique, SEO local, stratégie de contenu, analyse de données et Generative Engine Optimization (GEO).\nMISSIONS PRINCIPALES\nSEO & RÉFÉRENCEMENT NATUREL :\nAudits, recherche de mots-clés, optimi",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
-   "axis_hits": {
-    "genai": 2,
-    "bigdata": 0,
-    "fullstack": 1,
-    "cvsec": 0
-   },
-   "keywords": [
-    "ia generative",
-    "intelligence artificielle",
-    "automatisation"
-   ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 0,
-   "score": 64,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 11
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -478,7 +440,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 12
+   "id": 11
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -508,7 +470,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 13
+   "id": 12
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -538,7 +500,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 14
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
@@ -568,7 +530,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 15
+   "id": 14
   }
  ]
 }
