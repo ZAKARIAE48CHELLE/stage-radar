@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-28T12:50:35+00:00",
+ "generated_at": "2026-10-29T12:57:43+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -30,18 +30,18 @@
  "stats": {
   "stored": 948,
   "by_source": {
-   "stagiaires.ma": 10,
+   "stagiaires.ma": 8,
    "dreamjob.ma": 4
   },
-  "kept": 14,
+  "kept": 12,
   "new_this_run": 0,
   "filter_reasons": {
    "title excluded": 52,
    "not data/AI": 775,
    "not an internship": 30,
-   "ok": 14,
+   "ok": 12,
    "expired": 21,
-   "too old": 13,
+   "too old": 15,
    "too few skill keywords": 43
   }
  },
@@ -378,39 +378,6 @@
    "id": 9
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6773-data-engineer-stage",
-   "source": "stagiaires.ma",
-   "title": "Data Engineer (Stage)",
-   "company": "Total Call",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-09-28",
-   "valid_through": "2026-10-28",
-   "employment_type": "INTERN",
-   "description": "Rejoignez TOTALCALL à Casablanca pour un stage de Data Engineer. Intégrez notre équipe Data pour travailler sur des projets de traitement de données massives, la création de pipelines performants et le développement de modèles de Machine Learning pour nos infrastructures réseau. Vous bénéficierez d'un encadrement senior au sein d'un environnement technique stimulant. Idéal pour un étudiant en fin de cycle d'ingénierie passionné par la donnée et souhaitant acquérir une première expérience concrète. Processus incluant évaluation technique et entretiens.\nDescription du poste\nRejoignez\nTOTALCALL\nà Casablanca pour un stage de Data Engineer débutant à partir d'octobre. Au sein de notre équipe Data, vous travaillerez sur des projets complexes de traitement de données massives, la création de pipelines performants et le développement de modèles de Machine Learning appliqués aux infrastructures réseau. Vous bénéficierez d'un encadrement par des profils seniors dans un environnement stimulant et technique. Ce stage est idéal pour un étudiant en fin de cycle d'ingénierie passionné par la donnée.\nObjectifs\nNotre mission est de construire, améliorer et exploiter des plateformes data qui centralisent et valorisent les données issues de nos réseaux (fixe, mobile, fibre, cœur de réseau, etc.).\nMissions\nParticiper à la collecte, l’analyse et la valorisation des données réseaux.\nContribuer au développement des pipelines de données (ingestion, nettoyage, monitoring, industrialisation avec Prefect, Kafka, dbt…).\nDévelopper des modèles prédictifs pour optimiser la supervision du réseau.\nConcevoir des tableaux de bord interactifs pour faciliter la prise de décision.\nCollaborer avec les équipes techniques pour l’intégration des solutions.\nDocumenter les projets pour assurer leur pérennité.\nPr",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/09/24104800/Logo-STG-Entreprise-et-ecole-2.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 6,
-    "fullstack": 0,
-    "cvsec": 0
-   },
-   "keywords": [
-    "data engineer",
-    "kafka",
-    "machine learning",
-    "pipelines",
-    "sql"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 3,
-   "score": 66,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 10
-  },
-  {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
    "source": "dreamjob.ma",
    "title": "Candidature spontanée chez Inetum Maroc: plusieurs opportunités à Casablanca",
@@ -440,7 +407,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 11
+   "id": 10
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -470,7 +437,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 12
+   "id": 11
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -500,37 +467,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 13
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6790-stage-it-remunere-3-mois",
-   "source": "stagiaires.ma",
-   "title": "Stage IT rémunéré (3 mois)",
-   "company": "LEI ACADEMY PRIVEE – El Jadida",
-   "city": "El Jadida",
-   "modality": "",
-   "date_posted": "2026-09-28",
-   "valid_through": "2026-10-28",
-   "employment_type": "INTERN",
-   "description": "LEI ACADEMY PRIVÉE recrute un(e) stagiaire IT pour le support technique, la gestion réseau et le déploiement de projets numériques. Si vous êtes étudiant(e) ou jeune diplômé(e) en informatique avec des bases solides en réseaux et systèmes (Windows/macOS), rejoignez notre équipe à El Jadida. Vous serez en charge du support de premier niveau, de la maintenance du matériel et de l'administration des comptes. Rigoureux(se) et doté(e) d'un bon relationnel, c'est l'opportunité idéale pour booster votre carrière. Postulez dès maintenant via la plateforme pour intégrer un environnement dynamique.\nÀ propos de l'offre\nLEI ACADEMY PRIVÉE recherche un(e) stagiaire IT motivé(e) pour accompagner son équipe informatique dans le support aux utilisateurs, la gestion du parc matériel et le déploiement de projets numériques.\nVos missions :\nSupport technique :\nAssistance de premier niveau (matériel, logiciels, gestion des accès).\nMaintenance :\nInstallation et configuration des postes de travail et périphériques.\nRéseau :\nDiagnostic et maintenance des infrastructures LAN/Wi-Fi.\nAdministration :\nGestion des comptes et outils numériques (Microsoft 365 / Google Workspace).\nProfil recherché :\nÉtudiant(e) ou jeune diplômé(e) en informatique (systèmes et réseaux ou équivalent). Vous maîtrisez les environnements Windows/macOS ainsi que les bases de la cybersécurité. Une connaissance de Linux, Docker, des API ou des outils d'IA sera un atout majeur.\nQualités requises :\nVous êtes reconnu(e) pour votre sens pratique, votre autonomie, votre rigueur et votre excellent relationnel auprès d'utilisateurs non techniques.\nRejoignez une équipe dynamique et donnez une nouvelle dimension à votre parcours professionnel dans le secteur de l'IT !",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/02/25110307/LEI_ACADEMY_PRIVEE_El_Jadida.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 1,
-    "fullstack": 0,
-    "cvsec": 1
-   },
-   "keywords": [
-    "docker",
-    "cybersecurite"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 0,
-   "score": 41,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 14
+   "id": 12
   }
  ]
 }
