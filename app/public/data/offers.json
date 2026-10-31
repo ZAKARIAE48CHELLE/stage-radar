@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-30T12:51:01+00:00",
+ "generated_at": "2026-10-31T12:23:18+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -30,18 +30,18 @@
  "stats": {
   "stored": 948,
   "by_source": {
-   "stagiaires.ma": 8,
+   "stagiaires.ma": 7,
    "dreamjob.ma": 4
   },
-  "kept": 12,
+  "kept": 11,
   "new_this_run": 0,
   "filter_reasons": {
    "title excluded": 52,
    "not data/AI": 775,
    "not an internship": 30,
-   "ok": 12,
-   "expired": 20,
-   "too old": 16,
+   "ok": 11,
+   "expired": 19,
+   "too old": 18,
    "too few skill keywords": 43
   }
  },
@@ -347,37 +347,6 @@
    "id": 8
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6839-stagiaire-tech-ia-automatisation-l-d",
-   "source": "stagiaires.ma",
-   "title": "Stagiaire Tech, IA & Automatisation L&D",
-   "company": "Intelcia",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-09-30",
-   "valid_through": "2026-10-30",
-   "employment_type": "INTERN",
-   "description": "Passionné(e) par la Tech et l'IA ? Intelcia recrute un stagiaire PFE pour accompagner ses équipes L&D. Vous travaillerez sur le déploiement de solutions IA, l'automatisation de processus via Apps Script et le développement web. Profil recherché : étudiant(e) en Bac+5 (Ingénierie/Data/IA) avec une bonne maîtrise des APIs LLM et du développement front-end. Rejoignez-nous pour un stage de 6 mois à Casablanca alliant innovation et projets concrets.\nMissions\nDans le cadre de votre stage, vous serez amené(e) à :\nParticiper au développement et au déploiement de solutions basées sur l’IA : simulateurs, outils d’aide à la formation, etc.\nDévelopper et maintenir des flux d’automatisation de processus et d’analyses via Apps Script.\nContribuer au développement web et front-end de nos applications internes.\nApporter un support et un accompagnement technique aux équipes L&D (Learning & Development).\nProfil recherché\nÉtudiant(e) en Bac+5 (école d’ingénieurs, informatique, Data ou IA).\nMaîtrise de l’intégration d’APIs LLM et de Google AI Studio.\nCompétences solides en automatisation et développement web/front-end.\nEsprit d’analyse, autonomie et force de proposition.\nExcellente aisance relationnelle et esprit d’équipe.\nModalités\nType :\nStage PFE / Pré-embauche\nDurée :\n6 mois\nLocalisation :\nSite Intown, Casablanca\nVous êtes passionné(e) par la Tech, l’IA et l’automatisation et souhaitez travailler sur des projets concrets à fort impact ? Rejoignez nos équipes !",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/04/16121112/intelcia.png",
-   "axis_hits": {
-    "genai": 1,
-    "bigdata": 0,
-    "fullstack": 3,
-    "cvsec": 0
-   },
-   "keywords": [
-    "llm",
-    "apis",
-    "automatisation"
-   ],
-   "domain": "Full-Stack & Automatisations",
-   "bonus": 8,
-   "score": 68,
-   "is_pfe": true,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 9
-  },
-  {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
    "source": "dreamjob.ma",
    "title": "Candidature spontanée chez Inetum Maroc: plusieurs opportunités à Casablanca",
@@ -407,7 +376,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 10
+   "id": 9
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -437,7 +406,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 11
+   "id": 10
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -467,7 +436,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 12
+   "id": 11
   }
  ]
 }
