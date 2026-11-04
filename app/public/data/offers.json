@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03T14:08:56+00:00",
+ "generated_at": "2026-11-04T14:28:40+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -30,18 +30,18 @@
  "stats": {
   "stored": 948,
   "by_source": {
-   "stagiaires.ma": 4,
+   "stagiaires.ma": 2,
    "dreamjob.ma": 4
   },
-  "kept": 8,
+  "kept": 6,
   "new_this_run": 0,
   "filter_reasons": {
    "title excluded": 52,
    "not data/AI": 775,
    "not an internship": 30,
-   "ok": 8,
-   "expired": 14,
-   "too old": 26,
+   "ok": 6,
+   "expired": 13,
+   "too old": 29,
    "too few skill keywords": 43
   }
  },
@@ -84,48 +84,6 @@
    "id": 1
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6926-data-engineering-intern-bcg-x",
-   "source": "stagiaires.ma",
-   "title": "Data Engineering Intern - BCG X",
-   "company": "BCG (Boston Consulting Group)",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-04",
-   "valid_through": "2026-11-03",
-   "employment_type": "INTERN",
-   "description": "Rejoignez BCG X à Casablanca en tant que stagiaire Data Engineer. Intégrez une équipe d'experts en innovation technologique et participez au développement de solutions de données complexes pour des clients internationaux. Vous maîtriserez les outils de pointe (Python, Spark, Cloud, Docker) et travaillerez sur des projets stratégiques. Profil : étudiant en fin de cursus ingénieur ou Master, avec une excellente maîtrise de l'anglais. Saisissez l'opportunité d'évoluer au sein d'un cabinet de conseil de premier plan.\nDescription du poste\nRejoignez le\nBoston Consulting Group (BCG)\nà Casablanca en tant que stagiaire Data Engineer au sein de\nBCG X\n. Vous travaillerez sur des projets innovants de transformation digitale en utilisant des technologies de pointe (Python, Spark, Cloud, Docker). Nous recherchons un étudiant en dernière année d'ingénierie ou Master avec un excellent niveau d'anglais et une solide maîtrise des outils de data engineering.\nÀ propos de BCG\nLe Boston Consulting Group (BCG) accompagne les leaders du monde des affaires et de la société pour relever leurs défis les plus stratégiques. Pionnier de la stratégie d'entreprise depuis 1963, nous aidons nos clients à transformer leurs organisations, stimuler leur croissance et bâtir un avantage concurrentiel durable.\nÀ propos de BCG X\nBCG X est notre unité dédiée à l'innovation technologique, regroupant plus de 3 000 experts. Nous combinons expertise sectorielle et capacités technologiques pour concevoir des produits et services à fort impact.\nVotre mission\nAu sein de l'équipe Delivery, vous collaborerez avec nos consultants et les équipes produits pour concevoir, développer et déployer des solutions de données industrialisées répondant aux besoins de nos clients.\nCompétences techniques requises\nLangages & Big Data ",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/09/24100138/Boston-Consulting-Group-BCG.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 15,
-    "fullstack": 0,
-    "cvsec": 0
-   },
-   "keywords": [
-    "airflow",
-    "aws",
-    "azure",
-    "big data",
-    "data engineer",
-    "data engineering",
-    "docker",
-    "gcp",
-    "kubernetes",
-    "mongodb",
-    "nosql",
-    "pyspark",
-    "spark",
-    "sql"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 3,
-   "score": 86,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 2
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7014-stagiaire-pfe-intelligence-artificielle-ia",
    "source": "stagiaires.ma",
    "title": "Stagiaire PFE - Intelligence Artificielle (IA)",
@@ -154,7 +112,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 3
+   "id": 2
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -186,38 +144,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 4
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6922-stage-de-fin-d-etudes-developpeur-web-full-stack-wordpress-woocommerce-next-js",
-   "source": "stagiaires.ma",
-   "title": "Stage de fin d’études — Développeur web Full Stack (WordPress/WooCommerce & Next.js)",
-   "company": "Namaryk",
-   "city": "Casablanca",
-   "modality": "Hybride",
-   "date_posted": "2026-10-04",
-   "valid_through": "2026-11-03",
-   "employment_type": "INTERN",
-   "description": "NAMARYK CONCEPT, studio d'architecture d'intérieur à Casablanca, recherche un(e) stagiaire développeur web Full Stack pour la refonte de ses plateformes WordPress/WooCommerce et Next.js. Vous participerez à l'optimisation de l'expérience utilisateur, du parcours de commande et du SEO. Profil recherché : étudiant en fin d'études avec une maîtrise technique de JavaScript, PHP et Git. Stage en mode hybride à Sidi Maarouf. Vous travaillerez sur des missions concrètes avec suivi régulier. Postulez avec votre CV et portfolio pour rejoindre un projet stimulant.\nÀ propos de l'entreprise\nNAMARYK CONCEPT\n, studio d'architecture d'intérieur et d'ameublement à Casablanca, recherche un(e) stagiaire développeur web pour participer à la refonte de ses sites et améliorer leur efficacité commerciale.\nLe projet\nVous interviendrez sur deux sites existants :\nUne\nboutique WordPress/WooCommerce\n(environ 446 produits).\nUn\nsite vitrine Next.js\n, avec intégration de notre portfolio de réalisations.\nObjectif\n: Offrir une expérience haut de gamme, rapide et intuitive pour faciliter les achats et les demandes de devis.\nTes missions\nRepenser les interfaces et la navigation (desktop/mobile).\nOptimiser le catalogue, les fiches produits, le panier et le parcours de commande.\nIntégrer le portfolio et créer des pages de présentation des prestations.\nDévelopper un formulaire de devis avec gestion de pièces jointes et notifications.\nAméliorer le SEO technique, la vitesse et la sécurité.\nConfigurer le suivi via GA4 et Google Tag Manager.\nGérer les migrations sur environnement de test et documenter les process.\nParticiper aux tests des paiements CMI et à la mise en ligne.\nProfil recherché\nÉtudiant(e) en fin d’études en développement informatique ou équivalent.\nMaîtrise de WordPress/WooCommerce et React/Next",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/02/23110013/Namaryk.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 0,
-    "fullstack": 5,
-    "cvsec": 0
-   },
-   "keywords": [
-    "full stack",
-    "next.js",
-    "react"
-   ],
-   "domain": "Full-Stack & Automatisations",
-   "bonus": 8,
-   "score": 68,
-   "is_pfe": true,
-   "first_seen": "2026-10-09",
-   "new_today": false,
-   "id": 5
+   "id": 3
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -249,7 +176,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 6
+   "id": 4
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -279,7 +206,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 7
+   "id": 5
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -309,7 +236,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 8
+   "id": 6
   }
  ]
 }
