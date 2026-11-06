@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-05T14:36:07+00:00",
+ "generated_at": "2026-11-06T14:24:10+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,60 +28,103 @@
   }
  },
  "stats": {
-  "stored": 948,
+  "stored": 1197,
   "by_source": {
-   "stagiaires.ma": 2,
+   "stagiaires.ma": 20,
    "dreamjob.ma": 4
   },
-  "kept": 6,
-  "new_this_run": 0,
+  "kept": 24,
+  "new_this_run": 249,
   "filter_reasons": {
-   "title excluded": 52,
-   "not data/AI": 775,
-   "not an internship": 30,
-   "ok": 6,
+   "title excluded": 127,
+   "not data/AI": 897,
+   "not an internship": 28,
+   "ok": 26,
    "expired": 13,
-   "too old": 29,
-   "too few skill keywords": 43
+   "removed from site": 47,
+   "too few skill keywords": 59,
+   "duplicate": 2
   }
  },
  "offers": [
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/6952-stage-developpeur-llm-et-automatisation",
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7543-stagiaire-pfe-ingenieur-full-stack-ia-generative-f-h",
    "source": "stagiaires.ma",
-   "title": "Stage Développeur - LLM et Automatisation",
-   "company": "Kamlin Lab Services",
-   "city": "Casablanca",
-   "modality": "Télétravail",
-   "date_posted": "2026-10-06",
-   "valid_through": "2026-11-05",
+   "title": "Stagiaire PFE – Ingénieur Full Stack & IA Générative (F/H)",
+   "company": "Sofrecom Maroc",
+   "city": "Rabat",
+   "modality": "",
+   "date_posted": "2026-10-29",
+   "valid_through": "2026-11-28",
    "employment_type": "INTERN",
-   "description": "Kamlin Lab recrute un(e) stagiaire développeur pour travailler sur Kamlin Agent, une solution d'IA pour les associations marocaines. Vous participerez au développement du MVP, à l'intégration de modèles LLM, à la mise en œuvre de RAG et à l'optimisation de l'interface. Vous travaillerez sur une stack moderne (TypeScript, React, Next.js) dans un environnement social et innovant. Profil ingénieur recherché, rigoureux, avec une excellente maîtrise de l'anglais technique. Stage basé à Casablanca, incluant du télétravail partiel.\nContexte\nKamlin Lab est une entreprise sociale marocaine qui conçoit des solutions digitales pour renforcer les capacités des organisations de la société civile. Nous développons Kamlin Agent, une application web d'IA destinée à aider les associations marocaines dans la gestion de leurs appels à projets (analyse d'éligibilité, budget, cadre logique, export Word/Excel). Le/la stagiaire aura pour mission de fiabiliser cet outil et de le préparer pour les tests avec des associations pilotes.\nMissions\nSous la supervision du fondateur et en binôme avec un développeur, vos missions seront :\nReprise en main du MVP\nPrise en main du code existant, de l'architecture et du déploiement (Docker, VPS) ;\nMise à jour de la documentation technique ;\nCorrection d'anomalies avec priorité à la sécurité et à la fiabilité des données.\nDéveloppement des fonctionnalités\nIntégration d'API de modèles de langage (Mistral, Gemini, DeepSeek, etc.) ;\nMise en place d'une base de connaissances via RAG (indexation de documents) ;\nDéveloppement du support bilingue (français/arabe) et gestion de l'affichage RTL ;\nGestion des accès multi-utilisateurs par association.\nTests et itération\nAnimation de tests utilisateurs avec des associations partenaires ;\nAmélioration continue du produit",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2026/01/21113644/Kamlin_Lab_Services.png",
+   "description": "Rejoignez Sofrecom Maroc pour un stage PFE stimulant axé sur le développement Full Stack et l'IA générative. Vous contribuerez à l'évolution d'un assistant DevOps intelligent en travaillant sur des technologies de pointe telles que Java/Spring Boot, React, Python, et les architectures RAG. Vous intégrerez des outils de supervision et participerez à tout le cycle de vie du projet, de la conception au déploiement. Idéal pour un étudiant en dernière année d'ingénierie passionné par l'IA et les environnements DevOps.\nIntitulé du sujet :\nDéveloppement Full Stack et IA générative pour un assistant DevOps intelligent\nContexte :\nLes équipes DevOps et d’exploitation Orange / Sofrecom s’appuient sur plusieurs outils de supervision, de documentation et de gestion des incidents. Le stage vise à faire évoluer un assistant intelligent existant pour faciliter l’accès à ces informations, accélérer le diagnostic et automatiser certaines tâches.\nObjectifs et missions :\nAnalyser l’existant et contribuer à la conception des évolutions.\nDévelopper les fonctionnalités backend Java/Spring Boot et frontend React/TypeScript.\nEnrichir les capacités d’IA générative et de recherche documentaire RAG.\nContribuer aux intégrations avec les outils de supervision, de notification et de gestion des tickets.\nParticiper aux tests, à la sécurisation, au déploiement et à la documentation de la solution.\nLivrables attendus :\nFonctionnalités développées et intégrées à l’application existante.\nTests et résultats de validation des développements réalisés.\nConfigurations et scripts nécessaires au déploiement.\nDocumentation technique et guide d’utilisation.\nRapport de fin d’études et support de soutenance.\nProfil recherché :\nFormation :\nÉtudiant(e) en dernière année de cycle ingénieur ou master (Bac+5) en informat",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2026/01/19084252/SOFRECOM.png",
    "axis_hits": {
-    "genai": 5,
+    "genai": 4,
     "bigdata": 1,
-    "fullstack": 5,
+    "fullstack": 7,
     "cvsec": 0
    },
    "keywords": [
     "ia generative",
     "llm",
-    "prompt engineering",
     "rag",
     "docker",
-    "automatisation",
-    "next.js",
+    "ci/cd",
+    "devops",
+    "full stack",
     "react",
+    "spring boot",
     "typescript"
    ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 3,
-   "score": 90,
-   "is_pfe": false,
-   "first_seen": "2026-10-09",
-   "new_today": false,
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 8,
+   "score": 97,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
    "id": 1
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7484-pfe-en-data-science-et-devops",
+   "source": "stagiaires.ma",
+   "title": "PFE en Data Science et DevOps",
+   "company": "MAROC FER",
+   "city": "Fès",
+   "modality": "",
+   "date_posted": "2026-10-27",
+   "valid_through": "2026-11-26",
+   "employment_type": "INTERN",
+   "description": "Rejoignez Inetum en tant que stagiaire PFE pour travailler sur des projets innovants en Intelligence Artificielle et DevOps. Vous participerez à l'entraînement de modèles d'IA générative, à la préparation des données et à l'automatisation des environnements via des chaînes CI/CD et Docker. Profil recherché : étudiant en fin d'études d'ingénieur ou Master en Data Science/Informatique, avec une maîtrise de Python et des outils DevOps. Une opportunité idéale pour monter en compétence sur des technologies de pointe au sein d'un leader européen du numérique.\nDescription de l'entreprise\nInetum est un leader européen des services numériques. Avec 28 000 consultants, le groupe vise l'impact digital à travers des solutions innovantes. Présent dans 19 pays, Inetum accompagne ses clients dans leur transformation digitale autour de quatre métiers : le conseil, les infrastructures, les progiciels et l'édition de logiciels.\nDescription du poste\nDans le cadre de votre PFE, vous participerez à l'entraînement de modèles d'intelligence artificielle et à la mise en place d'une plateforme DevOps :\nÉtudier et sélectionner les modèles d'IA générative adaptés.\nPréparer, nettoyer et structurer les jeux de données.\nParticiper à l'entraînement, au\nfine-tuning\net à l'évaluation des modèles.\nDévelopper des scripts et des API pour exploiter les modèles.\nMettre en place une chaîne CI/CD pour automatiser les tests et déploiements.\nConteneuriser les applications via Docker.\nAssurer le suivi des performances, le versioning et le monitoring.\nQualifications\nÉtudiant(e) en fin d'études d'ingénieur ou Master spécialisé (IA, Data Science, DevOps).\nMaîtrise de Python et des concepts de Machine Learning/Deep Learning.\nCompétences techniques : Git, Docker, Pipelines CI/CD.\nAtouts : Kubernetes, MLflow, Jenkins,",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/05/05141823/MAROC-FER.png",
+   "axis_hits": {
+    "genai": 4,
+    "bigdata": 6,
+    "fullstack": 4,
+    "cvsec": 1
+   },
+   "keywords": [
+    "fine tuning",
+    "fine-tuning",
+    "ia generative",
+    "intelligence artificielle",
+    "data science",
+    "docker",
+    "kubernetes",
+    "machine learning",
+    "pipelines",
+    "automatisation",
+    "ci/cd",
+    "devops",
+    "deep learning"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 5,
+   "score": 91,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 2
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7014-stagiaire-pfe-intelligence-artificielle-ia",
@@ -112,7 +155,114 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 2
+   "id": 3
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7444-sales-enablement-intern",
+   "source": "stagiaires.ma",
+   "title": "Sales Enablement Intern",
+   "company": "Refram",
+   "city": "Salé",
+   "modality": "Télétravail",
+   "date_posted": "2026-10-25",
+   "valid_through": "2026-11-24",
+   "employment_type": "INTERN",
+   "description": "Refram recherche un Sales Enablement Intern passionné par l'IA pour rejoindre son équipe en télétravail. Vous travaillerez sur l'automatisation des ventes, la gestion d'outils comme Apollo, le ciblage ICP et la création de workflows agentiques. Idéal pour un étudiant ou jeune diplômé autonome et analytique souhaitant évoluer dans un environnement technologique innovant. Opportunité de pré-embauche en CDI à la clé.\nÀ propos de Refram\nChez\nRefram\n, nous concevons des solutions d'entreprise utilisant l'IA pour fluidifier les opérations, en intégrant des capacités d'automatisation agentique sécurisées et souveraines. Notre objectif est de simplifier la gestion, le travail d'équipe et les flux de travail pour réduire les frictions opérationnelles.\nDescription du poste\nEn tant que\nSales Enablement Intern\n(stage à temps plein, en télétravail), vous soutiendrez la conception et l'optimisation de notre moteur de vente piloté par l'IA. Ce rôle se concentre sur la mise en place des systèmes générant des opportunités commerciales, plutôt que sur la vente directe.\nVous travaillerez sur les opérations de vente, les outils avancés (Apollo, agents IA, intégrations MCP), le ciblage ICP et la prospection communautaire.\nResponsabilités\nOpérations de vente et infrastructure :\nExploiter Apollo, créer des intégrations système et assurer la qualité des données.\nCiblage ICP et Personas :\nDéfinir et mettre à jour les profils clients idéaux et les cartographies de personas.\nProspection alternative :\nConcevoir des workflows basés sur l'intention et exécuter des stratégies de prospection créatives.\nWorkflows IA :\nConcevoir des séquences automatisées et gérer le prompt engineering.\nGestion de contenu :\nMaintenir une bibliothèque d'actifs structurée et optimisée pour l'IA.\nQualifications requises\nAg",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/10/21145104/images.png",
+   "axis_hits": {
+    "genai": 3,
+    "bigdata": 0,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "agentique",
+    "agents ia",
+    "prompt engineering",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 77,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 4
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7650-stage-pfe-telecom-it",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE - Télécom & IT",
+   "company": "BTECHNOLOGIE",
+   "city": "Rabat",
+   "modality": "Hybride",
+   "date_posted": "2026-11-03",
+   "valid_through": "2026-12-03",
+   "employment_type": "INTERN",
+   "description": "Rejoignez Btechnologie, hub d'excellence technique du Groupe Bouygues à Rabat, pour votre stage de fin d'études. Nous proposons des opportunités stimulantes dans les domaines de l'Ingénierie Télécoms (Fibre, 4G/5G, IP) et de l'IT (Data/IA, Développement, Cloud). Intégrez des équipes expertes sur des projets concrets. Ouvert aux étudiants en Bac+5 (Ingénieurs/Master 2) spécialisés en informatique ou télécoms. Profitez d'un cadre collaboratif et d'une flexibilité hybride pour booster votre carrière.\nDescription du poste\nRejoignez\nBtechnologie\n, hub d'excellence technique du Groupe Bouygues à Rabat, pour votre stage de fin d'études. Nous proposons des opportunités stimulantes dans les domaines de l'Ingénierie Télécoms (Fibre, 4G/5G, IP) et de l'IT (Data/IA, Développement, Cloud). Vous intégrerez des équipes expertes pour travailler sur des projets concrets au sein d'un environnement innovant. Étudiants en Bac+5 (Ingénieurs/Master 2) spécialisés en informatique ou télécoms, ce stage est pour vous. Profitez d'un cadre collaboratif et d'une flexibilité hybride pour booster votre carrière.\nÀ propos de Btechnologie\nFiliale de Bouygues Telecom, Btechnologie est un hub d'excellence technique basé à Rabat, créé en 2023. Portée par la puissance du Groupe Bouygues et de jeunes talents marocains, nous conjuguons agilité et expertise pour mettre la technologie au service des connexions humaines.\nVos Missions\nDans le cadre de votre Projet de Fin d'Études (PFE), vous serez intégré(e) au sein de nos équipes pour travailler sur des projets innovants. Nous proposons des stages autour de deux parcours :\nParcours 1 : Ingénierie & Déploiement Télécoms\nFibre Optique (FTTH) :\nConception, ingénierie, optimisation et analyse de données.\nRéseaux Radio (4G/5G) :\nIngénierie radio, planification et o",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2026/01/07104615/BTECHNOLOGIE.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 4,
+    "fullstack": 3,
+    "cvsec": 0
+   },
+   "keywords": [
+    "big data",
+    "data science",
+    "docker",
+    "kubernetes",
+    "apis",
+    "automatisation",
+    "devops"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 74,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7634-stage-pfe-telecom-it"
+    }
+   ],
+   "id": 5
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7501-stage-pre-embauche-data-scientist-ia-automation",
+   "source": "stagiaires.ma",
+   "title": "Stage pré-embauche Data Scientist (IA & Automation)",
+   "company": "Education Power Service",
+   "city": "Marrakech",
+   "modality": "Hybride",
+   "date_posted": "2026-10-28",
+   "valid_through": "2026-11-27",
+   "employment_type": "INTERN",
+   "description": "Rejoignez Education Power Service à Marrakech pour un stage pré-embauche en Data Science. Participez à des projets concrets mêlant IA générative, automatisation des processus et développement d'outils intelligents. Ce stage offre une opportunité réelle d'intégration en CDI pour les candidats motivés souhaitant optimiser les opérations par la donnée. Travail hybride.\nPrésentation de l'opportunité\nRejoignez\nEducation Power Service\nà Marrakech pour un stage pré-embauche stimulant en Data Science. Ce stage est une excellente opportunité pour mettre en pratique vos compétences en IA et automatisation au sein d'un environnement innovant. Une réelle possibilité d'intégration en CDI est offerte à l'issue de cette période.\nVos missions principales\nData Science :\nAnalyse et traitement de données complexes.\nIA Générative :\nConception et déploiement de solutions basées sur l'IA générative.\nAgents IA :\nDéveloppement d'agents intelligents pour répondre aux besoins opérationnels.\nAutomatisation :\nOptimisation des processus métier via des solutions automatisées.\nDéveloppement d'outils :\nCréation d'outils sur mesure pour améliorer l'efficacité interne.\nLieu :\nTravail hybride, Marrakech.\nPour postuler, veuillez utiliser le formulaire de candidature disponible sur notre plateforme.",
+   "logo": "",
+   "axis_hits": {
+    "genai": 2,
+    "bigdata": 3,
+    "fullstack": 3,
+    "cvsec": 0
+   },
+   "keywords": [
+    "agents ia",
+    "ia generative",
+    "data science",
+    "data scientist",
+    "automation",
+    "automatisation"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 0,
+   "score": 74,
+   "is_pfe": false,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 6
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -144,7 +294,392 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 3
+   "id": 7
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7371-stage-en-developpement-web-et-ia",
+   "source": "stagiaires.ma",
+   "title": "stage en développement web et IA",
+   "company": "Orchid Island Real Estate",
+   "city": "Marrakech",
+   "modality": "",
+   "date_posted": "2026-10-22",
+   "valid_through": "2026-11-21",
+   "employment_type": "INTERN",
+   "description": "Description du poste\nRejoignez Orchid Island Real Estate pour un stage en développement web axé sur l'intégration de l'Intelligence Artificielle. Vous participerez à la conception d'applications, l'optimisation de code et l'utilisation d'outils comme ChatGPT ou GitHub Copilot pour booster votre productivité. Idéal pour un étudiant en informatique curieux et passionné par les nouvelles technologies cherchant à monter en compétence sur des projets concrets. Rejoignez-nous à Marrakech pour transformer votre pratique du développement.\nÀ PROPOS DU STAGE\nChez\nOrchid Island Real Estate\n, nous recherchons un(e) stagiaire Développeur(se) Web passionné(e) par les technologies digitales et les opportunités offertes par l'Intelligence Artificielle.\nCe stage d'apprentissage vous permettra de travailler sur des projets concrets et d'apprendre à intégrer efficacement les outils d'IA dans un environnement de développement web moderne.\nVOS MISSIONS\nDéveloppement Web\nParticiper à la conception et au développement d'applications web.\nDévelopper et optimiser des fonctionnalités front-end et back-end.\nIntégrer des maquettes responsive.\nContribuer à la correction de bugs et à l'amélioration des performances.\nAssurer la maintenance évolutive des projets.\nIntelligence Artificielle & Développement\nExploiter des outils d'IA (ChatGPT, GitHub Copilot, etc.) pour accélérer le développement.\nUtiliser l'IA pour le debugging, l'optimisation de code et la recherche de solutions techniques.\nExplorer l'intégration de fonctionnalités basées sur l'IA dans les projets web.\nProposer des solutions innovantes pour améliorer la productivité.\nPROFIL RECHERCHÉ\nÉtudiant(e) en Informatique, Génie Logiciel ou domaine similaire.\nMaîtrise des fondamentaux du développement web (HTML, CSS, JavaScript).\nLa connaissance d",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
+   "axis_hits": {
+    "genai": 2,
+    "bigdata": 0,
+    "fullstack": 5,
+    "cvsec": 0
+   },
+   "keywords": [
+    "copilot",
+    "intelligence artificielle",
+    "automatisation",
+    "full stack",
+    "full-stack",
+    "node.js",
+    "react"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 0,
+   "score": 71,
+   "is_pfe": false,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 8
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7367-stage-pfe-consultants-cloud-databricks-talend-devops-bi-f-h",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE : Consultants ( Cloud, Databricks, Talend, DevOps,BI... ) (F/H)",
+   "company": "CGI",
+   "city": "Rabat",
+   "modality": "",
+   "date_posted": "2026-10-22",
+   "valid_through": "2026-11-21",
+   "employment_type": "INTERN",
+   "description": "Dans le cadre de notre développement nous recrutons des Ingénieur (e) en Technologies de l'Information (Cloud AWS, Azure Data, BI, DevOps, WM) en Stage PFE qui auront pour missions :\nFonctions et responsabilités\nRéaliser, maintenir et tester, en toute autonomie, les programmes qui vous sont confiés en respectant les spécifications détaillées fournies, les délais et les différentes normes qualité,\nContribuer à la dynamique de l’équipe,\nMaîtriser vos charges, votre reste à faire et les délais,\nAppliquer les processus du projet.\nQualités requises pour réussir dans ce rôle\nActuellement en dernière année bac+ 5 et vous êtes à la recherche d'un stage PFE.\nVous avez accumulé des connaissances à travers vos stages sur l'un des sujets (Azure Data, BI, SAP BO, Axway API, WM) ;\nMaîtrise du Français,\nUne bonne culture technologique,\nUne bonne maîtrise d'outils de gestion de tickets,\nAutonomie, Transparence, Curiosité / force de proposition et d'anticipation,\nEsprit d'analyse et de synthèse,\nBon relationnel et bonnes qualités d'écoute.\nCGI est un employeur inclusif et attentif aux candidatures des personnes en situation de handicap et à l’évolution de carrières des hommes et des femmes.\nEnsemble, en tant que propriétaires, mettons notre savoir-faire à l’œuvre.\nLa vie chez CGI est ancrée dans l’actionnariat, le travail d’équipe, le respect et un sentiment d’appartenance. Chez nous, vous pourrez exploiter votre plein potentiel.\nVotre travail crée de la valeur. Vous élaborerez des solutions novatrices et développerez des relations durables avec vos collègues et clients.\nVous ferez évoluer votre carrière en vous joignant à une entreprise bâtie pour croître et durer. Joignez-vous à nous, l’une des plus importantes entreprises de conseil en technologie de l’information (TI) et en manageme",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/01/29145824/Design-sans-titre-99.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 4,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "aws",
+    "azure",
+    "databricks",
+    "devops"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 71,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 9
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7648-stage-developpeur-se-full-stack-developpement-assiste-par-l-ia-smilycall",
+   "source": "stagiaires.ma",
+   "title": "Stage | Développeur(se) Full Stack, développement assisté par l’IA | SmilyCall",
+   "company": "Smilycall",
+   "city": "Marrakech",
+   "modality": "",
+   "date_posted": "2026-11-03",
+   "valid_through": "2026-12-03",
+   "employment_type": "INTERN",
+   "description": "SmilyCall recrute un(e) stagiaire Développeur(se) Full Stack à Marrakech pour travailler sur des outils internes. Vous utiliserez Node.js, React et PostgreSQL, avec une forte composante d'IA (Claude/Cursor). Nous recherchons un profil autonome, rigoureux et organisé, capable de maîtriser son code tout en boostant sa productivité. Une expérience sur GitHub avec des projets testés est indispensable. Rejoignez une équipe innovante avec une réelle possibilité d'embauche.\nÀ propos de SmilyCall\nSmilyCall est un service de télésecrétariat. Nous cherchons un(e) développeur(se) aux bases solides, capable d’utiliser l’IA pour optimiser sa productivité tout en conservant une maîtrise totale de son code.\nVos missions\nDéveloppement :\nConcevoir des outils internes en utilisant Node.js/TypeScript, React et PostgreSQL.\nMaîtrise de l'IA :\nUtiliser Claude et les outils d'IA avec méthode (découpage de tâches, génération, relecture rigoureuse et tests).\nQualité & Structure :\nMaintenir une architecture claire, un Git propre et une documentation à jour.\nGestion de projet :\nAssurer le suivi des tâches, communiquer sur l'avancement et respecter les délais.\nAssurance Qualité :\nEffectuer des revues de code et des tests systématiques avant toute mise en production.\nProfil recherché\nMaîtrise des fondamentaux : architecture logicielle, Git, API, bases de données et tests unitaires.\nCapacité à comprendre et justifier chaque ligne de code, y compris celles générées par l'IA.\nExpérience pratique avec des outils comme Claude, Cursor ou Copilot.\nSens de l'organisation et autonomie dans le reporting technique.\nCe que nous offrons\nL'opportunité de travailler sur des projets concrets en production avec un encadrement technique, une gratification selon profil et une possibilité d'embauche.\nModalités\nLieu :\n",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/10/14090223/STG-LOGO-300-x-300-px-2.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 5,
+    "cvsec": 0
+   },
+   "keywords": [
+    "copilot",
+    "postgresql",
+    "full stack",
+    "node.js",
+    "react",
+    "typescript"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 0,
+   "score": 69,
+   "is_pfe": false,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 10
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7681-stage-pfe-data-ia-it-d2t2",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE - Data, IA & IT (D2T2)",
+   "company": "Intelcia",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-11-04",
+   "valid_through": "2026-12-04",
+   "employment_type": "INTERN",
+   "description": "Intelcia recrute des stagiaires PFE pour des missions variées en Data, IA, Développement, DevOps et IT. Étudiants en Bac+5 (école d'ingénieurs ou Master), rejoignez une entreprise certifiée Top Employer. Vous participerez activement au suivi et à l'amélioration de projets technologiques innovants au sein d'une équipe dynamique. Profitez d'une rémunération compétitive, du transport et d'un environnement de travail moderne. Postulez pour booster votre carrière dans un groupe international ambitieux.\nPrésentation de l'entreprise\nIntelcia est un acteur majeur de la gestion de l'expérience client et du conseil en processus, certifié Top Employer au Maroc. Nous sommes une entreprise ambitieuse, audacieuse et innovante en pleine croissance.\nProfils recherchés\nNous recrutons des stagiaires pour les spécialités suivantes :\nData Engineer / Data Analyst\nDéveloppeur Full Stack & IA\nDevOps Engineer\nAI Engineer (GenAI, Python, Gestion de projets IA)\nProject Manager / Business Analyst\nTechnicien IT\nAI Builder\nVos missions\nEn tant que stagiaire, vous serez amené(e) à :\nPrendre connaissance des pratiques terrain et de la méthodologie projet.\nAssurer le suivi des remontées terrain.\nApporter un support technique et opérationnel sur les aspects process, formation et amélioration d'outils (UI/UX) en collaboration avec le Product Owner.\nProfil recherché\nÉtudiant(e) en dernière année d'école d'ingénieurs ou Master (Bac+5) en Informatique, Data ou Télécoms.\nSolide maîtrise des fondamentaux (algorithmique, bases de données, architectures web).\nExcellente communication en français ; anglais technique apprécié.\nRigueur, autonomie et esprit d'équipe.\nAvantages\nRémunération fixe compétitive.\nTransport assuré vers les principaux quartiers.\nRestauration d'entreprise à tarif conventionné.\nPossibilité ",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/04/16121112/intelcia.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "genai",
+    "data engineer",
+    "devops",
+    "full stack"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 8,
+   "score": 68,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 11
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7623-artificial-intelligence-engineer-intern",
+   "source": "stagiaires.ma",
+   "title": "Artificial Intelligence Engineer Intern",
+   "company": "Mirage Metrics",
+   "city": "Casablanca",
+   "modality": "Sur site",
+   "date_posted": "2026-11-01",
+   "valid_through": "2026-12-01",
+   "employment_type": "INTERN",
+   "description": "Rejoignez Mirage Metrics à Casablanca pour un stage de 6 mois en tant qu'AI Engineering Intern. Vous travaillerez sur des systèmes d'IA de pointe pour le secteur de la construction, incluant la vision par ordinateur et les LLM, afin de résoudre des problèmes réels complexes. Nous recherchons des profils passionnés, maîtrisant Python et les technologies d'apprentissage automatique. Une opportunité d'intégrer une équipe intensive avec des perspectives d'embauche. Postulez dès maintenant via notre plateforme.\nAI Engineering Intern, Construction Intelligence\nMirage Metrics | Casablanca, Morocco\nStart:\nEarly January 2027\nDuration:\n6 months\nType:\nFull-time internship, on-site\nDeployment:\nInternational travel possible\nWE BUILD SOFTWARE THAT HAS TO WORK IN THE REAL WORLD.\nConstruction projects worth hundreds of millions depend on engineering drawings, technical specifications, quantities, and fragmented information. We are building AI systems that understand, reason, and execute engineering workflows at scale.\nTHE WORK\nYou will contribute to building and deploying production-grade AI systems, including:\nReading and interpreting complex construction drawings and PDFs.\nDetecting and quantifying structural and architectural elements.\nCombining computer vision, multimodal models, LLMs, and deterministic engineering logic.\nIdentifying drawing revisions and discrepancies.\nWorking across the full stack, from data pipelines to production deployment.\nTHE ENGINEERING BAR\nWe expect:\nStrong Python skills and software engineering fundamentals.\nHands-on experience with ML, computer vision, or multimodal AI.\nAbility to write clean, tested, and maintainable code.\nStrong analytical thinking and attention to detail.\nProfessional proficiency in English, French, and Arabic.\nAPPLICATION PROCESS\nYou",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/05/12141747/Mirage-Metrics.png",
+   "axis_hits": {
+    "genai": 2,
+    "bigdata": 1,
+    "fullstack": 1,
+    "cvsec": 2
+   },
+   "keywords": [
+    "llm",
+    "llms",
+    "pipelines",
+    "full stack",
+    "computer vision",
+    "vision par ordinateur"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 3,
+   "score": 66,
+   "is_pfe": false,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 12
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7621-stage-de-fin-d-etudes-pfe-campagne",
+   "source": "stagiaires.ma",
+   "title": "Stage de Fin d'Études (PFE) - Campagne",
+   "company": "Segula Technologies",
+   "city": "Rabat",
+   "modality": "",
+   "date_posted": "2026-11-01",
+   "valid_through": "2026-12-01",
+   "employment_type": "INTERN",
+   "description": "Rejoignez SEGULA Technologies pour votre stage de fin d'études  à Rabat. Nous recherchons des profils en génie mécanique, mécatronique, systèmes embarqués, génie électrique, génie industriel, data science et IA pour intégrer nos équipes sur des projets innovants. Profitez d'un environnement dynamique, collaborez avec des experts et mettez en pratique vos acquis académiques au sein d'un groupe d'ingénierie mondial. Une opportunité unique de développer vos compétences techniques sur des problématiques industrielles réelles.\nPrésentation de l'opportunité\nSEGULA Technologies lance sa campagne de recrutement pour les stages de fin d'études (PFE). Nous recherchons nos futurs talents pour rejoindre nos équipes et contribuer à des projets technologiques innovants.\nDescription du poste\nSEGULA Technologies recrute ses futurs stagiaires de fin d'études pour la campagne . Si vous êtes étudiant en génie mécanique, mécatronique, systèmes embarqués, génie électrique, génie industriel, data science ou intelligence artificielle (IA), rejoignez nos équipes pour travailler sur des projets innovants et concrets. Intégrez un groupe d'ingénierie mondial reconnu pour son expertise technique et son engagement en faveur de la diversité. Une opportunité idéale pour mettre en pratique vos acquis académiques dans un environnement professionnel dynamique et stimulant à Rabat.\nVos Missions\nParticiper à des projets stimulants à forte valeur ajoutée au sein de nos différents départements.\nCollaborer avec des professionnels expérimentés sur des projets concrets.\nMettre en pratique vos connaissances académiques sur des problématiques industrielles réelles.\nDévelopper vos compétences techniques dans un environnement dynamique et collaboratif.\nProfils recherchés\nNous accueillons les étudiants issus des fi",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2026/01/23103702/SEGULA_Technologie.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "data science"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 66,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 13
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7595-campagne-de-recrutement-pfe",
+   "source": "stagiaires.ma",
+   "title": "Campagne de Recrutement PFE",
+   "company": "Segula Technologies",
+   "city": "Rabat",
+   "modality": "",
+   "date_posted": "2026-10-31",
+   "valid_through": "2026-11-30",
+   "employment_type": "INTERN",
+   "description": "SEGULA Technologies recrute ses futurs stagiaires de fin d'études pour la campagne . Si vous êtes étudiant en génie mécanique, mécatronique, systèmes embarqués, génie électrique, industriel, data science ou IA, rejoignez nos équipes pour travailler sur des projets innovants et concrets. Intégrez un groupe d'ingénierie mondial reconnu pour son expertise technique et son engagement en faveur de la diversité. Une opportunité idéale pour mettre en pratique vos acquis académiques dans un environnement professionnel dynamique et stimulant à Rabat.\nPrésentation de l'opportunité\nSEGULA Technologies lance sa campagne de recrutement pour les stages de fin d'études (PFE) . Nous recherchons nos futurs talents pour rejoindre nos équipes et contribuer à des projets technologiques innovants.\nVos Missions\nParticiper à des projets stimulants à forte valeur ajoutée au sein de nos différents départements.\nCollaborer avec des professionnels expérimentés sur des projets concrets.\nMettre en pratique vos connaissances académiques sur des problématiques industrielles réelles.\nDévelopper vos compétences techniques dans un environnement dynamique et collaboratif.\nProfils recherchés\nNous accueillons les étudiants issus des filières suivantes :\nGénie mécanique, Mécatronique, Systèmes embarqués\nGénie électrique et électronique, Génie industriel\nData Science, Intelligence artificielle (IA)\nToute autre spécialité technique connexe\nÀ propos de SEGULA Technologies\nSEGULA Technologies est un groupe mondial d'ingénierie présent dans plus de 30 pays avec 15 000 collaborateurs. Nous intervenons dans des secteurs variés (automobile, aérospatial, énergie, ferroviaire, etc.). Entreprise engagée, SEGULA Technologies favorise la mixité et la diversité en recrutant des talents de tous horizons.",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2026/01/23103702/SEGULA_Technologie.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "data science"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 66,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 14
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7497-stage-pfe-securisation-et-automatisation-des-infrastructures-it-et-ia",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE : Sécurisation et automatisation des infrastructures IT et IA",
+   "company": "MAROC FER",
+   "city": "Marrakech",
+   "modality": "",
+   "date_posted": "2026-10-28",
+   "valid_through": "2026-11-27",
+   "employment_type": "INTERN",
+   "description": "Inetum recherche un(e) stagiaire PFE à Marrakech pour un projet innovant en administration système, gestion de bases de données et automatisation. En collaboration avec nos équipes, vous travaillerez sur la sécurisation des infrastructures Windows/Linux et explorerez l'usage de l'intelligence artificielle pour l'optimisation ITSM et le support ITIL. Vous maîtrisez le scripting (Python/Bash/PowerShell) et souhaitez relever un défi technique stimulant au sein d'un leader européen du numérique ? Rejoignez-nous pour cette expérience formatrice en environnement innovant.\nDescription du poste\nVous êtes en fin d'études en ingénierie ou Master informatique ? Inetum vous propose un stage PFE stimulant à Marrakech. Vous participerez à l'administration des systèmes Windows/Linux, à la gestion de bases de données et à l'automatisation des infrastructures IT. Vous explorerez l'usage de l'intelligence artificielle pour optimiser la supervision et la gestion des incidents ITSM, tout en appliquant les méthodologies ITIL. Si vous maîtrisez le scripting (Python/Bash/PowerShell) et souhaitez évoluer dans un environnement technologique innovant, rejoignez nos équipes.\nDescription de l'entreprise\nInetum est un leader européen des services numériques. Avec 28 000 collaborateurs, le groupe accompagne les entreprises et acteurs publics dans leur transformation digitale à travers le conseil, les infrastructures, les solutions logicielles et l'intégration de progiciels.\nDétails de la mission\nCe projet de fin d’études vise à optimiser les opérations informatiques via l'administration de systèmes Windows/Linux, la gestion de bases de données (Oracle/SQL) et l'exploitation de solutions ITSM selon les bonnes pratiques ITIL.\nMissions principales\nAdministration et supervision :\nMaintenir les environne",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/05/05141823/MAROC-FER.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "sql",
+    "automatisation"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 5,
+   "score": 65,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 15
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7474-securisation-et-automatisation-des-infrastructures-it-windows-linux-bdd-itsm-avec-ia",
+   "source": "stagiaires.ma",
+   "title": "Sécurisation et automatisation des infrastructures IT (Windows/Linux, BDD, ITSM) avec IA",
+   "company": "MAROC FER",
+   "city": "Marrakech",
+   "modality": "",
+   "date_posted": "2026-10-27",
+   "valid_through": "2026-11-26",
+   "employment_type": "INTERN",
+   "description": "Vous êtes en fin d'études en ingénierie ou Master informatique ? Inetum vous propose un stage PFE stimulant à Marrakech. Vous participerez à l'administration des systèmes Windows/Linux, à la gestion de bases de données et à l'automatisation des infrastructures IT. Vous explorerez l'usage de l'intelligence artificielle pour optimiser la supervision et la gestion des incidents ITSM, tout en appliquant les méthodologies ITIL. Si vous maîtrisez le scripting (Python/Bash/PowerShell) et souhaitez évoluer dans un environnement technologique innovant, rejoignez nos équipes.\nDescription de l'entreprise\nInetum est un leader européen des services numériques. Avec 28 000 collaborateurs, le groupe accompagne les entreprises et acteurs publics dans leur transformation digitale à travers le conseil, les infrastructures, les solutions logicielles et l'intégration de progiciels (Salesforce, ServiceNow, Microsoft, SAP).\nDescription du poste\nCe projet de fin d’études vise à optimiser les opérations informatiques via l'administration de systèmes Windows/Linux, la gestion de bases de données (Oracle/SQL) et l'exploitation de solutions ITSM selon les bonnes pratiques ITIL.\nMissions principales\nAdministration et supervision :\nMaintenir les environnements Windows et Linux.\nBases de données :\nGérer, surveiller et optimiser les bases Oracle et SQL.\nITSM & ITIL :\nGérer les incidents et demandes via les outils dédiés.\nAutomatisation :\nDévelopper des scripts (Python, Bash, PowerShell) pour automatiser les tâches récurrentes.\nInnovation IA :\nExplorer l'intelligence artificielle pour l'analyse d'incidents et la génération de rapports.\nAmélioration continue :\nMettre en place des indicateurs de suivi et documenter les solutions.\nProfil recherché\nÉtudiant(e) en dernière année d'école d'ingénieurs ou Mas",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/05/05141823/MAROC-FER.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "sql",
+    "automatisation"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 5,
+   "score": 65,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 16
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE - PFE Challenge 2027",
+   "company": "Amsys Consulting",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-11-03",
+   "valid_through": "2026-12-03",
+   "employment_type": "INTERN",
+   "description": "Rejoignez le PFE Challenge 2027 d'AMSYS Consulting. Nous proposons des stages de fin d'études en local ou à l'international dans les domaines de l'IA, la Data, le Cloud, la Cybersécurité et bien d'autres. Bénéficiez d'un encadrement structuré selon la méthodologie IPIR Excellence et tentez de remporter des prix pour les meilleurs projets. Une opportunité unique d'innover et de développer vos compétences techniques sur des sujets d'avenir.\nÀ propos du PFE Challenge 2027\nVous recherchez un stage de fin d'études (PFE) en local ou à l'international pour 2027 ?\nAMSYS Consulting\n, via l'Alliance Innovation Technology, lance le\nPFE Challenge 2027\n, avec un encadrement structuré selon la méthodologie\nIPIR Excellence\n.\nDomaines concernés\nIntelligence artificielle & IA génétative\nData Engineering & Analytics\nDéveloppement logiciel & Cloud\nCybersécurité\nRobotique & Mécatronique\nÉlectronique & Télécommunications\nSystèmes embarqués & IoT\nVision par ordinateur & IA embarquée\nAutomatisation intelligente\nMécanique\nMarketing digital & Commerce international\nOpportunités de stages\nStages en local ou à l'international, selon les projets et les opportunités disponibles.\nRécompenses\nLes meilleurs projets seront récompensés à l'issue du challenge. Les modalités seront communiquées ultérieurement.\nVous êtes intéressé(e) ?\n[Contacter via la plateforme]",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/11/03175123/MBA_LOGO_ECOLE__1_.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 1,
+    "cvsec": 2
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "data engineering",
+    "automatisation",
+    "cybersecurite",
+    "vision par ordinateur"
+   ],
+   "domain": "Computer Vision & Security",
+   "bonus": 8,
+   "score": 64,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 17
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7402-candidatures-spontanees-forum-geni-entreprises",
+   "source": "stagiaires.ma",
+   "title": "Candidatures spontanées - Forum Geni Entreprises",
+   "company": "Inetum",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-23",
+   "valid_through": "2026-11-22",
+   "employment_type": "INTERN",
+   "description": "Dans le cadre du Forum Geni Entreprises, Inetum Maroc recrute des profils passionnés pour des postes en CDI ou stages PFE. Rejoignez un leader du numérique et intervenez sur des projets innovants en Java, .NET, Data, Cloud, SAP ou CRM. Si vous êtes titulaire d'un Bac+5 et souhaitez intégrer un environnement stimulant à Casablanca, postulez pour échanger avec nos recruteurs lors de cet événement majeur.\nÀ propos d'Inetum\nInetum\nest un leader européen des services numériques, fort de 27 000 collaborateurs répartis dans 19 pays. Présent au Maroc depuis plus de 20 ans, Inetum Maroc accompagne ses clients dans leur transformation digitale à travers ses trois lignes de métiers :\nInetum Consulting\n,\nInetum Technologies\net\nInetum Solutions\n.\nReconnu pour son engagement social et le bien-être de ses collaborateurs (label Feel Good 2025), Inetum Maroc recherche des talents passionnés pour rejoindre ses équipes dynamiques.\nOpportunités au Forum Geni Entreprises\nDans le cadre du\nForum Geni Entreprises\n, Inetum Maroc ouvre ses portes aux candidatures spontanées pour des profils techniques et fonctionnels. Nous recherchons des experts motivés pour intégrer nos projets innovants.\nDomaines de recrutement :\nOverHeads (Finance, Contrôle de gestion, RH)\nDéveloppement : Java, .NET\nData : Data Engineering, Data Science & Analytics, BI\nInfrastructure : DevOps & Cloud\nERP : Sage X3/100/1000, Microsoft Dynamics 365, SAP (FI, MM, SD, ABAP)\nSpécialisations : ServiceNow, Salesforce\nProfil recherché\nDiplôme Bac+5 en informatique, télécommunications ou systèmes d'information.\nMaîtrise courante du français (écrit et oral).\nMaîtrise technique d'au moins un domaine IT (développement, infra, cloud, ERP, data).\nEsprit d'équipe, curiosité et capacité d'adaptation.\nUne première expérience dans l'IT est un",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/04/16164929/Inetum.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "data engineering",
+    "data science",
+    "devops"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 61,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 18
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7405-candidatures-spontanees-forum-geni-entreprises",
+   "source": "stagiaires.ma",
+   "title": "Candidatures spontanées - Forum Geni Entreprises",
+   "company": "MAROC FER",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-23",
+   "valid_through": "2026-11-22",
+   "employment_type": "INTERN",
+   "description": "Dans le cadre du Forum Geni Entreprises, Inetum Maroc recrute en candidature spontanée des profils techniques (Développement, Data, Cloud, ERP, BI) pour des postes en CDI ou stages PFE. Rejoignez un leader du numérique et participez à des projets innovants au sein d'un environnement stimulant à Casablanca.\nDescription de l'entreprise\nInetum\nest un\nleader européen des services numériques\n, présent au\nMaroc depuis plus de 20 ans\n. Avec plus de 800 collaborateurs, l'entité accompagne ses clients dans leur transformation digitale via ses trois lignes de métiers :\nInetum Consulting\n,\nInetum Technologies\net\nInetum Solutions\n.\nDescription du poste\nDans le cadre du\nForum Geni Entreprises\n, Inetum Maroc ouvre ses portes aux\ncandidatures spontanées\npour des postes techniques et fonctionnels. Nous recherchons des talents passionnés pour renforcer nos équipes projet.\nLes opportunités couvrent les domaines suivants :\nOverHeads (Finance, Contrôle de gestion, RH...)\nDéveloppement Java / .NET\nBusiness Intelligence (BI)\nData Engineering, Data Science & Data Analytics\nDevOps & Cloud\nERP : Sage, Microsoft Dynamics 365, SAP (FI, MM, SD, ABAP...)\nServiceNow & Salesforce\nQualifications\nDiplôme Bac+5 (Informatique, Télécoms, SI).\nMaîtrise du français (oral et écrit).\nConnaissances techniques en développement, infrastructure, cloud, cybersécurité, ERP ou data.\nEsprit d'équipe, curiosité et capacité d'adaptation.\nUne première expérience IT est un atout.\nInformations supplémentaires\nType de contrat : CDI ou stage PFE.\nLocalisation : Casablanca.\nProcessus : Entretien RH et entretien technique.\nAvantages : Formation continue, certifications et perspectives d'évolution.",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/05/05141823/MAROC-FER.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 1,
+    "cvsec": 1
+   },
+   "keywords": [
+    "data engineering",
+    "data science",
+    "devops",
+    "cybersecurite"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 60,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 19
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -176,7 +711,43 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 4
+   "id": 20
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
+   "source": "stagiaires.ma",
+   "title": "IT Data & AI Intern - PFE",
+   "company": "Stellantis Middle East & Africa",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-30",
+   "valid_through": "2026-11-29",
+   "employment_type": "INTERN",
+   "description": "Rejoignez Stellantis à Casablanca pour un stage de fin d'études (PFE) de 6 mois en Data & AI. Intégrez une équipe IT dynamique pour travailler sur des projets de transformation digitale, de Business Intelligence et de développement de prototypes d'IA. Profil recherché : étudiant en Master IT/Data avec une excellente maîtrise de l'anglais et du français, et un intérêt marqué pour les technologies innovantes. Une opportunité idéale pour une immersion pratique au sein d'un leader mondial de l'automobile.\nDescription du poste\nRejoignez\nStellantis\nen tant que stagiaire PFE IT Data & AI à Casablanca. Intégrez notre département IT pour travailler sur des projets concrets de transformation digitale, d'analyse de données et de développement de prototypes d'IA. Vous collaborerez avec des équipes internationales pour concevoir des solutions innovantes et des outils de BI. Si vous êtes étudiant(e) en Master (Ingénierie, Data, IT), que vous maîtrisez l'anglais et le français et que vous avez un fort intérêt pour la data, ce stage de 6 mois est fait pour vous.\nÀ propos du rôle\nNous recherchons un(e)\nStagiaire IT Data & AI\nhautement motivé(e) pour rejoindre notre département IT. Ce stage offre une immersion concrète dans les domaines de l'analyse de données, des solutions d'IA et des projets de transformation digitale.\nResponsabilités clés\nSolutions Data & IA :\nSoutenir la conception et le développement de prototypes d'IA répondant aux besoins métier. Évaluer la fiabilité et la qualité des données.\nBusiness Intelligence :\nContribuer au développement de tableaux de bord et de rapports automatisés. Analyser les KPIs pour améliorer la performance.\nAnalyse IT & Processus :\nCartographier les processus métiers et les flux de données. Identifier les opportunités d'optimisation et de digitali",
+   "logo": "",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "data science",
+    "power bi"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 58,
+   "is_pfe": true,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
+    }
+   ],
+   "id": 21
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -206,7 +777,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 5
+   "id": 22
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -236,7 +807,36 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 6
+   "id": 23
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7372-power-bi-data-analyst-stagiaire",
+   "source": "stagiaires.ma",
+   "title": "Power BI Data Analyst (Stagiaire)",
+   "company": "Coface",
+   "city": "Marrakech",
+   "modality": "",
+   "date_posted": "2026-10-22",
+   "valid_through": "2026-11-21",
+   "employment_type": "INTERN",
+   "description": "Description du poste\nRejoignez Coface en tant que stagiaire Power BI Data Analyst à Marrakech. Intégrez une équipe internationale et contribuez à la fiabilisation des données et à la création de dashboards décisionnels. Vous travaillerez sur l'amélioration de la datavisualisation et accompagnerez les équipes opérationnelles dans l'utilisation de Power BI. Nous recherchons un profil autonome, curieux des enjeux Data, doté d'un excellent niveau d'anglais et d'une aisance relationnelle pour interagir avec le management. Une opportunité idéale pour évoluer au sein d'un environnement multiculturel et innovant.\nPrésentation de l'entreprise\nChez Coface, nous faisons avancer le commerce chaque jour. Nos 5 200 experts, représentant plus de 80 nationalités dans 58 pays, sont unis par une mission commune : aider les entreprises à naviguer dans l’incertitude. Avec près de 80 ans d’expérience internationale, nous proposons une gamme complète de solutions : assurance-crédit, informations d'entreprise, recouvrement de créances, assurance risque unique, cautions et affacturage.\nRejoindre Coface, c’est intégrer une organisation internationale soudée qui cultive l'apprentissage, la collaboration et l'inclusion. Façonnez l’avenir du commerce avec nous et rejoignez les Happeners !\nMissions principales\nEn tant que stagiaire Power BI Data Analyst, vos missions seront les suivantes :\nTravailler à la mise au point et à l'amélioration continue de la datavisualisation.\nConstruire des dashboards interactifs et automatisés.\nPromouvoir Power BI et former les équipes opérationnelles à son utilisation.\nStructurer et organiser les données pour garantir leur fiabilité et leur accessibilité.\nCommuniquer avec les parties prenantes au sujet des sources de données et de la Data Quality.\nProfil recherché\nFo",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/06/13161336/logo-entreprise-18.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "power bi"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 0,
+   "score": 50,
+   "is_pfe": false,
+   "first_seen": "2026-11-06",
+   "new_today": true,
+   "id": 24
   }
  ]
 }
