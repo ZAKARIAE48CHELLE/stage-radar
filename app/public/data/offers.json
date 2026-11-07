@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-06T14:24:10+00:00",
+ "generated_at": "2026-11-07T13:07:13+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 1197,
+  "stored": 1447,
   "by_source": {
-   "stagiaires.ma": 20,
+   "stagiaires.ma": 33,
    "dreamjob.ma": 4
   },
-  "kept": 24,
-  "new_this_run": 249,
+  "kept": 37,
+  "new_this_run": 250,
   "filter_reasons": {
-   "title excluded": 127,
-   "not data/AI": 897,
+   "title excluded": 230,
+   "not data/AI": 1016,
    "not an internship": 28,
-   "ok": 26,
-   "expired": 13,
+   "ok": 43,
+   "expired": 15,
    "removed from site": 47,
-   "too few skill keywords": 59,
-   "duplicate": 2
+   "too few skill keywords": 68,
+   "duplicate": 6
   }
  },
  "offers": [
@@ -82,8 +82,50 @@
    "score": 97,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
+   "new_today": false,
    "id": 1
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7223-stage-pre-embauche-data-management-ai-consultant-junior",
+   "source": "stagiaires.ma",
+   "title": "Stage Pré-Embauche Data Management & AI Consultant Junior",
+   "company": "Tesselate",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-16",
+   "valid_through": "2026-11-15",
+   "employment_type": "INTERN",
+   "description": "Rejoignez Tesselate en tant que Consultant Data Management & IA Junior ! Vous participerez au développement d'agents IA innovants, à la gouvernance des données et à l'automatisation de processus complexes pour des clients prestigieux. Idéal pour un étudiant en fin de cycle ingénieur ou un jeune diplômé passionné par Python, le Low-Code/No-Code et l'IA générative. Ce stage offre une opportunité concrète de pré-embauche en CDI au sein d'une équipe dynamique à Casablanca.\nÀ propos du poste\nDans le cadre du développement de nos activités Data & IA, nous recherchons des\nConsultants Data Management & IA Juniors\npassionnés par la donnée, l'automatisation et les technologies d'intelligence artificielle.\nVous participerez à la conception, au développement et au déploiement d'agents IA destinés à automatiser des processus métiers, améliorer la productivité des équipes et valoriser les données de nos clients, principalement dans les secteurs de la banque, des services financiers et de l'entreprise.\nVous travaillerez à la fois sur des plateformes\nLow-Code/No-Code\net sur des développements techniques avancés en Python et technologies IA.\nVos missions\nData Management\nCollecter, analyser et structurer les données métier.\nParticiper aux projets de gouvernance et qualité des données.\nConcevoir des reportings et tableaux de bord.\nContribuer à la documentation et à la cartographie des données.\nDéveloppement d'Agents IA\nConcevoir et configurer des agents IA avec des plateformes Low-Code/No-Code.\nDévelopper des agents IA avancés en Python.\nConnecter les agents à des bases de données, APIs et applications d'entreprise.\nMettre en place des workflows et scénarios d'automatisation.\nParticiper aux phases de tests, documentation et industrialisation.\nConseil & Innovation\nParticiper aux ateliers d",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/12/13113042/Logo-STG-Entreprise-et-ecole-100.png",
+   "axis_hits": {
+    "genai": 7,
+    "bigdata": 3,
+    "fullstack": 4,
+    "cvsec": 0
+   },
+   "keywords": [
+    "agents ia",
+    "anthropic",
+    "copilot",
+    "ia generative",
+    "intelligence artificielle",
+    "openai",
+    "prompt engineering",
+    "azure",
+    "power bi",
+    "sql",
+    "apis",
+    "automatisation",
+    "make",
+    "n8n"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 3,
+   "score": 94,
+   "is_pfe": false,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "id": 2
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7484-pfe-en-data-science-et-devops",
@@ -123,8 +165,165 @@
    "score": 91,
    "is_pfe": true,
    "first_seen": "2026-11-06",
+   "new_today": false,
+   "id": 3
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7128-stagiaire-developpeur-automatisation-devops-f-h",
+   "source": "stagiaires.ma",
+   "title": "Stagiaire Développeur – Automatisation & DevOps (F/H)",
+   "company": "Sofrecom Maroc",
+   "city": "Rabat",
+   "modality": "",
+   "date_posted": "2026-10-13",
+   "valid_through": "2026-11-12",
+   "employment_type": "INTERN",
+   "description": "Sofrecom Maroc recherche un stagiaire Développeur/DevOps pour automatiser des migrations d'infrastructures cloud. Vous interviendrez sur le développement de solutions d'orchestration via Terraform, GitLab CI/CD, Python et des interfaces Web supervisant MongoDB. Étudiant(e) Bac+4/5 en informatique, vous maîtrisez le développement logiciel et avez un fort intérêt pour le Cloud et l'automatisation. Rejoignez une équipe projet pour concevoir une plateforme d'automatisation de bout en bout.\nCONTEXTE\nDans le cadre d'un projet de migration d'infrastructures et de machines virtuelles, Sofrecom Maroc recherche un(e) stagiaire Développeur / DevOps. Vous travaillerez en binôme avec un Ingénieur DevOps pour automatiser et industrialiser les étapes de migration de bout en bout, en réduisant les interventions manuelles et en fiabilisant les processus via l'IaC et le CI/CD.\nMISSIONS PRINCIPALES\nDévelopper une solution d'automatisation pour la migration de machines virtuelles.\nConcevoir des scripts d'orchestration et intégrer les outils d'Infrastructure as Code (Terraform).\nMaintenir les pipelines GitLab CI/CD pour automatiser les traitements.\nDévelopper des API Backend et une interface Web de supervision des migrations.\nGérer les données techniques (VM, statuts, logs) au sein d'une base MongoDB.\nRéaliser les tests techniques et documenter les développements.\nENVIRONNEMENT TECHNIQUE\nAutomatisation / IaC :\nTerraform, Python, JSON, YAML.\nCI/CD :\nGit, GitLab CI/CD.\nBackend & Web :\nPython, API REST, HTML/CSS, JavaScript/TypeScript, React/Angular/Vue.js.\nData :\nMongoDB (NoSQL).\nInfrastructure :\nLinux, Docker, VMware/vSphere.\nPROFIL RECHERCHÉ\nFormation :\nÉtudiant(e) Bac+4/5 en informatique (Développement, Cloud, DevOps).\nCompétences :\nSolides bases en Python, Git, Terraform et API REST.\nQual",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2026/01/19084252/SOFRECOM.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 4,
+    "fullstack": 9,
+    "cvsec": 0
+   },
+   "keywords": [
+    "docker",
+    "mongodb",
+    "nosql",
+    "pipelines",
+    "angular",
+    "api rest",
+    "automatisation",
+    "ci/cd",
+    "devops",
+    "react",
+    "typescript"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 3,
+   "score": 86,
+   "is_pfe": false,
+   "first_seen": "2026-11-07",
    "new_today": true,
-   "id": 2
+   "id": 4
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7195-data-ai-stagiaire-pfe",
+   "source": "stagiaires.ma",
+   "title": "Data & AI Stagiaire PFE",
+   "company": "Capgemini Engineering",
+   "city": "Casablanca",
+   "modality": "Hybride",
+   "date_posted": "2026-10-15",
+   "valid_through": "2026-11-14",
+   "employment_type": "INTERN",
+   "description": "Capgemini Engineering recherche un(e) stagiaire PFE Data & AI pour contribuer au développement de solutions analytiques et d'intelligence artificielle. Vous participerez à l'exploitation des données, au développement de modèles de machine learning et à la création de dashboards. Profil recherché : étudiant(e) en fin de cursus Bac+5 en Data Science/AI, doté(e) d'une maîtrise de Python, SQL et d'outils de visualisation. Rejoignez une équipe innovante dans un environnement hybride favorisant l'apprentissage continu et l'impact technologique.\nÀ propos de Capgemini Engineering\nCapgemini Engineering, leader mondial des services d'ingénierie, rassemble des experts pour aider les entreprises innovantes à libérer leur potentiel. Nos équipes développent des solutions R&D et d'ingénierie uniques à travers tous les secteurs d'activité.\nÀ propos du poste\nNous recherchons un(e)\nstagiaire PFE Data & AI\npour contribuer au développement de solutions analytiques et d'intelligence artificielle. Vous participerez à l'exploitation, la valorisation et l'automatisation des données pour améliorer nos processus internes et faciliter la prise de décision.\nVos missions\nConcevoir des analyses exploratoires et réaliser des visualisations pertinentes.\nParticiper au développement de modèles d'IA et de machine learning.\nContribuer à la création ou la mise à jour de dashboards (Power BI / Tableau).\nAutomatiser des scripts et pipelines de données.\nDocumenter les travaux réalisés et assurer le suivi des projets.\nRéaliser une veille technologique sur le domaine Data & AI.\nProfil recherché\nÉtudiant(e) en dernière année Bac+5 (Data Science, Big Data, AI ou équivalent).\nMaîtrise de Python (pandas, numpy, scikit-learn).\nConnaissance des bases de données SQL.\nBonne compréhension du machine learning et des méth",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2026/01/23112709/capgemini.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 7,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "big data",
+    "data science",
+    "machine learning",
+    "pipelines",
+    "power bi",
+    "scikit-learn",
+    "sql",
+    "automatisation"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 83,
+   "is_pfe": true,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7221-data-ai-stagiaire-pfe"
+    }
+   ],
+   "id": 5
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7306-stage-pfe-datalab-pre-embauche",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE - DataLab (Pré-Embauche)",
+   "company": "Coface",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-20",
+   "valid_through": "2026-11-19",
+   "employment_type": "INTERN",
+   "description": "Rejoignez le DataLab de Coface pour un stage de fin d'études (PFE) stimulant. Intégrez une équipe internationale et travaillez sur des projets concrets d'IA, de Machine Learning et de déploiement cloud. Vous concevrez des solutions innovantes, de la conception à la mise en production, tout en développant vos compétences techniques en Python, Kubernetes et gestion de données. Si vous êtes étudiant(e) en Bac+5, passionné(e) par la data et prêt(e) à relever des défis dans un environnement collaboratif, postulez pour façonner l'avenir du commerce mondial avec nous.\nÀ propos de Coface\nRejoignez\nCoface\n, expert mondial en assurance-crédit et gestion des risques. Avec près de 80 ans d'expertise et une présence dans 58 pays, nous accompagnons les entreprises dans leurs décisions stratégiques grâce à l'innovation technologique et une gestion intelligente de la donnée.\nDescription du poste\nLe\nDataLab\nde Coface recherche des stagiaires en fin d'études (PFE) motivés pour intégrer une équipe internationale dynamique. Vous travaillerez sur des projets concrets d'intelligence artificielle et de machine learning, de la conception jusqu'au déploiement en production.\nVos missions :\nTravail en binôme sur des projets innovants.\nConception et développement de solutions de\nMachine Learning\n.\nMise en œuvre d'infrastructures de containers et monitoring.\nParticipation active à la veille technologique.\nProfil recherché :\nÉtudiant(e) en Bac+5 (École d'ingénieurs ou Master).\nMaîtrise des modèles d'apprentissage (supervisé, non-supervisé, clustering, NLP).\nExcellente maîtrise de\nPython\net de son écosystème.\nAnglais opérationnel requis.\nQualités : autonomie, curiosité et rigueur.\nCompétences appréciées :\nMaîtrise de Linux, Git et SQL.\nExpérience en CI/CD, Docker/Kubernetes et cloud.\nConnaissance des",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/06/13161336/logo-entreprise-18.png",
+   "axis_hits": {
+    "genai": 2,
+    "bigdata": 5,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "nlp",
+    "docker",
+    "kubernetes",
+    "machine learning",
+    "nosql",
+    "sql",
+    "ci/cd"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 82,
+   "is_pfe": true,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7279-stage-pfe-datalab-pre-embauche"
+    }
+   ],
+   "id": 6
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7126-stagiaire-developpeur-ia-llm-automatisation",
+   "source": "stagiaires.ma",
+   "title": "Stagiaire Développeur IA / LLM & Automatisation",
+   "company": "BETIC Maroc",
+   "city": "Rabat",
+   "modality": "Sur site",
+   "date_posted": "2026-10-13",
+   "valid_through": "2026-11-12",
+   "employment_type": "INTERN",
+   "description": "BETIC Topographie recherche un stagiaire développeur IA/LLM à Rabat. Vous participerez au développement d'une plateforme intelligente d'analyse de marchés publics utilisant Python, l'IA générative et les technologies RAG. Un projet concret pour monter en compétences sur des technologies innovantes. Profils débutants motivés bienvenus. Rémunération : 1.500 DH/mois.\nÀ propos de l'offre\nBETIC Topographie\n, entreprise basée à Rabat et spécialisée dans la topographie, la géomatique et les solutions numériques, recherche un(e) stagiaire développeur en Intelligence Artificielle (IA / LLM) pour participer à la conception et au développement d'une plateforme intelligente dédiée à la veille et à l'analyse des marchés publics.\nMissions\nL'objectif est de développer un outil capable d'automatiser la recherche d'opportunités commerciales, d'analyser les dossiers de consultation grâce aux modèles de langage (LLM) et d'identifier les marchés correspondant aux activités de l'entreprise. Vous interviendrez sur un projet concret combinant :\nIntelligence artificielle générative\nLangage Python\nAutomatisation des processus\nTraitement documentaire et technologies RAG\nProfil recherché\nÉtudiant(e) en école d'ingénieur ou équivalent (optionnel).\nDébutants avec de bonnes bases en développement et une réelle motivation pour l'IA bienvenus.\nCapacité à travailler en équipe sur des projets innovants.\nConditions\nRémunération :\nJusqu'à 1.500,00 DH par mois.\nLieu :\nEn présentiel à Rabat.",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/11/28125723/BETIC-Maroc-.png",
+   "axis_hits": {
+    "genai": 5,
+    "bigdata": 0,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "ia generative",
+    "intelligence artificielle",
+    "llm",
+    "rag",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 3,
+   "score": 81,
+   "is_pfe": false,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "id": 7
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7014-stagiaire-pfe-intelligence-artificielle-ia",
@@ -155,7 +354,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-09",
    "new_today": false,
-   "id": 3
+   "id": 8
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7444-sales-enablement-intern",
@@ -186,8 +385,8 @@
    "score": 77,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 4
+   "new_today": false,
+   "id": 9
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7650-stage-pfe-telecom-it",
@@ -221,14 +420,14 @@
    "score": 74,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
+   "new_today": false,
    "also_on": [
     {
      "source": "stagiaires.ma",
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7634-stage-pfe-telecom-it"
     }
    ],
-   "id": 5
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7501-stage-pre-embauche-data-scientist-ia-automation",
@@ -261,8 +460,8 @@
    "score": 74,
    "is_pfe": false,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 6
+   "new_today": false,
+   "id": 11
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -294,7 +493,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 7
+   "id": 12
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7371-stage-en-developpement-web-et-ia",
@@ -329,7 +528,13 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": true,
-   "id": 8
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7332-stage-en-developpement-web-et-ia"
+    }
+   ],
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7367-stage-pfe-consultants-cloud-databricks-talend-devops-bi-f-h",
@@ -360,8 +565,8 @@
    "score": 71,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 9
+   "new_today": false,
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7648-stage-developpeur-se-full-stack-developpement-assiste-par-l-ia-smilycall",
@@ -394,8 +599,42 @@
    "score": 69,
    "is_pfe": false,
    "first_seen": "2026-11-06",
+   "new_today": false,
+   "id": 15
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7124-stage-developpeur-se-web-full-stack-teletravail",
+   "source": "stagiaires.ma",
+   "title": "Stage Développeur(se) Web Full Stack — Télétravail",
+   "company": "Agh. Data Agency Holding SA",
+   "city": "",
+   "modality": "Télétravail",
+   "date_posted": "2026-10-13",
+   "valid_through": "2026-11-12",
+   "employment_type": "INTERN",
+   "description": "Rejoignez Agh. Data Agency Holding SA en tant que stagiaire Développeur(se) Web Full Stack. Vous participerez à la conception, au développement et à la maintenance d'applications web au sein d'une équipe technique. Profil recherché : étudiant(e) en informatique avec des bases solides en front-end (React) et back-end (Node.js/Python). Stage de 1 à 3 mois en télétravail complet. Une opportunité idéale pour monter en compétences sur des projets concrets. Postulez dès maintenant via notre plateforme.\nPrésentation du poste\nNous recherchons un(e) stagiaire Développeur(se) Web Full Stack motivé(e) pour rejoindre notre équipe dans le cadre d'un stage de 1 à 3 mois, en télétravail.\nMissions\nParticiper à la conception, au développement et à l'intégration de fonctionnalités front-end et back-end pour nos applications web.\nAssurer la maintenance, l'optimisation et la correction des bugs sur les solutions existantes.\nContribuer à la rédaction de code propre, maintenable et documenté en suivant les bonnes pratiques de développement.\nCollaborer avec l'équipe technique pour concevoir des architectures web performantes et scalables.\nEffectuer des tests réguliers pour garantir la qualité, la sécurité et la fluidité des parcours utilisateurs.\nProfil recherché\nÉtudiant(e) en informatique, génie logiciel, développement web ou domaine connexe.\nBonnes bases techniques en développement front-end (ex : HTML, CSS, JavaScript/TypeScript, React ou frameworks similaires) et back-end (ex : Node.js, Python/Django, FastAPI).\nFamiliarité avec les outils de versioning (ex : Git/GitHub) et les environnements de travail collaboratifs.\nCuriosité technique, rigueur, esprit d'analyse et sens de la résolution de problèmes.\nConditions\nType de poste :\nStage.\nDurée :\n1 à 3 mois.\nModalité :\nTélétravail complet.\nH",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/02/11083223/Agh_Data_Agency_Holding_SA.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 0,
+    "fullstack": 7,
+    "cvsec": 0
+   },
+   "keywords": [
+    "django",
+    "fastapi",
+    "full stack",
+    "node.js",
+    "react",
+    "typescript"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 3,
+   "score": 69,
+   "is_pfe": false,
+   "first_seen": "2026-11-07",
    "new_today": true,
-   "id": 10
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7681-stage-pfe-data-ia-it-d2t2",
@@ -426,8 +665,8 @@
    "score": 68,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 11
+   "new_today": false,
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7623-artificial-intelligence-engineer-intern",
@@ -460,8 +699,8 @@
    "score": 66,
    "is_pfe": false,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 12
+   "new_today": false,
+   "id": 18
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7621-stage-de-fin-d-etudes-pfe-campagne",
@@ -490,8 +729,8 @@
    "score": 66,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 13
+   "new_today": false,
+   "id": 19
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7595-campagne-de-recrutement-pfe",
@@ -520,8 +759,8 @@
    "score": 66,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 14
+   "new_today": false,
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7497-stage-pfe-securisation-et-automatisation-des-infrastructures-it-et-ia",
@@ -551,8 +790,8 @@
    "score": 65,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 15
+   "new_today": false,
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7474-securisation-et-automatisation-des-infrastructures-it-windows-linux-bdd-itsm-avec-ia",
@@ -582,8 +821,8 @@
    "score": 65,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 16
+   "new_today": false,
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -615,8 +854,8 @@
    "score": 64,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 17
+   "new_today": false,
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7402-candidatures-spontanees-forum-geni-entreprises",
@@ -646,8 +885,100 @@
    "score": 61,
    "is_pfe": true,
    "first_seen": "2026-11-06",
+   "new_today": false,
+   "id": 24
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7355-hr-recruiting-intern-remote",
+   "source": "stagiaires.ma",
+   "title": "HR & Recruiting Intern (Remote)",
+   "company": "Refram",
+   "city": "Fès",
+   "modality": "Télétravail",
+   "date_posted": "2026-10-21",
+   "valid_through": "2026-11-20",
+   "employment_type": "INTERN",
+   "description": "Refram recherche un(e) stagiaire en recrutement (Remote) pour soutenir ses opérations RH. Si vous êtes organisé(e), passionné(e) par l'IA et les outils technologiques, et que vous souhaitez évoluer dans un environnement innovant, ce stage est fait pour vous. Vous participerez activement au processus de recrutement, de la sélection des candidats à l'onboarding, tout en optimisant nos workflows grâce à l'automatisation. Excellente maîtrise de l'anglais requise.\nÀ propos de Refram\nChez\nRefram\n, nous développons des solutions professionnelles utilisant l'IA pour fluidifier les opérations des entreprises. Notre mission est de simplifier la gestion, le travail d'équipe et les flux de travail grâce à l'automatisation agentique.\nDescription du poste\nNous recherchons un(e) stagiaire en Ressources Humaines et Recrutement pour un stage à distance. Vous soutiendrez le processus de recrutement de A à Z : publication d'offres, sélection de candidats, coordination d'entretiens et gestion de l'onboarding.\nProfil recherché\nOrganisé(e), rigoureux(se) et doté(e) d'un excellent sens du détail.\nDoté(e) d'une grande intelligence relationnelle et d'une aisance communicationnelle.\nTechnophile, à l'aise avec les outils digitaux et l'IA (utilisateur avancé).\nCapable de travailler en autonomie en environnement distant.\nEsprit analytique, capable d'améliorer les processus opérationnels.\nCompétences souhaitées\nMaîtrise de l'anglais (écrit et oral).\nUtilisation d'outils de type Notion, Airtable ou ATS.\nCapacité à utiliser l'IA pour automatiser les tâches de recrutement.\nAptitude à concevoir des parcours d'onboarding et des supports de formation.\nEsprit collaboratif et orienté vers l'amélioration continue.",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/10/21145104/images.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 0,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "agentique",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 3,
+   "score": 61,
+   "is_pfe": false,
+   "first_seen": "2026-11-07",
    "new_today": true,
-   "id": 18
+   "id": 25
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7233-end-of-studies-internship-operations",
+   "source": "stagiaires.ma",
+   "title": "End-of-Studies Internship | Operations",
+   "company": "A.P. Moller - Maersk",
+   "city": "Tanger",
+   "modality": "",
+   "date_posted": "2026-10-16",
+   "valid_through": "2026-11-15",
+   "employment_type": "INTERN",
+   "description": "APM Terminals Tangier offers an End-of-Studies internship for students specializing in Data Science, Engineering, or Business Intelligence. Join our Operations department to apply your skills in a complex, data-driven port environment. Benefit from professional mentorship, logistics exposure, and transport facilities. Apply before 15/11/2026.\nAPM Terminals\nAbout The Internship\nAre you a final-year student interested in operations, data analysis, statistics, or business intelligence? APM Terminals Tangier is looking for motivated and ambitious interns to join the Operations Department. This opportunity will allow selected students to apply their academic knowledge in a complex operational environment and contribute to data-driven operations.\nInternship Overview\nDepartment:\nOperations\nLocation:\nTangier Med Port\nDuration:\n3 to 6 months\nInternship type:\nEnd-of-Studies Project / PFE\nInternship agreement:\nA valid school internship agreement is mandatory\nApplication deadline:\n15/11/2026\nWho We’re Looking For\nFinal-year students specializing in Statistics, Industrial Engineering, Data Science, Computer Science, Information Systems, Business Intelligence, Data Analytics, Software Engineering or a related discipline.\nSkills & Knowledge\nStrong analytical and quantitative skills\nAbility to organize, analyze, and interpret data\nGood command of Excel\nKnowledge of Power BI or other data-visualization tools would be an advantage\nKnowledge of SQL, Python, R, or similar tools would be an advantage\nStrong attention to detail\nInterest in logistics and operational performance\nGood communication and presentation skills\nGood working knowledge of English and French\nWhat We Offer\nPractical experience in a complex operational environment\nExposure to terminal operations and logistics\nThe opportun",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/08/26104936/download.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 3,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "data science",
+    "power bi",
+    "sql"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 61,
+   "is_pfe": true,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "id": 26
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7152-offre-de-stage-charge-e-de-projet-transformation-digitale",
+   "source": "stagiaires.ma",
+   "title": "Offre de stage : Chargé(e) de projet transformation digitale",
+   "company": "Ayvens Maroc",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-14",
+   "valid_through": "2026-11-13",
+   "employment_type": "INTERN",
+   "description": "Rejoignez Ayvens Maroc pour un stage en transformation digitale. Vous participerez à l'optimisation des processus, au développement d'outils d'automatisation (Python) et à la création de tableaux de bord Power BI au sein de la direction stratégie. Profil recherché : étudiant en fin d'études d'ingénierie ou informatique, rigoureux et analytique. Une opportunité concrète de contribuer à la performance opérationnelle d'une entreprise leader.\nDescription du poste\nRejoignez\nAyvens Maroc\nen tant que stagiaire Chargé(e) de projet transformation digitale. Vous interviendrez sur l'optimisation des processus, le développement d'outils d'automatisation en Python et la création de tableaux de bord sous Power BI. Cette opportunité est idéale pour un étudiant en fin d'études d'ingénierie ou informatique doté d'un fort esprit d'analyse et d'une capacité à structurer des solutions pragmatiques pour les métiers.\nContexte du stage\nAu sein de la direction stratégie et transformation, le pôle digitalisation chez Ayvens Maroc agit comme catalyseur de la performance opérationnelle. Vous participerez activement à la conception et au déploiement de solutions digitales sur mesure pour optimiser la productivité des équipes métier.\nVos missions\nDiagnostic :\nAnalyser les processus existants pour identifier les points de rupture et formaliser les cahiers des charges.\nDéveloppement :\nConcevoir des outils d'automatisation (Python) et modéliser des tableaux de bord décisionnels (Power BI).\nDéploiement :\nAccompagner les utilisateurs finaux et assurer la conduite du changement.\nReporting :\nRédiger la documentation technique et mesurer les gains de productivité réalisés.\nProfil recherché\nÉtudiant(e) en fin d'études (École d'Ingénieurs, Master Data/Informatique ou double cursus Ingénieur-Manager).\nCompéte",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/06/03163947/ayvens.jpeg",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "power bi",
+    "sql",
+    "automatisation"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 61,
+   "is_pfe": true,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7405-candidatures-spontanees-forum-geni-entreprises",
@@ -678,8 +1009,8 @@
    "score": 60,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
-   "id": 19
+   "new_today": false,
+   "id": 28
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -711,7 +1042,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 20
+   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -740,14 +1071,74 @@
    "score": 58,
    "is_pfe": true,
    "first_seen": "2026-11-06",
-   "new_today": true,
+   "new_today": false,
    "also_on": [
     {
      "source": "stagiaires.ma",
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 21
+   "id": 30
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7240-end-of-studies-internship-information-technology-it",
+   "source": "stagiaires.ma",
+   "title": "End-of-Studies Internship | Information Technology (IT)",
+   "company": "A.P. Moller - Maersk",
+   "city": "Tanger",
+   "modality": "",
+   "date_posted": "2026-10-16",
+   "valid_through": "2026-11-15",
+   "employment_type": "INTERN",
+   "description": "APM Terminals Tangier, part of A.P. Moller - Maersk, offers a 3 to 6-month End-of-Studies Internship for IT and engineering students. Join our IT department at Tangier Med Port to gain hands-on experience in infrastructure, data analysis, and system performance monitoring. Applicants should be final-year students proficient in English and French, with strong analytical skills and an interest in IT systems. This is an excellent opportunity for networking and professional growth in a leading international company. Apply before November 15, 2027, via our platform.\nAbout The Internship\nAre you a final-year IT or engineering student looking for an End-of-Studies Project (PFE) internship?\nAPM Terminals Tangier\nis looking for a motivated and ambitious intern to join the IT Department. This opportunity provides practical exposure to IT infrastructure, data analysis, systems availability, and performance monitoring within an international operational environment.\nInternship Overview\nDepartment:\nInformation Technology\nLocation:\nTangier Med Port\nDuration:\n3 to 6 months\nType:\nEnd-of-Studies Project / PFE\nRequirement:\nValid school internship agreement is mandatory\nApplication Deadline:\n15/11/2027\nWho We’re Looking For\nFinal-year students specializing in Computer Science, Information Technology, Network and Systems Engineering, IT Infrastructure, Data Analytics, Software Engineering, or related disciplines.\nSkills & Knowledge\nUnderstanding of IT infrastructure and information systems\nStrong analytical and problem-solving skills\nProficiency in Excel; knowledge of Power BI, SQL, or Python is a plus\nFamiliarity with Windows or Linux environments\nStrong documentation, organizational, and communication skills\nGood working knowledge of English and French\nWhat We Offer\nHands-on experience i",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/08/26104936/download.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "power bi",
+    "sql"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 58,
+   "is_pfe": true,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "id": 31
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7125-stagiaire-communication-et-marque-employeur",
+   "source": "stagiaires.ma",
+   "title": "Stagiaire Communication et Marque Employeur",
+   "company": "Alten Maroc",
+   "city": "Fès",
+   "modality": "",
+   "date_posted": "2026-10-13",
+   "valid_through": "2026-11-12",
+   "employment_type": "INTERN",
+   "description": "Rejoignez ALTEN MAROC à Fès en tant que stagiaire en Communication et Marque Employeur. Vous participerez activement à la création de contenus digitaux, à la gestion des réseaux sociaux, à l'organisation d'événements internes et au déploiement de stratégies de marque employeur. Profil recherché : étudiant en Master Communication/Marketing avec une forte appétence pour les outils graphiques, l'intelligence artificielle et une excellente maîtrise du français et de l'anglais. Intégrez un écosystème d'excellence dédié à l'ingénierie et au conseil en technologie.\nDescription de l'entreprise\nALTEN MAROC\n, filiale du leader mondial de l'ingénierie et du conseil en technologie, est présente à Fès, Rabat, Tétouan et Casablanca. Avec plus de 2200 collaborateurs, l'entreprise vise un centre d'excellence de 3300 ALTENiens d'ici fin 2027 et s'impose comme un acteur stratégique dans l'accompagnement du développement professionnel des ingénieurs.\nNotre mission :\nRépondre aux ambitions technologiques de nos clients (grands donneurs d'ordre internationaux) dans les secteurs de l'automobile, du ferroviaire, de la R&D, de l'IT, des télécommunications et des médias.\nDescription du poste\nDans le cadre de ce rôle, vos principales missions seront les suivantes :\nCréation de contenus :\nParticiper à la création de contenus pour les réseaux sociaux, newsletters internes et supports de communication (articles, visuels, vidéos).\nGestion des réseaux sociaux :\nAider à la gestion des comptes de l'entreprise (ligne éditoriale, interaction, suivi des performances).\nOrganisation d'événements :\nContribuer à la logistique et à la coordination d'événements internes.\nMarque employeur :\nParticiper à des projets de recrutement, initiatives de fidélisation et programmes de reconnaissance.\nProfil recherché\nÉtud",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/01/29115350/ALTEN.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 0,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 0,
+   "score": 58,
+   "is_pfe": false,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "id": 32
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -777,7 +1168,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 22
+   "id": 33
   },
   {
    "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
@@ -807,7 +1198,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-10",
    "new_today": false,
-   "id": 23
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7372-power-bi-data-analyst-stagiaire",
@@ -836,7 +1227,73 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": true,
-   "id": 24
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7329-power-bi-data-analyst-stagiaire"
+    }
+   ],
+   "id": 35
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7310-stage-en-net",
+   "source": "stagiaires.ma",
+   "title": "Stage en .Net",
+   "company": "LOGIGROUP",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-20",
+   "valid_through": "2026-11-19",
+   "employment_type": "INTERN",
+   "description": "Rejoignez LOGIGROUP en tant que stagiaire développeur .NET pour participer à des projets de transformation digitale. Intégrez une équipe experte, pratiquez les méthodologies Agile et montez en compétences sur l'écosystème .NET et SQL. Stage ouvert aux étudiants (Bac+3 à Bac+5) disponibles de 4 à 6 mois. Une opportunité idéale pour une immersion concrète dans le monde professionnel au sein d'une ESN dynamique à Casablanca.\nDescription du poste\nRejoignez\nLOGIGROUP\nen tant que stagiaire développeur .NET ! Vous participerez à des projets de transformation digitale au sein d'une équipe technique experte. Au programme : développement front/back, méthodologies Agile, et montée en compétences sur l'écosystème .NET et SQL. Si vous êtes étudiant(e) en informatique (Bac+3 à Bac+5) avec un bon esprit d'analyse et une réelle motivation, ce stage est fait pour vous. Intégrez une ESN dynamique pour une immersion concrète dans le monde professionnel.\nÀ propos de LOGIGROUP\nLOGIGROUP est une ESN spécialisée dans la Business Transformation, le Data Management, le Cloud, l'IA et la Cybersécurité.\nMissions\nEncadré(e) par un Tech Lead, vous interviendrez sur :\nAnalyse des besoins fonctionnels et techniques.\nRédaction de spécifications techniques.\nDéveloppement et évolution d'applications en environnement .NET.\nDéveloppement d'applications web (Front et Back).\nConception d'interfaces utilisateurs.\nRéalisation de tests unitaires et correctifs.\nParticipation aux revues de code et veille technologique.\nIntérêt du stage\nPratique des méthodologies Agile / Scrum.\nRenforcement de vos compétences techniques.\nTravail au sein d'une équipe pluridisciplinaire.\nProjets concrets à forte valeur ajoutée.\nProfil recherché\nÉtudiant(e) en informatique (Bac+3 à Bac+5).\nDisponibilité de 4 à 6 mois.\nConnaissances ",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/03/10100451/LOGIGROUP.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 1,
+    "fullstack": 0,
+    "cvsec": 1
+   },
+   "keywords": [
+    "sql",
+    "cybersecurite"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 3,
+   "score": 44,
+   "is_pfe": false,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "id": 36
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7291-stage-en-developpement-net",
+   "source": "stagiaires.ma",
+   "title": "Stage en développement .NET",
+   "company": "LOGIGROUP",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-10-19",
+   "valid_through": "2026-11-18",
+   "employment_type": "INTERN",
+   "description": "Rejoignez LOGIGROUP en tant que stagiaire développeur .NET ! Vous participerez à des projets de transformation digitale au sein d'une équipe technique experte. Au programme : développement front/back, méthodologies Agile, et montée en compétences sur l'écosystème .NET et SQL. Si vous êtes étudiant(e) en informatique (Bac+3 à Bac+5) avec un bon esprit d'analyse et une réelle motivation, ce stage est fait pour vous. Intégrez une ESN dynamique pour une immersion concrète dans le monde professionnel.\nÀ propos de LOGIGROUP\nLOGIGROUP est une ESN spécialisée dans la Business Transformation, le Data Management, le Cloud, l'IA et la Cybersécurité.\nDescriptif du stage\nPour accompagner nos clients dans leurs projets de transformation digitale, nous recherchons un stagiaire développeur\n.NET\n. Vous intégrerez nos équipes techniques pour contribuer au développement d'applications tout en montant en compétences sur l'écosystème .NET et les meilleures pratiques du marché.\nMissions\nEncadré(e) par un Tech Lead, vous interviendrez sur :\nAnalyse des besoins fonctionnels et techniques.\nRédaction de spécifications techniques.\nDéveloppement et évolution d'applications en environnement .NET.\nDéveloppement d'applications web (Front et Back).\nConception d'interfaces utilisateurs.\nRéalisation de tests unitaires et correctifs.\nParticipation aux revues de code et veille technologique.\nIntérêt du stage\nPratique des méthodologies Agile / Scrum.\nRenforcement de vos compétences techniques.\nTravail au sein d'une équipe pluridisciplinaire.\nProjets concrets à forte valeur ajoutée.\nProfil recherché\nÉtudiant(e) en informatique (Bac+3 à Bac+5).\nDisponibilité de 4 à 6 mois.\nConnaissances de base en .NET / C# et développement web.\nNotions en bases de données et SQL.\nRigueur, esprit d'analyse et motivation.\nBon",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/03/10100451/LOGIGROUP.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 1,
+    "fullstack": 0,
+    "cvsec": 1
+   },
+   "keywords": [
+    "sql",
+    "cybersecurite"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 3,
+   "score": 44,
+   "is_pfe": false,
+   "first_seen": "2026-11-07",
+   "new_today": true,
+   "id": 37
   }
  ]
 }
