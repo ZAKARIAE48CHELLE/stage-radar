@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-08T13:20:46+00:00",
+ "generated_at": "2026-11-09T16:13:26+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,21 +28,22 @@
   }
  },
  "stats": {
-  "stored": 1455,
+  "stored": 1465,
   "by_source": {
    "stagiaires.ma": 32,
-   "dreamjob.ma": 4
+   "dreamjob.ma": 3
   },
-  "kept": 36,
-  "new_this_run": 8,
+  "kept": 35,
+  "new_this_run": 10,
   "filter_reasons": {
-   "title excluded": 231,
-   "not data/AI": 1022,
+   "title excluded": 232,
+   "not data/AI": 1031,
    "not an internship": 28,
-   "expired": 16,
+   "expired": 13,
+   "too old": 4,
    "removed from site": 47,
    "too few skill keywords": 69,
-   "ok": 42,
+   "ok": 41,
    "duplicate": 6
   }
  },
@@ -1140,36 +1141,6 @@
    "id": 32
   },
   {
-   "url": "https://www.dreamjob.ma/emploi/tanger/poste-et-stage-a-saisir-chez-adka-auto-a-tanger/",
-   "source": "dreamjob.ma",
-   "title": "Poste et stage à saisir chez ADKA Auto à Tanger",
-   "company": "ADKA Auto",
-   "city": "Tanger",
-   "modality": "",
-   "date_posted": "2026-09-24",
-   "valid_through": "",
-   "employment_type": "INTERN",
-   "description": "ADKA Auto recrute un Comptable H/F et un Stagiaire Auditeur Interne Junior H/F à Tanger.\nCes deux opportunités concernent des profils spécialisés en comptabilité, finance, audit, contrôle de gestion ou domaines associés.\nADKA Auto\nest le concessionnaire exclusif à Tanger des marques\nRenault et Dacia\n. L’entreprise assure la commercialisation des véhicules ainsi que le suivi des activités liées à la vente, à l’après-vente et à la relation client.\nComptable H/F – Tanger.\nLe Comptable intervient dans le traitement et le suivi des différentes opérations comptables de l’entreprise.\nLes principales responsabilités comprennent:\nSaisir et contrôler les opérations comptables.\nAssurer le suivi des comptes clients et fournisseurs.\nEffectuer les rapprochements bancaires et le lettrage des comptes.\nContrôler et enregistrer les factures.\nParticiper aux travaux de clôture comptable.\nPréparer les éléments nécessaires aux déclarations fiscales.\nAssurer le classement et l’archivage des différentes pièces comptables.\nParticiper au suivi et à l’analyse des comptes.\nPour cette fonction, ADKA Auto recherche un profil répondant aux critères suivants:\nÊtre titulaire d’un\nBac+3 à Bac+5 en Comptabilité, Finance ou Gestion\n.\nJustifier d’au moins\n2 ans d’expérience dans un poste similaire\n.\nDisposer d’une bonne maîtrise d’Excel et des outils comptables.\nPosséder de bonnes connaissances en comptabilité générale et fiscale.\nFaire preuve d’autonomie, de rigueur et d’un bon esprit d’analyse.\nDisposer d’un bon sens de l’organisation et respecter la confidentialité des informations traitées.\nÊtre motivé et capable de travailler efficacement en équipe.\nStagiaire Auditeur Interne Junior H/F – Tanger.\nCette opportunité de stage permet de participer aux activités d’audit interne et d’accompagner l’équipe da",
-   "logo": "",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 2,
-    "fullstack": 0,
-    "cvsec": 0
-   },
-   "keywords": [
-    "power bi",
-    "sql"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 3,
-   "score": 53,
-   "is_pfe": false,
-   "first_seen": "2026-10-10",
-   "new_today": false,
-   "id": 33
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7372-power-bi-data-analyst-stagiaire",
    "source": "stagiaires.ma",
    "title": "Power BI Data Analyst (Stagiaire)",
@@ -1202,7 +1173,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7329-power-bi-data-analyst-stagiaire"
     }
    ],
-   "id": 34
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7310-stage-en-net",
@@ -1232,7 +1203,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 35
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7291-stage-en-developpement-net",
@@ -1262,7 +1233,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 36
+   "id": 35
   }
  ]
 }
