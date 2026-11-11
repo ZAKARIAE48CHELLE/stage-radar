@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-10T14:50:19+00:00",
+ "generated_at": "2026-11-11T14:19:10+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 1474,
+  "stored": 1530,
   "by_source": {
-   "stagiaires.ma": 33,
+   "stagiaires.ma": 34,
    "dreamjob.ma": 3
   },
-  "kept": 36,
-  "new_this_run": 9,
+  "kept": 37,
+  "new_this_run": 56,
   "filter_reasons": {
-   "title excluded": 229,
-   "not data/AI": 1021,
-   "not an internship": 28,
+   "title excluded": 234,
+   "not data/AI": 1045,
+   "not an internship": 30,
    "expired": 10,
-   "too old": 4,
-   "removed from site": 70,
-   "too few skill keywords": 70,
-   "ok": 42,
+   "removed from site": 93,
+   "too few skill keywords": 74,
+   "too old": 1,
+   "ok": 43,
    "duplicate": 6
   }
  },
@@ -1015,6 +1015,36 @@
    "id": 28
   },
   {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
+   "source": "stagiaires.ma",
+   "title": "Campagne de recrutement Stagiaires 2027",
+   "company": "AXA",
+   "city": "Salé",
+   "modality": "",
+   "date_posted": "2026-11-11",
+   "valid_through": "2026-12-11",
+   "employment_type": "INTERN",
+   "description": "AXA Services Maroc lance sa campagne de recrutement de stagiaires 2027. Rejoignez une équipe dynamique et intervenez sur des projets innovants dans les domaines de l'IT, de l'Intelligence Artificielle, de la gestion de projet et de la Data. Une expérience enrichissante pour les jeunes talents souhaitant mettre leurs compétences en pratique. Postulez dès maintenant pour relever de nouveaux défis au sein d'un environnement stimulant.\nDescription du poste\nAXA Services Maroc lance sa campagne de recrutement de stagiaires 2027. Rejoignez une équipe dynamique et intervenez sur des projets innovants dans les domaines de l'IT, de l'Intelligence Artificielle, de la gestion de projet et de la Data. Une expérience enrichissante pour les jeunes talents souhaitant mettre leurs compétences en pratique.\nRejoignez AXA Services Maroc\nNous offrons une opportunité unique aux jeunes talents de mettre leurs compétences en pratique au sein d'un environnement professionnel stimulant et innovant.\nDomaines concernés :\nIT et Développement\nIntelligence Artificielle\nGestion de projet\nData Science et Analyse\nProfil recherché :\nÉtudiants motivés souhaitant relever des défis techniques.\nCuriosité intellectuelle et esprit d'équipe.\nDésir d'apprendre et de contribuer à des projets à forte valeur ajoutée.\nVous souhaitez booster votre carrière ? [Contacter via la plateforme].",
+   "logo": "",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "data science"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 0,
+   "score": 58,
+   "is_pfe": false,
+   "first_seen": "2026-11-11",
+   "new_today": true,
+   "id": 29
+  },
+  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
    "source": "stagiaires.ma",
    "title": "Campagne de recrutement Stagiaires 2027",
@@ -1041,8 +1071,8 @@
    "score": 58,
    "is_pfe": false,
    "first_seen": "2026-11-10",
-   "new_today": true,
-   "id": 29
+   "new_today": false,
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1078,7 +1108,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 30
+   "id": 31
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7240-end-of-studies-internship-information-technology-it",
@@ -1108,7 +1138,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 31
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7125-stagiaire-communication-et-marque-employeur",
@@ -1138,7 +1168,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 32
+   "id": 33
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1168,7 +1198,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 33
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7372-power-bi-data-analyst-stagiaire",
@@ -1203,7 +1233,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7329-power-bi-data-analyst-stagiaire"
     }
    ],
-   "id": 34
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7310-stage-en-net",
@@ -1233,7 +1263,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 35
+   "id": 36
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7291-stage-en-developpement-net",
@@ -1263,7 +1293,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 36
+   "id": 37
   }
  ]
 }
