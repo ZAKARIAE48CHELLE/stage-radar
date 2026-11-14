@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-13T14:32:02+00:00",
+ "generated_at": "2026-11-14T13:28:36+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 1560,
+  "stored": 1570,
   "by_source": {
-   "stagiaires.ma": 34,
+   "stagiaires.ma": 32,
    "dreamjob.ma": 3
   },
-  "kept": 37,
-  "new_this_run": 12,
+  "kept": 35,
+  "new_this_run": 10,
   "filter_reasons": {
-   "title excluded": 240,
-   "not data/AI": 1062,
+   "title excluded": 243,
+   "not data/AI": 1068,
    "not an internship": 30,
-   "expired": 12,
+   "expired": 14,
    "too old": 3,
    "removed from site": 93,
-   "too few skill keywords": 76,
-   "ok": 44,
+   "too few skill keywords": 77,
+   "ok": 42,
    "duplicate": 7
   }
  },
@@ -90,7 +90,7 @@
    "score": 98,
    "is_pfe": true,
    "first_seen": "2026-11-13",
-   "new_today": true,
+   "new_today": false,
    "id": 1
   },
   {
@@ -221,45 +221,6 @@
    "id": 4
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7153-stagiaire-developpeur-automatisation-devops-f-h-demarrage-immediat",
-   "source": "stagiaires.ma",
-   "title": "Stagiaire Développeur – Automatisation & DevOps (F/H) – Démarrage immédiat",
-   "company": "Sofrecom Maroc",
-   "city": "Rabat",
-   "modality": "",
-   "date_posted": "2026-10-14",
-   "valid_through": "2026-11-13",
-   "employment_type": "INTERN",
-   "description": "Rejoignez Sofrecom Maroc en tant que stagiaire Développeur/DevOps pour automatiser des migrations d'infrastructures Cloud. Étudiant(e) Bac+4/5 en informatique, vous travaillerez sur l'orchestration via Terraform, Python, GitLab CI/CD et MongoDB. Intégrez une équipe projet pour concevoir une plateforme d'automatisation de bout en bout en binôme avec un ingénieur expert. Une opportunité idéale pour monter en compétences sur le Cloud, l'IaC et l'industrialisation des processus de migration.\nDescription du poste\nSofrecom Maroc\nrecherche un stagiaire Développeur/DevOps pour automatiser des migrations d'infrastructures cloud. Vous interviendrez sur le développement de solutions d'orchestration via Terraform, GitLab CI/CD, Python et des interfaces Web supervisant MongoDB. Étudiant(e) Bac+4/5 en informatique, vous maîtrisez le développement logiciel et avez un fort intérêt pour le Cloud et l'automatisation. Rejoignez une équipe projet pour concevoir une plateforme d'automatisation de bout en bout.\nCONTEXTE\nDans le cadre d'un projet de migration d'infrastructures et de machines virtuelles,\nSofrecom Maroc\nrecherche un(e) stagiaire Développeur / DevOps. Vous travaillerez en binôme avec un Ingénieur DevOps pour automatiser et industrialiser les étapes de migration de bout en bout, en réduisant les interventions manuelles et en fiabilisant les processus via l'IaC et le CI/CD.\nMISSIONS PRINCIPALES\nDévelopper une solution d'automatisation pour la migration de machines virtuelles.\nConcevoir des scripts d'orchestration et intégrer les outils d'Infrastructure as Code (Terraform).\nMaintenir les pipelines GitLab CI/CD pour automatiser les traitements.\nDévelopper des API Backend et une interface Web de supervision des migrations.\nGérer les données techniques (VM, statuts, logs) au sein d'un",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2026/01/19084252/SOFRECOM.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 4,
-    "fullstack": 9,
-    "cvsec": 0
-   },
-   "keywords": [
-    "docker",
-    "mongodb",
-    "nosql",
-    "pipelines",
-    "angular",
-    "api rest",
-    "automatisation",
-    "ci/cd",
-    "devops",
-    "react",
-    "typescript"
-   ],
-   "domain": "Full-Stack & Automatisations",
-   "bonus": 3,
-   "score": 86,
-   "is_pfe": false,
-   "first_seen": "2026-11-12",
-   "new_today": false,
-   "id": 5
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7195-data-ai-stagiaire-pfe",
    "source": "stagiaires.ma",
    "title": "Data & AI Stagiaire PFE",
@@ -300,7 +261,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7221-data-ai-stagiaire-pfe"
     }
    ],
-   "id": 6
+   "id": 5
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7306-stage-pfe-datalab-pre-embauche",
@@ -342,7 +303,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7279-stage-pfe-datalab-pre-embauche"
     }
    ],
-   "id": 7
+   "id": 6
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7444-sales-enablement-intern",
@@ -374,7 +335,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 8
+   "id": 7
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7650-stage-pfe-telecom-it",
@@ -415,7 +376,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7634-stage-pfe-telecom-it"
     }
    ],
-   "id": 9
+   "id": 8
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7501-stage-pre-embauche-data-scientist-ia-automation",
@@ -449,7 +410,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 10
+   "id": 9
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -481,7 +442,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 11
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7371-stage-en-developpement-web-et-ia",
@@ -522,7 +483,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7332-stage-en-developpement-web-et-ia"
     }
    ],
-   "id": 12
+   "id": 11
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7367-stage-pfe-consultants-cloud-databricks-talend-devops-bi-f-h",
@@ -554,7 +515,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 13
+   "id": 12
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7648-stage-developpeur-se-full-stack-developpement-assiste-par-l-ia-smilycall",
@@ -588,7 +549,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 14
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7681-stage-pfe-data-ia-it-d2t2",
@@ -620,7 +581,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 15
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7623-artificial-intelligence-engineer-intern",
@@ -654,7 +615,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 16
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7621-stage-de-fin-d-etudes-pfe-campagne",
@@ -684,7 +645,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 17
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7595-campagne-de-recrutement-pfe",
@@ -714,7 +675,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 18
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7497-stage-pfe-securisation-et-automatisation-des-infrastructures-it-et-ia",
@@ -745,7 +706,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 19
+   "id": 18
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7474-securisation-et-automatisation-des-infrastructures-it-windows-linux-bdd-itsm-avec-ia",
@@ -776,7 +737,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 20
+   "id": 19
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -809,7 +770,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 21
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7402-candidatures-spontanees-forum-geni-entreprises",
@@ -840,7 +801,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 22
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7355-hr-recruiting-intern-remote",
@@ -870,7 +831,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 23
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7233-end-of-studies-internship-operations",
@@ -901,38 +862,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 24
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7152-offre-de-stage-charge-e-de-projet-transformation-digitale",
-   "source": "stagiaires.ma",
-   "title": "Offre de stage : Chargé(e) de projet transformation digitale",
-   "company": "Ayvens Maroc",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-14",
-   "valid_through": "2026-11-13",
-   "employment_type": "INTERN",
-   "description": "Rejoignez Ayvens Maroc pour un stage en transformation digitale. Vous participerez à l'optimisation des processus, au développement d'outils d'automatisation (Python) et à la création de tableaux de bord Power BI au sein de la direction stratégie. Profil recherché : étudiant en fin d'études d'ingénierie ou informatique, rigoureux et analytique. Une opportunité concrète de contribuer à la performance opérationnelle d'une entreprise leader.\nDescription du poste\nRejoignez\nAyvens Maroc\nen tant que stagiaire Chargé(e) de projet transformation digitale. Vous interviendrez sur l'optimisation des processus, le développement d'outils d'automatisation en Python et la création de tableaux de bord sous Power BI. Cette opportunité est idéale pour un étudiant en fin d'études d'ingénierie ou informatique doté d'un fort esprit d'analyse et d'une capacité à structurer des solutions pragmatiques pour les métiers.\nContexte du stage\nAu sein de la direction stratégie et transformation, le pôle digitalisation chez Ayvens Maroc agit comme catalyseur de la performance opérationnelle. Vous participerez activement à la conception et au déploiement de solutions digitales sur mesure pour optimiser la productivité des équipes métier.\nVos missions\nDiagnostic :\nAnalyser les processus existants pour identifier les points de rupture et formaliser les cahiers des charges.\nDéveloppement :\nConcevoir des outils d'automatisation (Python) et modéliser des tableaux de bord décisionnels (Power BI).\nDéploiement :\nAccompagner les utilisateurs finaux et assurer la conduite du changement.\nReporting :\nRédiger la documentation technique et mesurer les gains de productivité réalisés.\nProfil recherché\nÉtudiant(e) en fin d'études (École d'Ingénieurs, Master Data/Informatique ou double cursus Ingénieur-Manager).\nCompéte",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/06/03163947/ayvens.jpeg",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 2,
-    "fullstack": 1,
-    "cvsec": 0
-   },
-   "keywords": [
-    "power bi",
-    "sql",
-    "automatisation"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 8,
-   "score": 61,
-   "is_pfe": true,
-   "first_seen": "2026-11-07",
-   "new_today": false,
-   "id": 25
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7405-candidatures-spontanees-forum-geni-entreprises",
@@ -964,7 +894,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 26
+   "id": 24
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -996,7 +926,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 27
+   "id": 25
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
@@ -1026,7 +956,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-11",
    "new_today": false,
-   "id": 28
+   "id": 26
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
@@ -1056,7 +986,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-10",
    "new_today": false,
-   "id": 29
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1092,7 +1022,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 30
+   "id": 28
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7240-end-of-studies-internship-information-technology-it",
@@ -1122,7 +1052,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 31
+   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7916-stage-pfe",
@@ -1152,8 +1082,8 @@
    "score": 55,
    "is_pfe": true,
    "first_seen": "2026-11-13",
-   "new_today": true,
-   "id": 32
+   "new_today": false,
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7892-stage-pfe-eqdom",
@@ -1184,7 +1114,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-12",
    "new_today": false,
-   "id": 33
+   "id": 31
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1214,7 +1144,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 34
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7372-power-bi-data-analyst-stagiaire",
@@ -1249,7 +1179,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7329-power-bi-data-analyst-stagiaire"
     }
    ],
-   "id": 35
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7310-stage-en-net",
@@ -1279,7 +1209,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 36
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7291-stage-en-developpement-net",
@@ -1309,7 +1239,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 37
+   "id": 35
   }
  ]
 }
