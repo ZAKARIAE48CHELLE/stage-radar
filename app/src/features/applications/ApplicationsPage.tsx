@@ -12,14 +12,19 @@ import { Spinner } from '../../components/feedback/Spinner';
 import { ErrorState } from '../../components/feedback/ErrorState';
 import { exportAppsExcel } from './exportExcel';
 import { ALL_KANBAN_COLS, STATUSES } from '../../lib/constants';
-import { FileSpreadsheet, Plus, Table, LayoutDashboard, Calendar } from 'lucide-react';
+import { FileSpreadsheet, Plus, Table, LayoutDashboard, Calendar, BarChart3 } from 'lucide-react';
 import { norm } from '../../lib/text';
 import type { ApplicationItem, MatchOffer } from '../../types/api';
 import { useMatches } from '../offers/api';
 import { useAuth } from '../auth/AuthProvider';
 import { hasFeature } from '../../lib/features';
+import { ApplicationsCharts } from './ApplicationsCharts';
 
-export function ApplicationsPage() {
+interface ApplicationsPageProps {
+  initialView?: 'kanban' | 'table' | 'calendar' | 'charts';
+}
+
+export function ApplicationsPage({ initialView }: ApplicationsPageProps = {}) {
   const { profile } = useAuth();
   const { data: apps = [], isLoading, error, refetch } = useApplications();
   const { data: matches = [] } = useMatches();
@@ -27,24 +32,36 @@ export function ApplicationsPage() {
   const canKanban = hasFeature(profile, 'apps_kanban');
   const canTable = hasFeature(profile, 'apps_table');
   const canCalendar = hasFeature(profile, 'apps_calendar');
+  const canCharts = hasFeature(profile, 'apps_charts');
   const canAddExternal = hasFeature(profile, 'apps_add_external');
   const canExportExcel = hasFeature(profile, 'apps_export_excel');
 
-  const defaultMode: 'kanban' | 'table' | 'calendar' = canKanban
-    ? 'kanban'
-    : canTable
-    ? 'table'
-    : canCalendar
-    ? 'calendar'
-    : 'kanban';
+  const defaultMode: 'kanban' | 'table' | 'calendar' | 'charts' =
+    initialView && (
+      (initialView === 'kanban' && canKanban) ||
+      (initialView === 'table' && canTable) ||
+      (initialView === 'calendar' && canCalendar) ||
+      (initialView === 'charts' && canCharts)
+    )
+      ? initialView
+      : canKanban
+      ? 'kanban'
+      : canTable
+      ? 'table'
+      : canCalendar
+      ? 'calendar'
+      : canCharts
+      ? 'charts'
+      : 'kanban';
 
-  const [viewMode, setViewMode] = useState<'kanban' | 'table' | 'calendar'>(defaultMode);
+  const [viewMode, setViewMode] = useState<'kanban' | 'table' | 'calendar' | 'charts'>(defaultMode);
 
   // Fallback to permitted view mode if current mode is restricted
-  const activeViewMode: 'kanban' | 'table' | 'calendar' =
+  const activeViewMode: 'kanban' | 'table' | 'calendar' | 'charts' =
     (viewMode === 'kanban' && !canKanban) ||
     (viewMode === 'table' && !canTable) ||
-    (viewMode === 'calendar' && !canCalendar)
+    (viewMode === 'calendar' && !canCalendar) ||
+    (viewMode === 'charts' && !canCharts)
       ? defaultMode
       : viewMode;
 
@@ -237,6 +254,17 @@ export function ApplicationsPage() {
               )}
             </button>
           )}
+          {canCharts && (
+            <button
+              onClick={() => setViewMode('charts')}
+              className={`py-1.5 px-2.5 sm:px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 truncate ${
+                activeViewMode === 'charts' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <BarChart3 className="w-3.5 h-3.5" />
+              <span>Statistiques</span>
+            </button>
+          )}
         </div>
 
         {/* Filter Inputs */}
@@ -314,6 +342,14 @@ export function ApplicationsPage() {
             setSelectedInterviewDate(dateStr || null);
             setIsInterviewModalOpen(true);
           }}
+        />
+      )}
+
+      {activeViewMode === 'charts' && (
+        <ApplicationsCharts
+          apps={apps}
+          onSwitchView={setViewMode}
+          onAddExternal={handleAddExternal}
         />
       )}
 

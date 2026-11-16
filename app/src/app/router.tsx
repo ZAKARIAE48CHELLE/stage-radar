@@ -64,7 +64,11 @@ export const router = createBrowserRouter([
           },
           {
             element: <RequireFeature feature="page_applications" />,
-            children: [{ path: '/candidatures', element: <ApplicationsPage /> }],
+            children: [
+              { path: '/candidatures', element: <ApplicationsPage /> },
+              { path: '/candidatures/statistiques', element: <ApplicationsPage initialView="charts" /> },
+              { path: '/candidatures/charts', element: <ApplicationsPage initialView="charts" /> },
+            ],
           },
           {
             element: <RequireFeature feature="page_carrieres" />,

@@ -68,6 +68,13 @@ export const ALL_FEATURES: FeatureDefinition[] = [
     default: true,
   },
   {
+    key: 'apps_charts',
+    label: "Vue Graphiques & Statistiques",
+    description: "Analyse des taux de conversion, graphiques et métriques des postulations",
+    category: 'applications',
+    default: true,
+  },
+  {
     key: 'apps_add_external',
     label: "Ajout candidature externe",
     description: "Possibilité d'ajouter des candidatures trouvées ailleurs",
