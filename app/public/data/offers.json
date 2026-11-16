@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T13:55:48+00:00",
+ "generated_at": "2026-11-16T15:41:10+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 1606,
+  "stored": 1614,
   "by_source": {
-   "stagiaires.ma": 37,
+   "stagiaires.ma": 33,
    "dreamjob.ma": 3
   },
-  "kept": 40,
-  "new_this_run": 36,
+  "kept": 36,
+  "new_this_run": 8,
   "filter_reasons": {
-   "title excluded": 244,
-   "not data/AI": 1073,
-   "not an internship": 31,
-   "expired": 14,
+   "title excluded": 236,
+   "not data/AI": 1067,
+   "not an internship": 32,
+   "expired": 18,
    "too old": 2,
-   "removed from site": 119,
-   "too few skill keywords": 76,
-   "ok": 47,
+   "removed from site": 142,
+   "too few skill keywords": 74,
+   "ok": 43,
    "duplicate": 7
   }
  },
@@ -90,7 +90,7 @@
    "score": 98,
    "is_pfe": true,
    "first_seen": "2026-11-15",
-   "new_today": true,
+   "new_today": false,
    "id": 1
   },
   {
@@ -183,48 +183,6 @@
    "id": 3
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7223-stage-pre-embauche-data-management-ai-consultant-junior",
-   "source": "stagiaires.ma",
-   "title": "Stage Pré-Embauche Data Management & AI Consultant Junior",
-   "company": "Tesselate",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-16",
-   "valid_through": "2026-11-15",
-   "employment_type": "INTERN",
-   "description": "Rejoignez Tesselate en tant que Consultant Data Management & IA Junior ! Vous participerez au développement d'agents IA innovants, à la gouvernance des données et à l'automatisation de processus complexes pour des clients prestigieux. Idéal pour un étudiant en fin de cycle ingénieur ou un jeune diplômé passionné par Python, le Low-Code/No-Code et l'IA générative. Ce stage offre une opportunité concrète de pré-embauche en CDI au sein d'une équipe dynamique à Casablanca.\nÀ propos du poste\nDans le cadre du développement de nos activités Data & IA, nous recherchons des\nConsultants Data Management & IA Juniors\npassionnés par la donnée, l'automatisation et les technologies d'intelligence artificielle.\nVous participerez à la conception, au développement et au déploiement d'agents IA destinés à automatiser des processus métiers, améliorer la productivité des équipes et valoriser les données de nos clients, principalement dans les secteurs de la banque, des services financiers et de l'entreprise.\nVous travaillerez à la fois sur des plateformes\nLow-Code/No-Code\net sur des développements techniques avancés en Python et technologies IA.\nVos missions\nData Management\nCollecter, analyser et structurer les données métier.\nParticiper aux projets de gouvernance et qualité des données.\nConcevoir des reportings et tableaux de bord.\nContribuer à la documentation et à la cartographie des données.\nDéveloppement d'Agents IA\nConcevoir et configurer des agents IA avec des plateformes Low-Code/No-Code.\nDévelopper des agents IA avancés en Python.\nConnecter les agents à des bases de données, APIs et applications d'entreprise.\nMettre en place des workflows et scénarios d'automatisation.\nParticiper aux phases de tests, documentation et industrialisation.\nConseil & Innovation\nParticiper aux ateliers d",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/12/13113042/Logo-STG-Entreprise-et-ecole-100.png",
-   "axis_hits": {
-    "genai": 7,
-    "bigdata": 3,
-    "fullstack": 4,
-    "cvsec": 0
-   },
-   "keywords": [
-    "agents ia",
-    "anthropic",
-    "copilot",
-    "ia generative",
-    "intelligence artificielle",
-    "openai",
-    "prompt engineering",
-    "azure",
-    "power bi",
-    "sql",
-    "apis",
-    "automatisation",
-    "make",
-    "n8n"
-   ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 3,
-   "score": 94,
-   "is_pfe": false,
-   "first_seen": "2026-11-07",
-   "new_today": false,
-   "id": 4
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7484-pfe-en-data-science-et-devops",
    "source": "stagiaires.ma",
    "title": "PFE en Data Science et DevOps",
@@ -263,7 +221,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 5
+   "id": 4
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7306-stage-pfe-datalab-pre-embauche",
@@ -305,43 +263,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7279-stage-pfe-datalab-pre-embauche"
     }
    ],
-   "id": 6
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7221-data-ai-stagiaire-pfe",
-   "source": "stagiaires.ma",
-   "title": "Data & AI Stagiaire PFE",
-   "company": "Capgemini Engineering",
-   "city": "Casablanca",
-   "modality": "Hybride",
-   "date_posted": "2026-10-16",
-   "valid_through": "2026-11-15",
-   "employment_type": "INTERN",
-   "description": "Rejoignez Capgemini Engineering en tant que stagiaire PFE Data & AI. Vous participerez au développement de modèles de machine learning, à l'analyse de données et à la création de dashboards interactifs. Idéal pour un étudiant en fin de cursus Bac+5 (Data Science/AI) maîtrisant Python et SQL. Intégrez une équipe innovante au sein d'un environnement hybride favorisant l'apprentissage continu et l'impact technologique. Une opportunité unique de travailler sur des projets à fort impact auprès de grands comptes.\nDescription du poste\nCapgemini Engineering recherche un(e) stagiaire PFE Data & AI pour contribuer au développement de solutions analytiques et d'intelligence artificielle. Vous participerez à l'exploitation des données, au développement de modèles de machine learning et à la création de dashboards. Profil recherché : étudiant(e) en fin de cursus Bac+5 en Data Science/AI, doté(e) d'une maîtrise de Python, SQL et d'outils de visualisation. Rejoignez une équipe innovante dans un environnement hybride favorisant l'apprentissage continu et l'impact technologique.\nÀ propos de Capgemini Engineering\nCapgemini Engineering, leader mondial des services d'ingénierie, rassemble des experts pour aider les entreprises innovantes à libérer leur potentiel. Nos équipes développent des solutions R&D et d'ingénierie uniques à travers tous les secteurs d'activité.\nVos missions\nConcevoir des analyses exploratoires et réaliser des visualisations pertinentes.\nParticiper au développement de modèles d'IA et de machine learning.\nContribuer à la création ou la mise à jour de dashboards (Power BI / Tableau).\nAutomatiser des scripts et pipelines de données.\nDocumenter les travaux réalisés et assurer le suivi des projets.\nRéaliser une veille technologique sur le domaine Data & AI.\nProfil recherch",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2026/01/23112709/capgemini.png",
-   "axis_hits": {
-    "genai": 1,
-    "bigdata": 7,
-    "fullstack": 0,
-    "cvsec": 0
-   },
-   "keywords": [
-    "intelligence artificielle",
-    "big data",
-    "data science",
-    "machine learning",
-    "pipelines",
-    "power bi",
-    "scikit-learn",
-    "sql"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 8,
-   "score": 80,
-   "is_pfe": true,
-   "first_seen": "2026-11-07",
-   "new_today": false,
-   "id": 7
+   "id": 5
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7444-sales-enablement-intern",
@@ -373,7 +295,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 8
+   "id": 6
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7650-stage-pfe-telecom-it",
@@ -414,7 +336,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7634-stage-pfe-telecom-it"
     }
    ],
-   "id": 9
+   "id": 7
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7501-stage-pre-embauche-data-scientist-ia-automation",
@@ -448,7 +370,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 10
+   "id": 8
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -480,7 +402,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 11
+   "id": 9
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7371-stage-en-developpement-web-et-ia",
@@ -521,7 +443,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7332-stage-en-developpement-web-et-ia"
     }
    ],
-   "id": 12
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7367-stage-pfe-consultants-cloud-databricks-talend-devops-bi-f-h",
@@ -553,7 +475,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 13
+   "id": 11
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7648-stage-developpeur-se-full-stack-developpement-assiste-par-l-ia-smilycall",
@@ -587,7 +509,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 14
+   "id": 12
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7681-stage-pfe-data-ia-it-d2t2",
@@ -619,7 +541,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 15
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7966-stage-securite-ia-et-ingenierie-de-la-confiance",
@@ -650,8 +572,8 @@
    "score": 66,
    "is_pfe": false,
    "first_seen": "2026-11-15",
-   "new_today": true,
-   "id": 16
+   "new_today": false,
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7623-artificial-intelligence-engineer-intern",
@@ -685,7 +607,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 17
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7621-stage-de-fin-d-etudes-pfe-campagne",
@@ -715,7 +637,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 18
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7595-campagne-de-recrutement-pfe",
@@ -745,7 +667,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 19
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7497-stage-pfe-securisation-et-automatisation-des-infrastructures-it-et-ia",
@@ -776,7 +698,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 20
+   "id": 18
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7474-securisation-et-automatisation-des-infrastructures-it-windows-linux-bdd-itsm-avec-ia",
@@ -807,7 +729,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 21
+   "id": 19
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7964-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f",
@@ -836,14 +758,14 @@
    "score": 64,
    "is_pfe": false,
    "first_seen": "2026-11-15",
-   "new_today": true,
+   "new_today": false,
    "also_on": [
     {
      "source": "stagiaires.ma",
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7938-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f"
     }
    ],
-   "id": 22
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -876,7 +798,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 23
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7973-stage-data-engineering-ai-infrastructure-optimization-des-systemes",
@@ -907,8 +829,8 @@
    "score": 63,
    "is_pfe": false,
    "first_seen": "2026-11-15",
-   "new_today": true,
-   "id": 24
+   "new_today": false,
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7402-candidatures-spontanees-forum-geni-entreprises",
@@ -939,7 +861,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 25
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7355-hr-recruiting-intern-remote",
@@ -969,38 +891,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 26
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7233-end-of-studies-internship-operations",
-   "source": "stagiaires.ma",
-   "title": "End-of-Studies Internship | Operations",
-   "company": "A.P. Moller - Maersk",
-   "city": "Tanger",
-   "modality": "",
-   "date_posted": "2026-10-16",
-   "valid_through": "2026-11-15",
-   "employment_type": "INTERN",
-   "description": "APM Terminals Tangier offers an End-of-Studies internship for students specializing in Data Science, Engineering, or Business Intelligence. Join our Operations department to apply your skills in a complex, data-driven port environment. Benefit from professional mentorship, logistics exposure, and transport facilities. Apply before 15/11/2026.\nAPM Terminals\nAbout The Internship\nAre you a final-year student interested in operations, data analysis, statistics, or business intelligence? APM Terminals Tangier is looking for motivated and ambitious interns to join the Operations Department. This opportunity will allow selected students to apply their academic knowledge in a complex operational environment and contribute to data-driven operations.\nInternship Overview\nDepartment:\nOperations\nLocation:\nTangier Med Port\nDuration:\n3 to 6 months\nInternship type:\nEnd-of-Studies Project / PFE\nInternship agreement:\nA valid school internship agreement is mandatory\nApplication deadline:\n15/11/2026\nWho We’re Looking For\nFinal-year students specializing in Statistics, Industrial Engineering, Data Science, Computer Science, Information Systems, Business Intelligence, Data Analytics, Software Engineering or a related discipline.\nSkills & Knowledge\nStrong analytical and quantitative skills\nAbility to organize, analyze, and interpret data\nGood command of Excel\nKnowledge of Power BI or other data-visualization tools would be an advantage\nKnowledge of SQL, Python, R, or similar tools would be an advantage\nStrong attention to detail\nInterest in logistics and operational performance\nGood communication and presentation skills\nGood working knowledge of English and French\nWhat We Offer\nPractical experience in a complex operational environment\nExposure to terminal operations and logistics\nThe opportun",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/08/26104936/download.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 3,
-    "fullstack": 0,
-    "cvsec": 0
-   },
-   "keywords": [
-    "data science",
-    "power bi",
-    "sql"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 8,
-   "score": 61,
-   "is_pfe": true,
-   "first_seen": "2026-11-07",
-   "new_today": false,
-   "id": 27
+   "id": 24
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7405-candidatures-spontanees-forum-geni-entreprises",
@@ -1032,7 +923,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 28
+   "id": 25
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -1064,7 +955,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 29
+   "id": 26
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
@@ -1094,7 +985,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-11",
    "new_today": false,
-   "id": 30
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
@@ -1124,7 +1015,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-10",
    "new_today": false,
-   "id": 31
+   "id": 28
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1160,37 +1051,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 32
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7240-end-of-studies-internship-information-technology-it",
-   "source": "stagiaires.ma",
-   "title": "End-of-Studies Internship | Information Technology (IT)",
-   "company": "A.P. Moller - Maersk",
-   "city": "Tanger",
-   "modality": "",
-   "date_posted": "2026-10-16",
-   "valid_through": "2026-11-15",
-   "employment_type": "INTERN",
-   "description": "APM Terminals Tangier, part of A.P. Moller - Maersk, offers a 3 to 6-month End-of-Studies Internship for IT and engineering students. Join our IT department at Tangier Med Port to gain hands-on experience in infrastructure, data analysis, and system performance monitoring. Applicants should be final-year students proficient in English and French, with strong analytical skills and an interest in IT systems. This is an excellent opportunity for networking and professional growth in a leading international company. Apply before November 15, 2027, via our platform.\nAbout The Internship\nAre you a final-year IT or engineering student looking for an End-of-Studies Project (PFE) internship?\nAPM Terminals Tangier\nis looking for a motivated and ambitious intern to join the IT Department. This opportunity provides practical exposure to IT infrastructure, data analysis, systems availability, and performance monitoring within an international operational environment.\nInternship Overview\nDepartment:\nInformation Technology\nLocation:\nTangier Med Port\nDuration:\n3 to 6 months\nType:\nEnd-of-Studies Project / PFE\nRequirement:\nValid school internship agreement is mandatory\nApplication Deadline:\n15/11/2027\nWho We’re Looking For\nFinal-year students specializing in Computer Science, Information Technology, Network and Systems Engineering, IT Infrastructure, Data Analytics, Software Engineering, or related disciplines.\nSkills & Knowledge\nUnderstanding of IT infrastructure and information systems\nStrong analytical and problem-solving skills\nProficiency in Excel; knowledge of Power BI, SQL, or Python is a plus\nFamiliarity with Windows or Linux environments\nStrong documentation, organizational, and communication skills\nGood working knowledge of English and French\nWhat We Offer\nHands-on experience i",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/08/26104936/download.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 2,
-    "fullstack": 0,
-    "cvsec": 0
-   },
-   "keywords": [
-    "power bi",
-    "sql"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 8,
-   "score": 58,
-   "is_pfe": true,
-   "first_seen": "2026-11-07",
-   "new_today": false,
-   "id": 33
+   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7916-stage-pfe",
@@ -1221,7 +1082,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-13",
    "new_today": false,
-   "id": 34
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7892-stage-pfe-eqdom",
@@ -1252,7 +1113,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-12",
    "new_today": false,
-   "id": 35
+   "id": 31
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1282,7 +1143,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 36
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7372-power-bi-data-analyst-stagiaire",
@@ -1317,7 +1178,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7329-power-bi-data-analyst-stagiaire"
     }
    ],
-   "id": 37
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7310-stage-en-net",
@@ -1347,7 +1208,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 38
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7291-stage-en-developpement-net",
@@ -1377,7 +1238,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 39
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7924-stage-pfe-2026-it-software-engineering-qa-cybersecurite-data-ia",
@@ -1405,8 +1266,8 @@
    "score": 40,
    "is_pfe": true,
    "first_seen": "2026-11-15",
-   "new_today": true,
-   "id": 40
+   "new_today": false,
+   "id": 36
   }
  ]
 }
