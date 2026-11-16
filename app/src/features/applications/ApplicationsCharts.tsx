@@ -49,6 +49,8 @@ const STATUS_COLORS: Record<string, string> = {
 export function ApplicationsCharts({ apps, onSwitchView, onAddExternal }: ApplicationsChartsProps) {
   const [period, setPeriod] = useState<'all' | '30d' | '90d' | 'month'>('all');
   const [sourceFilter, setSourceFilter] = useState<'all' | 'internal' | 'external'>('all');
+  const [granularity, setGranularity] = useState<'day' | 'week' | 'month'>('day');
+  const [timelineStyle, setTimelineStyle] = useState<'stacked' | 'trend' | 'cumulative'>('stacked');
 
   // Filtered dataset based on period & source
   const filteredApps = useMemo(() => {
@@ -167,9 +169,43 @@ export function ApplicationsCharts({ apps, onSwitchView, onAddExternal }: Applic
     })).filter((item) => item.value > 0);
   }, [filteredApps]);
 
-  // 4. Temporal Trend (Monthly applications)
+  // 4. Temporal Distribution (Day / Week / Month, stacked statuses & cumulative)
   const timelineData = useMemo(() => {
-    const buckets: Record<string, { month: string; raw: string; count: number; entretiens: number }> = {};
+    interface TimelineBucket {
+      label: string;
+      raw: string;
+      count: number;
+      entretiens: number;
+      cumulative: number;
+      cumulativeEntretiens: number;
+      a_postuler: number;
+      envoyee: number;
+      relance: number;
+      entretien: number;
+      offre: number;
+      refus: number;
+      abandon: number;
+    }
+
+    const createEmpty = (raw: string, label: string): TimelineBucket => ({
+      label,
+      raw,
+      count: 0,
+      entretiens: 0,
+      cumulative: 0,
+      cumulativeEntretiens: 0,
+      a_postuler: 0,
+      envoyee: 0,
+      relance: 0,
+      entretien: 0,
+      offre: 0,
+      refus: 0,
+      abandon: 0,
+    });
+
+    const buckets: Record<string, TimelineBucket> = {};
+    let minTime = Infinity;
+    let maxTime = -Infinity;
 
     filteredApps.forEach((a) => {
       const rawDate = a.applied_at || a.ext_date || a.updated_at;
@@ -177,20 +213,65 @@ export function ApplicationsCharts({ apps, onSwitchView, onAddExternal }: Applic
       const d = new Date(rawDate);
       if (isNaN(d.getTime())) return;
 
-      const yearMonth = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
-      const label = d.toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
+      const t = new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+      if (t < minTime) minTime = t;
+      if (t > maxTime) maxTime = t;
 
-      if (!buckets[yearMonth]) {
-        buckets[yearMonth] = { month: label, raw: yearMonth, count: 0, entretiens: 0 };
+      let key = '';
+      let label = '';
+
+      if (granularity === 'day') {
+        key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        label = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+      } else if (granularity === 'week') {
+        const day = d.getDay();
+        const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+        const monday = new Date(d.getFullYear(), d.getMonth(), diff);
+        key = `${monday.getFullYear()}-${String(monday.getMonth() + 1).padStart(2, '0')}-${String(monday.getDate()).padStart(2, '0')}`;
+        label = `Sem. ${monday.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}`;
+      } else {
+        key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+        label = d.toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
       }
-      buckets[yearMonth].count += 1;
+
+      if (!buckets[key]) {
+        buckets[key] = createEmpty(key, label);
+      }
+
+      buckets[key].count += 1;
       if (['entretien', 'offre'].includes(a.status)) {
-        buckets[yearMonth].entretiens += 1;
+        buckets[key].entretiens += 1;
+      }
+
+      const st = a.status as keyof TimelineBucket;
+      if (typeof buckets[key][st] === 'number') {
+        (buckets[key][st] as number) += 1;
       }
     });
 
-    return Object.values(buckets).sort((a, b) => a.raw.localeCompare(b.raw));
-  }, [filteredApps]);
+    // Fill continuous days for daily view when span <= 45 days so gaps are visible
+    if (granularity === 'day' && minTime !== Infinity && maxTime - minTime <= 45 * 864e5) {
+      for (let cur = minTime; cur <= maxTime; cur += 864e5) {
+        const d = new Date(cur);
+        const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        if (!buckets[key]) {
+          buckets[key] = createEmpty(key, d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }));
+        }
+      }
+    }
+
+    const sorted = Object.values(buckets).sort((a, b) => a.raw.localeCompare(b.raw));
+    let runningTotal = 0;
+    let runningEntretiens = 0;
+    sorted.forEach((b) => {
+      runningTotal += b.count;
+      runningEntretiens += b.entretiens;
+      b.cumulative = runningTotal;
+      b.cumulativeEntretiens = runningEntretiens;
+    });
+
+    return sorted;
+  }, [filteredApps, granularity]);
 
   // 5. Geographic breakdown (Top Cities)
   const cityData = useMemo(() => {
@@ -475,61 +556,179 @@ export function ApplicationsCharts({ apps, onSwitchView, onAddExternal }: Applic
           </div>
         </div>
 
-        {/* Chart 3: Temporal Trend / Applications Over Time */}
+        {/* Chart 3: Temporal Distribution / Applications Over Time */}
         <div className="bg-white rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-sm lg:col-span-2">
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
             <div>
               <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-emerald-600" />
-                <span>Activité & Rythme de postulation</span>
+                <span>Distribution des postulations dans le temps</span>
               </h2>
               <p className="text-xs text-slate-500">
-                Nombre de candidatures transmises par période pour maintenir votre dynamique.
+                Suivez la répartition chronologique de vos candidatures par statut, rythme ou cumul.
               </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              {/* Granularity Selector */}
+              <div className="flex items-center bg-slate-100 p-1 rounded-xl">
+                <button
+                  type="button"
+                  onClick={() => setGranularity('day')}
+                  className={`px-2.5 py-1 rounded-lg font-bold transition ${
+                    granularity === 'day' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Jour
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGranularity('week')}
+                  className={`px-2.5 py-1 rounded-lg font-bold transition ${
+                    granularity === 'week' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Semaine
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGranularity('month')}
+                  className={`px-2.5 py-1 rounded-lg font-bold transition ${
+                    granularity === 'month' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Mois
+                </button>
+              </div>
+
+              {/* Timeline Chart Style */}
+              <div className="flex items-center bg-slate-100 p-1 rounded-xl">
+                <button
+                  type="button"
+                  onClick={() => setTimelineStyle('stacked')}
+                  className={`px-2.5 py-1 rounded-lg font-bold transition ${
+                    timelineStyle === 'stacked' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Par statut
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTimelineStyle('trend')}
+                  className={`px-2.5 py-1 rounded-lg font-bold transition ${
+                    timelineStyle === 'trend' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Courbe
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTimelineStyle('cumulative')}
+                  className={`px-2.5 py-1 rounded-lg font-bold transition ${
+                    timelineStyle === 'cumulative' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Cumul
+                </button>
+              </div>
             </div>
           </div>
 
-          <div className="h-64 w-full">
+          <div className="h-72 w-full">
             {timelineData.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={timelineData} margin={{ top: 15, right: 15, left: -20, bottom: 10 }}>
-                  <defs>
-                    <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.4} />
-                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.0} />
-                    </linearGradient>
-                    <linearGradient id="colorInterviews" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.4} />
-                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.0} />
-                    </linearGradient>
-                  </defs>
-                  <XAxis dataKey="month" tick={{ fontSize: 11 }} />
-                  <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
-                  <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', fontSize: 12 }} />
-                  <Legend wrapperStyle={{ fontSize: 12 }} />
-                  <Area
-                    type="monotone"
-                    dataKey="count"
-                    name="Candidatures envoyées"
-                    stroke="#3b82f6"
-                    strokeWidth={2}
-                    fillOpacity={1}
-                    fill="url(#colorCount)"
-                  />
-                  <Area
-                    type="monotone"
-                    dataKey="entretiens"
-                    name="Entretiens & Offres"
-                    stroke="#f59e0b"
-                    strokeWidth={2}
-                    fillOpacity={1}
-                    fill="url(#colorInterviews)"
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
+              timelineStyle === 'stacked' ? (
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={timelineData} margin={{ top: 10, right: 15, left: -20, bottom: 10 }}>
+                    <XAxis dataKey="label" tick={{ fontSize: 11 }} />
+                    <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', fontSize: 12 }} />
+                    <Legend wrapperStyle={{ fontSize: 11 }} />
+                    <Bar dataKey="envoyee" name="Envoyée" stackId="a" fill={STATUS_COLORS.envoyee} />
+                    <Bar dataKey="relance" name="Relancée" stackId="a" fill={STATUS_COLORS.relance} />
+                    <Bar dataKey="entretien" name="Entretien" stackId="a" fill={STATUS_COLORS.entretien} />
+                    <Bar dataKey="offre" name="Offre reçue" stackId="a" fill={STATUS_COLORS.offre} />
+                    <Bar dataKey="refus" name="Refus" stackId="a" fill={STATUS_COLORS.refus} />
+                    <Bar dataKey="a_postuler" name="À postuler" stackId="a" fill={STATUS_COLORS.a_postuler} radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              ) : timelineStyle === 'trend' ? (
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={timelineData} margin={{ top: 15, right: 15, left: -20, bottom: 10 }}>
+                    <defs>
+                      <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.0} />
+                      </linearGradient>
+                      <linearGradient id="colorInterviews" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.0} />
+                      </linearGradient>
+                    </defs>
+                    <XAxis dataKey="label" tick={{ fontSize: 11 }} />
+                    <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', fontSize: 12 }} />
+                    <Legend wrapperStyle={{ fontSize: 12 }} />
+                    <Area
+                      type="monotone"
+                      dataKey="count"
+                      name="Candidatures"
+                      stroke="#3b82f6"
+                      strokeWidth={2}
+                      fillOpacity={1}
+                      fill="url(#colorCount)"
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="entretiens"
+                      name="Entretiens & Offres"
+                      stroke="#f59e0b"
+                      strokeWidth={2}
+                      fillOpacity={1}
+                      fill="url(#colorInterviews)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              ) : (
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={timelineData} margin={{ top: 15, right: 15, left: -20, bottom: 10 }}>
+                    <defs>
+                      <linearGradient id="colorCumul" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#6366f1" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#6366f1" stopOpacity={0.0} />
+                      </linearGradient>
+                      <linearGradient id="colorCumulEnt" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#10b981" stopOpacity={0.0} />
+                      </linearGradient>
+                    </defs>
+                    <XAxis dataKey="label" tick={{ fontSize: 11 }} />
+                    <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', fontSize: 12 }} />
+                    <Legend wrapperStyle={{ fontSize: 12 }} />
+                    <Area
+                      type="monotone"
+                      dataKey="cumulative"
+                      name="Total cumulé (postulations)"
+                      stroke="#6366f1"
+                      strokeWidth={2}
+                      fillOpacity={1}
+                      fill="url(#colorCumul)"
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="cumulativeEntretiens"
+                      name="Entretiens & Offres cumulés"
+                      stroke="#10b981"
+                      strokeWidth={2}
+                      fillOpacity={1}
+                      fill="url(#colorCumulEnt)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              )
             ) : (
               <div className="h-full flex items-center justify-center text-xs text-slate-400">
-                Pas assez de données temporelles pour tracer la courbe d'activité.
+                Pas assez de données temporelles pour tracer la distribution.
               </div>
             )}
           </div>

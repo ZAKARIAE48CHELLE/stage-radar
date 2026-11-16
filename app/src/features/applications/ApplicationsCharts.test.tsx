@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { ApplicationsCharts } from './ApplicationsCharts';
 import type { ApplicationItem } from '../../types/api';
 
@@ -84,9 +84,15 @@ describe('ApplicationsCharts component', () => {
     // Check sections exist
     expect(screen.getByText('Entonnoir de conversion')).toBeInTheDocument();
     expect(screen.getByText('Répartition par statut')).toBeInTheDocument();
-    expect(screen.getByText('Activité & Rythme de postulation')).toBeInTheDocument();
+    expect(screen.getByText('Distribution des postulations dans le temps')).toBeInTheDocument();
     expect(screen.getByText('Répartition géographique')).toBeInTheDocument();
     expect(screen.getByText('Formats d\'entretiens & Canaux')).toBeInTheDocument();
+
+    // Test granularity & timeline style toggles
+    fireEvent.click(screen.getByRole('button', { name: 'Semaine' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Mois' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Courbe' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Cumul' }));
   });
 
   it('renders helpful empty state when apps list is empty', () => {
