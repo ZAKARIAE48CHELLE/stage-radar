@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-18T15:37:46+00:00",
+ "generated_at": "2026-11-19T15:42:40+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 1663,
+  "stored": 1686,
   "by_source": {
-   "stagiaires.ma": 37,
+   "stagiaires.ma": 36,
    "dreamjob.ma": 3
   },
-  "kept": 40,
-  "new_this_run": 25,
+  "kept": 39,
+  "new_this_run": 23,
   "filter_reasons": {
-   "title excluded": 244,
-   "not data/AI": 1075,
-   "not an internship": 32,
+   "title excluded": 252,
+   "not data/AI": 1081,
+   "not an internship": 33,
    "expired": 16,
-   "too old": 2,
-   "removed from site": 170,
-   "too few skill keywords": 76,
-   "ok": 48,
+   "too old": 3,
+   "removed from site": 177,
+   "too few skill keywords": 77,
+   "ok": 47,
    "duplicate": 8
   }
  },
@@ -255,6 +255,12 @@
    "is_pfe": true,
    "first_seen": "2026-11-18",
    "new_today": true,
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/8072-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f"
+    }
+   ],
    "id": 5
   },
   {
@@ -292,7 +298,7 @@
    "score": 82,
    "is_pfe": true,
    "first_seen": "2026-11-17",
-   "new_today": true,
+   "new_today": false,
    "also_on": [
     {
      "source": "stagiaires.ma",
@@ -335,12 +341,6 @@
    "is_pfe": true,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "also_on": [
-    {
-     "source": "stagiaires.ma",
-     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7279-stage-pfe-datalab-pre-embauche"
-    }
-   ],
    "id": 7
   },
   {
@@ -806,7 +806,7 @@
    "score": 65,
    "is_pfe": true,
    "first_seen": "2026-11-18",
-   "new_today": true,
+   "new_today": false,
    "id": 21
   },
   {
@@ -1351,36 +1351,6 @@
    "id": 38
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7291-stage-en-developpement-net",
-   "source": "stagiaires.ma",
-   "title": "Stage en développement .NET",
-   "company": "LOGIGROUP",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-19",
-   "valid_through": "2026-11-18",
-   "employment_type": "INTERN",
-   "description": "Rejoignez LOGIGROUP en tant que stagiaire développeur .NET ! Vous participerez à des projets de transformation digitale au sein d'une équipe technique experte. Au programme : développement front/back, méthodologies Agile, et montée en compétences sur l'écosystème .NET et SQL. Si vous êtes étudiant(e) en informatique (Bac+3 à Bac+5) avec un bon esprit d'analyse et une réelle motivation, ce stage est fait pour vous. Intégrez une ESN dynamique pour une immersion concrète dans le monde professionnel.\nÀ propos de LOGIGROUP\nLOGIGROUP est une ESN spécialisée dans la Business Transformation, le Data Management, le Cloud, l'IA et la Cybersécurité.\nDescriptif du stage\nPour accompagner nos clients dans leurs projets de transformation digitale, nous recherchons un stagiaire développeur\n.NET\n. Vous intégrerez nos équipes techniques pour contribuer au développement d'applications tout en montant en compétences sur l'écosystème .NET et les meilleures pratiques du marché.\nMissions\nEncadré(e) par un Tech Lead, vous interviendrez sur :\nAnalyse des besoins fonctionnels et techniques.\nRédaction de spécifications techniques.\nDéveloppement et évolution d'applications en environnement .NET.\nDéveloppement d'applications web (Front et Back).\nConception d'interfaces utilisateurs.\nRéalisation de tests unitaires et correctifs.\nParticipation aux revues de code et veille technologique.\nIntérêt du stage\nPratique des méthodologies Agile / Scrum.\nRenforcement de vos compétences techniques.\nTravail au sein d'une équipe pluridisciplinaire.\nProjets concrets à forte valeur ajoutée.\nProfil recherché\nÉtudiant(e) en informatique (Bac+3 à Bac+5).\nDisponibilité de 4 à 6 mois.\nConnaissances de base en .NET / C# et développement web.\nNotions en bases de données et SQL.\nRigueur, esprit d'analyse et motivation.\nBon",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/10100451/LOGIGROUP.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 1,
-    "fullstack": 0,
-    "cvsec": 1
-   },
-   "keywords": [
-    "sql",
-    "cybersecurite"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 3,
-   "score": 44,
-   "is_pfe": false,
-   "first_seen": "2026-11-07",
-   "new_today": false,
-   "id": 39
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7924-stage-pfe-2026-it-software-engineering-qa-cybersecurite-data-ia",
    "source": "stagiaires.ma",
    "title": "Stage PFE 2026 - IT (Software Engineering, QA, Cybersécurité, Data, IA)",
@@ -1407,7 +1377,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 40
+   "id": 39
   }
  ]
 }
