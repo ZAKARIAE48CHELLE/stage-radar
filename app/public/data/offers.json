@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-19T15:42:40+00:00",
+ "generated_at": "2026-11-20T15:24:56+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 1686,
+  "stored": 1696,
   "by_source": {
-   "stagiaires.ma": 36,
+   "stagiaires.ma": 37,
    "dreamjob.ma": 3
   },
-  "kept": 39,
-  "new_this_run": 23,
+  "kept": 40,
+  "new_this_run": 10,
   "filter_reasons": {
-   "title excluded": 252,
-   "not data/AI": 1081,
+   "title excluded": 255,
+   "not data/AI": 1085,
    "not an internship": 33,
-   "expired": 16,
+   "expired": 18,
    "too old": 3,
    "removed from site": 177,
    "too few skill keywords": 77,
-   "ok": 47,
+   "ok": 48,
    "duplicate": 8
   }
  },
@@ -224,6 +224,44 @@
    "id": 4
   },
   {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8101-offre-de-stage-en-prompt-engineer-ia-marrakech",
+   "source": "stagiaires.ma",
+   "title": "Offre de Stage en Prompt Engineer & IA - Marrakech",
+   "company": "Orchid Island Real Estate",
+   "city": "Marrakech",
+   "modality": "Sur site",
+   "date_posted": "2026-11-20",
+   "valid_through": "2026-12-20",
+   "employment_type": "INTERN",
+   "description": "Orchid Island Luxury Real Estate recrute un(e) stagiaire Prompt Engineer & IA à Marrakech (Guéliz). Participez à la conception de prompts, workflows IA et solutions d'automatisation appliquées à l'immobilier, la due diligence, l'analyse de données et l'investissement. Stage de 3 mois minimum, 100% présentiel, non rémunéré, convention requise. Profil en informatique, IA, Data Science ou similaire, familier avec ChatGPT et outils d'IA générative. Maîtrise du français requise.\nStage Prompt Engineer & Intelligence Artificielle\nImmobilier, Data, Due Diligence & Automatisation\nMarrakech\nOrchid Island Luxury Real Estate recherche un(e) stagiaire Prompt Engineer & Intelligence Artificielle pour participer au développement de solutions d'IA appliquées à l'immobilier, à l'investissement, à la due diligence et à l'analyse de données.\nCe stage s'adresse à un profil curieux, rigoureux et réellement intéressé par le Prompt Engineering, les LLM, l'automatisation et les nouveaux usages professionnels de l'intelligence artificielle.\nL'objectif n'est pas simplement d'utiliser ChatGPT.\nVous participerez à la conception d'une véritable bibliothèque de prompts, méthodes et workflows IA destinés aux activités d'Orchid Island à Marrakech.\nMissions principales\nCréation et optimisation de prompts professionnels pour la recherche immobilière, l'analyse de terrains, villas, hôtels, riads et immeubles, la qualification d'opportunités, la due diligence immobilière, l'analyse documentaire, l'étude de marché, l'estimation de valeur, l'analyse de prix au m², la comparaison d'actifs et l'investissement immobilier.\nProjets liés à l'analyse prédictive des prix immobiliers, à la structuration de données, à la recherche de comparables, à l'analyse de tendances de marché et au développement d'outils permett",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
+   "axis_hits": {
+    "genai": 7,
+    "bigdata": 1,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "ai agents",
+    "generative ai",
+    "ia generative",
+    "intelligence artificielle",
+    "llm",
+    "prompt engineering",
+    "rag",
+    "data science",
+    "automation",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 0,
+   "score": 88,
+   "is_pfe": false,
+   "first_seen": "2026-11-20",
+   "new_today": true,
+   "id": 5
+  },
+  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8036-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f",
    "source": "stagiaires.ma",
    "title": "Offre de stage PFE – Génie Informatique / Intelligence Artificielle / Data (H/F)",
@@ -254,14 +292,14 @@
    "score": 82,
    "is_pfe": true,
    "first_seen": "2026-11-18",
-   "new_today": true,
+   "new_today": false,
    "also_on": [
     {
      "source": "stagiaires.ma",
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8072-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f"
     }
    ],
-   "id": 5
+   "id": 6
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8017-stagiaires-pfe-telecoms-reseaux-it",
@@ -305,42 +343,6 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8053-stagiaires-pfe-telecoms-reseaux-it"
     }
    ],
-   "id": 6
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7306-stage-pfe-datalab-pre-embauche",
-   "source": "stagiaires.ma",
-   "title": "Stage PFE - DataLab (Pré-Embauche)",
-   "company": "Coface",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-20",
-   "valid_through": "2026-11-19",
-   "employment_type": "INTERN",
-   "description": "Rejoignez le DataLab de Coface pour un stage de fin d'études (PFE) stimulant. Intégrez une équipe internationale et travaillez sur des projets concrets d'IA, de Machine Learning et de déploiement cloud. Vous concevrez des solutions innovantes, de la conception à la mise en production, tout en développant vos compétences techniques en Python, Kubernetes et gestion de données. Si vous êtes étudiant(e) en Bac+5, passionné(e) par la data et prêt(e) à relever des défis dans un environnement collaboratif, postulez pour façonner l'avenir du commerce mondial avec nous.\nÀ propos de Coface\nRejoignez\nCoface\n, expert mondial en assurance-crédit et gestion des risques. Avec près de 80 ans d'expertise et une présence dans 58 pays, nous accompagnons les entreprises dans leurs décisions stratégiques grâce à l'innovation technologique et une gestion intelligente de la donnée.\nDescription du poste\nLe\nDataLab\nde Coface recherche des stagiaires en fin d'études (PFE) motivés pour intégrer une équipe internationale dynamique. Vous travaillerez sur des projets concrets d'intelligence artificielle et de machine learning, de la conception jusqu'au déploiement en production.\nVos missions :\nTravail en binôme sur des projets innovants.\nConception et développement de solutions de\nMachine Learning\n.\nMise en œuvre d'infrastructures de containers et monitoring.\nParticipation active à la veille technologique.\nProfil recherché :\nÉtudiant(e) en Bac+5 (École d'ingénieurs ou Master).\nMaîtrise des modèles d'apprentissage (supervisé, non-supervisé, clustering, NLP).\nExcellente maîtrise de\nPython\net de son écosystème.\nAnglais opérationnel requis.\nQualités : autonomie, curiosité et rigueur.\nCompétences appréciées :\nMaîtrise de Linux, Git et SQL.\nExpérience en CI/CD, Docker/Kubernetes et cloud.\nConnaissance des",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/06/13161336/logo-entreprise-18.png",
-   "axis_hits": {
-    "genai": 2,
-    "bigdata": 5,
-    "fullstack": 1,
-    "cvsec": 0
-   },
-   "keywords": [
-    "intelligence artificielle",
-    "nlp",
-    "docker",
-    "kubernetes",
-    "machine learning",
-    "nosql",
-    "sql",
-    "ci/cd"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 8,
-   "score": 82,
-   "is_pfe": true,
-   "first_seen": "2026-11-07",
-   "new_today": false,
    "id": 7
   },
   {
@@ -872,6 +874,70 @@
    "id": 23
   },
   {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8117-stage-pfe-en-developpement-infrastructure-applicatif-f-h",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE en Développement, Infrastructure & Applicatif (F/H)",
+   "company": "CGI",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-11-20",
+   "valid_through": "2026-12-20",
+   "employment_type": "INTERN",
+   "description": "CGI recrute des stagiaires PFE 2027 (Bac+5) en informatique pour des missions en développement, Data/BI, Cloud/DevOps, systèmes et réseaux, ITSM, bases de données et Mainframe. Vous participerez à la conception, au développement et aux tests de solutions IT, en collaboration avec les équipes techniques. Une expérience enrichissante au sein d'un groupe international, avec accompagnement par des professionnels expérimentés. Poste basé à Casablanca.\nÀ propos de l'offre\nDans le cadre de notre campagne de recrutement des stagiaires PFE 2027, CGI recherche des étudiants en dernière année d'études (Bac+5), issus d'écoles d'ingénieurs ou de formations spécialisées en informatique.\nNous recherchons des profils motivés, curieux et disposant d'une très bonne capacité de communication, aussi bien à l'oral qu'à l'écrit, capables d'évoluer dans un environnement collaboratif et de travailler en équipe.\nPlusieurs opportunités sont proposées dans différents domaines technologiques : développement, Data/BI, Cloud/DevOps, systèmes et réseaux, ITSM, bases de données et technologies Mainframe.\nFonctions et responsabilités\nSelon votre spécialité et le projet d'affectation, vous serez amené(e) à :\nParticiper à la conception, au développement et à l'évolution de solutions informatiques.\nContribuer à des projets dans les domaines du développement logiciel, de la Data, du Cloud, des infrastructures et des systèmes d'information.\nParticiper à l'analyse des besoins, à la réalisation technique et aux phases de tests.\nCollaborer avec les équipes techniques et fonctionnelles.\nParticiper aux échanges, réunions et activités de suivi de projet.\nRédiger la documentation technique et assurer le partage des informations.\nProposer des idées et contribuer à l'amélioration continue des solutions.\nDomaines tec",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/01/29145824/Design-sans-titre-99.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "etl",
+    "sql",
+    "angular",
+    "devops"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 64,
+   "is_pfe": true,
+   "first_seen": "2026-11-20",
+   "new_today": true,
+   "id": 24
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8110-stage-pfe-si",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE SI",
+   "company": "CIH Bank",
+   "city": "Casablanca",
+   "modality": "Sur site",
+   "date_posted": "2026-11-20",
+   "valid_through": "2026-12-20",
+   "employment_type": "INTERN",
+   "description": "CIH Bank recrute des stagiaires PFE en Systèmes d'Information à Casablanca. Domaines : développement, data science, IA, cybersécurité, cloud/DevOps, réseaux et bases de données. Profil Bac+4/5 en informatique ou équivalent, avec rigueur, autonomie et esprit d'équipe. Stage sur site.\nContexte du recrutement et définition de poste\nDans le cadre de notre politique d'accompagnement des jeunes talents, nous recherchons des stagiaires en Systèmes d'Information dans différents domaines :\nDéveloppement informatique ;\nData / Data Science ;\nIntelligence Artificielle ;\nCybersécurité ;\nCloud et DevOps ;\nSystèmes, Réseaux et Infrastructure ;\nBases de données.\nProfil recherché\nÉtudiant(e) en Bac+4 / Bac+5 en informatique, systèmes d'information, data, intelligence artificielle, cybersécurité ou formation équivalente ;\nÀ la recherche d'un stage de fin d'études (PFE) ;\nBonnes capacités d'analyse et de résolution de problèmes ;\nRigueur, curiosité, autonomie et esprit d'équipe ;\nIntérêt marqué pour les nouvelles technologies et les métiers des Systèmes d'Information.",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/04/16171833/CIH.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 1,
+    "cvsec": 1
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "data science",
+    "devops",
+    "cybersecurite"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 64,
+   "is_pfe": true,
+   "first_seen": "2026-11-20",
+   "new_today": true,
+   "id": 25
+  },
+  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7964-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f",
    "source": "stagiaires.ma",
    "title": "Stage Pré-embauche – Python, Intelligence Artificielle & Développement Web (H/F)",
@@ -905,7 +971,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7938-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f"
     }
    ],
-   "id": 24
+   "id": 26
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -938,7 +1004,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 25
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7973-stage-data-engineering-ai-infrastructure-optimization-des-systemes",
@@ -970,7 +1036,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 26
+   "id": 28
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7402-candidatures-spontanees-forum-geni-entreprises",
@@ -1001,7 +1067,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 27
+   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7355-hr-recruiting-intern-remote",
@@ -1031,7 +1097,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-07",
    "new_today": false,
-   "id": 28
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7405-candidatures-spontanees-forum-geni-entreprises",
@@ -1063,7 +1129,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 29
+   "id": 31
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -1095,7 +1161,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 30
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
@@ -1125,7 +1191,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-11",
    "new_today": false,
-   "id": 31
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
@@ -1155,7 +1221,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-10",
    "new_today": false,
-   "id": 32
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1191,7 +1257,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 33
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7916-stage-pfe",
@@ -1222,7 +1288,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-13",
    "new_today": false,
-   "id": 34
+   "id": 36
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7892-stage-pfe-eqdom",
@@ -1253,7 +1319,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-12",
    "new_today": false,
-   "id": 35
+   "id": 37
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1283,7 +1349,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 36
+   "id": 38
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7372-power-bi-data-analyst-stagiaire",
@@ -1318,37 +1384,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7329-power-bi-data-analyst-stagiaire"
     }
    ],
-   "id": 37
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7310-stage-en-net",
-   "source": "stagiaires.ma",
-   "title": "Stage en .Net",
-   "company": "LOGIGROUP",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-20",
-   "valid_through": "2026-11-19",
-   "employment_type": "INTERN",
-   "description": "Rejoignez LOGIGROUP en tant que stagiaire développeur .NET pour participer à des projets de transformation digitale. Intégrez une équipe experte, pratiquez les méthodologies Agile et montez en compétences sur l'écosystème .NET et SQL. Stage ouvert aux étudiants (Bac+3 à Bac+5) disponibles de 4 à 6 mois. Une opportunité idéale pour une immersion concrète dans le monde professionnel au sein d'une ESN dynamique à Casablanca.\nDescription du poste\nRejoignez\nLOGIGROUP\nen tant que stagiaire développeur .NET ! Vous participerez à des projets de transformation digitale au sein d'une équipe technique experte. Au programme : développement front/back, méthodologies Agile, et montée en compétences sur l'écosystème .NET et SQL. Si vous êtes étudiant(e) en informatique (Bac+3 à Bac+5) avec un bon esprit d'analyse et une réelle motivation, ce stage est fait pour vous. Intégrez une ESN dynamique pour une immersion concrète dans le monde professionnel.\nÀ propos de LOGIGROUP\nLOGIGROUP est une ESN spécialisée dans la Business Transformation, le Data Management, le Cloud, l'IA et la Cybersécurité.\nMissions\nEncadré(e) par un Tech Lead, vous interviendrez sur :\nAnalyse des besoins fonctionnels et techniques.\nRédaction de spécifications techniques.\nDéveloppement et évolution d'applications en environnement .NET.\nDéveloppement d'applications web (Front et Back).\nConception d'interfaces utilisateurs.\nRéalisation de tests unitaires et correctifs.\nParticipation aux revues de code et veille technologique.\nIntérêt du stage\nPratique des méthodologies Agile / Scrum.\nRenforcement de vos compétences techniques.\nTravail au sein d'une équipe pluridisciplinaire.\nProjets concrets à forte valeur ajoutée.\nProfil recherché\nÉtudiant(e) en informatique (Bac+3 à Bac+5).\nDisponibilité de 4 à 6 mois.\nConnaissances ",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/10100451/LOGIGROUP.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 1,
-    "fullstack": 0,
-    "cvsec": 1
-   },
-   "keywords": [
-    "sql",
-    "cybersecurite"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 3,
-   "score": 44,
-   "is_pfe": false,
-   "first_seen": "2026-11-07",
-   "new_today": false,
-   "id": 38
+   "id": 39
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7924-stage-pfe-2026-it-software-engineering-qa-cybersecurite-data-ia",
@@ -1377,7 +1413,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 39
+   "id": 40
   }
  ]
 }
