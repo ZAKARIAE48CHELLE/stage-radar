@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-20T15:24:56+00:00",
+ "generated_at": "2026-11-21T14:37:41+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,23 +28,23 @@
   }
  },
  "stats": {
-  "stored": 1696,
+  "stored": 1712,
   "by_source": {
-   "stagiaires.ma": 37,
+   "stagiaires.ma": 38,
    "dreamjob.ma": 3
   },
-  "kept": 40,
-  "new_this_run": 10,
+  "kept": 41,
+  "new_this_run": 16,
   "filter_reasons": {
-   "title excluded": 255,
-   "not data/AI": 1085,
+   "title excluded": 254,
+   "not data/AI": 1095,
    "not an internship": 33,
-   "expired": 18,
-   "too old": 3,
-   "removed from site": 177,
+   "expired": 20,
+   "too old": 2,
+   "removed from site": 184,
    "too few skill keywords": 77,
-   "ok": 48,
-   "duplicate": 8
+   "ok": 47,
+   "duplicate": 6
   }
  },
  "offers": [
@@ -224,6 +224,45 @@
    "id": 4
   },
   {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8138-recrutement-developpeur-full-stack-ia-seo",
+   "source": "stagiaires.ma",
+   "title": "RECRUTEMENT – DÉVELOPPEUR FULL STACK | IA & SEO",
+   "company": "J&M technologie",
+   "city": "Casablanca",
+   "modality": "Sur site",
+   "date_posted": "2026-11-21",
+   "valid_through": "2026-12-21",
+   "employment_type": "INTERN",
+   "description": "Nous recherchons un profil technique capable de concevoir, développer, optimiser et faire évoluer des applications et plateformes web, tout en exploitant les nouvelles technologies d'IA. Missions : développement web, intégration d'API IA, SEO technique, solutions sur mesure, automatisation et infrastructure. Compétences : Full Stack (PHP, JavaScript, Python, HTML/CSS, SQL), frameworks modernes (React, Next.js, Node.js), CMS e-commerce, SEO technique, outils d'IA générative et automatisation. Profil idéal : compétences réelles, créativité, autonomie et résolution de problèmes. Stage rémunéré 4 000 DH/mois à Casablanca, en présentiel.\nNous recherchons un profil technique capable de\nconcevoir, développer, optimiser et faire évoluer des applications et plateformes web\n, tout en exploitant les nouvelles technologies d'IA.\nVos principales missions\nDéveloppement Web :\ncréation, maintenance et optimisation de sites web, e-commerce et applications métier.\nIntelligence artificielle :\nintégration d'API IA, agents intelligents, automatisation des processus et développement de solutions basées sur l'IA.\nSEO technique :\noptimisation du référencement naturel, SEO, AEO et GEO, amélioration des performances et des Core Web Vitals.\nSolutions sur mesure :\ndéveloppement de CRM, ERP, tableaux de bord, outils internes et applications de gestion.\nAutomatisation :\nconnexion de plateformes via API, workflows intelligents et intégrations entre différents systèmes.\nInfrastructure :\ngestion des hébergements, bases de données, serveurs et déploiements.\nCompétences recherchées\nBonne maîtrise du développement Full Stack : PHP, JavaScript, Python, HTML/CSS et bases de données SQL.\nConnaissance de frameworks modernes : React, Next.js, Node.js ou équivalents.\nExpérience sur des CMS e-commerce tels qu'Op",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/02/18095042/J_M_technologie.png",
+   "axis_hits": {
+    "genai": 3,
+    "bigdata": 1,
+    "fullstack": 8,
+    "cvsec": 0
+   },
+   "keywords": [
+    "ia generative",
+    "intelligence artificielle",
+    "llm",
+    "sql",
+    "automatisation",
+    "full stack",
+    "make",
+    "n8n",
+    "next.js",
+    "node.js",
+    "react"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 3,
+   "score": 90,
+   "is_pfe": false,
+   "first_seen": "2026-11-21",
+   "new_today": true,
+   "id": 5
+  },
+  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8101-offre-de-stage-en-prompt-engineer-ia-marrakech",
    "source": "stagiaires.ma",
    "title": "Offre de Stage en Prompt Engineer & IA - Marrakech",
@@ -258,8 +297,53 @@
    "score": 88,
    "is_pfe": false,
    "first_seen": "2026-11-20",
+   "new_today": false,
+   "id": 6
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8133-delivery-ai-engineering-intern",
+   "source": "stagiaires.ma",
+   "title": "Delivery AI Engineering Intern",
+   "company": "Boston Consulting Group (BCG)",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-11-21",
+   "valid_through": "2026-12-21",
+   "employment_type": "INTERN",
+   "description": "Rejoignez BCG X Delivery en tant que stagiaire en ingénierie IA à Casablanca. Stage de six mois sur des projets réels, aux côtés d'experts. Développez des solutions innovantes avec Python, Node.js, React, etc. Éligible aux étudiants en dernière année ou jeunes diplômés. Postulez via la plateforme.\nQui sommes-nous\nBoston Consulting Group s'associe aux leaders du monde des affaires et de la société pour relever leurs défis les plus importants et saisir leurs plus grandes opportunités. BCG a été le pionnier de la stratégie d'entreprise lors de sa fondation en 1963. Aujourd'hui, nous aidons nos clients dans leur transformation totale : inspirer le changement complexe, permettre aux organisations de croître, bâtir un avantage concurrentiel et générer un impact sur les résultats.\nPour réussir, les organisations doivent combiner capacités numériques et humaines. Nos équipes diverses et mondiales apportent une expertise approfondie dans le domaine du digital et des fonctions, ainsi qu'une variété de perspectives pour susciter le changement. BCG propose des solutions grâce à un conseil en management de pointe, ainsi qu'à la technologie et au design, aux ventures corporatives et numériques, et à la raison d'être de l'entreprise. Nous travaillons selon un modèle de collaboration unique à travers le cabinet et à tous les niveaux de l'organisation cliente, générant des résultats qui permettent à nos clients de prospérer.\nNous sommes BCG X\nNous sommes une équipe diversifiée de plus de 3 000 experts tech unis par la volonté de faire la différence. Travaillant à travers les industries et les disciplines, nous combinons notre expérience et notre expertise pour relever les plus grands défis auxquels la société est aujourd'hui confrontée. Nous allons au-delà de ce qui était autrefois cons",
+   "logo": "",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 7,
+    "fullstack": 9,
+    "cvsec": 0
+   },
+   "keywords": [
+    "ia generative",
+    "aws",
+    "azure",
+    "docker",
+    "gcp",
+    "kubernetes",
+    "nosql",
+    "postgresql",
+    "angular",
+    "api rest",
+    "ci/cd",
+    "django",
+    "fastapi",
+    "flask",
+    "node.js",
+    "react",
+    "spring boot"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 3,
+   "score": 87,
+   "is_pfe": false,
+   "first_seen": "2026-11-21",
    "new_today": true,
-   "id": 5
+   "id": 7
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8036-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f",
@@ -299,7 +383,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8072-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f"
     }
    ],
-   "id": 6
+   "id": 8
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8017-stagiaires-pfe-telecoms-reseaux-it",
@@ -343,7 +427,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8053-stagiaires-pfe-telecoms-reseaux-it"
     }
    ],
-   "id": 7
+   "id": 9
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7444-sales-enablement-intern",
@@ -375,7 +459,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 8
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7650-stage-pfe-telecom-it",
@@ -416,7 +500,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7634-stage-pfe-telecom-it"
     }
    ],
-   "id": 9
+   "id": 11
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7501-stage-pre-embauche-data-scientist-ia-automation",
@@ -450,7 +534,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 10
+   "id": 12
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -482,7 +566,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 11
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7371-stage-en-developpement-web-et-ia",
@@ -517,13 +601,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "also_on": [
-    {
-     "source": "stagiaires.ma",
-     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7332-stage-en-developpement-web-et-ia"
-    }
-   ],
-   "id": 12
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7367-stage-pfe-consultants-cloud-databricks-talend-devops-bi-f-h",
@@ -555,7 +633,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 13
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7648-stage-developpeur-se-full-stack-developpement-assiste-par-l-ia-smilycall",
@@ -589,7 +667,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 14
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7681-stage-pfe-data-ia-it-d2t2",
@@ -621,7 +699,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 15
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8016-maxevo-stagiaire-chef-de-projet-digital-e-commerce-transformation-it-h-f",
@@ -652,7 +730,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-17",
    "new_today": false,
-   "id": 16
+   "id": 18
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7966-stage-securite-ia-et-ingenierie-de-la-confiance",
@@ -684,7 +762,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 17
+   "id": 19
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7623-artificial-intelligence-engineer-intern",
@@ -718,7 +796,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 18
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7621-stage-de-fin-d-etudes-pfe-campagne",
@@ -748,7 +826,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 19
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7595-campagne-de-recrutement-pfe",
@@ -778,7 +856,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 20
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8049-securisation-et-automatisation-des-infrastructures-it-windows-linux-bases-de-donnees-et-solutions-itsm-grace-a-l-ia",
@@ -809,7 +887,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-18",
    "new_today": false,
-   "id": 21
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7497-stage-pfe-securisation-et-automatisation-des-infrastructures-it-et-ia",
@@ -840,7 +918,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 22
+   "id": 24
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7474-securisation-et-automatisation-des-infrastructures-it-windows-linux-bdd-itsm-avec-ia",
@@ -871,7 +949,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 23
+   "id": 25
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8117-stage-pfe-en-developpement-infrastructure-applicatif-f-h",
@@ -902,8 +980,8 @@
    "score": 64,
    "is_pfe": true,
    "first_seen": "2026-11-20",
-   "new_today": true,
-   "id": 24
+   "new_today": false,
+   "id": 26
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8110-stage-pfe-si",
@@ -934,8 +1012,8 @@
    "score": 64,
    "is_pfe": true,
    "first_seen": "2026-11-20",
-   "new_today": true,
-   "id": 25
+   "new_today": false,
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7964-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f",
@@ -971,7 +1049,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7938-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f"
     }
    ],
-   "id": 26
+   "id": 28
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -1004,7 +1082,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 27
+   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7973-stage-data-engineering-ai-infrastructure-optimization-des-systemes",
@@ -1036,7 +1114,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 28
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7402-candidatures-spontanees-forum-geni-entreprises",
@@ -1067,37 +1145,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 29
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7355-hr-recruiting-intern-remote",
-   "source": "stagiaires.ma",
-   "title": "HR & Recruiting Intern (Remote)",
-   "company": "Refram",
-   "city": "Fès",
-   "modality": "Télétravail",
-   "date_posted": "2026-10-21",
-   "valid_through": "2026-11-20",
-   "employment_type": "INTERN",
-   "description": "Refram recherche un(e) stagiaire en recrutement (Remote) pour soutenir ses opérations RH. Si vous êtes organisé(e), passionné(e) par l'IA et les outils technologiques, et que vous souhaitez évoluer dans un environnement innovant, ce stage est fait pour vous. Vous participerez activement au processus de recrutement, de la sélection des candidats à l'onboarding, tout en optimisant nos workflows grâce à l'automatisation. Excellente maîtrise de l'anglais requise.\nÀ propos de Refram\nChez\nRefram\n, nous développons des solutions professionnelles utilisant l'IA pour fluidifier les opérations des entreprises. Notre mission est de simplifier la gestion, le travail d'équipe et les flux de travail grâce à l'automatisation agentique.\nDescription du poste\nNous recherchons un(e) stagiaire en Ressources Humaines et Recrutement pour un stage à distance. Vous soutiendrez le processus de recrutement de A à Z : publication d'offres, sélection de candidats, coordination d'entretiens et gestion de l'onboarding.\nProfil recherché\nOrganisé(e), rigoureux(se) et doté(e) d'un excellent sens du détail.\nDoté(e) d'une grande intelligence relationnelle et d'une aisance communicationnelle.\nTechnophile, à l'aise avec les outils digitaux et l'IA (utilisateur avancé).\nCapable de travailler en autonomie en environnement distant.\nEsprit analytique, capable d'améliorer les processus opérationnels.\nCompétences souhaitées\nMaîtrise de l'anglais (écrit et oral).\nUtilisation d'outils de type Notion, Airtable ou ATS.\nCapacité à utiliser l'IA pour automatiser les tâches de recrutement.\nAptitude à concevoir des parcours d'onboarding et des supports de formation.\nEsprit collaboratif et orienté vers l'amélioration continue.",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/10/21145104/images.png",
-   "axis_hits": {
-    "genai": 1,
-    "bigdata": 0,
-    "fullstack": 1,
-    "cvsec": 0
-   },
-   "keywords": [
-    "agentique",
-    "automatisation"
-   ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 3,
-   "score": 61,
-   "is_pfe": false,
-   "first_seen": "2026-11-07",
-   "new_today": false,
-   "id": 30
+   "id": 31
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7405-candidatures-spontanees-forum-geni-entreprises",
@@ -1129,7 +1177,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 31
+   "id": 32
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -1161,7 +1209,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 32
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
@@ -1191,7 +1239,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-11",
    "new_today": false,
-   "id": 33
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
@@ -1221,7 +1269,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-10",
    "new_today": false,
-   "id": 34
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1257,7 +1305,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 35
+   "id": 36
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7916-stage-pfe",
@@ -1288,7 +1336,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-13",
    "new_today": false,
-   "id": 36
+   "id": 37
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7892-stage-pfe-eqdom",
@@ -1319,7 +1367,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-12",
    "new_today": false,
-   "id": 37
+   "id": 38
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1349,7 +1397,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 38
+   "id": 39
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7372-power-bi-data-analyst-stagiaire",
@@ -1378,13 +1426,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "also_on": [
-    {
-     "source": "stagiaires.ma",
-     "url": "https://www.stagiaires.ma/stage-emploi-maroc/7329-power-bi-data-analyst-stagiaire"
-    }
-   ],
-   "id": 39
+   "id": 40
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7924-stage-pfe-2026-it-software-engineering-qa-cybersecurite-data-ia",
@@ -1413,7 +1455,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 40
+   "id": 41
   }
  ]
 }
