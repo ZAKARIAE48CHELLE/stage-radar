@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T14:37:41+00:00",
+ "generated_at": "2026-11-22T14:31:56+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 1712,
+  "stored": 1723,
   "by_source": {
-   "stagiaires.ma": 38,
+   "stagiaires.ma": 35,
    "dreamjob.ma": 3
   },
-  "kept": 41,
-  "new_this_run": 16,
+  "kept": 38,
+  "new_this_run": 11,
   "filter_reasons": {
    "title excluded": 254,
-   "not data/AI": 1095,
+   "not data/AI": 1100,
    "not an internship": 33,
-   "expired": 20,
+   "expired": 23,
    "too old": 2,
-   "removed from site": 184,
-   "too few skill keywords": 77,
-   "ok": 47,
+   "removed from site": 191,
+   "too few skill keywords": 76,
+   "ok": 44,
    "duplicate": 6
   }
  },
@@ -259,7 +259,7 @@
    "score": 90,
    "is_pfe": false,
    "first_seen": "2026-11-21",
-   "new_today": true,
+   "new_today": false,
    "id": 5
   },
   {
@@ -342,7 +342,7 @@
    "score": 87,
    "is_pfe": false,
    "first_seen": "2026-11-21",
-   "new_today": true,
+   "new_today": false,
    "id": 7
   },
   {
@@ -569,73 +569,6 @@
    "id": 13
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7371-stage-en-developpement-web-et-ia",
-   "source": "stagiaires.ma",
-   "title": "stage en développement web et IA",
-   "company": "Orchid Island Real Estate",
-   "city": "Marrakech",
-   "modality": "",
-   "date_posted": "2026-10-22",
-   "valid_through": "2026-11-21",
-   "employment_type": "INTERN",
-   "description": "Description du poste\nRejoignez Orchid Island Real Estate pour un stage en développement web axé sur l'intégration de l'Intelligence Artificielle. Vous participerez à la conception d'applications, l'optimisation de code et l'utilisation d'outils comme ChatGPT ou GitHub Copilot pour booster votre productivité. Idéal pour un étudiant en informatique curieux et passionné par les nouvelles technologies cherchant à monter en compétence sur des projets concrets. Rejoignez-nous à Marrakech pour transformer votre pratique du développement.\nÀ PROPOS DU STAGE\nChez\nOrchid Island Real Estate\n, nous recherchons un(e) stagiaire Développeur(se) Web passionné(e) par les technologies digitales et les opportunités offertes par l'Intelligence Artificielle.\nCe stage d'apprentissage vous permettra de travailler sur des projets concrets et d'apprendre à intégrer efficacement les outils d'IA dans un environnement de développement web moderne.\nVOS MISSIONS\nDéveloppement Web\nParticiper à la conception et au développement d'applications web.\nDévelopper et optimiser des fonctionnalités front-end et back-end.\nIntégrer des maquettes responsive.\nContribuer à la correction de bugs et à l'amélioration des performances.\nAssurer la maintenance évolutive des projets.\nIntelligence Artificielle & Développement\nExploiter des outils d'IA (ChatGPT, GitHub Copilot, etc.) pour accélérer le développement.\nUtiliser l'IA pour le debugging, l'optimisation de code et la recherche de solutions techniques.\nExplorer l'intégration de fonctionnalités basées sur l'IA dans les projets web.\nProposer des solutions innovantes pour améliorer la productivité.\nPROFIL RECHERCHÉ\nÉtudiant(e) en Informatique, Génie Logiciel ou domaine similaire.\nMaîtrise des fondamentaux du développement web (HTML, CSS, JavaScript).\nLa connaissance d",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/03/26131759/Orchid_Island_Real_Estate_.png",
-   "axis_hits": {
-    "genai": 2,
-    "bigdata": 0,
-    "fullstack": 5,
-    "cvsec": 0
-   },
-   "keywords": [
-    "copilot",
-    "intelligence artificielle",
-    "automatisation",
-    "full stack",
-    "full-stack",
-    "node.js",
-    "react"
-   ],
-   "domain": "Full-Stack & Automatisations",
-   "bonus": 0,
-   "score": 71,
-   "is_pfe": false,
-   "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 14
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7367-stage-pfe-consultants-cloud-databricks-talend-devops-bi-f-h",
-   "source": "stagiaires.ma",
-   "title": "Stage PFE : Consultants ( Cloud, Databricks, Talend, DevOps,BI... ) (F/H)",
-   "company": "CGI",
-   "city": "Rabat",
-   "modality": "",
-   "date_posted": "2026-10-22",
-   "valid_through": "2026-11-21",
-   "employment_type": "INTERN",
-   "description": "Dans le cadre de notre développement nous recrutons des Ingénieur (e) en Technologies de l'Information (Cloud AWS, Azure Data, BI, DevOps, WM) en Stage PFE qui auront pour missions :\nFonctions et responsabilités\nRéaliser, maintenir et tester, en toute autonomie, les programmes qui vous sont confiés en respectant les spécifications détaillées fournies, les délais et les différentes normes qualité,\nContribuer à la dynamique de l’équipe,\nMaîtriser vos charges, votre reste à faire et les délais,\nAppliquer les processus du projet.\nQualités requises pour réussir dans ce rôle\nActuellement en dernière année bac+ 5 et vous êtes à la recherche d'un stage PFE.\nVous avez accumulé des connaissances à travers vos stages sur l'un des sujets (Azure Data, BI, SAP BO, Axway API, WM) ;\nMaîtrise du Français,\nUne bonne culture technologique,\nUne bonne maîtrise d'outils de gestion de tickets,\nAutonomie, Transparence, Curiosité / force de proposition et d'anticipation,\nEsprit d'analyse et de synthèse,\nBon relationnel et bonnes qualités d'écoute.\nCGI est un employeur inclusif et attentif aux candidatures des personnes en situation de handicap et à l’évolution de carrières des hommes et des femmes.\nEnsemble, en tant que propriétaires, mettons notre savoir-faire à l’œuvre.\nLa vie chez CGI est ancrée dans l’actionnariat, le travail d’équipe, le respect et un sentiment d’appartenance. Chez nous, vous pourrez exploiter votre plein potentiel.\nVotre travail crée de la valeur. Vous élaborerez des solutions novatrices et développerez des relations durables avec vos collègues et clients.\nVous ferez évoluer votre carrière en vous joignant à une entreprise bâtie pour croître et durer. Joignez-vous à nous, l’une des plus importantes entreprises de conseil en technologie de l’information (TI) et en manageme",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/01/29145824/Design-sans-titre-99.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 4,
-    "fullstack": 2,
-    "cvsec": 0
-   },
-   "keywords": [
-    "aws",
-    "azure",
-    "databricks",
-    "devops"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 8,
-   "score": 71,
-   "is_pfe": true,
-   "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 15
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7648-stage-developpeur-se-full-stack-developpement-assiste-par-l-ia-smilycall",
    "source": "stagiaires.ma",
    "title": "Stage | Développeur(se) Full Stack, développement assisté par l’IA | SmilyCall",
@@ -667,7 +600,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 16
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7681-stage-pfe-data-ia-it-d2t2",
@@ -699,7 +632,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 17
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8016-maxevo-stagiaire-chef-de-projet-digital-e-commerce-transformation-it-h-f",
@@ -730,7 +663,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-17",
    "new_today": false,
-   "id": 18
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7966-stage-securite-ia-et-ingenierie-de-la-confiance",
@@ -762,7 +695,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 19
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7623-artificial-intelligence-engineer-intern",
@@ -796,7 +729,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 20
+   "id": 18
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7621-stage-de-fin-d-etudes-pfe-campagne",
@@ -826,7 +759,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 21
+   "id": 19
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7595-campagne-de-recrutement-pfe",
@@ -856,7 +789,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 22
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8049-securisation-et-automatisation-des-infrastructures-it-windows-linux-bases-de-donnees-et-solutions-itsm-grace-a-l-ia",
@@ -887,7 +820,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-18",
    "new_today": false,
-   "id": 23
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7497-stage-pfe-securisation-et-automatisation-des-infrastructures-it-et-ia",
@@ -918,7 +851,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 24
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7474-securisation-et-automatisation-des-infrastructures-it-windows-linux-bdd-itsm-avec-ia",
@@ -949,7 +882,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 25
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8117-stage-pfe-en-developpement-infrastructure-applicatif-f-h",
@@ -981,7 +914,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 26
+   "id": 24
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8110-stage-pfe-si",
@@ -1013,7 +946,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 27
+   "id": 25
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7964-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f",
@@ -1049,7 +982,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7938-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f"
     }
    ],
-   "id": 28
+   "id": 26
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -1082,7 +1015,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 29
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7973-stage-data-engineering-ai-infrastructure-optimization-des-systemes",
@@ -1114,7 +1047,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 30
+   "id": 28
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7402-candidatures-spontanees-forum-geni-entreprises",
@@ -1145,7 +1078,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 31
+   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7405-candidatures-spontanees-forum-geni-entreprises",
@@ -1177,7 +1110,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 32
+   "id": 30
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -1209,7 +1142,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 33
+   "id": 31
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
@@ -1239,7 +1172,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-11",
    "new_today": false,
-   "id": 34
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
@@ -1269,7 +1202,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-10",
    "new_today": false,
-   "id": 35
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1305,7 +1238,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 36
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7916-stage-pfe",
@@ -1336,7 +1269,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-13",
    "new_today": false,
-   "id": 37
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7892-stage-pfe-eqdom",
@@ -1367,7 +1300,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-12",
    "new_today": false,
-   "id": 38
+   "id": 36
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1397,36 +1330,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 39
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7372-power-bi-data-analyst-stagiaire",
-   "source": "stagiaires.ma",
-   "title": "Power BI Data Analyst (Stagiaire)",
-   "company": "Coface",
-   "city": "Marrakech",
-   "modality": "",
-   "date_posted": "2026-10-22",
-   "valid_through": "2026-11-21",
-   "employment_type": "INTERN",
-   "description": "Description du poste\nRejoignez Coface en tant que stagiaire Power BI Data Analyst à Marrakech. Intégrez une équipe internationale et contribuez à la fiabilisation des données et à la création de dashboards décisionnels. Vous travaillerez sur l'amélioration de la datavisualisation et accompagnerez les équipes opérationnelles dans l'utilisation de Power BI. Nous recherchons un profil autonome, curieux des enjeux Data, doté d'un excellent niveau d'anglais et d'une aisance relationnelle pour interagir avec le management. Une opportunité idéale pour évoluer au sein d'un environnement multiculturel et innovant.\nPrésentation de l'entreprise\nChez Coface, nous faisons avancer le commerce chaque jour. Nos 5 200 experts, représentant plus de 80 nationalités dans 58 pays, sont unis par une mission commune : aider les entreprises à naviguer dans l’incertitude. Avec près de 80 ans d’expérience internationale, nous proposons une gamme complète de solutions : assurance-crédit, informations d'entreprise, recouvrement de créances, assurance risque unique, cautions et affacturage.\nRejoindre Coface, c’est intégrer une organisation internationale soudée qui cultive l'apprentissage, la collaboration et l'inclusion. Façonnez l’avenir du commerce avec nous et rejoignez les Happeners !\nMissions principales\nEn tant que stagiaire Power BI Data Analyst, vos missions seront les suivantes :\nTravailler à la mise au point et à l'amélioration continue de la datavisualisation.\nConstruire des dashboards interactifs et automatisés.\nPromouvoir Power BI et former les équipes opérationnelles à son utilisation.\nStructurer et organiser les données pour garantir leur fiabilité et leur accessibilité.\nCommuniquer avec les parties prenantes au sujet des sources de données et de la Data Quality.\nProfil recherché\nFo",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/06/13161336/logo-entreprise-18.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 2,
-    "fullstack": 0,
-    "cvsec": 0
-   },
-   "keywords": [
-    "power bi"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 0,
-   "score": 50,
-   "is_pfe": false,
-   "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 40
+   "id": 37
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7924-stage-pfe-2026-it-software-engineering-qa-cybersecurite-data-ia",
@@ -1455,7 +1359,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 41
+   "id": 38
   }
  ]
 }
