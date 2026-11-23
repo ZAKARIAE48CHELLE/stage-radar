@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-22T14:31:56+00:00",
+ "generated_at": "2026-11-23T18:02:10+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,22 +28,22 @@
   }
  },
  "stats": {
-  "stored": 1723,
+  "stored": 1735,
   "by_source": {
-   "stagiaires.ma": 35,
+   "stagiaires.ma": 33,
    "dreamjob.ma": 3
   },
-  "kept": 38,
-  "new_this_run": 11,
+  "kept": 36,
+  "new_this_run": 12,
   "filter_reasons": {
-   "title excluded": 254,
-   "not data/AI": 1100,
+   "title excluded": 253,
+   "not data/AI": 1093,
    "not an internship": 33,
-   "expired": 23,
    "too old": 2,
-   "removed from site": 191,
-   "too few skill keywords": 76,
-   "ok": 44,
+   "removed from site": 216,
+   "too few skill keywords": 73,
+   "ok": 42,
+   "expired": 23,
    "duplicate": 6
   }
  },
@@ -1050,69 +1050,6 @@
    "id": 28
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7402-candidatures-spontanees-forum-geni-entreprises",
-   "source": "stagiaires.ma",
-   "title": "Candidatures spontanées - Forum Geni Entreprises",
-   "company": "Inetum",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-23",
-   "valid_through": "2026-11-22",
-   "employment_type": "INTERN",
-   "description": "Dans le cadre du Forum Geni Entreprises, Inetum Maroc recrute des profils passionnés pour des postes en CDI ou stages PFE. Rejoignez un leader du numérique et intervenez sur des projets innovants en Java, .NET, Data, Cloud, SAP ou CRM. Si vous êtes titulaire d'un Bac+5 et souhaitez intégrer un environnement stimulant à Casablanca, postulez pour échanger avec nos recruteurs lors de cet événement majeur.\nÀ propos d'Inetum\nInetum\nest un leader européen des services numériques, fort de 27 000 collaborateurs répartis dans 19 pays. Présent au Maroc depuis plus de 20 ans, Inetum Maroc accompagne ses clients dans leur transformation digitale à travers ses trois lignes de métiers :\nInetum Consulting\n,\nInetum Technologies\net\nInetum Solutions\n.\nReconnu pour son engagement social et le bien-être de ses collaborateurs (label Feel Good 2025), Inetum Maroc recherche des talents passionnés pour rejoindre ses équipes dynamiques.\nOpportunités au Forum Geni Entreprises\nDans le cadre du\nForum Geni Entreprises\n, Inetum Maroc ouvre ses portes aux candidatures spontanées pour des profils techniques et fonctionnels. Nous recherchons des experts motivés pour intégrer nos projets innovants.\nDomaines de recrutement :\nOverHeads (Finance, Contrôle de gestion, RH)\nDéveloppement : Java, .NET\nData : Data Engineering, Data Science & Analytics, BI\nInfrastructure : DevOps & Cloud\nERP : Sage X3/100/1000, Microsoft Dynamics 365, SAP (FI, MM, SD, ABAP)\nSpécialisations : ServiceNow, Salesforce\nProfil recherché\nDiplôme Bac+5 en informatique, télécommunications ou systèmes d'information.\nMaîtrise courante du français (écrit et oral).\nMaîtrise technique d'au moins un domaine IT (développement, infra, cloud, ERP, data).\nEsprit d'équipe, curiosité et capacité d'adaptation.\nUne première expérience dans l'IT est un",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/04/16164929/Inetum.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 2,
-    "fullstack": 1,
-    "cvsec": 0
-   },
-   "keywords": [
-    "data engineering",
-    "data science",
-    "devops"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 8,
-   "score": 61,
-   "is_pfe": true,
-   "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 29
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7405-candidatures-spontanees-forum-geni-entreprises",
-   "source": "stagiaires.ma",
-   "title": "Candidatures spontanées - Forum Geni Entreprises",
-   "company": "MAROC FER",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-23",
-   "valid_through": "2026-11-22",
-   "employment_type": "INTERN",
-   "description": "Dans le cadre du Forum Geni Entreprises, Inetum Maroc recrute en candidature spontanée des profils techniques (Développement, Data, Cloud, ERP, BI) pour des postes en CDI ou stages PFE. Rejoignez un leader du numérique et participez à des projets innovants au sein d'un environnement stimulant à Casablanca.\nDescription de l'entreprise\nInetum\nest un\nleader européen des services numériques\n, présent au\nMaroc depuis plus de 20 ans\n. Avec plus de 800 collaborateurs, l'entité accompagne ses clients dans leur transformation digitale via ses trois lignes de métiers :\nInetum Consulting\n,\nInetum Technologies\net\nInetum Solutions\n.\nDescription du poste\nDans le cadre du\nForum Geni Entreprises\n, Inetum Maroc ouvre ses portes aux\ncandidatures spontanées\npour des postes techniques et fonctionnels. Nous recherchons des talents passionnés pour renforcer nos équipes projet.\nLes opportunités couvrent les domaines suivants :\nOverHeads (Finance, Contrôle de gestion, RH...)\nDéveloppement Java / .NET\nBusiness Intelligence (BI)\nData Engineering, Data Science & Data Analytics\nDevOps & Cloud\nERP : Sage, Microsoft Dynamics 365, SAP (FI, MM, SD, ABAP...)\nServiceNow & Salesforce\nQualifications\nDiplôme Bac+5 (Informatique, Télécoms, SI).\nMaîtrise du français (oral et écrit).\nConnaissances techniques en développement, infrastructure, cloud, cybersécurité, ERP ou data.\nEsprit d'équipe, curiosité et capacité d'adaptation.\nUne première expérience IT est un atout.\nInformations supplémentaires\nType de contrat : CDI ou stage PFE.\nLocalisation : Casablanca.\nProcessus : Entretien RH et entretien technique.\nAvantages : Formation continue, certifications et perspectives d'évolution.",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/05/05141823/MAROC-FER.png",
-   "axis_hits": {
-    "genai": 0,
-    "bigdata": 2,
-    "fullstack": 1,
-    "cvsec": 1
-   },
-   "keywords": [
-    "data engineering",
-    "data science",
-    "devops",
-    "cybersecurite"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 8,
-   "score": 60,
-   "is_pfe": true,
-   "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 30
-  },
-  {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
    "source": "dreamjob.ma",
    "title": "Candidature spontanée chez Inetum Maroc: plusieurs opportunités à Casablanca",
@@ -1142,7 +1079,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 31
+   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
@@ -1172,7 +1109,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-11",
    "new_today": false,
-   "id": 32
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
@@ -1202,7 +1139,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-10",
    "new_today": false,
-   "id": 33
+   "id": 31
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1238,7 +1175,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 34
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7916-stage-pfe",
@@ -1269,7 +1206,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-13",
    "new_today": false,
-   "id": 35
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7892-stage-pfe-eqdom",
@@ -1300,7 +1237,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-12",
    "new_today": false,
-   "id": 36
+   "id": 34
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1330,7 +1267,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 37
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7924-stage-pfe-2026-it-software-engineering-qa-cybersecurite-data-ia",
@@ -1359,7 +1296,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 38
+   "id": 36
   }
  ]
 }
