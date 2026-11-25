@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-24T17:40:04+00:00",
+ "generated_at": "2026-11-25T17:11:45+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,23 +28,23 @@
   }
  },
  "stats": {
-  "stored": 1757,
+  "stored": 1795,
   "by_source": {
-   "stagiaires.ma": 36,
+   "stagiaires.ma": 43,
    "dreamjob.ma": 3
   },
-  "kept": 39,
-  "new_this_run": 22,
+  "kept": 46,
+  "new_this_run": 38,
   "filter_reasons": {
-   "title excluded": 254,
-   "not data/AI": 1102,
-   "not an internship": 33,
-   "removed from site": 225,
-   "too few skill keywords": 74,
+   "removed from site": 244,
+   "not an internship": 32,
+   "not data/AI": 1104,
+   "too few skill keywords": 77,
+   "title excluded": 260,
    "too old": 1,
-   "ok": 45,
-   "expired": 23,
-   "duplicate": 6
+   "ok": 53,
+   "expired": 24,
+   "duplicate": 7
   }
  },
  "offers": [
@@ -381,8 +381,43 @@
    "score": 85,
    "is_pfe": true,
    "first_seen": "2026-11-24",
-   "new_today": true,
+   "new_today": false,
    "id": 8
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8235-pfe-projet-2027",
+   "source": "stagiaires.ma",
+   "title": "PFE Projet 2027",
+   "company": "Expleo Group",
+   "city": "Tanger",
+   "modality": "",
+   "date_posted": "2026-11-25",
+   "valid_through": "2026-12-25",
+   "employment_type": "INTERN",
+   "description": "Expleo Group propose un stage de fin d'études (PFE) de 6 mois à Tanger. Le projet consiste à transformer un dashboard de pilotage en un Agent IA dédié au PMO, capable d'analyser les indicateurs, de répondre aux questions et de faciliter la décision. Vous développerez une interface conversationnelle, intégrerez des LLM et optimiserez la solution. Profil Bac+5 en IA, Data Science ou informatique, avec des compétences en Python et un intérêt pour l'IA générative. Stage rémunéré.\nDescription du poste\nGroupe EXPLEO, plus qu’une histoire, une aventure humaine…\nLe Groupe EXPLEO s’appuie sur 19 000 collaborateurs hautement qualifiés qui fournissent des solutions à forte valeur ajoutée dans 30 pays. Expleo vous aide à réaliser vos ambitions et à assurer, ensemble, votre avenir. Nous vous offrons un mélange unique de réflexion audacieuse et d’exécution fiable, pour accélérer l’innovation à travers chaque étape de votre chaîne de valeur.\nAu-delà de rejoindre une entreprise, c’est donc une aventure humaine que nous vous proposons de VIVRE !!\nMissions\nContexte du projet\nDans le cadre de notre démarche de transformation digitale et d'intégration de l'intelligence artificielle dans nos processus internes, nous proposons un projet de fin d'études visant à transformer un dashboard de pilotage existant en un\nAgent IA dédié au Project Management Office (PMO)\n.\nL'objectif est de faire évoluer un outil classique de visualisation de données vers une solution intelligente et interactive, capable d'analyser les indicateurs de performance, de répondre aux questions des utilisateurs et de faciliter la prise de décision.\nVos principales missions\nEncadré(e) par nos équipes, vous serez amené(e) à :\nAnalyser le dashboard existant et comprendre les indicateurs de pilotage PMO.\nIdentifier les besoins ",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/10/09103831/Logo-STG-Entreprise-et-ecole-2024-10-09T103827.844.png",
+   "axis_hits": {
+    "genai": 4,
+    "bigdata": 2,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "agent ia",
+    "ia generative",
+    "intelligence artificielle",
+    "llm",
+    "data science",
+    "power bi",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 84,
+   "is_pfe": true,
+   "first_seen": "2026-11-25",
+   "new_today": true,
+   "id": 9
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8036-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f",
@@ -422,7 +457,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8072-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f"
     }
    ],
-   "id": 9
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8017-stagiaires-pfe-telecoms-reseaux-it",
@@ -466,39 +501,75 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8053-stagiaires-pfe-telecoms-reseaux-it"
     }
    ],
-   "id": 10
+   "id": 11
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7444-sales-enablement-intern",
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8257-stage-pfe-digital-transformation-dtx-tanger",
    "source": "stagiaires.ma",
-   "title": "Sales Enablement Intern",
-   "company": "Refram",
-   "city": "Salé",
-   "modality": "Télétravail",
-   "date_posted": "2026-10-25",
-   "valid_through": "2026-11-24",
+   "title": "Stage PFE - Digital Transformation (DTX) - Tanger",
+   "company": "Expleo Group",
+   "city": "Tanger",
+   "modality": "",
+   "date_posted": "2026-11-25",
+   "valid_through": "2026-12-25",
    "employment_type": "INTERN",
-   "description": "Refram recherche un Sales Enablement Intern passionné par l'IA pour rejoindre son équipe en télétravail. Vous travaillerez sur l'automatisation des ventes, la gestion d'outils comme Apollo, le ciblage ICP et la création de workflows agentiques. Idéal pour un étudiant ou jeune diplômé autonome et analytique souhaitant évoluer dans un environnement technologique innovant. Opportunité de pré-embauche en CDI à la clé.\nÀ propos de Refram\nChez\nRefram\n, nous concevons des solutions d'entreprise utilisant l'IA pour fluidifier les opérations, en intégrant des capacités d'automatisation agentique sécurisées et souveraines. Notre objectif est de simplifier la gestion, le travail d'équipe et les flux de travail pour réduire les frictions opérationnelles.\nDescription du poste\nEn tant que\nSales Enablement Intern\n(stage à temps plein, en télétravail), vous soutiendrez la conception et l'optimisation de notre moteur de vente piloté par l'IA. Ce rôle se concentre sur la mise en place des systèmes générant des opportunités commerciales, plutôt que sur la vente directe.\nVous travaillerez sur les opérations de vente, les outils avancés (Apollo, agents IA, intégrations MCP), le ciblage ICP et la prospection communautaire.\nResponsabilités\nOpérations de vente et infrastructure :\nExploiter Apollo, créer des intégrations système et assurer la qualité des données.\nCiblage ICP et Personas :\nDéfinir et mettre à jour les profils clients idéaux et les cartographies de personas.\nProspection alternative :\nConcevoir des workflows basés sur l'intention et exécuter des stratégies de prospection créatives.\nWorkflows IA :\nConcevoir des séquences automatisées et gérer le prompt engineering.\nGestion de contenu :\nMaintenir une bibliothèque d'actifs structurée et optimisée pour l'IA.\nQualifications requises\nAg",
-   "logo": "https://uploads.stagiaires.ma/logos/2026/10/21145104/images.png",
+   "description": "Expleo Group recrute des stagiaires PFE pour son département Digital Transformation à Tanger. Missions : analyse des besoins, développement d'applications, Data, IA, automatisation des processus. Profil : Bac+5 en informatique ou équivalent, connaissances en Python, Java, JavaScript, bases de données. Stage de 6 mois rémunéré. Rejoignez un groupe international et participez à des projets innovants de transformation digitale.\nÀ propos du Groupe EXPLEO\nLe Groupe EXPLEO s'appuie sur 19 000 collaborateurs hautement qualifiés qui fournissent des solutions à forte valeur ajoutée dans 30 pays. Expleo vous aide à réaliser vos ambitions et à assurer, ensemble, votre avenir. Nous vous offrons un mélange unique de réflexion audacieuse et d'exécution fiable, pour accélérer l'innovation à travers chaque étape de votre chaîne de valeur.\nAu-delà de rejoindre une entreprise, c'est une aventure humaine que nous vous proposons de vivre !\nMissions\nVotre mission\nDans le cadre du développement de nos activités, nous recherchons des stagiaires PFE pour rejoindre notre département\nDTX (Digital Transformation)\nà Tanger.\nIntégré(e) à nos équipes et encadré(e) par des experts métiers, vous aurez l'opportunité de participer à des projets de transformation digitale, de développement de solutions informatiques et d'innovation technologique.\nSelon les projets, vous pourrez intervenir sur des sujets liés au développement logiciel, à la Data, à l'intelligence artificielle, à l'automatisation des processus ou à la digitalisation des activités.\nVos principales missions\nParticiper à l'analyse des besoins métiers et à la définition des solutions digitales.\nContribuer à la conception et au développement d'applications et d'outils informatiques.\nParticiper à la collecte, au traitement et à l'analyse des don",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/10/09103831/Logo-STG-Entreprise-et-ecole-2024-10-09T103827.844.png",
    "axis_hits": {
-    "genai": 3,
-    "bigdata": 0,
-    "fullstack": 1,
+    "genai": 2,
+    "bigdata": 2,
+    "fullstack": 2,
     "cvsec": 0
    },
    "keywords": [
-    "agentique",
-    "agents ia",
-    "prompt engineering",
-    "automatisation"
+    "ia generative",
+    "intelligence artificielle",
+    "data science",
+    "power bi",
+    "automatisation",
+    "devops"
    ],
    "domain": "IA Agentique & GenAI",
    "bonus": 8,
    "score": 77,
    "is_pfe": true,
-   "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 11
+   "first_seen": "2026-11-25",
+   "new_today": true,
+   "id": 12
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8247-pfe-dtx-2027-stage-de-fin-d-etudes-en-transformation-digitale",
+   "source": "stagiaires.ma",
+   "title": "PFE DTX 2027 - Stage de fin d'études en Transformation Digitale",
+   "company": "Expleo Group",
+   "city": "Tanger",
+   "modality": "",
+   "date_posted": "2026-11-25",
+   "valid_through": "2026-12-25",
+   "employment_type": "INTERN",
+   "description": "Expleo Group recrute des stagiaires PFE pour son département Digital Transformation à Tanger. Participez à des projets de transformation digitale, développement logiciel, Data, IA et automatisation. Stage de 6 mois rémunéré, ouvert aux étudiants Bac+5 en informatique, Data Science ou équivalent. Rejoignez un groupe international et développez vos compétences techniques aux côtés d'experts métiers.\nRejoignez Expleo, bien plus qu'une entreprise, une aventure humaine\nLe Groupe EXPLEO s'appuie sur 19 000 collaborateurs hautement qualifiés qui fournissent des solutions à forte valeur ajoutée dans 30 pays. Expleo vous aide à réaliser vos ambitions et à assurer, ensemble, votre avenir. Nous vous offrons un mélange unique de réflexion audacieuse et d'exécution fiable, pour accélérer l'innovation à travers chaque étape de votre chaîne de valeur.\nAu-delà de rejoindre une entreprise, c'est donc une aventure humaine que nous vous proposons de vivre !\nMissions\nVotre mission\nDans le cadre du développement de nos activités, nous recherchons des stagiaires PFE pour rejoindre notre département\nDTX (Digital Transformation)\nà Tanger.\nIntégré(e) à nos équipes et encadré(e) par des experts métiers, vous aurez l'opportunité de participer à des projets de transformation digitale, de développement de solutions informatiques et d'innovation technologique.\nSelon les projets, vous pourrez intervenir sur des sujets liés au développement logiciel, à la Data, à l'intelligence artificielle, à l'automatisation des processus ou à la digitalisation des activités.\nVos principales missions\nParticiper à l'analyse des besoins métiers et à la définition des solutions digitales.\nContribuer à la conception et au développement d'applications et d'outils informatiques.\nParticiper à la collecte, au traitement et ",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/10/09103831/Logo-STG-Entreprise-et-ecole-2024-10-09T103827.844.png",
+   "axis_hits": {
+    "genai": 2,
+    "bigdata": 2,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "ia generative",
+    "intelligence artificielle",
+    "data science",
+    "power bi",
+    "automatisation",
+    "devops"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 77,
+   "is_pfe": true,
+   "first_seen": "2026-11-25",
+   "new_today": true,
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7650-stage-pfe-telecom-it",
@@ -539,7 +610,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7634-stage-pfe-telecom-it"
     }
    ],
-   "id": 12
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7501-stage-pre-embauche-data-scientist-ia-automation",
@@ -573,7 +644,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 13
+   "id": 15
   },
   {
    "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
@@ -605,19 +676,19 @@
    "is_pfe": true,
    "first_seen": "2026-10-12",
    "new_today": false,
-   "id": 14
+   "id": 16
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8186-stages-pfe-2027-profils-ingenieurs",
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8227-stages-pfe-2027-profils-ingenieurs",
    "source": "stagiaires.ma",
    "title": "Stages PFE 2027 - Profils Ingénieurs",
    "company": "Saham Bank",
    "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-11-24",
-   "valid_through": "2026-12-24",
+   "modality": "Sur site",
+   "date_posted": "2026-11-25",
+   "valid_through": "2026-12-25",
    "employment_type": "INTERN",
-   "description": "Saham Bank ouvre ses candidatures pour les stages PFE 2027 destinés aux profils ingénieurs. Plusieurs opportunités à Casablanca : modélisation risques, analyste data, développement IT, data science, IA, DevOps, QA, business intelligence et bien d'autres. Rejoignez des projets concrets et relevez des défis enrichissants. Postulez via la plateforme.\nVotre ambition mérite de grandes perspectives !\nVous êtes en dernière année d'école d'ingénieurs et recherchez une expérience professionnelle enrichissante pour donner une nouvelle dimension à votre parcours ?\nDans le cadre de notre campagne de recrutement des stagiaires PFE 2027, nous ouvrons plusieurs opportunités au sein de nos différentes entités, autour de projets concrets et des enjeux de transformation.\nNos opportunités\nNous recherchons des profils ingénieurs dans plusieurs domaines :\nModélisateur risques\nAnalyste data risques\nIngénieur développement informatique\nIngénieur data\nAnalyste performance IT\nChef de projet IT\nData scientist / NLP\nIngénieur IA\nIngénieur DevOps\nIngénieur test & QA\nData engineer\nBusiness Analyst IT\nIngénieur production informatique\nIngénieur infrastructure IT\nAnalyste SI\nIngénieur développement & Business analysis\nBusiness intelligence analyst\nMarket data analyst\nDéveloppeur VBA\nIngénieur CBS\nAnalyste ALM\nAuditeur IT\nVous êtes curieux(se), rigoureux(se), animé(e) par l'envie d'apprendre et recherchez un stage PFE vous permettant de relever des défis concrets ?\nCette opportunité est faite pour vous !\nPostulez via la plateforme Stagiaires.ma.",
+   "description": "Saham Bank ouvre ses candidatures pour les stages PFE 2027 destinés aux profils ingénieurs à Casablanca. Plusieurs opportunités : modélisation risques, analyste data, développement IT, data science, IA, DevOps, QA, business intelligence et bien d'autres. Rejoignez des projets concrets et relevez des défis enrichissants. Vous êtes en dernière année d'école d'ingénieurs ? Postulez via la plateforme Stagiaires.ma.\nCasablanca\nStage\nStage de fin d'études\nSur site\nBanques\nDescription du poste\nSaham Bank ouvre ses candidatures pour les stages PFE 2027 destinés aux profils ingénieurs. Plusieurs opportunités à Casablanca : modélisation risques, analyste data, développement IT, data science, IA, DevOps, QA, business intelligence et bien d'autres. Rejoignez des projets concrets et relevez des défis enrichissants. Postulez via la plateforme.\nVotre ambition mérite de grandes perspectives !\nVous êtes en dernière année d'école d'ingénieurs et recherchez une expérience professionnelle enrichissante pour donner une nouvelle dimension à votre parcours ?\nDans le cadre de notre campagne de recrutement des stagiaires PFE 2027, nous ouvrons plusieurs opportunités au sein de nos différentes entités, autour de projets concrets et des enjeux de transformation.\nNos opportunités\nNous recherchons des profils ingénieurs dans plusieurs domaines :\nModélisateur risques\nAnalyste data risques\nIngénieur développement informatique\nIngénieur data\nAnalyste performance IT\nChef de projet IT\nData scientist / NLP\nIngénieur IA\nIngénieur DevOps\nIngénieur test & QA\nData engineer\nBusiness Analyst IT\nIngénieur production informatique\nIngénieur infrastructure IT\nAnalyste SI\nIngénieur développement & Business analysis\nBusiness intelligence analyst\nMarket data analyst\nDéveloppeur VBA\nIngénieur CBS\nAnalyste ALM\nAuditeur",
    "logo": "https://uploads.stagiaires.ma/logos/2026/03/16091928/Saham_Bank_.png",
    "axis_hits": {
     "genai": 1,
@@ -636,9 +707,15 @@
    "bonus": 8,
    "score": 71,
    "is_pfe": true,
-   "first_seen": "2026-11-24",
+   "first_seen": "2026-11-25",
    "new_today": true,
-   "id": 15
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/8186-stages-pfe-2027-profils-ingenieurs"
+    }
+   ],
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7648-stage-developpeur-se-full-stack-developpement-assiste-par-l-ia-smilycall",
@@ -672,7 +749,40 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 16
+   "id": 18
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8226-stage-pfe-data-h-f",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE – Data (H/F)",
+   "company": "CIRCET MOROCCO",
+   "city": "Casablanca",
+   "modality": "Sur site",
+   "date_posted": "2026-11-25",
+   "valid_through": "2026-12-25",
+   "employment_type": "INTERN",
+   "description": "Circet Morocco, acteur international des infrastructures télécoms et énergie, recherche un(e) stagiaire PFE en Data à Casablanca. Vous collecterez et structurerez des données, développerez des tableaux de bord, analyserez les indicateurs de performance et automatiserez les reportings. Profil : dernière année d'école d'ingénieurs ou Master en Data Science, Big Data, Informatique ou Statistiques, maîtrise de Python, SQL et un outil de visualisation (Power BI, Tableau). Stage de 4 à 6 mois, démarrage février 2027, en présentiel.\nÀ propos de nous\nCircet Morocco fait partie du groupe Circet, acteur international des services d'infrastructures télécoms et énergie. Le groupe compte plus de 17 000 collaborateurs en Europe, aux États-Unis et en Afrique, avec une présence au Maroc.\nFort de son expertise historique dans les réseaux télécoms (fibre optique, réseaux mobiles), le groupe développe également son activité énergie avec Circet Energy. Cette branche couvre les réseaux de distribution et de transport d'électricité, les énergies renouvelables et le stockage, les infrastructures de recharge pour véhicules électriques et les data centers.\nDans le cadre du renforcement de nos activités, nous recherchons un(e) stagiaire PFE en Data.\nMissions\nCollecter, nettoyer et structurer des données opérationnelles liées aux activités télécoms et énergie\nConcevoir et développer des tableaux de bord de pilotage\nAnalyser les indicateurs de performance et formuler des recommandations\nContribuer à l'automatisation des reportings\nPrésenter les résultats aux équipes métiers\nProfil recherché\nÉtudiant(e) en dernière année d'école d'ingénieurs ou de Master (Data Science, Big Data, Informatique, Statistiques ou équivalent)\nBonne maîtrise de Python et SQL\nConnaissance d'au moins un outil de data visual",
+   "logo": "",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 4,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "big data",
+    "data science",
+    "power bi",
+    "sql",
+    "automatisation"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 68,
+   "is_pfe": true,
+   "first_seen": "2026-11-25",
+   "new_today": true,
+   "id": 19
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7681-stage-pfe-data-ia-it-d2t2",
@@ -704,7 +814,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 17
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8016-maxevo-stagiaire-chef-de-projet-digital-e-commerce-transformation-it-h-f",
@@ -735,7 +845,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-17",
    "new_today": false,
-   "id": 18
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8202-pfe-pmex-2027",
@@ -764,8 +874,8 @@
    "score": 66,
    "is_pfe": true,
    "first_seen": "2026-11-24",
-   "new_today": true,
-   "id": 19
+   "new_today": false,
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7966-stage-securite-ia-et-ingenierie-de-la-confiance",
@@ -797,7 +907,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 20
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7623-artificial-intelligence-engineer-intern",
@@ -831,7 +941,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 21
+   "id": 24
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7621-stage-de-fin-d-etudes-pfe-campagne",
@@ -861,7 +971,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 22
+   "id": 25
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7595-campagne-de-recrutement-pfe",
@@ -891,7 +1001,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 23
+   "id": 26
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8049-securisation-et-automatisation-des-infrastructures-it-windows-linux-bases-de-donnees-et-solutions-itsm-grace-a-l-ia",
@@ -922,7 +1032,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-18",
    "new_today": false,
-   "id": 24
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7497-stage-pfe-securisation-et-automatisation-des-infrastructures-it-et-ia",
@@ -953,7 +1063,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 25
+   "id": 28
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7474-securisation-et-automatisation-des-infrastructures-it-windows-linux-bdd-itsm-avec-ia",
@@ -984,7 +1094,38 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 26
+   "id": 29
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8199-stage-developpeur-informatique-ia-vibe-coding-h-f",
+   "source": "stagiaires.ma",
+   "title": "Stage Développeur Informatique IA / Vibe Coding (H/F)",
+   "company": "RWADTECH",
+   "city": "Fès",
+   "modality": "Sur site",
+   "date_posted": "2026-11-24",
+   "valid_through": "2026-12-24",
+   "employment_type": "INTERN",
+   "description": "Stage en développement informatique et IA à Fès chez RWADTECH. Participez à la création d'applications web et d'outils métiers innovants en utilisant le Vibe Coding et des assistants IA comme Cursor, GitHub Copilot ou ChatGPT. Missions : développement, intégration d'API, automatisation, tests et documentation. Profil : étudiant(e) en informatique ou génie logiciel, français obligatoire. Poste en présentiel.\nNous recherchons un(e)\nstagiaire passionné(e) par le développement informatique et l'intelligence artificielle\n, souhaitant participer à la création d'applications web, d'outils métiers et de solutions digitales innovantes.\nCe stage s'inscrit dans une approche moderne du développement logiciel basée sur le\nVibe Coding\n, qui consiste à exploiter des outils d'intelligence artificielle pour accélérer la conception, la programmation, les tests et le déploiement d'applications.\nL'objectif est de développer rapidement des solutions fonctionnelles tout en garantissant la qualité, la sécurité et la maintenabilité du code.\nVos missions\nSous la supervision de l'équipe technique, vous serez amené(e) à :\nDévelopper des applications web et des outils internes à l'aide de technologies modernes.\nUtiliser des assistants IA tels que\nCursor, GitHub Copilot, ChatGPT, Claude ou Lovable\npour accélérer le développement.\nTransformer des besoins métiers en prototypes et applications fonctionnelles.\nConcevoir et intégrer des API et des bases de données.\nAutomatiser certains processus grâce à l'intelligence artificielle.\nTester, déboguer, corriger et optimiser le code généré avec l'IA.\nParticiper à la conception d'interfaces utilisateur modernes et ergonomiques.\nRédiger une documentation technique claire en français.\nCollaborer avec l'équipe pour améliorer les solutions développées.\nProfil re",
+   "logo": "",
+   "axis_hits": {
+    "genai": 2,
+    "bigdata": 0,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "copilot",
+    "intelligence artificielle",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 0,
+   "score": 64,
+   "is_pfe": false,
+   "first_seen": "2026-11-25",
+   "new_today": true,
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8117-stage-pfe-en-developpement-infrastructure-applicatif-f-h",
@@ -1016,7 +1157,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 27
+   "id": 31
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8110-stage-pfe-si",
@@ -1048,7 +1189,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 28
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7964-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f",
@@ -1084,7 +1225,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7938-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f"
     }
    ],
-   "id": 29
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -1117,7 +1258,38 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 30
+   "id": 34
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8252-developpeur-full-stack-junior",
+   "source": "stagiaires.ma",
+   "title": "Développeur Full Stack Junior",
+   "company": "Mooroot Studio",
+   "city": "Tanger",
+   "modality": "Sur site",
+   "date_posted": "2026-11-25",
+   "valid_through": "2026-12-25",
+   "employment_type": "INTERN",
+   "description": "Mooroot Studio recrute un Développeur Full Stack Junior pour un stage pré-embauche de 3 mois à Tanger (Technopark, présentiel). Participez à des projets réels : analyse, conception, développement frontend/backend, tests et qualité du code. Environnement : PHP, Laravel, Python, JavaScript, PostgreSQL, MySQL. Débutant accepté avec de bonnes bases en programmation et envie d'apprendre. Possibilité d'embauche à l'issue du stage. Candidature via la plateforme.\nDéveloppeur Full Stack Junior\nStage pré-embauche · 3 mois\nMooroot Studio · Tanger, Maroc · Technopark · Présentiel · Prise de poste : Immédiate\nPrésentation du poste\nMooroot Studio recrute un(e) Développeur(se) Full Stack Junior dans le cadre d'un stage pré-embauche de trois mois.\nNous concevons et développons des solutions logicielles destinées aux entreprises : systèmes ERP, plateformes CRM et applications métiers sur mesure répondant à des problématiques opérationnelles concrètes.\nNous recherchons un profil souhaitant développer de solides compétences en ingénierie logicielle, en participant à des projets réels et en intervenant sur différentes étapes du cycle de développement.\nCe stage offre l'opportunité de travailler au sein de notre équipe, de contribuer au développement de véritables solutions logicielles et d'envisager une intégration durable chez Mooroot Studio à son issue.\nMissions et responsabilités\nIntégré(e) à l'équipe de développement, vous participerez notamment aux missions suivantes :\nAnalyse des besoins : Comprendre les problématiques métiers, analyser les besoins fonctionnels et les traduire en spécifications techniques.\nConception des solutions : Explorer différentes approches, étudier les solutions existantes et identifier les implémentations techniques les plus adaptées.\nPrototypage et validation",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/03/24143757/Mooroot_Studio.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 1,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "postgresql",
+    "full stack"
+   ],
+   "domain": "Full-Stack & Automatisations",
+   "bonus": 3,
+   "score": 63,
+   "is_pfe": false,
+   "first_seen": "2026-11-25",
+   "new_today": true,
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7973-stage-data-engineering-ai-infrastructure-optimization-des-systemes",
@@ -1149,7 +1321,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 31
+   "id": 36
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -1181,7 +1353,67 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 32
+   "id": 37
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8244-ingenieur-verification-des-systemes-embarques-stage",
+   "source": "stagiaires.ma",
+   "title": "Ingénieur Vérification des Systèmes Embarqués - Stage",
+   "company": "Cadence Design Systems",
+   "city": "Oujda",
+   "modality": "",
+   "date_posted": "2026-11-25",
+   "valid_through": "2026-12-25",
+   "employment_type": "INTERN",
+   "description": "Cadence, leader en conception électronique, recrute un stagiaire ingénieur en vérification des systèmes embarqués à Oujda. Au sein de Secure-IC, vous participerez à la validation système d'un SoC sécurisé (RTL et logiciel embarqué) : tests, automatisation, couverture fonctionnelle, performance et intégration continue. Profil : étudiant en ingénierie (informatique, génie électrique, systèmes embarqués), compétences en C embarqué, VHDL/Verilog, Python, Linux, simulateurs RTL (QuestaSim/Xcelium) et FPGA. Français natif/bilingue et anglais professionnel requis.\nÀ propos de Cadence\nCadence est un acteur majeur dans le domaine de la conception électronique, s'appuyant sur plus de 30 ans d'expertise en logiciels de calcul. Grâce à notre stratégie\nIntelligent System Design\n, nous développons des logiciels, du matériel et des propriétés intellectuelles (IP) qui permettent de concrétiser les concepts de conception.\nCette stratégie s'appuie également sur des pratiques de développement enrichies par l'intelligence artificielle (IA), déployées dans l'ensemble de nos organisations, afin de permettre à nos équipes de se concentrer sur la résolution créative de problèmes et l'innovation.\nNos clients comptent parmi les entreprises les plus innovantes au monde. Ils développent des produits électroniques exceptionnels, des puces aux cartes électroniques en passant par les systèmes complets, pour des applications sur des marchés en constante évolution : électronique grand public, informatique hyperscale, communications 5G, automobile, aéronautique et spatial, industrie et santé.\nRejoignez-nous et intégrez une culture qui valorise l'innovation, la collaboration et la satisfaction client.\nChez Secure-IC, une société du groupe Cadence, nous recrutons et faisons grandir des talents et des inno",
+   "logo": "",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 0,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 0,
+   "score": 58,
+   "is_pfe": false,
+   "first_seen": "2026-11-25",
+   "new_today": true,
+   "id": 38
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8228-embedded-systems-verification-engineer-intern",
+   "source": "stagiaires.ma",
+   "title": "Embedded Systems Verification Engineer Intern",
+   "company": "Cadence",
+   "city": "Oujda",
+   "modality": "",
+   "date_posted": "2026-11-25",
+   "valid_through": "2026-12-25",
+   "employment_type": "INTERN",
+   "description": "Cadence, leader en conception électronique, recrute un stagiaire ingénieur en vérification des systèmes embarqués à Oujda. Vous contribuerez à la stratégie de test, l'automatisation et la validation d'un SoC sécurisé combinant matériel (RTL) et logiciel embarqué. Missions : documentation des tests, couverture fonctionnelle, tests de performance, intégration continue. Profil : étudiant en informatique, génie électrique ou systèmes embarqués, avec expérience en C embarqué, VHDL/Verilog, Python sous Linux. Français natif/bilingue, anglais aisance. Rejoignez une culture d'innovation et de collaboration.\nChez Cadence, nous recrutons et développons des leaders et des innovateurs qui souhaitent avoir un impact sur le monde de la technologie.\nCadence est un acteur majeur dans le domaine de la conception électronique, s'appuyant sur plus de 30 ans d'expertise en logiciels de calcul. Grâce à notre stratégie\nIntelligent System Design\n, nous développons des logiciels, du matériel et des propriétés intellectuelles (IP) qui permettent de concrétiser les concepts de conception.\nCette stratégie s'appuie également sur des pratiques de développement enrichies par l'intelligence artificielle (IA), déployées dans l'ensemble de nos organisations, afin de permettre à nos équipes de se concentrer sur la résolution créative de problèmes et l'innovation.\nNos clients comptent parmi les entreprises les plus innovantes au monde. Ils développent des produits électroniques exceptionnels, des puces aux cartes électroniques en passant par les systèmes complets, pour des applications sur des marchés en constante évolution : électronique grand public, informatique hyperscale, communications 5G, automobile, aéronautique et spatial, industrie et santé.\nRejoignez-nous et intégrez une culture qui valorise l",
+   "logo": "",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 0,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 0,
+   "score": 58,
+   "is_pfe": false,
+   "first_seen": "2026-11-25",
+   "new_today": true,
+   "id": 39
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
@@ -1211,7 +1443,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-11",
    "new_today": false,
-   "id": 33
+   "id": 40
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
@@ -1241,7 +1473,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-10",
    "new_today": false,
-   "id": 34
+   "id": 41
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1277,7 +1509,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 35
+   "id": 42
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7916-stage-pfe",
@@ -1308,7 +1540,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-13",
    "new_today": false,
-   "id": 36
+   "id": 43
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7892-stage-pfe-eqdom",
@@ -1339,7 +1571,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-12",
    "new_today": false,
-   "id": 37
+   "id": 44
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1369,7 +1601,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 38
+   "id": 45
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7924-stage-pfe-2026-it-software-engineering-qa-cybersecurite-data-ia",
@@ -1398,7 +1630,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 39
+   "id": 46
   }
  ]
 }
