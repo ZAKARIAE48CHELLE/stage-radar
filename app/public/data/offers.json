@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25T17:11:45+00:00",
+ "generated_at": "2026-11-26T16:51:31+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,21 +28,21 @@
   }
  },
  "stats": {
-  "stored": 1795,
+  "stored": 1814,
   "by_source": {
-   "stagiaires.ma": 43,
+   "stagiaires.ma": 46,
    "dreamjob.ma": 3
   },
-  "kept": 46,
-  "new_this_run": 38,
+  "kept": 49,
+  "new_this_run": 19,
   "filter_reasons": {
    "removed from site": 244,
    "not an internship": 32,
-   "not data/AI": 1104,
-   "too few skill keywords": 77,
-   "title excluded": 260,
+   "not data/AI": 1114,
+   "too few skill keywords": 78,
+   "title excluded": 265,
    "too old": 1,
-   "ok": 53,
+   "ok": 56,
    "expired": 24,
    "duplicate": 7
   }
@@ -416,7 +416,7 @@
    "score": 84,
    "is_pfe": true,
    "first_seen": "2026-11-25",
-   "new_today": true,
+   "new_today": false,
    "id": 9
   },
   {
@@ -534,7 +534,7 @@
    "score": 77,
    "is_pfe": true,
    "first_seen": "2026-11-25",
-   "new_today": true,
+   "new_today": false,
    "id": 12
   },
   {
@@ -568,7 +568,7 @@
    "score": 77,
    "is_pfe": true,
    "first_seen": "2026-11-25",
-   "new_today": true,
+   "new_today": false,
    "id": 13
   },
   {
@@ -708,7 +708,7 @@
    "score": 71,
    "is_pfe": true,
    "first_seen": "2026-11-25",
-   "new_today": true,
+   "new_today": false,
    "also_on": [
     {
      "source": "stagiaires.ma",
@@ -752,6 +752,38 @@
    "id": 18
   },
   {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8264-offre-de-stage-ia-data-developpement-d-application",
+   "source": "stagiaires.ma",
+   "title": "Offre de stage IA - Data & Développement d'Application",
+   "company": "DataValue",
+   "city": "Casablanca",
+   "modality": "Sur site",
+   "date_posted": "2026-11-26",
+   "valid_through": "2026-12-26",
+   "employment_type": "INTERN",
+   "description": "Stage en Data, IA et développement d'application chez DataValue à Casablanca. Participez à la collecte et annotation de données géospatiales, au développement d'interfaces web et à l'intégration d'outils d'IA pour une plateforme innovante d'intelligence géospatiale. Profil étudiant en informatique, Data Science ou géomatique. Durée 2 à 6 mois, sur site à Sidi Maarouf. Postulez via la plateforme.\nOffre de stage – Data, IA & Développement d'Application\nDatavalue | Intelligence géospatiale & technologies de l'IA\nPour notre plateforme innovante qui exploite les données géographiques, la data intelligence et les technologies d'intelligence artificielle pour transformer les données du territoire en informations utiles à la décision.\nDans le cadre du développement de notre plateforme, nous recherchons des stagiaires motivés, curieux et passionnés par la technologie, la data et le développement digital, souhaitant participer à la conception et à l'évolution d'une solution technologique innovante.\nMissions\nLes stagiaires participeront à plusieurs étapes du développement de la plateforme :\n1. Data Collection & Research\nCollecter des données géographiques, urbaines, immobilières et environnementales à partir de différentes sources.\nIdentifier, rechercher et structurer des sources de données pertinentes.\nParticiper à la constitution, à l'enrichissement et à la mise à jour de bases de données.\nVérifier la fiabilité, la cohérence et la qualité des informations collectées.\n2. Data Annotation & Data Quality\nParticiper/piloter à la collecte, l'annotation, la classification et la catégorisation des données.\nOrganiser, nettoyer et structurer les datasets.\nIdentifier les incohérences, les doublons et les erreurs.\nContribuer à la préparation des datasets destinés aux algorithmes d'IA et aux",
+   "logo": "",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 2,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "data science",
+    "sql",
+    "automatisation"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 68,
+   "is_pfe": true,
+   "first_seen": "2026-11-26",
+   "new_today": true,
+   "id": 19
+  },
+  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8226-stage-pfe-data-h-f",
    "source": "stagiaires.ma",
    "title": "Stage PFE – Data (H/F)",
@@ -781,8 +813,8 @@
    "score": 68,
    "is_pfe": true,
    "first_seen": "2026-11-25",
-   "new_today": true,
-   "id": 19
+   "new_today": false,
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7681-stage-pfe-data-ia-it-d2t2",
@@ -814,7 +846,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 20
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8016-maxevo-stagiaire-chef-de-projet-digital-e-commerce-transformation-it-h-f",
@@ -845,7 +877,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-17",
    "new_today": false,
-   "id": 21
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8202-pfe-pmex-2027",
@@ -875,7 +907,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-24",
    "new_today": false,
-   "id": 22
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7966-stage-securite-ia-et-ingenierie-de-la-confiance",
@@ -907,7 +939,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 23
+   "id": 24
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7623-artificial-intelligence-engineer-intern",
@@ -941,7 +973,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 24
+   "id": 25
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7621-stage-de-fin-d-etudes-pfe-campagne",
@@ -971,7 +1003,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 25
+   "id": 26
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7595-campagne-de-recrutement-pfe",
@@ -1001,7 +1033,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 26
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8049-securisation-et-automatisation-des-infrastructures-it-windows-linux-bases-de-donnees-et-solutions-itsm-grace-a-l-ia",
@@ -1032,7 +1064,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-18",
    "new_today": false,
-   "id": 27
+   "id": 28
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7497-stage-pfe-securisation-et-automatisation-des-infrastructures-it-et-ia",
@@ -1063,7 +1095,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 28
+   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7474-securisation-et-automatisation-des-infrastructures-it-windows-linux-bdd-itsm-avec-ia",
@@ -1094,7 +1126,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 29
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8199-stage-developpeur-informatique-ia-vibe-coding-h-f",
@@ -1124,8 +1156,8 @@
    "score": 64,
    "is_pfe": false,
    "first_seen": "2026-11-25",
-   "new_today": true,
-   "id": 30
+   "new_today": false,
+   "id": 31
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8117-stage-pfe-en-developpement-infrastructure-applicatif-f-h",
@@ -1157,7 +1189,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 31
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8110-stage-pfe-si",
@@ -1189,7 +1221,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 32
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7964-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f",
@@ -1225,7 +1257,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7938-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f"
     }
    ],
-   "id": 33
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -1258,7 +1290,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 34
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8252-developpeur-full-stack-junior",
@@ -1288,8 +1320,8 @@
    "score": 63,
    "is_pfe": false,
    "first_seen": "2026-11-25",
-   "new_today": true,
-   "id": 35
+   "new_today": false,
+   "id": 36
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7973-stage-data-engineering-ai-infrastructure-optimization-des-systemes",
@@ -1321,7 +1353,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 36
+   "id": 37
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -1353,7 +1385,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 37
+   "id": 38
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8244-ingenieur-verification-des-systemes-embarques-stage",
@@ -1382,8 +1414,8 @@
    "score": 58,
    "is_pfe": false,
    "first_seen": "2026-11-25",
-   "new_today": true,
-   "id": 38
+   "new_today": false,
+   "id": 39
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8228-embedded-systems-verification-engineer-intern",
@@ -1412,8 +1444,8 @@
    "score": 58,
    "is_pfe": false,
    "first_seen": "2026-11-25",
-   "new_today": true,
-   "id": 39
+   "new_today": false,
+   "id": 40
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
@@ -1443,7 +1475,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-11",
    "new_today": false,
-   "id": 40
+   "id": 41
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
@@ -1473,7 +1505,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-10",
    "new_today": false,
-   "id": 41
+   "id": 42
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1509,7 +1541,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 42
+   "id": 43
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7916-stage-pfe",
@@ -1540,7 +1572,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-13",
    "new_today": false,
-   "id": 43
+   "id": 44
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7892-stage-pfe-eqdom",
@@ -1571,7 +1603,69 @@
    "is_pfe": true,
    "first_seen": "2026-11-12",
    "new_today": false,
-   "id": 44
+   "id": 45
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8291-stage-integration-d-une-gestion-de-licence-et-des-metriques-associees-au-securyzr-server",
+   "source": "stagiaires.ma",
+   "title": "Stage : Intégration d'une gestion de licence et des métriques associées au Securyzr Server",
+   "company": "Secure IC",
+   "city": "Oujda",
+   "modality": "",
+   "date_posted": "2026-11-26",
+   "valid_through": "2026-12-26",
+   "employment_type": "INTERN",
+   "description": "Secure-IC (filiale de Cadence) recrute un stagiaire en dernière année d'école d'ingénieurs pour un stage de 6 mois à Oujda. Mission : étudier et réaliser une preuve de concept pour intégrer un système de gestion des licences et des métriques à la plateforme Securyzr Server, avec prise en compte de scénarios de déploiement isolé. Compétences requises : DevOps, scripting shell et Python, rédaction en anglais. Connaissances en Docker, Kubernetes et sécurité des systèmes appréciées. Rejoignez une culture d'innovation et de diversité.\nPrésentation du poste\nChez Secure-IC (filiale du groupe Cadence), nous recrutons et développons des leaders et des innovateurs désireux d'avoir un impact sur le monde de la technologie. Cette stratégie est renforcée par des pratiques de développement augmentées par l'IA au sein de l'ensemble de nos organisations, permettant à nos équipes de se concentrer sur la résolution créative de problèmes et l'innovation. Nos clients comptent parmi les entreprises les plus innovantes au monde, qui conçoivent des produits électroniques exceptionnels — des puces aux cartes, jusqu'aux systèmes — pour des applications de marché dynamiques telles que les produits grand public, l'informatique hyperscale, les communications 5G, l'automobile, l'aéronautique, l'industrie et la santé. Rejoignez-nous et intégrez une culture qui valorise l'innovation, la collaboration et la réussite client.\nInformations clés\nStage de 6 mois à pourvoir\nIntitulé :\nIntégration d'une gestion de licence et les métriques associées au Securyzr Server\nLocalisation :\nOujda, Maroc.\nRattachement hiérarchique :\nFabrice Dislaire, Senior Software Engineering Manager.\nMissions\nCe stage consiste à étudier et à réaliser une preuve de concept (PoC) pour intégrer un système de gestion des licences à la ",
+   "logo": "",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "docker",
+    "kubernetes",
+    "devops"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 0,
+   "score": 53,
+   "is_pfe": false,
+   "first_seen": "2026-11-26",
+   "new_today": true,
+   "id": 46
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8266-stage-integration-de-la-gestion-des-licences-et-des-metriques-associees-au-serveur-securyzr",
+   "source": "stagiaires.ma",
+   "title": "Stage : Intégration de la gestion des licences et des métriques associées au serveur Securyzr",
+   "company": "Cadence",
+   "city": "Oujda",
+   "modality": "",
+   "date_posted": "2026-11-26",
+   "valid_through": "2026-12-26",
+   "employment_type": "INTERN",
+   "description": "Stage de 6 mois à Oujda chez Cadence (Secure-IC) : intégration d'un système de gestion des licences et des métriques associées au serveur Securyzr. Missions : étude et choix d'un système adapté aux environnements isolés, définition des métriques et tableaux de bord, conception, implémentation et tests (unitaires, intégration, fonctionnels, sécurité). Rédaction de documentation technique. Profil : étudiant en dernière année d'école d'ingénieurs, bases en DevOps, scripting shell et Python, anglais rédactionnel. Plus : Docker, Kubernetes, sécurité des systèmes.\nÀ propos de Cadence\nChez Cadence, nous recrutons et développons des leaders et des innovateurs désireux d'avoir un impact sur le monde de la technologie.\nCadence est un leader clé dans la conception électronique, s'appuyant sur plus de 30 ans d'expertise en logiciels de calcul. Nous appliquons notre stratégie de conception intelligente des systèmes (Intelligent System Design) pour fournir des logiciels, du matériel et des propriétés intellectuelles (IP) qui transforment les concepts de conception en réalité.\nCette stratégie est renforcée par des pratiques de développement augmentées par l'IA au sein de l'ensemble de nos organisations, permettant à nos équipes de se concentrer sur la résolution créative de problèmes et l'innovation. Nos clients comptent parmi les entreprises les plus innovantes au monde, qui conçoivent des produits électroniques exceptionnels — des puces aux cartes, jusqu'aux systèmes — pour des applications de marché dynamiques telles que les produits grand public, l'informatique hyperscale, les communications 5G, l'automobile, l'aéronautique, l'industrie et la santé. Rejoignez-nous et intégrez une culture qui valorise l'innovation, la collaboration et la réussite client.\nChez Secure-IC (filiale du ",
+   "logo": "",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "docker",
+    "kubernetes",
+    "devops"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 0,
+   "score": 53,
+   "is_pfe": false,
+   "first_seen": "2026-11-26",
+   "new_today": true,
+   "id": 47
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1601,7 +1695,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 45
+   "id": 48
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7924-stage-pfe-2026-it-software-engineering-qa-cybersecurite-data-ia",
@@ -1630,7 +1724,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 46
+   "id": 49
   }
  ]
 }
