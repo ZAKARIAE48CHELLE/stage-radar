@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-26T16:51:31+00:00",
+ "generated_at": "2026-11-27T16:37:46+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,23 +28,23 @@
   }
  },
  "stats": {
-  "stored": 1814,
+  "stored": 1837,
   "by_source": {
-   "stagiaires.ma": 46,
-   "dreamjob.ma": 3
+   "stagiaires.ma": 47,
+   "dreamjob.ma": 2
   },
   "kept": 49,
-  "new_this_run": 19,
+  "new_this_run": 23,
   "filter_reasons": {
-   "removed from site": 244,
+   "removed from site": 257,
    "not an internship": 32,
-   "not data/AI": 1114,
-   "too few skill keywords": 78,
-   "title excluded": 265,
-   "too old": 1,
-   "ok": 56,
-   "expired": 24,
-   "duplicate": 7
+   "not data/AI": 1119,
+   "too few skill keywords": 81,
+   "title excluded": 263,
+   "too old": 2,
+   "ok": 57,
+   "expired": 26,
+   "duplicate": 8
   }
  },
  "offers": [
@@ -183,44 +183,38 @@
    "id": 3
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7484-pfe-en-data-science-et-devops",
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8299-stage-pfe-ingenierie-en-intelligence-artificielle-automatisation-intelligente",
    "source": "stagiaires.ma",
-   "title": "PFE en Data Science et DevOps",
-   "company": "MAROC FER",
-   "city": "Fès",
+   "title": "Stage PFE – Ingénierie en Intelligence Artificielle & Automatisation Intelligente",
+   "company": "TRIGO",
+   "city": "Tanger",
    "modality": "",
-   "date_posted": "2026-10-27",
-   "valid_through": "2026-11-26",
+   "date_posted": "2026-11-27",
+   "valid_through": "2026-12-27",
    "employment_type": "INTERN",
-   "description": "Rejoignez Inetum en tant que stagiaire PFE pour travailler sur des projets innovants en Intelligence Artificielle et DevOps. Vous participerez à l'entraînement de modèles d'IA générative, à la préparation des données et à l'automatisation des environnements via des chaînes CI/CD et Docker. Profil recherché : étudiant en fin d'études d'ingénieur ou Master en Data Science/Informatique, avec une maîtrise de Python et des outils DevOps. Une opportunité idéale pour monter en compétence sur des technologies de pointe au sein d'un leader européen du numérique.\nDescription de l'entreprise\nInetum est un leader européen des services numériques. Avec 28 000 consultants, le groupe vise l'impact digital à travers des solutions innovantes. Présent dans 19 pays, Inetum accompagne ses clients dans leur transformation digitale autour de quatre métiers : le conseil, les infrastructures, les progiciels et l'édition de logiciels.\nDescription du poste\nDans le cadre de votre PFE, vous participerez à l'entraînement de modèles d'intelligence artificielle et à la mise en place d'une plateforme DevOps :\nÉtudier et sélectionner les modèles d'IA générative adaptés.\nPréparer, nettoyer et structurer les jeux de données.\nParticiper à l'entraînement, au\nfine-tuning\net à l'évaluation des modèles.\nDévelopper des scripts et des API pour exploiter les modèles.\nMettre en place une chaîne CI/CD pour automatiser les tests et déploiements.\nConteneuriser les applications via Docker.\nAssurer le suivi des performances, le versioning et le monitoring.\nQualifications\nÉtudiant(e) en fin d'études d'ingénieur ou Master spécialisé (IA, Data Science, DevOps).\nMaîtrise de Python et des concepts de Machine Learning/Deep Learning.\nCompétences techniques : Git, Docker, Pipelines CI/CD.\nAtouts : Kubernetes, MLflow, Jenkins,",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/05/05141823/MAROC-FER.png",
+   "description": "TRIGO, leader mondial en solutions qualité, recherche des étudiants en dernière année d'ingénierie pour un stage PFE en Intelligence Artificielle et Automatisation Intelligente à Tanger. Vous travaillerez sur des projets innovants en AI Agents, LLMs, et automatisation intelligente, en collaboration directe avec l'AI & Automation Engineer. Une opportunité de contribuer à des solutions concrètes avec possibilité d'embauche.\nDescription de l'entreprise\nTRIGO est un leader mondial en solutions qualité, spécialisé dans les secteurs automobile, aéronautique et transport. Avec plus de 10 000 professionnels dans 28 pays, TRIGO fournit des services complets de gestion de la qualité, garantissant les plus hauts standards de performance industrielle et de chaîne d'approvisionnement.\nDescription du poste\nTRIGO recherche des étudiants en dernière année de cycle ingénieur, motivés et passionnés par les nouvelles technologies, afin de rejoindre ses initiatives technologiques et de contribuer au développement de solutions intelligentes de nouvelle génération.\nEn collaboration directe avec l'AI & Automation Engineer, vous participerez à l'exploration et au développement d'applications innovantes combinant Intelligence Artificielle, Grands Modèles de Langage (LLMs), Agents IA et Automatisation Intelligente, afin de répondre à des problématiques concrètes du monde professionnel.\nCe stage représente une opportunité de travailler sur des systèmes modernes basés sur l'IA, de contribuer à des projets d'ingénierie à forte valeur ajoutée et de transformer les technologies émergentes en solutions concrètes, fiables et adaptées à un environnement professionnel.\nDomaines d'intervention\nAgents IA & Systèmes Agentiques :\nConcevoir des agents intelligents capables de raisonner, d'interagir avec des o",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/12/05162804/Logo-STG-Entreprise-et-ecole-39.png",
    "axis_hits": {
-    "genai": 4,
-    "bigdata": 6,
-    "fullstack": 4,
-    "cvsec": 1
+    "genai": 6,
+    "bigdata": 0,
+    "fullstack": 3,
+    "cvsec": 0
    },
    "keywords": [
-    "fine tuning",
-    "fine-tuning",
+    "agents ia",
+    "ai agents",
     "ia generative",
     "intelligence artificielle",
-    "data science",
-    "docker",
-    "kubernetes",
-    "machine learning",
-    "pipelines",
-    "automatisation",
-    "ci/cd",
-    "devops",
-    "deep learning"
+    "llms",
+    "automation",
+    "automatisation"
    ],
-   "domain": "Big Data & MLOps",
-   "bonus": 5,
-   "score": 91,
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 92,
    "is_pfe": true,
-   "first_seen": "2026-11-06",
-   "new_today": false,
+   "first_seen": "2026-11-27",
+   "new_today": true,
    "id": 4
   },
   {
@@ -263,6 +257,40 @@
    "id": 5
   },
   {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8303-stage-pfe-ingenierie-en-intelligence-artificielle-automatisation-intelligente",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE – Ingénierie en Intelligence Artificielle & Automatisation Intelligente",
+   "company": "Trigo Group",
+   "city": "Tanger",
+   "modality": "",
+   "date_posted": "2026-11-27",
+   "valid_through": "2026-12-27",
+   "employment_type": "INTERN",
+   "description": "TRIGO, leader mondial des solutions qualité, recherche des étudiants en dernière année d'ingénieur pour un stage PFE en Intelligence Artificielle et Automatisation Intelligente à Tanger. Vous travaillerez sur des projets innovants : Agents IA, LLMs, automatisation intelligente et applications IA. Encadrement direct par l'AI & Automation Engineer, avec possibilité d'embauche.\nDescription de l'entreprise\nTRIGO est un leader mondial des solutions qualité, spécialisé dans les secteurs de l'automobile, de l'aérospatiale et du transport. Avec plus de 10 000 professionnels répartis dans 28 pays, TRIGO propose des services complets de gestion de la qualité, garantissant les plus hauts standards de performance industrielle et de chaîne d'approvisionnement.\nDescription du poste\nTRIGO recherche des étudiants en dernière année de cycle ingénieur, motivés et passionnés par les nouvelles technologies, afin de rejoindre ses initiatives technologiques et de contribuer au développement de solutions intelligentes de nouvelle génération.\nEn collaboration directe avec l'AI & Automation Engineer, vous participerez à l'exploration et au développement d'applications innovantes combinant Intelligence Artificielle, Grands Modèles de Langage (LLMs), Agents IA et Automatisation Intelligente, afin de répondre à des problématiques concrètes du monde professionnel.\nCe stage représente une opportunité de travailler sur des systèmes modernes basés sur l'IA, de contribuer à des projets d'ingénierie à forte valeur ajoutée et de transformer les technologies émergentes en solutions concrètes, fiables et adaptées à un environnement professionnel.\nDomaines d'intervention\nAgents IA & Systèmes Agentiques :\nConcevoir des agents intelligents capables de raisonner, d'interagir avec des outils et d'exécuter des t",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/11/12173206/Logo-STG-Entreprise-et-ecole-39.png",
+   "axis_hits": {
+    "genai": 5,
+    "bigdata": 0,
+    "fullstack": 3,
+    "cvsec": 0
+   },
+   "keywords": [
+    "agents ia",
+    "ia generative",
+    "intelligence artificielle",
+    "llms",
+    "automation",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 88,
+   "is_pfe": true,
+   "first_seen": "2026-11-27",
+   "new_today": true,
+   "id": 6
+  },
+  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8101-offre-de-stage-en-prompt-engineer-ia-marrakech",
    "source": "stagiaires.ma",
    "title": "Offre de Stage en Prompt Engineer & IA - Marrakech",
@@ -298,7 +326,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 6
+   "id": 7
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8133-delivery-ai-engineering-intern",
@@ -343,7 +371,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-21",
    "new_today": false,
-   "id": 7
+   "id": 8
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8205-stage-pfe-ingenieur-genie-informatique-data-ai",
@@ -382,7 +410,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-24",
    "new_today": false,
-   "id": 8
+   "id": 9
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8235-pfe-projet-2027",
@@ -417,7 +445,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 9
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8036-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f",
@@ -457,7 +485,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8072-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f"
     }
    ],
-   "id": 10
+   "id": 11
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8017-stagiaires-pfe-telecoms-reseaux-it",
@@ -501,7 +529,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8053-stagiaires-pfe-telecoms-reseaux-it"
     }
    ],
-   "id": 11
+   "id": 12
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8257-stage-pfe-digital-transformation-dtx-tanger",
@@ -535,7 +563,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 12
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8247-pfe-dtx-2027-stage-de-fin-d-etudes-en-transformation-digitale",
@@ -569,7 +597,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 13
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7650-stage-pfe-telecom-it",
@@ -610,7 +638,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7634-stage-pfe-telecom-it"
     }
    ],
-   "id": 14
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7501-stage-pre-embauche-data-scientist-ia-automation",
@@ -643,38 +671,6 @@
    "score": 74,
    "is_pfe": false,
    "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 15
-  },
-  {
-   "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe/",
-   "source": "dreamjob.ma",
-   "title": "À Casablanca, Payment Center for Africa recrute 4 stagiaires PFE",
-   "company": "À Casablanca, Payment Center for Africa",
-   "city": "Casablanca",
-   "modality": "",
-   "date_posted": "2026-10-12",
-   "valid_through": "",
-   "employment_type": "INTERN",
-   "description": "Payment Center for Africa (PCA)\nrecrute\n4 stagiaires PFE\nà\nCasablanca\n: 2\nIngénieur(e)s Support\net 2\nChargé(e)s de Relation Clients\n. Les stages de\n6 mois\ndémarrent en\njanvier 2027\n, s’adressent aux étudiants en dernière année de\nBac+5\net offrent une perspective d’embauche à l’issue du PFE.\nFiliale du\nGroupe Banque Centrale Populaire\n,\nPCA\nest un centre d’expertise en monétique et en Digital Banking. Il gère des plateformes de traitement des paiements par carte et des services bancaires numériques pour des banques et des partenaires au Maroc et en Afrique.\nStagiaire PFE Ingénieur(e) Support – Casablanca\n2 stages\nsont ouverts sur ce poste. Le sujet du PFE porte sur le support des services de PCA, avec une dimension data: gestion des tickets, analyse des données et intelligence artificielle (ML/NLP)\nSes principales missions seront de:\nParticiper au traitement et au suivi des tickets d’incidents et de demandes.\nAnalyser les données de support pour repérer les incidents récurrents et les délais de traitement.\nConstruire des tableaux de bord de suivi de l’activité de support.\nÉtudier des cas d’usage de\nmachine learning\net de\nNLP\nappliqués aux tickets, comme le classement automatique des demandes.\nDocumenter les travaux et présenter les résultats aux équipes.\nLe profil recherché pour ce poste:\nÊtre en dernière année d’un cursus\nBac+5\nen école d’ingénieurs ou à l’université, en informatique, data science ou intelligence artificielle.\nAvoir des bases en\nanalyse de données\net en programmation, par exemple en Python.\nS’intéresser au\nmachine learning\net au traitement du langage naturel.\nAvoir le sens de l’analyse et de la rigueur.\nStagiaire PFE Chargé(e) de Relation Clients – Casablanca\n2 stages\nsont ouverts sur ce poste. Les missions portent sur la relation avec les clients de PC",
-   "logo": "",
-   "axis_hits": {
-    "genai": 2,
-    "bigdata": 2,
-    "fullstack": 0,
-    "cvsec": 0
-   },
-   "keywords": [
-    "intelligence artificielle",
-    "nlp",
-    "data science",
-    "machine learning"
-   ],
-   "domain": "IA Agentique & GenAI",
-   "bonus": 8,
-   "score": 73,
-   "is_pfe": true,
-   "first_seen": "2026-10-12",
    "new_today": false,
    "id": 16
   },
@@ -780,7 +776,7 @@
    "score": 68,
    "is_pfe": true,
    "first_seen": "2026-11-26",
-   "new_today": true,
+   "new_today": false,
    "id": 19
   },
   {
@@ -1098,37 +1094,6 @@
    "id": 29
   },
   {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7474-securisation-et-automatisation-des-infrastructures-it-windows-linux-bdd-itsm-avec-ia",
-   "source": "stagiaires.ma",
-   "title": "Sécurisation et automatisation des infrastructures IT (Windows/Linux, BDD, ITSM) avec IA",
-   "company": "MAROC FER",
-   "city": "Marrakech",
-   "modality": "",
-   "date_posted": "2026-10-27",
-   "valid_through": "2026-11-26",
-   "employment_type": "INTERN",
-   "description": "Vous êtes en fin d'études en ingénierie ou Master informatique ? Inetum vous propose un stage PFE stimulant à Marrakech. Vous participerez à l'administration des systèmes Windows/Linux, à la gestion de bases de données et à l'automatisation des infrastructures IT. Vous explorerez l'usage de l'intelligence artificielle pour optimiser la supervision et la gestion des incidents ITSM, tout en appliquant les méthodologies ITIL. Si vous maîtrisez le scripting (Python/Bash/PowerShell) et souhaitez évoluer dans un environnement technologique innovant, rejoignez nos équipes.\nDescription de l'entreprise\nInetum est un leader européen des services numériques. Avec 28 000 collaborateurs, le groupe accompagne les entreprises et acteurs publics dans leur transformation digitale à travers le conseil, les infrastructures, les solutions logicielles et l'intégration de progiciels (Salesforce, ServiceNow, Microsoft, SAP).\nDescription du poste\nCe projet de fin d’études vise à optimiser les opérations informatiques via l'administration de systèmes Windows/Linux, la gestion de bases de données (Oracle/SQL) et l'exploitation de solutions ITSM selon les bonnes pratiques ITIL.\nMissions principales\nAdministration et supervision :\nMaintenir les environnements Windows et Linux.\nBases de données :\nGérer, surveiller et optimiser les bases Oracle et SQL.\nITSM & ITIL :\nGérer les incidents et demandes via les outils dédiés.\nAutomatisation :\nDévelopper des scripts (Python, Bash, PowerShell) pour automatiser les tâches récurrentes.\nInnovation IA :\nExplorer l'intelligence artificielle pour l'analyse d'incidents et la génération de rapports.\nAmélioration continue :\nMettre en place des indicateurs de suivi et documenter les solutions.\nProfil recherché\nÉtudiant(e) en dernière année d'école d'ingénieurs ou Mas",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/05/05141823/MAROC-FER.png",
-   "axis_hits": {
-    "genai": 1,
-    "bigdata": 1,
-    "fullstack": 2,
-    "cvsec": 0
-   },
-   "keywords": [
-    "intelligence artificielle",
-    "sql",
-    "automatisation"
-   ],
-   "domain": "Full-Stack & Automatisations",
-   "bonus": 5,
-   "score": 65,
-   "is_pfe": true,
-   "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 30
-  },
-  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8199-stage-developpeur-informatique-ia-vibe-coding-h-f",
    "source": "stagiaires.ma",
    "title": "Stage Développeur Informatique IA / Vibe Coding (H/F)",
@@ -1157,7 +1122,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 31
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8117-stage-pfe-en-developpement-infrastructure-applicatif-f-h",
@@ -1189,7 +1154,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 32
+   "id": 31
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8110-stage-pfe-si",
@@ -1221,7 +1186,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 33
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7964-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f",
@@ -1257,7 +1222,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7938-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f"
     }
    ],
-   "id": 34
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -1290,7 +1255,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 35
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8252-developpeur-full-stack-junior",
@@ -1321,7 +1286,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 36
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7973-stage-data-engineering-ai-infrastructure-optimization-des-systemes",
@@ -1353,7 +1318,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 37
+   "id": 36
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -1385,6 +1350,36 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
+   "id": 37
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8312-stagiaire-pfe-gateway-ia-avec-modules-dlp-h-f",
+   "source": "stagiaires.ma",
+   "title": "Stagiaire PFE - Gateway IA avec modules DLP (H/F)",
+   "company": "Banque Centrale Populaire - BCP",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-11-27",
+   "valid_through": "2026-12-27",
+   "employment_type": "INTERN",
+   "description": "La Banque Centrale Populaire recherche un stagiaire PFE pour rejoindre l'Entité Sécurité des Systèmes d'Informations à Casablanca. Missions : étude de cadrage sur les risques de fuite de données liés à l'IA générative, conception d'architecture sécurisée, développement d'un prototype AI Gateway, modules DLP/FLP, tableau de bord de supervision et rapport de tests. Profil : Bac+5 en Sécurité des Systèmes d'Information, intérêt pour la cybersécurité et l'IA générative, rigueur et autonomie.\nStagiaire PFE - Gateway IA avec modules DLP (H/F)\nLa Banque Centrale Populaire recrute un(e) stagiaire PFE au sein de l'Entité Sécurité des Systèmes d'Informations.\nVos missions :\nÉtude de cadrage et benchmark :\nAnalyse des risques de fuite de données liés à l'IA générative. Étude des solutions AI Gateway et DLP existantes.\nArchitecture technique et sécurité :\nSchéma d'architecture, flux de données, mécanismes d'interception, authentification, journalisation et contrôle.\nPrototype AI Gateway\nModules de protection DLP/FLP\nTableau de bord de supervision\nRapport de tests et d'évaluation\nDocumentation et soutenance\nProfil :\nÉtudiant(e) en dernière année de formation Bac +5 en Sécurité des Systèmes d'Information ou équivalent\nIntérêt marqué pour la cybersécurité et l'IA générative\nRigueur, autonomie et esprit d'analyse",
+   "logo": "",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 0,
+    "fullstack": 0,
+    "cvsec": 1
+   },
+   "keywords": [
+    "ia generative",
+    "cybersecurite"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 58,
+   "is_pfe": true,
+   "first_seen": "2026-11-27",
+   "new_today": true,
    "id": 38
   },
   {
@@ -1633,7 +1628,7 @@
    "score": 53,
    "is_pfe": false,
    "first_seen": "2026-11-26",
-   "new_today": true,
+   "new_today": false,
    "id": 46
   },
   {
@@ -1665,6 +1660,12 @@
    "is_pfe": false,
    "first_seen": "2026-11-26",
    "new_today": true,
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/8321-stage-integration-de-la-gestion-des-licences-et-des-metriques-associees-au-serveur-securyzr"
+    }
+   ],
    "id": 47
   },
   {
