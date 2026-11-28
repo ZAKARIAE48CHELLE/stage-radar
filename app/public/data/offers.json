@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T16:37:46+00:00",
+ "generated_at": "2026-11-28T15:29:24+00:00",
  "profile": {
   "name": "Zakariae Chelle",
   "headline": "Élève Ingénieur IA & Data | EMSI Tanger",
@@ -28,23 +28,23 @@
   }
  },
  "stats": {
-  "stored": 1837,
+  "stored": 1865,
   "by_source": {
-   "stagiaires.ma": 47,
+   "stagiaires.ma": 51,
    "dreamjob.ma": 2
   },
-  "kept": 49,
-  "new_this_run": 23,
+  "kept": 53,
+  "new_this_run": 28,
   "filter_reasons": {
-   "removed from site": 257,
+   "removed from site": 266,
    "not an internship": 32,
-   "not data/AI": 1119,
-   "too few skill keywords": 81,
-   "title excluded": 263,
-   "too old": 2,
-   "ok": 57,
-   "expired": 26,
-   "duplicate": 8
+   "not data/AI": 1124,
+   "too few skill keywords": 85,
+   "title excluded": 266,
+   "too old": 6,
+   "ok": 62,
+   "expired": 24,
+   "duplicate": 9
   }
  },
  "offers": [
@@ -214,7 +214,7 @@
    "score": 92,
    "is_pfe": true,
    "first_seen": "2026-11-27",
-   "new_today": true,
+   "new_today": false,
    "id": 4
   },
   {
@@ -257,6 +257,45 @@
    "id": 5
   },
   {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8349-stagiaire-pfe-infrastructure-it-cloud-transformation-digitale-h-f",
+   "source": "stagiaires.ma",
+   "title": "Stagiaire PFE – Infrastructure IT, Cloud & Transformation Digitale (H/F)",
+   "company": "CGI",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-11-28",
+   "valid_through": "2026-12-28",
+   "employment_type": "INTERN",
+   "description": "CGI recrute un stagiaire PFE en infrastructure IT, Cloud et transformation digitale à Casablanca. Vous participerez à des projets d'automatisation, DevOps, ITIL, ITSM, systèmes et réseaux, et intégration de l'IA. Profil : dernière année d'ingénierie informatique ou systèmes d'information. Durée : stage de fin d'études. Rejoignez une entreprise inclusive et innovante.\nDescription du poste\nDans le cadre de notre campagne de recrutement des stagiaires PFE, CGI recherche un(e) stagiaire en dernière année d'ingénierie informatique ou systèmes d'information pour contribuer à des projets autour de l'exploitation et de la modernisation des infrastructures IT.\nCe stage s'inscrit dans une démarche de transformation digitale et d'amélioration continue des services informatiques. Il pourra porter sur des sujets liés au Cloud, au DevOps, aux systèmes et réseaux, aux processus ITIL, à l'ITSM, à la gouvernance IT ou à l'intégration de l'intelligence artificielle dans les environnements informatiques.\nFonctions et responsabilités\nSelon le sujet de PFE retenu et votre parcours, vous pourrez être amené(e) à :\nParticiper à des projets d'automatisation et d'optimisation des environnements Cloud et des infrastructures IT.\nContribuer à la mise en place ou à l'amélioration de pratiques DevOps, notamment autour de l'intégration et du déploiement continus (CI/CD).\nParticiper à l'analyse et à l'amélioration des processus ITIL, notamment la gestion des incidents, des changements et des demandes de services.\nContribuer à des projets liés aux systèmes, réseaux et à la modernisation des infrastructures.\nÉtudier les opportunités d'intégration de l'intelligence artificielle dans les activités d'exploitation, de supervision ou de support IT.\nParticiper à l'évolution des outils ITSM et à l'amélioration ",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/01/29145824/Design-sans-titre-99.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 7,
+    "fullstack": 3,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "aws",
+    "azure",
+    "docker",
+    "kubernetes",
+    "pipelines",
+    "power bi",
+    "sql",
+    "automatisation",
+    "ci/cd",
+    "devops"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 89,
+   "is_pfe": true,
+   "first_seen": "2026-11-28",
+   "new_today": true,
+   "id": 6
+  },
+  {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8303-stage-pfe-ingenierie-en-intelligence-artificielle-automatisation-intelligente",
    "source": "stagiaires.ma",
    "title": "Stage PFE – Ingénierie en Intelligence Artificielle & Automatisation Intelligente",
@@ -287,8 +326,8 @@
    "score": 88,
    "is_pfe": true,
    "first_seen": "2026-11-27",
-   "new_today": true,
-   "id": 6
+   "new_today": false,
+   "id": 7
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8101-offre-de-stage-en-prompt-engineer-ia-marrakech",
@@ -326,7 +365,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 7
+   "id": 8
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8133-delivery-ai-engineering-intern",
@@ -371,7 +410,42 @@
    "is_pfe": false,
    "first_seen": "2026-11-21",
    "new_today": false,
-   "id": 8
+   "id": 9
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8335-stage-pfe-ai-engineer-possibilite-d-embauche",
+   "source": "stagiaires.ma",
+   "title": "Stage PFE – AI Engineer (Possibilité d'embauche)",
+   "company": "TRIGO",
+   "city": "Tanger",
+   "modality": "",
+   "date_posted": "2026-11-28",
+   "valid_through": "2026-12-28",
+   "employment_type": "INTERN",
+   "description": "TRIGO, leader mondial des solutions qualité, recherche des étudiants en dernière année de cycle ingénieur pour un stage PFE en AI Engineering. Vous travaillerez sur des projets innovants en Intelligence Artificielle, LLMs, AI Agents et automatisation intelligente, en collaboration directe avec l'AI & Automation Engineer. Une opportunité unique de développer des solutions concrètes et de contribuer à des projets à forte valeur ajoutée, avec possibilité d'embauche à la clé.\nDescription de l'entreprise\nTRIGO est un leader mondial des solutions qualité, spécialisé dans les secteurs automobile, aéronautique et transport. Avec plus de 10 000 professionnels dans 28 pays, TRIGO fournit des services complets de gestion de la qualité, garantissant les plus hauts standards de fabrication et de performance de la chaîne d'approvisionnement. Pour plus d'informations, consultez le site web de TRIGO.\nDescription du poste\nTRIGO recherche des étudiants en dernière année de cycle ingénieur, motivés et passionnés par les nouvelles technologies, afin de rejoindre ses initiatives technologiques et contribuer au développement de solutions intelligentes de nouvelle génération.\nEn collaboration directe avec l'AI & Automation Engineer, vous participerez à l'exploration et au développement d'applications innovantes combinant Intelligence Artificielle, Large Language Models (LLMs), AI Agents et Intelligent Automation, afin de répondre à des problématiques concrètes du monde professionnel.\nCe stage représente une opportunité de travailler sur des systèmes modernes basés sur l'IA, de contribuer à des projets d'ingénierie à forte valeur ajoutée et de transformer les technologies émergentes en solutions concrètes, fiables et adaptées à un environnement professionnel.\nDomaines d'intervention\nAI Agents ",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/12/05162804/Logo-STG-Entreprise-et-ecole-39.png",
+   "axis_hits": {
+    "genai": 5,
+    "bigdata": 0,
+    "fullstack": 2,
+    "cvsec": 0
+   },
+   "keywords": [
+    "ai agents",
+    "generative ai",
+    "intelligence artificielle",
+    "llm",
+    "llms",
+    "automation",
+    "automatisation"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 86,
+   "is_pfe": true,
+   "first_seen": "2026-11-28",
+   "new_today": true,
+   "id": 10
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8205-stage-pfe-ingenieur-genie-informatique-data-ai",
@@ -410,7 +484,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-24",
    "new_today": false,
-   "id": 9
+   "id": 11
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8235-pfe-projet-2027",
@@ -445,7 +519,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 10
+   "id": 12
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8036-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f",
@@ -485,7 +559,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8072-offre-de-stage-pfe-genie-informatique-intelligence-artificielle-data-h-f"
     }
    ],
-   "id": 11
+   "id": 13
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8017-stagiaires-pfe-telecoms-reseaux-it",
@@ -529,7 +603,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8053-stagiaires-pfe-telecoms-reseaux-it"
     }
    ],
-   "id": 12
+   "id": 14
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8257-stage-pfe-digital-transformation-dtx-tanger",
@@ -563,7 +637,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 13
+   "id": 15
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8247-pfe-dtx-2027-stage-de-fin-d-etudes-en-transformation-digitale",
@@ -597,7 +671,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 14
+   "id": 16
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7650-stage-pfe-telecom-it",
@@ -638,41 +712,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7634-stage-pfe-telecom-it"
     }
    ],
-   "id": 15
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7501-stage-pre-embauche-data-scientist-ia-automation",
-   "source": "stagiaires.ma",
-   "title": "Stage pré-embauche Data Scientist (IA & Automation)",
-   "company": "Education Power Service",
-   "city": "Marrakech",
-   "modality": "Hybride",
-   "date_posted": "2026-10-28",
-   "valid_through": "2026-11-27",
-   "employment_type": "INTERN",
-   "description": "Rejoignez Education Power Service à Marrakech pour un stage pré-embauche en Data Science. Participez à des projets concrets mêlant IA générative, automatisation des processus et développement d'outils intelligents. Ce stage offre une opportunité réelle d'intégration en CDI pour les candidats motivés souhaitant optimiser les opérations par la donnée. Travail hybride.\nPrésentation de l'opportunité\nRejoignez\nEducation Power Service\nà Marrakech pour un stage pré-embauche stimulant en Data Science. Ce stage est une excellente opportunité pour mettre en pratique vos compétences en IA et automatisation au sein d'un environnement innovant. Une réelle possibilité d'intégration en CDI est offerte à l'issue de cette période.\nVos missions principales\nData Science :\nAnalyse et traitement de données complexes.\nIA Générative :\nConception et déploiement de solutions basées sur l'IA générative.\nAgents IA :\nDéveloppement d'agents intelligents pour répondre aux besoins opérationnels.\nAutomatisation :\nOptimisation des processus métier via des solutions automatisées.\nDéveloppement d'outils :\nCréation d'outils sur mesure pour améliorer l'efficacité interne.\nLieu :\nTravail hybride, Marrakech.\nPour postuler, veuillez utiliser le formulaire de candidature disponible sur notre plateforme.",
-   "logo": "",
-   "axis_hits": {
-    "genai": 2,
-    "bigdata": 3,
-    "fullstack": 3,
-    "cvsec": 0
-   },
-   "keywords": [
-    "agents ia",
-    "ia generative",
-    "data science",
-    "data scientist",
-    "automation",
-    "automatisation"
-   ],
-   "domain": "Big Data & MLOps",
-   "bonus": 0,
-   "score": 74,
-   "is_pfe": false,
-   "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 16
+   "id": 17
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8227-stages-pfe-2027-profils-ingenieurs",
@@ -711,7 +751,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8186-stages-pfe-2027-profils-ingenieurs"
     }
    ],
-   "id": 17
+   "id": 18
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7648-stage-developpeur-se-full-stack-developpement-assiste-par-l-ia-smilycall",
@@ -745,7 +785,45 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 18
+   "id": 19
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8350-stagiaire-pfe-supply-chain-h-f",
+   "source": "stagiaires.ma",
+   "title": "Stagiaire PFE Supply Chain (H/F)",
+   "company": "Centrale Danone",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-11-28",
+   "valid_through": "2026-12-28",
+   "employment_type": "INTERN",
+   "description": "Centrale Danone recherche un(e) Stagiaire PFE Supply Chain pour sa Direction Supply Chain à Casablanca. Le stage, d'une durée de 6 mois à partir de janvier 2027, portera sur le développement d'un outil intelligent de gestion des affectations des tournées de distribution et l'optimisation de la flotte. Missions : analyse de données, conception d'un moteur de recommandation mêlant optimisation et IA, développement d'une interface utilisateur, tests sur données réelles. Profil : Bac+5 en Supply Chain, Logistique, Data Science ou équivalent, avec des compétences en Python, Power BI, SQL. Convention de stage obligatoire.\nÀ propos du poste\nRejoindre Danone, c'est…\nRencontrer des collaborateurs aux personnalités singulières et aux parcours professionnels variés ;\nGrandir dans des environnements différents : sites de production, bases logistiques, centres de recherche et innovation ou sièges sociaux ;\nSe construire un parcours de carrière sur mesure, adapté à votre personnalité, vos compétences et vos envies ;\nApprendre grâce à des missions responsabilisantes, riches et formatrices.\nDanone, entreprise à mission\nEn juin 2020, Danone est devenue la première entreprise cotée à adopter le statut d'Entreprise à Mission. Nous avons en effet décidé de nous doter d'une raison d'être et d'objectifs sociaux, sociétaux et environnementaux associés inscrits dans nos statuts. Il s'agit d'une étape historique pour continuer à réaliser chaque jour notre mission – « apporter la santé par l'alimentation au plus grand nombre » – dans notre cadre d'action « One Planet. One Health ».\nÀ propos de vous\nCentrale Danone\nest à la recherche d'un(e)\nStagiaire PFE Supply Chain\npour rejoindre sa Direction\nSupply Chain\n, basée à\nl'Annexe de Casablanca\n, à partir de\njanvier 2027\npour une durée de\n6 mois\n.\nLe",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/04/03161110/Logo-STG-Entreprise-et-ecole-18-1.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 3,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "data science",
+    "power bi",
+    "sql"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 68,
+   "is_pfe": true,
+   "first_seen": "2026-11-28",
+   "new_today": true,
+   "also_on": [
+    {
+     "source": "stagiaires.ma",
+     "url": "https://www.stagiaires.ma/stage-emploi-maroc/8347-stagiaire-pfe-supply-chain-h-f"
+    }
+   ],
+   "id": 20
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8264-offre-de-stage-ia-data-developpement-d-application",
@@ -777,7 +855,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-26",
    "new_today": false,
-   "id": 19
+   "id": 21
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8226-stage-pfe-data-h-f",
@@ -810,7 +888,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 20
+   "id": 22
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7681-stage-pfe-data-ia-it-d2t2",
@@ -842,7 +920,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 21
+   "id": 23
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8016-maxevo-stagiaire-chef-de-projet-digital-e-commerce-transformation-it-h-f",
@@ -873,7 +951,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-17",
    "new_today": false,
-   "id": 22
+   "id": 24
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8202-pfe-pmex-2027",
@@ -903,7 +981,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-24",
    "new_today": false,
-   "id": 23
+   "id": 25
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7966-stage-securite-ia-et-ingenierie-de-la-confiance",
@@ -935,7 +1013,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 24
+   "id": 26
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7623-artificial-intelligence-engineer-intern",
@@ -969,7 +1047,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 25
+   "id": 27
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7621-stage-de-fin-d-etudes-pfe-campagne",
@@ -999,7 +1077,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 26
+   "id": 28
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7595-campagne-de-recrutement-pfe",
@@ -1029,7 +1107,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 27
+   "id": 29
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8049-securisation-et-automatisation-des-infrastructures-it-windows-linux-bases-de-donnees-et-solutions-itsm-grace-a-l-ia",
@@ -1060,38 +1138,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-18",
    "new_today": false,
-   "id": 28
-  },
-  {
-   "url": "https://www.stagiaires.ma/stage-emploi-maroc/7497-stage-pfe-securisation-et-automatisation-des-infrastructures-it-et-ia",
-   "source": "stagiaires.ma",
-   "title": "Stage PFE : Sécurisation et automatisation des infrastructures IT et IA",
-   "company": "MAROC FER",
-   "city": "Marrakech",
-   "modality": "",
-   "date_posted": "2026-10-28",
-   "valid_through": "2026-11-27",
-   "employment_type": "INTERN",
-   "description": "Inetum recherche un(e) stagiaire PFE à Marrakech pour un projet innovant en administration système, gestion de bases de données et automatisation. En collaboration avec nos équipes, vous travaillerez sur la sécurisation des infrastructures Windows/Linux et explorerez l'usage de l'intelligence artificielle pour l'optimisation ITSM et le support ITIL. Vous maîtrisez le scripting (Python/Bash/PowerShell) et souhaitez relever un défi technique stimulant au sein d'un leader européen du numérique ? Rejoignez-nous pour cette expérience formatrice en environnement innovant.\nDescription du poste\nVous êtes en fin d'études en ingénierie ou Master informatique ? Inetum vous propose un stage PFE stimulant à Marrakech. Vous participerez à l'administration des systèmes Windows/Linux, à la gestion de bases de données et à l'automatisation des infrastructures IT. Vous explorerez l'usage de l'intelligence artificielle pour optimiser la supervision et la gestion des incidents ITSM, tout en appliquant les méthodologies ITIL. Si vous maîtrisez le scripting (Python/Bash/PowerShell) et souhaitez évoluer dans un environnement technologique innovant, rejoignez nos équipes.\nDescription de l'entreprise\nInetum est un leader européen des services numériques. Avec 28 000 collaborateurs, le groupe accompagne les entreprises et acteurs publics dans leur transformation digitale à travers le conseil, les infrastructures, les solutions logicielles et l'intégration de progiciels.\nDétails de la mission\nCe projet de fin d’études vise à optimiser les opérations informatiques via l'administration de systèmes Windows/Linux, la gestion de bases de données (Oracle/SQL) et l'exploitation de solutions ITSM selon les bonnes pratiques ITIL.\nMissions principales\nAdministration et supervision :\nMaintenir les environne",
-   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/05/05141823/MAROC-FER.png",
-   "axis_hits": {
-    "genai": 1,
-    "bigdata": 1,
-    "fullstack": 2,
-    "cvsec": 0
-   },
-   "keywords": [
-    "intelligence artificielle",
-    "sql",
-    "automatisation"
-   ],
-   "domain": "Full-Stack & Automatisations",
-   "bonus": 5,
-   "score": 65,
-   "is_pfe": true,
-   "first_seen": "2026-11-06",
-   "new_today": false,
-   "id": 29
+   "id": 30
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8199-stage-developpeur-informatique-ia-vibe-coding-h-f",
@@ -1122,7 +1169,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 30
+   "id": 31
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8117-stage-pfe-en-developpement-infrastructure-applicatif-f-h",
@@ -1154,7 +1201,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 31
+   "id": 32
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8110-stage-pfe-si",
@@ -1186,7 +1233,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-20",
    "new_today": false,
-   "id": 32
+   "id": 33
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7964-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f",
@@ -1222,7 +1269,7 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7938-stage-pre-embauche-python-intelligence-artificielle-developpement-web-h-f"
     }
    ],
-   "id": 33
+   "id": 34
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7671-stage-pfe-pfe-challenge-2027",
@@ -1255,7 +1302,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-06",
    "new_today": false,
-   "id": 34
+   "id": 35
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8252-developpeur-full-stack-junior",
@@ -1286,7 +1333,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 35
+   "id": 36
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7973-stage-data-engineering-ai-infrastructure-optimization-des-systemes",
@@ -1318,7 +1365,69 @@
    "is_pfe": false,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 36
+   "id": 37
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8364-stagiaire-pfe-business-intelligence-h-f",
+   "source": "stagiaires.ma",
+   "title": "Stagiaire PFE Business Intelligence (H/F)",
+   "company": "Centrale Danone",
+   "city": "Casablanca",
+   "modality": "",
+   "date_posted": "2026-11-28",
+   "valid_through": "2026-12-28",
+   "employment_type": "INTERN",
+   "description": "Centrale Danone recherche un(e) stagiaire PFE Business Intelligence pour rejoindre la Direction C&P/AML au siège Marina à Casablanca, pour une durée de 6 mois. Le stage portera sur le projet « Dashboard 2.0 » visant à faire évoluer les tableaux de bord Power BI vers une nouvelle génération d'outils interactifs et automatisés via Power Apps et Power Automate. Profil : étudiant(e) en dernière année de Master ou Bac+5 en Data Analytics, Business Intelligence ou Informatique Décisionnelle. Convention de stage obligatoire.\nÀ propos du poste\nRejoindre Danone, c'est…\nRencontrer des collaborateurs aux personnalités singulières et aux parcours professionnels variés ;\nGrandir dans des environnements différents : sites de production, bases logistiques, centre de recherche et innovation ou encore sièges sociaux ;\nSe construire un parcours de carrière sur mesure, adapté à votre personnalité, vos compétences et vos envies ;\nApprendre grâce à des missions responsabilisantes, riches et formatrices.\nDanone, entreprise à mission\nEn juin 2020, Danone est devenue la première entreprise cotée à adopter le statut d'entreprise à mission. Nous avons en effet décidé de nous doter d'une raison d'être et d'objectifs sociaux, sociétaux et environnementaux associés inscrits dans nos statuts. Il s'agit d'une étape historique pour continuer à réaliser chaque jour notre mission – « apporter la santé par l'alimentation au plus grand nombre » – dans notre cadre d'action « One Planet. One Health ».\nÀ propos de vous\nCentrale Danone\nest à la recherche d'un(e)\nStagiaire PFE Business Intelligence\npour rejoindre la Direction\nC&P/AML\n, basée au\nSiège Marina à Casablanca\n, pour une durée de\n6 mois\n.\nLe projet du stage\nCe stage portera sur le projet\n« Dashboard 2.0 »\n.\nL'objectif est de faire évoluer les tableau",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2024/04/03161110/Logo-STG-Entreprise-et-ecole-18-1.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 2,
+    "fullstack": 1,
+    "cvsec": 0
+   },
+   "keywords": [
+    "power bi",
+    "sql",
+    "automatisation"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 8,
+   "score": 61,
+   "is_pfe": true,
+   "first_seen": "2026-11-28",
+   "new_today": true,
+   "id": 38
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8351-stagiaire-pfe-systemes-embarques-automobile-ia-h-f",
+   "source": "stagiaires.ma",
+   "title": "Stagiaire PFE – Systèmes Embarqués, Automobile & IA (H/F)",
+   "company": "CGI",
+   "city": "Casablanca",
+   "modality": "Sur site",
+   "date_posted": "2026-11-28",
+   "valid_through": "2026-12-28",
+   "employment_type": "INTERN",
+   "description": "CGI recherche des stagiaires PFE en dernière année d'école d'ingénieurs pour des projets en ingénierie automobile, systèmes embarqués et IA. Missions : automatisation, assistant IA, optimisation MBD, perception ADAS. Profil : génie électrique, électronique, mécatronique ou automobile, avec intérêt pour l'IA et connaissances en Python, C/C++, MATLAB/Simulink. Stage sur site à Casablanca.\nDescription de poste\nDans le cadre de notre campagne de recrutement PFE, CGI recherche des stagiaires de dernière année d'école d'ingénieurs pour participer à des projets innovants dans les domaines de l'ingénierie automobile, des systèmes embarqués et de l'intelligence artificielle.\nFonctions et responsabilités\nSelon votre sujet de PFE, vous serez amené(e) à :\nDévelopper des outils d'automatisation et de suivi des activités de validation véhicule.\nConcevoir un assistant IA pour l'analyse des résultats d'essais automobiles.\nDévelopper des solutions d'optimisation basées sur l'IA pour les activités de conception MBD.\nParticiper au développement d'une chaîne de perception ADAS intégrant l'IA pour la reconnaissance d'objets.\nRéaliser des tests, analyser les résultats et documenter les travaux réalisés.\nQualités requises pour réussir dans ce rôle\nÉtudiant(e) en dernière année d'école d'ingénieurs, à la recherche d'un stage PFE.\nFormation en génie électrique, électronique, énergétique, mécatronique, automobile ou systèmes embarqués.\nConnaissances ou intérêt pour l'intelligence artificielle et les technologies automobiles.\nDes connaissances en Python, C/C++, MATLAB/Simulink ou Computer Vision constituent un atout.\nCuriosité, rigueur, esprit d'analyse et capacité d'apprentissage.\nCGI est un employeur inclusif et attentif aux candidatures des personnes en situation de handicap et à l'évolution d",
+   "logo": "https://uploads.stagiaires.ma/wp-content/uploads/2025/01/29145824/Design-sans-titre-99.png",
+   "axis_hits": {
+    "genai": 1,
+    "bigdata": 0,
+    "fullstack": 1,
+    "cvsec": 1
+   },
+   "keywords": [
+    "intelligence artificielle",
+    "automatisation",
+    "computer vision"
+   ],
+   "domain": "IA Agentique & GenAI",
+   "bonus": 8,
+   "score": 61,
+   "is_pfe": true,
+   "first_seen": "2026-11-28",
+   "new_today": true,
+   "id": 39
   },
   {
    "url": "https://www.dreamjob.ma/candidatures-spontanees/candidature-spontanee-chez-inetum-maroc-plusieurs-opportunites-a-casablanca/",
@@ -1350,7 +1459,7 @@
    "is_pfe": true,
    "first_seen": "2026-10-23",
    "new_today": false,
-   "id": 37
+   "id": 40
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8312-stagiaire-pfe-gateway-ia-avec-modules-dlp-h-f",
@@ -1379,8 +1488,8 @@
    "score": 58,
    "is_pfe": true,
    "first_seen": "2026-11-27",
-   "new_today": true,
-   "id": 38
+   "new_today": false,
+   "id": 41
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8244-ingenieur-verification-des-systemes-embarques-stage",
@@ -1410,7 +1519,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 39
+   "id": 42
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8228-embedded-systems-verification-engineer-intern",
@@ -1440,7 +1549,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-25",
    "new_today": false,
-   "id": 40
+   "id": 43
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7859-campagne-de-recrutement-stagiaires-2027",
@@ -1470,7 +1579,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-11",
    "new_today": false,
-   "id": 41
+   "id": 44
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7815-campagne-de-recrutement-stagiaires-2027",
@@ -1500,7 +1609,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-10",
    "new_today": false,
-   "id": 42
+   "id": 45
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7581-it-data-ai-intern-pfe",
@@ -1536,7 +1645,37 @@
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/7539-it-data-ai-intern-pfe"
     }
    ],
-   "id": 43
+   "id": 46
+  },
+  {
+   "url": "https://www.stagiaires.ma/stage-emploi-maroc/8367-stage-data-scientist-environnemental-cyclones-tropicaux",
+   "source": "stagiaires.ma",
+   "title": "Stage - Data Scientist Environnemental (Cyclones Tropicaux)",
+   "company": "Africa Specialty Risks",
+   "city": "Casablanca",
+   "modality": "Hybride",
+   "date_posted": "2026-11-28",
+   "valid_through": "2026-12-28",
+   "employment_type": "INTERN",
+   "description": "Africa Specialty Risks (ASR) recrute un stagiaire Data Scientist Environnemental à Casablanca. Vous créerez des produits d'assurance paramétrique pour cyclones tropicaux, tremblements de terre et inondations en exploitant l'imagerie satellite et les jeux de données environnementales. Vous collaborerez avec souscripteurs et actuaires pour des solutions d'assurance reproductibles. Profil : Licence/Master en data science ou sciences environnementales, Python, outils d'IA pour le codage. Stage hybride.\nQui sommes-nous\nAfrica Specialty Risks (ASR) favorise le développement économique durable en répondant aux besoins d'assurance non satisfaits. Notre plateforme offre une expertise locale en souscription, un réseau de distribution incomparable et un accès à des capacités mondiales.\nFondée au cœur de l'Afrique et avec des bureaux à travers le continent et au Moyen-Orient, nous fournissons une connaissance des marchés régionaux, des insights data et une compétence technique aux partenaires de capitaux souhaitant accroître leur présence sur les marchés en croissance.\nNous participons également à chaque risque que nous souscrivons avec des bilans aux Bermudes, à Maurice et via le Syndicat 2454 au Lloyd's. ASR s'engage à accélérer la croissance en offrant un service personnalisé et des produits d'assurance innovants pour permettre le développement.\nObjectif du rôle\nLe changement climatique entraîne une augmentation de la fréquence et de la gravité d'événements extrêmes tels que les sécheresses, les incendies de forêt et les inondations. Suivre et comprendre ces événements est essentiel pour créer des produits d'assurance qui soutiennent la résilience et la reprise des communautés touchées.\nChez ASR, votre objectif principal sera de créer de nouveaux produits d'assurance paramétriqu",
+   "logo": "https://uploads.stagiaires.ma/logos/2026/07/06083525/Africa_speciality_Risks.png",
+   "axis_hits": {
+    "genai": 0,
+    "bigdata": 3,
+    "fullstack": 0,
+    "cvsec": 0
+   },
+   "keywords": [
+    "data science",
+    "data scientist"
+   ],
+   "domain": "Big Data & MLOps",
+   "bonus": 3,
+   "score": 56,
+   "is_pfe": false,
+   "first_seen": "2026-11-28",
+   "new_today": true,
+   "id": 47
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7916-stage-pfe",
@@ -1567,7 +1706,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-13",
    "new_today": false,
-   "id": 44
+   "id": 48
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7892-stage-pfe-eqdom",
@@ -1598,7 +1737,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-12",
    "new_today": false,
-   "id": 45
+   "id": 49
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8291-stage-integration-d-une-gestion-de-licence-et-des-metriques-associees-au-securyzr-server",
@@ -1629,7 +1768,7 @@
    "is_pfe": false,
    "first_seen": "2026-11-26",
    "new_today": false,
-   "id": 46
+   "id": 50
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/8266-stage-integration-de-la-gestion-des-licences-et-des-metriques-associees-au-serveur-securyzr",
@@ -1659,14 +1798,14 @@
    "score": 53,
    "is_pfe": false,
    "first_seen": "2026-11-26",
-   "new_today": true,
+   "new_today": false,
    "also_on": [
     {
      "source": "stagiaires.ma",
      "url": "https://www.stagiaires.ma/stage-emploi-maroc/8321-stage-integration-de-la-gestion-des-licences-et-des-metriques-associees-au-serveur-securyzr"
     }
    ],
-   "id": 47
+   "id": 51
   },
   {
    "url": "https://www.dreamjob.ma/stage/ti-automotive-renforce-ses-equipes-data-et-achats-avec-des-stagiaires-a-tanger/",
@@ -1696,7 +1835,7 @@
    "is_pfe": false,
    "first_seen": "2026-10-19",
    "new_today": false,
-   "id": 48
+   "id": 52
   },
   {
    "url": "https://www.stagiaires.ma/stage-emploi-maroc/7924-stage-pfe-2026-it-software-engineering-qa-cybersecurite-data-ia",
@@ -1725,7 +1864,7 @@
    "is_pfe": true,
    "first_seen": "2026-11-15",
    "new_today": false,
-   "id": 49
+   "id": 53
   }
  ]
 }
